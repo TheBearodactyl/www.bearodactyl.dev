@@ -1,12 +1,6 @@
 <template>
     <transition name="fade-slide" mode="out-in">
-        <div v-if="isFilterCollapsed" class="filter-pill">
-            <input class="pill-search-input" v-model="searchFilters.title" :placeholder="$t('placeholder.search-title')"
-                @keydown.right="emitToggleSearchMode" />
-            <button class="pill-filter-btn" @click="emitToggleSearchMode">
-                <span class="icon">☰</span>
-            </button>
-        </div>
+        <FilterPill v-if="isFilterCollapsed" v-model="searchFilters.title" @toggle-search-mode="emitToggleSearchMode" />
 
         <div v-else class="filter-bar">
             <div class="filter-bar-header">
@@ -17,6 +11,7 @@
             <input :ref="expandedInputRef" v-model="searchFilters.title" :placeholder="$t('placeholder.search-title')"
                 @keydown.left="emitToggleSearchMode" />
             <input v-model="searchFilters.author" :placeholder="$t('placeholder.search-author')" />
+
             <select v-model="searchFilters.status">
                 <option>All Statuses</option>
                 <option>Reading</option>
@@ -29,51 +24,15 @@
                 <option v-for="r in [1, 2, 3, 4, 5, 10, 20, 30, 40, 50]" :key="r" :value="r">{{ r }}+</option>
             </select>
 
-            <div class="multi-select" ref="genresDropdown">
-                <label>{{ $t('filter.genres') }}:</label>
-                <div class="dropdown" @click.stop="emitToggleDropdown('genres')" :class="{ open: dropdowns.genres }"
-                    tabindex="0" @blur="emitCloseDropdown('genres')">
-                    <div class="dropdown-selected">
-                        <span v-if="searchFilters.genres.length === 0" class="placeholder">{{
-                            $t('placeholder.select-genres') }}</span>
-                        <span v-else class="selected-items">{{ searchFilters.genres.join(", ") }}</span>
-                        <span class="dropdown-arrow">▾</span>
-                    </div>
+            <MultiSelectDropdown label="Genres" :items="allGenres.map(g => ({ value: g }))"
+                :selected-items="searchFilters.genres" :is-open="dropdowns.genres" placeholder="Select Genres"
+                @toggle="emitToggleDropdown('genres')" @close="emitCloseDropdown('genres')"
+                @toggle-item="(genre) => emitToggleFilterItem('genres', genre)" />
 
-                    <ul class="dropdown-list" v-if="dropdowns.genres">
-                        <li v-for="genre in allGenres" :key="genre"
-                            :class="{ selected: searchFilters.genres.includes(genre) }"
-                            @click.stop="emitToggleFilterItem('genres', genre)">
-                            <input type="checkbox" :checked="searchFilters.genres.includes(genre)" readonly />
-                            {{ genre }}
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="multi-select" ref="tagsDropdown">
-                <label>{{ $t('filter.tags') }}:</label>
-                <div class="dropdown" @click.stop="emitToggleDropdown('tags')" :class="{ open: dropdowns.tags }"
-                    tabindex="0" @blur="emitCloseDropdown('tags')">
-                    <div class="dropdown-selected">
-                        <span v-if="searchFilters.tags.length === 0" class="placeholder">{{
-                            $t('placeholder.select-tags') }}</span>
-                        <span v-else class="selected-items">{{ searchFilters.tags.join(", ") }}</span>
-                        <span class="dropdown-arrow">▾</span>
-                    </div>
-
-                    <ul class="dropdown-list" v-if="dropdowns.tags">
-                        <li v-for="[tag, count] in filteredTagCounts" :key="tag"
-                            :class="{ selected: searchFilters.tags.includes(tag) }"
-                            @click.stop="emitToggleFilterItem('tags', tag)">
-                            <input type="checkbox" :checked="searchFilters.tags.includes(tag)" readonly />
-                            {{ tag }} <span class="tag-count">({{ count }})</span>
-                        </li>
-                        <li v-if="filteredTagCounts.length === 0 && searchFilters.tags.length === 0" class="no-tags">{{
-                            $t('filter.no-tags') }}</li>
-                    </ul>
-                </div>
-            </div>
+            <MultiSelectDropdown label="Tags" :items="filteredTagCounts.map(([tag, count]) => ({ value: tag, count }))"
+                :selected-items="searchFilters.tags" :is-open="dropdowns.tags" placeholder="Select Tags"
+                no-items-message="No tags available" @toggle="emitToggleDropdown('tags')"
+                @close="emitCloseDropdown('tags')" @toggle-item="(tag) => emitToggleFilterItem('tags', tag)" />
 
             <button class="clear-filters-btn" @click="emitClearAllFilters">
                 {{ $t('button.clear-filters') }}
@@ -83,6 +42,9 @@
 </template>
 
 <script setup>
+import FilterPill from '../gallery/FilterPill.vue';
+import MultiSelectDropdown from '../gallery/MultiSelectDropdown.vue';
+
 const props = defineProps({
     searchFilters: Object,
     allGenres: Array,
@@ -101,23 +63,9 @@ const emit = defineEmits([
     'toggle-search-mode'
 ]);
 
-const emitToggleDropdown = (type) => {
-    emit('toggle-dropdown', type);
-};
-
-const emitCloseDropdown = (type) => {
-    emit('close-dropdown', type);
-};
-
-const emitToggleFilterItem = (type, item) => {
-    emit('toggle-filter-item', type, item);
-};
-
-const emitClearAllFilters = () => {
-    emit('clear-all-filters');
-};
-
-const emitToggleSearchMode = () => {
-    emit('toggle-search-mode');
-};
+const emitToggleDropdown = (type) => emit('toggle-dropdown', type);
+const emitCloseDropdown = (type) => emit('close-dropdown', type);
+const emitToggleFilterItem = (type, item) => emit('toggle-filter-item', type, item);
+const emitClearAllFilters = () => emit('clear-all-filters');
+const emitToggleSearchMode = () => emit('toggle-search-mode');
 </script>

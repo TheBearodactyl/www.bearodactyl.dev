@@ -63,7 +63,9 @@
   display: flex;
   gap: 2.5rem;
   padding: 3rem;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 100;
   background: var(--rp-overlay);
   transition: background 0.3s ease, box-shadow 0.3s ease;
   border-radius: 18px 18px 0 0;

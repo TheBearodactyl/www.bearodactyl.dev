@@ -55,7 +55,7 @@
 </template>
 
 <script setup>
-const props = defineProps({
+defineProps({
     book: Object
 });
 

@@ -19,14 +19,13 @@
             {{ $t('error.loading') }}: {{ fetchError }}
         </div>
 
-        <BooksGrid v-if="!isLoading && !fetchError" :filteredBooks="filteredBooks" :isContentVisible="isContentVisible"
+        <BooksGrid v-if="!isLoading && !fetchError" :books="filteredBooks" :isContentVisible="isContentVisible"
             :viewMode="viewMode" :expandedCard="expandedCard" @toggle-card="toggleCard" />
 
         <ExpandedCard v-if="expandedCard !== null && !isLoading && !fetchError"
             :book="filteredBooks.find((b) => b.id === expandedCard)" @close-card="closeCard" />
 
-        <div v-if="expandedCard !== null" class="backdrop" :class="{ show: expandedCard !== null }" @click="closeCard">
-        </div>
+        <GalleryBackdrop :show="expandedCard !== null" @click="closeCard" />
     </div>
 </template>
 
@@ -35,6 +34,7 @@ import { useData } from '~/composables/books/useData';
 import { useFilters } from '~/composables/books/useFilters';
 import { useDisplay } from '~/composables/books/useDisplay';
 
+import GalleryBackdrop from '../gallery/GalleryBackdrop.vue';
 import Filters from './Filters.vue';
 import BooksGrid from './BooksGrid.vue';
 import ExpandedCard from './ExpandedCard.vue';
