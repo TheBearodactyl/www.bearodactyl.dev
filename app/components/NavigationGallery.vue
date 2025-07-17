@@ -52,7 +52,7 @@ function playEmergency() {
 }
 </script>
 
-<style>
+<style scoped>
 @import url("/assets/css/bookgallery/_base.css");
 
 .navigation-gallery-wrapper {
