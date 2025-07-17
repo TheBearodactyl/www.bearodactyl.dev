@@ -19,7 +19,6 @@
 
 <script lang="ts" setup>
 import { ref } from 'vue';
-import { defineProps } from 'vue';
 import { NuxtLink } from '#components';
 
 interface NavItem {
