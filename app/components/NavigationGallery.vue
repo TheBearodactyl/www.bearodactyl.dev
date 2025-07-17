@@ -60,18 +60,18 @@ function playEmergency() {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .navigation-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 1.5rem;
+  column-count: 3;
+  column-gap: 1.5rem;
   max-width: 1200px;
   width: 100%;
 }
 
 .nav-card {
+  width: 100%;
   background-color: var(--rp-overlay);
   border: 1px solid var(--rp-highlight-low);
   border-radius: 12px;
@@ -82,6 +82,20 @@ function playEmergency() {
   color: var(--text);
   transition: transform 0.2s ease, border-color 0.2s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  margin-bottom: 1.5rem;
+  break-inside: avoid-column;
+}
+
+@media (max-width: 900px) {
+  .navigation-gallery {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 600px) {
+  .navigation-gallery {
+    column-count: 1;
+  }
 }
 
 .nav-card:hover {
@@ -96,7 +110,6 @@ function playEmergency() {
 
 .card-image-container {
   width: 100%;
-  padding-top: 100%;
   position: relative;
   overflow: hidden;
   background-color: var(--rp-surface);
@@ -106,12 +119,12 @@ function playEmergency() {
 }
 
 .card-image {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
+  top: unset;
+  left: unset;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   transition: transform 0.3s ease;
 }
 
@@ -166,7 +179,7 @@ function playEmergency() {
   padding: 1.5rem 3rem;
   border-radius: 1rem;
   z-index: 1000;
-  animation: shake 0.4s infinite, pulse 1s infinite alternate;
+  animation: shake 0.05s infinite, pulse 1s infinite alternate;
   box-shadow: 0 0 30px red;
 }
 
@@ -179,22 +192,6 @@ function playEmergency() {
   background-color: rgba(255, 0, 0, 0.3);
   z-index: 999;
   pointer-events: none;
-}
-
-.emergency-overlay {
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: rgba(255, 0, 0, 0.9);
-  color: white;
-  font-size: 2rem;
-  font-weight: bold;
-  padding: 1.5rem 3rem;
-  border-radius: 1rem;
-  z-index: 1000;
-  animation: shake 0.05s infinite, pulse 1s infinite alternate;
-  box-shadow: 0 0 30px red;
 }
 
 @keyframes shake {
@@ -242,7 +239,6 @@ function playEmergency() {
     transform: translateX(-50%) translateY(0) rotate(0deg);
   }
 }
-
 
 @keyframes pulse {
   0% {
