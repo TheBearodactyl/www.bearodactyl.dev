@@ -57,6 +57,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  transform: translate3d(0, 0, 0);
   backdrop-filter: blur(40px);
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 5;
@@ -68,6 +69,7 @@
 .book-card.expanded.explicit-content::before {
   opacity: 0;
   backdrop-filter: blur(0px);
+  transform: translate3d(0, 0, 0);
 }
 
 .book-expanded.explicit-content::before {
@@ -78,6 +80,7 @@
   right: 0;
   bottom: 0;
   backdrop-filter: blur(40px);
+  transform: translate3d(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 5;
   transition: opacity 0.3s ease, backdrop-filter 0.3s ease;
@@ -87,6 +90,7 @@
 .book-expanded.show.explicit-content::before {
   opacity: 0;
   backdrop-filter: blur(0px);
+  transform: translate3d(0, 0, 0);
 }
 
 .book-cover {
