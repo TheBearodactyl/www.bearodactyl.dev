@@ -1,9 +1,7 @@
 <template>
-  <Gallery />
+  <GamesGallery />
 </template>
 
 <script lang="ts" setup>
-import Gallery from "@/components/gamesgallery/Gallery.vue"
+import GamesGallery from "~/components/gamesgallery/GamesGallery.vue"
 </script>
-
-<style></style>

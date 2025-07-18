@@ -3,7 +3,7 @@ import { useStorage } from "@vueuse/core";
 
 export function useDisplay() {
   const isFilterCollapsed: Ref<boolean> = ref(true);
-  const expandedInputRef: Ref<HTMLInputElement | null> = ref(null);
+  const expandedInputRef: Ref<any> = ref(null);
   const viewMode: Ref<string> = useStorage("game-gallery-view-mode", "grid");
   const expandedCard: Ref<string | number | null> = ref(null);
   const idleTimeout: Ref<ReturnType<typeof setTimeout>> = ref(

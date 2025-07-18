@@ -2,7 +2,7 @@
     <div class="book-gallery" :class="{ 'idle-background': isIdle }">
         <h1 class="gallery-title">{{ $t('games-header') }}</h1>
 
-        <Filter :searchFilters="searchFilters" :allGenres="allGenres" :allTags="allTags" :dropdowns="dropdowns"
+        <GameFilters :searchFilters="searchFilters" :allGenres="allGenres" :allTags="allTags" :dropdowns="dropdowns"
             :isFilterCollapsed="isFilterCollapsed" :filteredTagCounts="filteredTagCounts"
             @toggle-dropdown="toggleDropdown" @close-dropdown="closeDropdown" @toggle-filter-item="toggleFilterItem"
             @clear-all-filters="clearAllFilters" @toggle-search-mode="toggleSearchMode"
@@ -19,10 +19,10 @@
             {{ $t('error.loading') }}: {{ fetchError }}
         </div>
 
-        <Grid v-if="!isLoading && !fetchError" :filtered-games="filteredGames" :isContentVisible="isContentVisible"
+        <GamesGrid v-if="!isLoading && !fetchError" :filtered-games="filteredGames" :isContentVisible="isContentVisible"
             :viewMode="viewMode" :expandedCard="expandedCard" @toggle-card="toggleCard" />
 
-        <ExpandedCard v-if="expandedCard !== null && !isLoading && !fetchError"
+        <GameExpandedCard v-if="expandedCard !== null && !isLoading && !fetchError"
             :game="filteredGames.find((b) => b.id === expandedCard)" @close-card="closeCard" />
 
         <div v-if="expandedCard !== null" class="backdrop" :class="{ show: expandedCard !== null }" @click="closeCard">
@@ -35,9 +35,9 @@ import { useData } from "~/composables/games/useData";
 import { useDisplay } from "~/composables/games/useDisplay";
 import { useFilters } from "~/composables/games/useFilters";
 
-import Filter from "./Filter.vue";
-import ExpandedCard from "./ExpandedCard.vue";
-import Grid from "./Grid.vue";
+import GameExpandedCard from "./GameExpandedCard.vue";
+import GameFilters from "./GameFilters.vue";
+import GamesGrid from "./GamesGrid.vue";
 
 useHead({
     title: "Games I play",

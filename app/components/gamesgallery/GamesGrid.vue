@@ -28,14 +28,14 @@
                         <div class="read-status">{{ game.status }}</div>
                         <div class="book-genres">
                             <span v-for="genre in game.genres.slice(0, 5)" :key="genre" class="book-genre">{{ genre
-                                }}</span>
+                            }}</span>
                         </div>
                         <div class="book-tags" v-if="game.tags">
                             <span v-for="tag in game.tags.slice(0, 5)" :key="tag" class="book-tag">{{ tag }}</span>
                         </div>
                         <div class="book-rating">
                             <span class="stars">
-                                <span v-for="star in (game.title === ('One Piece' || 'The DSM-5') ? 50 : 5)" :key="star"
+                                <span v-for="star in (game.title === 'P5R' ? 500 : 5)" :key="star"
                                     class="star" :class="{ 'filled': star <= game.rating }">★</span>
                             </span>
                             <span class="rating-text">{{ game.rating }}/5</span>
