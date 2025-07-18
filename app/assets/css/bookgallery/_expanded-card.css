@@ -63,7 +63,7 @@
   display: flex;
   gap: 2.5rem;
   padding: 3rem;
-  position: sticky;
+  position: relative;
   top: 0;
   z-index: 100;
   background: var(--rp-overlay);
