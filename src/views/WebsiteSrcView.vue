@@ -13,7 +13,7 @@ const openSource = () => {
 
   setTimeout(() => {
     router.push("/");
-  }, 3000)
+  }, 800)
 }
 
 onMounted(openSource)
