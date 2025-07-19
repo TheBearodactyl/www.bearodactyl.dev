@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import IndexView from '@/views/IndexView.vue'
 import DefaultLayout from '@/components/DefaultLayout.vue'
 import ReadListView from '@/views/ReadListView.vue'
@@ -9,7 +9,7 @@ import ProjectsView from '@/views/ProjectsView.vue'
 import WebsiteSrcView from '@/views/WebsiteSrcView.vue'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
     {
       path: '/',

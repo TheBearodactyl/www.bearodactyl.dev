@@ -13,12 +13,6 @@ const i18n = createI18n({
   },
 })
 
-const redirect = sessionStorage.redirect
-if (redirect) {
-  delete sessionStorage.redirect
-  router.replace(redirect)
-}
-
 const head = createHead()
 const app = createApp(App)
 app.use(head)
