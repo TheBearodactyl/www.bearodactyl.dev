@@ -1,21 +1,74 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import IndexView from '@/views/IndexView.vue'
+import DefaultLayout from '@/components/DefaultLayout.vue'
+import ReadListView from '@/views/ReadListView.vue'
+import WoahView from '@/views/WoahView.vue'
+import BearoView from '@/views/BearoView.vue'
+import GamesView from '@/views/GamesView.vue'
+import ProjectsView from '@/views/ProjectsView.vue'
+import WebsiteSrcView from '@/views/WebsiteSrcView.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: HomeView,
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue'),
+      component: DefaultLayout,
+      children: [
+        {
+          path: '',
+          name: 'home',
+          component: IndexView,
+          meta: {
+            title: 'The Motherfucking Bearodactyl',
+          },
+        },
+        {
+          path: '/lists',
+          name: 'lists',
+          children: [
+            {
+              path: 'read-watch',
+              name: 'read-watch',
+              component: ReadListView,
+              meta: {
+                title: 'Read/Watch List',
+              },
+            },
+            {
+              path: 'games',
+              name: 'games',
+              component: GamesView,
+            },
+            {
+              path: 'projects',
+              name: 'projects',
+              component: ProjectsView,
+            },
+          ],
+        },
+        {
+          path: '/jokes',
+          name: 'jokes',
+          children: [
+            {
+              path: 'woah',
+              name: 'woah',
+              component: WoahView,
+            },
+            {
+              path: 'bearo',
+              name: 'bearo',
+              component: BearoView,
+            },
+          ],
+        },
+        {
+          path: 'website-src',
+          name: 'website-src',
+          component: WebsiteSrcView,
+        },
+      ],
     },
   ],
 })
