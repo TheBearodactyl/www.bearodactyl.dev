@@ -27,7 +27,6 @@
             <option value="onedark">Onedark</option>
             <option value="pink-moon">Pink Moon</option>
             <option value="tokyo-night">Tokyo Night</option>
-            <option value="winne">Windows 98</option>
           </select>
         </div>
         <LangSwitcher class="lang-switcher-aligned" />

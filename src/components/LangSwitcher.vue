@@ -4,8 +4,4 @@
       <option v-for="locale in $i18n.availableLocales" :key="`locale-${locale}`" :value="locale">{{ locale }}</option>
     </select>
   </div>
-
 </template>
-
-<script lang="ts" setup>
-</script>
