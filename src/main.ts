@@ -5,12 +5,16 @@ import { createI18n } from 'vue-i18n'
 import { createHead } from '@unhead/vue/server'
 
 import en from '../locales/en.json'
+import sp from '../locales/sp.json'
+import jp from '../locales/jp.json'
 
-const i18n = createI18n({
+export const i18n = createI18n({
   locale: 'en',
   fallbackLocale: 'en',
   messages: {
     en,
+    sp,
+    jp,
   },
 })
 

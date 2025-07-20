@@ -1,9 +1,8 @@
 @font-face {
-  font-family: "Cascadia Code Nerd Font";
+  font-family: 'Cascadia Code Nerd Font';
   font-style: normal;
   font-weight: 200;
-  src: url("/fonts/CaskaydiaCove/CaskaydiaCoveNerdFont-Light.ttf")
-    format("truetype");
+  src: url('/fonts/CaskaydiaCove/CaskaydiaCoveNerdFont-Light.ttf') format('truetype');
   font-variant-ligatures: none;
 }
 
@@ -11,7 +10,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: "Cascadia Code Nerd Font" !important;
+  font-family: 'Cascadia Code Nerd Font' !important;
 }
 
 img {
@@ -21,16 +20,19 @@ img {
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
+  display: none;
 }
 
 ::-webkit-scrollbar-track {
   background-color: var(--rp-base);
+  display: none;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--rp-foam);
   border-radius: 8px;
   border: 2px solid var(--rose-pine-wood);
+  display: none;
 }
 
 ::-webkit-scrollbar-button {
@@ -44,7 +46,7 @@ img {
 }
 
 * {
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: var(--rose-pine-foam) var(--rose-pine-crust);
 }
 
@@ -54,7 +56,12 @@ body {
   padding: 0;
   background: var(--rp-base);
   color: var(--rp-text);
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  font-family:
+    'Inter',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
     sans-serif;
   line-height: 1.7;
   scroll-behavior: smooth;
@@ -94,7 +101,8 @@ body {
   background: rgba(25, 23, 36, 0.85);
   z-index: 999;
   backdrop-filter: blur(8px);
-  transition: opacity var(--transition-speed) var(--transition-ease),
+  transition:
+    opacity var(--transition-speed) var(--transition-ease),
     backdrop-filter var(--transition-speed) var(--transition-ease);
 }
 
@@ -106,6 +114,7 @@ button {
   font-family: inherit;
   font-size: inherit;
   color: inherit;
-  transition: transform 0.2s var(--transition-ease),
+  transition:
+    transform 0.2s var(--transition-ease),
     opacity 0.2s var(--transition-ease);
 }

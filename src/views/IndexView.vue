@@ -1,8 +1,8 @@
 <template>
   <div>
     <div class="index-header">
-      <h1>The Motherfucking Bearodactyl</h1>
-      <p>this is my website, check out some stuff i made (it's a bit buggy)</p>
+      <h1>{{ $t("index.title") }}</h1>
+      <p>{{ $t("index.desc") }}</p>
     </div>
 
     <NavigationGallery :nav-items="navigationItems" />

@@ -671,7 +671,7 @@ html[data-theme='tokyo-night'] {
 }
 
 * {
-  scrollbar-width: thin;
+  scrollbar-width: none;
   scrollbar-color: var(--rose-pine-foam) var(--rose-pine-crust);
 }
 

@@ -1,5 +1,5 @@
 .book-gallery {
-  padding: 3rem 2.5rem;
+  /* padding: 3rem 2.5rem; */
   max-width: unset;
   margin: 0 auto;
   position: relative;
@@ -16,7 +16,8 @@
   color: var(--rp-iris);
   font-weight: 800;
   letter-spacing: -0.04em;
-  text-shadow: 0 0 20px rgba(196, 167, 231, 0.3),
+  text-shadow:
+    0 0 20px rgba(196, 167, 231, 0.3),
     0 0 40px rgba(196, 167, 231, 0.1);
   line-height: 1.1;
   background: linear-gradient(90deg, var(--rp-iris) 0%, var(--rp-foam) 100%);
@@ -67,12 +68,7 @@
 
 .progress-fill {
   height: 100%;
-  background: linear-gradient(
-    to right,
-    var(--rp-foam),
-    var(--rp-pine),
-    var(--rp-iris)
-  );
+  background: linear-gradient(to right, var(--rp-foam), var(--rp-pine), var(--rp-iris));
   transition: width 0.5s var(--transition-ease);
   border-radius: 14px 0 0 14px;
   box-shadow: 0 0 10px rgba(156, 207, 216, 0.5);
@@ -86,7 +82,7 @@
 }
 
 .book-gallery.idle-background {
-  background-image: url("/images/mlg.gif");
+  background-image: url('/images/mlg.gif');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
