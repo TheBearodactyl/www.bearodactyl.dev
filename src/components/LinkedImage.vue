@@ -1,5 +1,5 @@
 <template>
-  <img :src="props.imageSrc" alt="Click to play audio" @click="handleClick" class="clickable" />
+  <img :src="props.imageSrc" :alt="$t('click-to-play-audio')" @click="handleClick" class="clickable" />
 </template>
 
 <script setup lang="ts">

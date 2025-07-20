@@ -4,7 +4,8 @@
       <component v-for="item in navItems" :key="item.title" :is="item.title === 'Emergency frog!' ? 'div' : RouterLink"
         :to="item.title === 'Emergency frog!' ? undefined : item.route" class="nav-card" @click="handleCardClick(item)">
         <div class="card-image-container">
-          <img v-if="item.coverImage" :src="item.coverImage" :alt="`Cover for ${item.title}`" class="card-image" />
+          <img v-if="item.coverImage" :src="item.coverImage" :alt="$t('cover-for-item-title', [item.title])"
+            class="card-image" />
           <div v-else class="placeholder-image">?</div>
         </div>
         <div class="card-content">

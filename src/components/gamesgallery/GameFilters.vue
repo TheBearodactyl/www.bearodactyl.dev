@@ -5,14 +5,14 @@
 
     <div v-else class="filter-bar">
       <div class="filter-bar-header">
-        <h2 class="filter-heading">Title</h2>
+        <h2 class="filter-heading">{{ $t('title') }}</h2>
         <button class="collapse-btn" @click="emitToggleSearchMode">⨯</button>
       </div>
 
-      <input :ref="expandedInputRef" v-model="localFilters.title" placeholder="Search title..."
+      <input :ref="expandedInputRef" v-model="localFilters.title" :placeholder="$t('search-title')"
         @keydown.left="emitToggleSearchMode" />
 
-      <input v-model="localFilters.developer" placeholder="Search developer..." />
+      <input v-model="localFilters.developer" :placeholder="$t('search-developer')" />
 
       <select v-model="localFilters.status">
         <option>All Statuses</option>
@@ -23,25 +23,25 @@
       </select>
 
       <select v-model="localFilters.rating">
-        <option value="">Any Rating</option>
+        <option value="">{{ $t('gallery.filters.any-rating') }}</option>
         <option v-for="r in [1, 2, 3, 4, 5, 10, 20, 30, 40, 50]" :key="r" :value="r">
-          {{ r }}+
+          {{ $t('rating', [r]) }}
         </option>
       </select>
 
-      <MultiSelectDropdown label="Genres" :items="allGenres.map(g => ({ value: g }))"
-        :selected-items="localFilters.genres" :is-open="dropdowns.genres" placeholder="Select Genres"
+      <MultiSelectDropdown :label="$t('genres')" :items="allGenres.map(g => ({ value: g }))"
+        :selected-items="localFilters.genres" :is-open="dropdowns.genres" :placeholder="$t('select-genres')"
         no-items-message="No genres available" @toggle="emitToggleDropdown('genres')"
         @close="emitCloseDropdown('genres')" @toggle-item="(genre) => emitToggleFilterItem('genres', genre)" />
 
-      <MultiSelectDropdown label="Tags" :items="filteredTagCounts.map(([tag, count]) => ({ value: tag, count }))"
-        :selected-items="localFilters.tags" :is-open="dropdowns.tags" placeholder="Select Tags"
+      <MultiSelectDropdown :label="$t('tags')" :items="filteredTagCounts.map(([tag, count]) => ({ value: tag, count }))"
+        :selected-items="localFilters.tags" :is-open="dropdowns.tags" :placeholder="$t('select-tags')"
         no-items-message="No tags available" @toggle="emitToggleDropdown('tags')" @close="emitCloseDropdown('tags')"
         @toggle-item="(tag) => emitToggleFilterItem('tags', tag)" />
 
 
       <button class="clear-filters-btn" @click="emitClearAllFilters">
-        Clear Filters
+        {{ $t('clear-filters') }}
       </button>
     </div>
   </transition>

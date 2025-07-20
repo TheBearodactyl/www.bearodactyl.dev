@@ -5,7 +5,7 @@
         :is-expanded="expandedCard === book.id" @toggle-card="emitToggleCard(book.id)" />
     </div>
     <div v-else class="no-results">
-      No Results
+      {{ $t('no-results') }}
     </div>
   </div>
 </template>

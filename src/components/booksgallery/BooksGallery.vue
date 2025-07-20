@@ -1,6 +1,6 @@
 <template>
   <div class="book-gallery" :class="{ 'idle-background': isIdle }">
-    <h1 class="gallery-title">Read/Watch List</h1>
+    <h1 class="gallery-title">{{ $t('read-watch-list') }}</h1>
 
     <Filters :searchFilters="searchFilters" :allGenres="allGenres" :allTags="allTags" :dropdowns="dropdowns"
       :isFilterCollapsed="isFilterCollapsed" :filteredTagCounts="filteredTagCounts" @toggle-dropdown="toggleDropdown"
@@ -11,11 +11,11 @@
       <div class="progress-bar">
         <div class="progress-fill" :style="{ width: downloadProgress + '%' }"></div>
       </div>
-      <p>Loading... {{ downloadProgress }}%</p>
+      <p>{{ $t('loading-downloadprogress', [downloadProgress]) }}</p>
     </div>
 
     <div v-if="fetchError" class="error-message">
-      Error loading list: {{ fetchError }}
+      {{ $t('error-loading-list-fetcherror', [fetchError]) }}
     </div>
 
     <BooksGrid v-if="!isLoading && !fetchError" :books="filteredBooks" :isContentVisible="isContentVisible"

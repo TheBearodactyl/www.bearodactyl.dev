@@ -1,4 +1,48 @@
 {
-  "index.title": "El Motherfucking Bearodactyl",
-  "index.desc": "Este es mi sitio web, mira algunas cosas que hise (tiene algunos errores)"
+  "index": {
+    "title": "The Motherfucking Bearodactyl",
+    "desc": "this is my website, check out some stuff i made (it's a bit buggy)"
+  },
+  "gallery": {
+    "explicit": "Contains Explicit Content",
+    "expanded": {
+      "description": "Description",
+      "my-thoughts": "My Thoughts",
+      "links": "Links"
+    },
+    "filters": {
+      "search": "Search...",
+      "any-rating": "Any Rating"
+    }
+  },
+  "cover-of-props-book-title": "Cover of {0}",
+  "props-book-rating-5": "{0}/5",
+  "rating": "{0}+",
+  "genres": "Genres",
+  "select-genres": "Select Genres",
+  "tags": "Tags",
+  "select-tags": "Select Tags",
+  "clear-filters": "Clear Filters",
+  "title": "Title",
+  "search-title": "Search title...",
+  "search-author": "Search author...",
+  "read-watch-list": "Read/Watch List",
+  "loading-downloadprogress": "Loading... {0}%",
+  "error-loading-list-fetcherror": "Error loading list: {0}",
+  "no-results": "No Results",
+  "label": "{0}:",
+  "item-count": "({0})",
+  "cover-of-props-game-title": "Cover of {0}",
+  "props-game-rating-5": "{0}/5",
+  "cover-of-props-game-title-0": "Cover of {0}",
+  "contains-explicit-content": "Contains Explicit Content",
+  "props-game-rating-5-0": "{0}/5",
+  "search-developer": "Search developer...",
+  "games-list": "Games List",
+  "loading-games-downloadprogress": "Loading Games: {0}%",
+  "error-loading-games-fetcherror": "Error Loading Games: {0}",
+  "no-results-0": "No Results...",
+  "go-to-home": "Go to Home",
+  "click-to-play-audio": "Click to play audio",
+  "cover-for-item-title": "Cover for {0}"
 }

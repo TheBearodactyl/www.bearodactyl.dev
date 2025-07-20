@@ -1,7 +1,7 @@
 <template>
   <div class="filter-pill">
-    <input class="pill-search-input" placeholder="Search..." :value="props.modelValue" @input="onInput"
-      @keydown.right="emitToggleSearchMode" />
+    <input class="pill-search-input" :placeholder="$t('gallery.filters.search')" :value="props.modelValue"
+      @input="onInput" @keydown.right="emitToggleSearchMode" />
     <button class="pill-filter-btn" @click="emitToggleSearchMode">
       <span class="icon">☰</span>
     </button>

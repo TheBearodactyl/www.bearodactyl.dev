@@ -6,7 +6,7 @@
         :style="{ 'animation-delay': `${index * 0.1}s` }" @click="emitToggleCard(game.id)">
         <div class="book-compact" v-show="expandedCard !== game.id">
           <div class="book-cover">
-            <img :src="game.coverImage" :alt="`Cover of ${game.title}`" class="cover-image" />
+            <img :src="game.coverImage" :alt="$t('cover-of-props-game-title', [game.title])" class="cover-image" />
             <div v-if="game.explicit" class="explicit-icon">
               <span class="icon-warning">
                 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
@@ -18,7 +18,7 @@
                   <line x1="12" y1="17" x2="12.01" y2="17"></line>
                 </svg>
               </span>
-              <span class="explicit-label">Contains Explicit Content</span>
+              <span class="explicit-label">{{ $t('gallery.explicit') }}</span>
             </div>
           </div>
           <div class="book-info">
@@ -27,7 +27,7 @@
             <div class="read-status">{{ game.status }}</div>
             <div class="book-genres">
               <span v-for="genre in game.genres.slice(0, 5)" :key="genre" class="book-genre">{{ genre
-                }}</span>
+              }}</span>
             </div>
             <div class="book-tags" v-if="game.tags">
               <span v-for="tag in game.tags.slice(0, 5)" :key="tag" class="book-tag">{{ tag }}</span>
@@ -37,14 +37,14 @@
                 <span v-for="star in (game.title === 'P5R' ? 500 : 5)" :key="star" class="star"
                   :class="{ 'filled': star <= game.rating }">★</span>
               </span>
-              <span class="rating-text">{{ game.rating }}/5</span>
+              <span class="rating-text">{{ $t('props-game-rating-5', [game.rating]) }}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <div v-if="filteredGames.length === 0" class="no-results">
-      No Results...
+      {{ $t('no-results-0') }}
     </div>
   </div>
 </template>

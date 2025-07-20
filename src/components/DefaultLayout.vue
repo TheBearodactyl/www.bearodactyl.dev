@@ -31,7 +31,7 @@
         </div>
         <LangSwitcher class="lang-switcher-aligned" />
         <button v-if="currentRoutePath !== '/'" class="home_button" @click="goHome" aria-label="Home"
-          title="Go to Home">
+          :title="$t('go-to-home')">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
             class="feather feather-home">

@@ -8,7 +8,7 @@ import en from '../locales/en.json'
 import sp from '../locales/sp.json'
 import jp from '../locales/jp.json'
 
-export const i18n = createI18n({
+export const locales = createI18n({
   locale: 'en',
   fallbackLocale: 'en',
   messages: {
@@ -22,5 +22,5 @@ const head = createHead()
 const app = createApp(App)
 app.use(head)
 app.use(router)
-app.use(i18n)
+app.use(locales)
 app.mount('#app')

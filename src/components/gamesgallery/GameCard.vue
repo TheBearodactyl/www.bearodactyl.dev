@@ -3,7 +3,8 @@
     :card-classes="{ 'explicit-content': props.game.explicit }" @toggle="emitToggleCard">
     <div class="book-compact" v-show="!isExpanded">
       <div class="book-cover">
-        <img :src="props.game.coverImage" :alt="`Cover of ${props.game.title}`" class="cover-image" />
+        <img :src="props.game.coverImage" :alt="$t('cover-of-props-game-title', [props.game.title])"
+          class="cover-image" />
         <div v-if="props.game.explicit" class="explicit-icon">
           <span class="icon-warning">
             <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="red"
@@ -14,7 +15,7 @@
               <line x1="12" y1="17" x2="12.01" y2="17"></line>
             </svg>
           </span>
-          <span class="explicit-label">Contains Explicit Content</span>
+          <span class="explicit-label">{{ $t("gallery.explicit") }}</span>
         </div>
       </div>
       <div class="book-info">
@@ -32,7 +33,7 @@
             <span v-for="star in (props.game.title === 'One Piece' ? 50 : 5)" :key="star" class="star"
               :class="{ 'filled': star <= props.game.rating }">★</span>
           </span>
-          <span class="rating-text">{{ props.game.rating }}/5</span>
+          <span class="rating-text">{{ $t('props-game-rating-5', [props.game.rating]) }}</span>
         </div>
       </div>
     </div>
