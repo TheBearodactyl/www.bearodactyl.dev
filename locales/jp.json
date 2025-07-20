@@ -1,48 +1,48 @@
 {
   "index": {
     "title": "The Motherfucking Bearodactyl",
-    "desc": "this is my website, check out some stuff i made (it's a bit buggy)"
+    "desc": "これは俺のウェブサイトだ。俺の作ったことを見てみよう！（ちょっとバグがあるよなぁ）"
   },
   "gallery": {
-    "explicit": "Contains Explicit Content",
+    "explicit": "成人向けのコンテンツがある",
     "expanded": {
-      "description": "Description",
-      "my-thoughts": "My Thoughts",
-      "links": "Links"
+      "description": "説明",
+      "my-thoughts": "俺の意見",
+      "links": "リンク"
     },
     "filters": {
-      "search": "Search...",
-      "any-rating": "Any Rating"
+      "search": "検索...",
+      "any-rating": "任意の評価"
     }
   },
-  "cover-of-props-book-title": "Cover of {0}",
+  "cover-of-props-book-title": "{0}の表紙ページ",
   "props-book-rating-5": "{0}/5",
   "rating": "{0}+",
-  "genres": "Genres",
-  "select-genres": "Select Genres",
-  "tags": "Tags",
-  "select-tags": "Select Tags",
-  "clear-filters": "Clear Filters",
-  "title": "Title",
-  "search-title": "Search title...",
-  "search-author": "Search author...",
-  "read-watch-list": "Read/Watch List",
-  "loading-downloadprogress": "Loading... {0}%",
-  "error-loading-list-fetcherror": "Error loading list: {0}",
-  "no-results": "No Results",
+  "genres": "ジャンル",
+  "select-genres": "ジャンルを選択",
+  "tags": "タグ",
+  "select-tags": "タグを選択",
+  "clear-filters": "フィルターを削除",
+  "title": "タイトル",
+  "search-title": "タイトルの検索...",
+  "search-author": "作者の検索...",
+  "read-watch-list": "視聴のリスト",
+  "loading-downloadprogress": "ロード中... {0}%",
+  "error-loading-list-fetcherror": "リストのロードに発生したエラー： {0}",
+  "no-results": "検索結果なし",
   "label": "{0}:",
   "item-count": "({0})",
-  "cover-of-props-game-title": "Cover of {0}",
+  "cover-of-props-game-title": "{0}の表紙ページ",
   "props-game-rating-5": "{0}/5",
-  "cover-of-props-game-title-0": "Cover of {0}",
-  "contains-explicit-content": "Contains Explicit Content",
+  "cover-of-props-game-title-0": "{0}の表紙ページ",
+  "contains-explicit-content": "成人向けのコンテンツがある",
   "props-game-rating-5-0": "{0}/5",
-  "search-developer": "Search developer...",
-  "games-list": "Games List",
-  "loading-games-downloadprogress": "Loading Games: {0}%",
-  "error-loading-games-fetcherror": "Error Loading Games: {0}",
-  "no-results-0": "No Results...",
-  "go-to-home": "Go to Home",
-  "click-to-play-audio": "Click to play audio",
-  "cover-for-item-title": "Cover for {0}"
+  "search-developer": "開発者の検索...",
+  "games-list": "ゲームのリスト",
+  "loading-games-downloadprogress": "ゲームをロード中: {0}%",
+  "error-loading-games-fetcherror": "ゲームのロードに発生したエラー: {0}",
+  "no-results-0": "検索結果なし...",
+  "go-to-home": "ホームページへ",
+  "click-to-play-audio": "クリックしてオーディオを再生する",
+  "cover-for-item-title": "{0}の表紙ページ"
 }
