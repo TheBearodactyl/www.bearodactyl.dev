@@ -51,14 +51,32 @@
         <div class="card-content">
           <h2 class="project-name">{{ project.name }}</h2>
           <p class="project-description">{{ project.description }}</p>
+
           <div class="book-tags" v-if="project.tags">
-            <span v-for="tag in project.tags.slice(0, 5)" :key="tag" class="book-tag">{{
-              tag
-              }}</span>
+            <span v-for="tag in project.tags.slice(0, 5)" :key="tag" class="book-tag">{{ tag }}</span>
           </div>
+
           <a :href="project.source" class="project-link" target="_blank" rel="noopener noreferrer">
             View Source
           </a>
+
+          <button class="expand-button" @click="toggleInstallCmd(project.name)">
+            {{ expandedCards[project.name] ? 'Hide' : 'Show' }} Install Command
+          </button>
+
+          <transition name="fade">
+            <div v-if="expandedCards[project.name]" class="install-section">
+              <code class="install-command">{{ project.installCommand || 'No install command provided.' }}</code>
+              <button class="copy-button" @click="copyInstallCommand(project.installCommand)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                  class="feather feather-copy">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+              </button>
+            </div>
+          </transition>
         </div>
       </div>
       <div v-if="filteredProjects.length === 0" class="no-results">
@@ -66,13 +84,13 @@
       </div>
     </div>
   </div>
-
 </template>
+
 
 <script lang="ts" setup>
 import { useData } from "@/composables/projects/useData";
 import { useFilters } from "@/composables/projects/useFilters";
-import { ref } from "vue";
+import { ref, reactive } from "vue";
 import { useHead } from '@unhead/vue';
 
 useHead({
@@ -91,6 +109,22 @@ const {
 } = useFilters(projects);
 
 const tagsDropdownRef = ref<HTMLElement | null>(null);
+const expandedCards = reactive<Record<string, boolean>>({});
+
+const toggleInstallCmd = (name: string) => {
+  expandedCards[name] = !expandedCards[name];
+}
+
+const copyInstallCommand = async (text: string | undefined) => {
+  if (!text) return;
+  try {
+    await navigator.clipboard.writeText(text);
+    alert("Copied to clipboard");
+  } catch (err) {
+    alert("Failed to copy.")
+    console.error("Clipboard copy error: ", err)
+  }
+}
 </script>
 
 <style>
@@ -156,6 +190,57 @@ const tagsDropdownRef = ref<HTMLElement | null>(null);
   flex: 1;
   min-width: 0;
 }
+
+.install-section {
+  margin-top: 0.5rem;
+  background-color: var(--rp-base);
+  border: 1px dashed var(--rp-highlight-low);
+  padding: 0.75rem;
+  border-radius: 6px;
+  font-family: monospace;
+  color: var(--rp-foam);
+  white-space: pre-wrap;
+  position: relative;
+}
+
+.install-command {
+  font-size: 0.95rem;
+  word-break: break-word;
+  display: flex;
+  margin-bottom: 0.5rem;
+}
+
+.copy-button {
+  background-color: var(--rp-surface);
+  color: var(--rp-foam);
+  border: 1px solid var(--rp-highlight-low);
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.copy-button:hover {
+  background-color: var(--rp-highlight-med);
+}
+
+.expand-button {
+  margin-top: 0.5rem;
+  background-color: var(--rp-surface);
+  border: 1px solid var(--rp-highlight-low);
+  color: var(--rp-foam);
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.expand-button:hover {
+  background-color: var(--rp-highlight-med);
+}
+
 
 .selected-tags::-webkit-scrollbar {
   height: 4px;

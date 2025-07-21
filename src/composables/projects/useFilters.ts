@@ -8,6 +8,7 @@ interface Project {
   tags?: string[]
   source: string
   coverImage?: string
+  installCommand?: string
 }
 
 interface ProjectFilters {

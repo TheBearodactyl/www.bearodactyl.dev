@@ -7,6 +7,7 @@ interface Project {
   tags?: string[]
   source: string
   coverImage?: string
+  installCommand?: string
 }
 
 const IMAGE_CACHE_NAME = 'project-cover-cache'
