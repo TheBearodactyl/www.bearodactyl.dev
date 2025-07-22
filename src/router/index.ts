@@ -7,6 +7,7 @@ import BearoView from '@/views/BearoView.vue'
 import GamesView from '@/views/GamesView.vue'
 import ProjectsView from '@/views/ProjectsView.vue'
 import WebsiteSrcView from '@/views/WebsiteSrcView.vue'
+import OnePieceView from '@/views/OnePieceView.vue'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -45,6 +46,11 @@ const router = createRouter({
               name: 'projects',
               component: ProjectsView,
             },
+            {
+              path: 'one-piece',
+              name: 'one-piece',
+              component: OnePieceView,
+            },
           ],
         },
         {
@@ -67,6 +73,11 @@ const router = createRouter({
           path: 'website-src',
           name: 'website-src',
           component: WebsiteSrcView,
+        },
+        {
+          path: '/misc',
+          name: 'misc',
+          children: [],
         },
       ],
     },

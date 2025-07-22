@@ -10,14 +10,14 @@
 </template>
 
 <script setup lang="ts">
-import NavigationGallery from '@/components/NavigationGallery.vue';
+import NavigationGallery, { type NavItem } from '@/components/NavigationGallery.vue';
 import { useHead } from '@unhead/vue';
 
 useHead({
   title: "The Motherfucking Bearodactyl"
 })
 
-const navigationItems = [
+const navigationItems: NavItem[] = [
   {
     title: "Read/Watch List",
     description: "shit i've read/watched",
@@ -59,6 +59,12 @@ const navigationItems = [
     description: "Woah, it's Wulzy",
     coverImage: "https://static.wikia.nocookie.net/youtube/images/9/94/Wulzy_Face_Meme.jpg",
     route: "/jokes/woah"
+  },
+  {
+    title: "One Piece",
+    description: "my reviews of OP chapters (HIGHLY WIP)",
+    coverImage: "https://occ-0-8407-92.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABRKIQnGja8FW7HtFjgOF_TmYAR_dn3eeN2Cayj3Gm2kEhjSETNusxVJj712wh_n7reHNrt3Bt6_S_U7jF4h8ugUgeXYHpcqbzHxO.jpg?r=485",
+    route: "/lists/one-piece"
   }
 ];
 </script>

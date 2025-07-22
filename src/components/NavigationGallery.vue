@@ -21,7 +21,7 @@
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
 
-interface NavItem {
+export interface NavItem {
   title: string;
   description: string;
   coverImage?: string;
