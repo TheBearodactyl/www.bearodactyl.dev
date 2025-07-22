@@ -3,9 +3,9 @@
     <h1 class="gallery-title">{{ $t('read-watch-list') }}</h1>
 
     <Filters :searchFilters="searchFilters" :allGenres="allGenres" :allTags="allTags" :dropdowns="dropdowns"
-      :isFilterCollapsed="isFilterCollapsed" :filteredTagCounts="filteredTagCounts" @toggle-dropdown="toggleDropdown"
-      @close-dropdown="closeDropdown" @toggle-filter-item="toggleFilterItem" @clear-all-filters="clearAllFilters"
-      @toggle-search-mode="toggleSearchMode" :expandedInputRef="expandedInputRef" />
+      :filteredTagCounts="filteredTagCounts" @toggle-dropdown="toggleDropdown" @close-dropdown="closeDropdown"
+      @toggle-filter-item="toggleFilterItem" @clear-all-filters="clearAllFilters" @toggle-search-mode="toggleSearchMode"
+      :expandedInputRef="expandedInputRef" :is-filter-collapsed="isFilterCollapsed" />
 
     <div v-if="isLoading" class="progress-wrapper">
       <div class="progress-bar">
@@ -29,6 +29,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
 import { useData } from '@/composables/books/useData';
 import { useFilters } from '@/composables/books/useFilters';
 import { useDisplay } from '@/composables/books/useDisplay';
@@ -45,6 +46,7 @@ const {
   downloadProgress,
   isContentVisible,
 } = useData();
+
 const {
   searchFilters,
   allGenres,
@@ -57,18 +59,19 @@ const {
   filteredTagCounts,
   clearAllFilters
 } = useFilters(books);
+
 const {
-  isFilterCollapsed,
   expandedInputRef,
   viewMode,
   expandedCard,
   isIdle,
   toggleCard,
   closeCard,
-  toggleSearchMode,
 } = useDisplay();
-</script>
 
-<style>
-@import url("/src/assets/css/bookgallery.css");
-</style>
+const isFilterCollapsed = ref(true);
+
+function toggleSearchMode() {
+  isFilterCollapsed.value = !isFilterCollapsed.value;
+}
+</script>

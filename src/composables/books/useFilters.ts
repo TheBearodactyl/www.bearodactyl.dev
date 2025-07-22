@@ -24,15 +24,23 @@ export function useFilters(allBooks: Ref<Book[]>) {
 
   const searchFilters: Ref<Filters> = ref({ ...rawFilters.value })
 
+  // Avoid writing to storage unless something actually changes
   watch(
     searchFilters,
-    (newVal) => {
-      rawFilters.value = { ...newVal }
+    (newVal, oldVal) => {
+      if (JSON.stringify(newVal) !== JSON.stringify(oldVal)) {
+        rawFilters.value = { ...newVal }
+      }
     },
     { deep: true },
   )
 
+  const hasSearch = computed(
+    () => searchFilters.value.title.trim() || searchFilters.value.author.trim(),
+  )
+
   const fuse = computed(() => {
+    if (!hasSearch.value) return null
     return new Fuse(allBooks.value, {
       keys: ['title', 'author', 'genres', 'tags'],
       threshold: 0.3,
@@ -40,55 +48,50 @@ export function useFilters(allBooks: Ref<Book[]>) {
   })
 
   const allGenres = computed(() => {
-    const genreSet = new Set<string>()
-    allBooks.value.forEach((book) => book.genres.forEach((genre) => genreSet.add(genre)))
-    return Array.from(genreSet).sort()
+    const genres = new Set<string>()
+    for (const book of allBooks.value) {
+      for (const g of book.genres) genres.add(g)
+    }
+    return [...genres].sort()
   })
 
   const allTags = computed(() => {
-    const tagSet = new Set<string>()
-    allBooks.value.forEach((book) => book.tags?.forEach((tag) => tagSet.add(tag)))
-    return Array.from(tagSet).sort()
+    const tags = new Set<string>()
+    for (const book of allBooks.value) {
+      for (const t of book.tags ?? []) tags.add(t)
+    }
+    return [...tags].sort()
   })
+
+  function applyFilter(book: Book): boolean {
+    const { genres, tags, rating, status } = searchFilters.value
+
+    if (genres.length && !genres.every((g) => book.genres.includes(g))) return false
+    if (tags.length && !(book.tags && tags.every((t) => book.tags.includes(t)))) return false
+    if (rating && (book.rating ?? 0) < rating) return false
+    if (status && book.status !== status) return false
+
+    return true
+  }
 
   const filteredBooks = computed(() => {
-    let result = allBooks.value
+    let books = allBooks.value
 
-    const hasSearch = searchFilters.value.title.trim() || searchFilters.value.author.trim()
-
-    if (hasSearch) {
+    if (hasSearch.value && fuse.value) {
       const query = `${searchFilters.value.title} ${searchFilters.value.author}`.trim()
-      result = fuse.value.search(query).map(({ item }) => item)
+      books = fuse.value.search(query).map((r) => r.item)
     }
 
-    return result.filter((book) => {
-      const genreMatch =
-        searchFilters.value.genres.length === 0 ||
-        searchFilters.value.genres.every((genre) => book.genres.includes(genre))
-
-      const tagMatch =
-        searchFilters.value.tags.length === 0 ||
-        (book.tags && searchFilters.value.tags.every((tag) => book.tags.includes(tag)))
-
-      const ratingMatch =
-        !searchFilters.value.rating || (book.rating ?? 0) >= searchFilters.value.rating
-
-      const statusMatch = !searchFilters.value.status || book.status === searchFilters.value.status
-
-      return genreMatch && tagMatch && ratingMatch && statusMatch
-    })
+    return books.filter(applyFilter)
   })
 
-  const dropdowns = reactive<{ genres: boolean; tags: boolean }>({
-    genres: false,
-    tags: false,
-  })
+  const dropdowns = reactive({ genres: false, tags: false })
 
-  function toggleDropdown(type: 'genres' | 'tags') {
+  function toggleDropdown(type: keyof typeof dropdowns) {
     dropdowns[type] = !dropdowns[type]
   }
 
-  function closeDropdown(type: 'genres' | 'tags') {
+  function closeDropdown(type: keyof typeof dropdowns) {
     dropdowns[type] = false
   }
 
@@ -102,41 +105,39 @@ export function useFilters(allBooks: Ref<Book[]>) {
     }
   }
 
-  // To show tag counts on tags not currently selected
   const filteredTagCounts = computed(() => {
-    const tagCountMap = new Map<string, number>()
+    const tagMap = new Map<string, number>()
+    const selectedTags = new Set(searchFilters.value.tags)
 
-    // Filter books based on current filters, but *before* applying the current tag filter
-    const booksBeforeCurrentTagFilter = allBooks.value.filter((book) => {
-      const genreMatch =
-        searchFilters.value.genres.length === 0 ||
-        searchFilters.value.genres.every((genre) => book.genres.includes(genre))
+    const filteredBooks = allBooks.value.filter((book) => {
+      const { genres, rating, status } = searchFilters.value
 
-      const ratingMatch =
-        !searchFilters.value.rating || (book.rating ?? 0) >= searchFilters.value.rating
-
-      const statusMatch = !searchFilters.value.status || book.status === searchFilters.value.status
-
-      const hasSearch = searchFilters.value.title.trim() || searchFilters.value.author.trim()
-      let searchMatch = true
-      if (hasSearch) {
-        const query = `${searchFilters.value.title} ${searchFilters.value.author}`.trim()
-        searchMatch = fuse.value.search(query).some((result) => result.item.id === book.id)
+      if (
+        (genres.length && !genres.every((g) => book.genres.includes(g))) ||
+        (rating && (book.rating ?? 0) < rating) ||
+        (status && book.status !== status)
+      ) {
+        return false
       }
 
-      return genreMatch && ratingMatch && statusMatch && searchMatch
+      if (hasSearch.value && fuse.value) {
+        const query = `${searchFilters.value.title} ${searchFilters.value.author}`.trim()
+        const matched = fuse.value.search(query).some((r) => r.item.id === book.id)
+        if (!matched) return false
+      }
+
+      return true
     })
 
-    for (const book of booksBeforeCurrentTagFilter) {
+    for (const book of filteredBooks) {
       for (const tag of book.tags || []) {
-        if (!searchFilters.value.tags.includes(tag)) {
-          // Only count tags not currently selected
-          tagCountMap.set(tag, (tagCountMap.get(tag) || 0) + 1)
+        if (!selectedTags.has(tag)) {
+          tagMap.set(tag, (tagMap.get(tag) || 0) + 1)
         }
       }
     }
 
-    return Array.from(tagCountMap.entries()).sort((a, b) => b[1] - a[1])
+    return [...tagMap.entries()].sort((a, b) => b[1] - a[1])
   })
 
   function clearAllFilters() {

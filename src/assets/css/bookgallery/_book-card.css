@@ -1,11 +1,12 @@
+/* _book-card.css */
+
 .book-card {
-  background: var(--rp-surface);
+  background-color: var(--rp-surface);
   border-radius: 20px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
   overflow: hidden;
   transition: all var(--transition-speed) var(--transition-ease);
   width: 100%;
-  max-width: 400px;
   cursor: pointer;
   position: relative;
   border: 2px solid var(--rp-highlight-low);
@@ -38,7 +39,7 @@
 .book-card:hover:not(.expanded) {
   transform: translateY(-12px) scale(var(--hover-scale));
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-  border-color: var(--rp-iris);
+  border-color: var(--rp-love);
   background: linear-gradient(135deg, var(--rp-surface) 0%, var(--rp-overlay) 100%);
 }
 
@@ -53,8 +54,8 @@
   left: 0;
   right: 0;
   bottom: 0;
-  transform: translate3d(0, 0, 0);
   backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 5;
   transition:
@@ -66,8 +67,8 @@
 .book-card:hover.explicit-content::before,
 .book-card.expanded.explicit-content::before {
   opacity: 0;
-  backdrop-filter: blur(0px);
-  transform: translate3d(0, 0, 0);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
 }
 
 .book-expanded.explicit-content::before {
@@ -78,7 +79,7 @@
   right: 0;
   bottom: 0;
   backdrop-filter: blur(40px);
-  transform: translate3d(0, 0, 0);
+  -webkit-backdrop-filter: blur(40px);
   background-color: rgba(0, 0, 0, 0.2);
   z-index: 5;
   transition:
@@ -89,8 +90,8 @@
 
 .book-expanded.show.explicit-content::before {
   opacity: 0;
-  backdrop-filter: blur(0px);
-  transform: translate3d(0, 0, 0);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
 }
 
 .book-cover {
@@ -149,7 +150,7 @@
   font-weight: bold;
   color: var(--rp-gold);
   background-color: rgba(0, 0, 0, 0.6);
-  padding: 15px 15px 15px 15px;
+  padding: 15px;
   margin-top: 1rem;
   border-radius: 99px;
   white-space: nowrap;
@@ -190,7 +191,7 @@
 
 .book-tag,
 .book-genre {
-  background: var(--rp-highlight-low);
+  background-color: var(--rp-highlight-low);
   color: var(--rp-text);
   padding: 0.35rem 0.9rem;
   font-size: 0.85rem;
@@ -206,13 +207,13 @@
 
 .book-tag:hover,
 .book-genre:hover {
-  background: var(--rp-foam);
+  background-color: var(--rp-foam);
   transform: translateY(-2px);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
 }
 
 .read-status {
-  background: var(--rp-highlight-high);
+  background-color: var(--rp-highlight-high);
   color: var(--rp-text);
   padding: 0.35rem 0.9rem;
   border-radius: 25px;
@@ -229,7 +230,7 @@
 }
 
 .read-status:hover {
-  background: var(--rp-foam);
+  background-color: var(--rp-foam);
   transform: translateY(-2px);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
 }
@@ -263,6 +264,7 @@
   animation: bounceIn 0.5s var(--transition-ease);
 }
 
+/* Consider using Vue's transition classes directly if these are just for v-show */
 .book-compact,
 .book-expanded {
   transition: opacity var(--transition-speed) ease;

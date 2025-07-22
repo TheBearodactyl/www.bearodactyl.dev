@@ -1,3 +1,5 @@
+/* _responsive.css */
+
 @media (max-width: 560px) {
   .book-grid {
     column-count: 1;
@@ -123,7 +125,6 @@
   }
 
   .expanded-card-overlay .book-expanded {
-    /* flex-direction: column; */
     max-width: 95%;
     border-radius: 10px;
     text-align: center;

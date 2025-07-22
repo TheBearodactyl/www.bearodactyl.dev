@@ -1,3 +1,5 @@
+/* _animations.css */
+
 .fade-enter-active,
 .fade-leave-active {
   transition: opacity var(--transition-speed) var(--transition-ease);
@@ -152,9 +154,11 @@
 .staggered-item-enter-active {
   animation: fadeInScale 0.6s var(--transition-ease);
 }
+
 .staggered-item-leave-active {
   animation: fadeOutScale 0.4s var(--transition-ease);
 }
+
 @keyframes fadeOutScale {
   from {
     opacity: 1;

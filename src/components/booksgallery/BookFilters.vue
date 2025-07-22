@@ -1,6 +1,6 @@
 <template>
   <transition name="fade-slide" mode="out-in">
-    <FilterPill v-if="isFilterCollapsed" v-model="localFilters.title" @toggle-search-mode="emitToggleSearchMode" />
+    <FilterPill v-if="isFilterCollapsed" v-model="searchFilters.title" @toggle-search-mode="emitToggleSearchMode" />
 
     <div v-else class="filter-bar">
       <div class="filter-bar-header">
@@ -8,36 +8,35 @@
         <button class="collapse-btn" @click="emitToggleSearchMode">⨯</button>
       </div>
 
-      <input :ref="expandedInputRef" v-model="localFilters.title" :placeholder="$t('search-title')"
+      <input :ref="expandedInputRef" v-model="searchFilters.title" :placeholder="$t('search-title')"
         @keydown.left="emitToggleSearchMode" />
 
-      <input v-model="localFilters.author" :placeholder="$t('search-author')" />
+      <input v-model="searchFilters.author" :placeholder="$t('search-author')" />
 
-      <select v-model="localFilters.status">
-        <option>All Statuses</option>
-        <option>Reading</option>
-        <option>Finished</option>
-        <option>Plan to Read</option>
-        <option>Dropped</option>
+      <select v-model="searchFilters.status">
+        <option value="">{{ $t('gallery.filters.any-status') }}</option>
+        <option value="Reading">Reading</option>
+        <option value="Finished">Finished</option>
+        <option value="Plan to Read">Plan to Read</option>
+        <option value="Dropped">Dropped</option>
       </select>
 
-      <select v-model="localFilters.rating">
-        <option value="">{{ $t("gallery.filters.any-rating") }}</option>
+      <select v-model.number="searchFilters.rating">
+        <option :value="null">{{ $t('gallery.filters.any-rating') }}</option>
         <option v-for="r in [1, 2, 3, 4, 5, 10, 20, 30, 40, 50]" :key="r" :value="r">
           {{ $t('rating', [r]) }}
         </option>
       </select>
 
       <MultiSelectDropdown :label="$t('genres')" :items="allGenres.map(g => ({ value: g }))"
-        :selected-items="localFilters.genres" :is-open="dropdowns.genres" :placeholder="$t('select-genres')"
+        :selected-items="searchFilters.genres" :is-open="dropdowns.genres" :placeholder="$t('select-genres')"
         no-items-message="No genres available" @toggle="emitToggleDropdown('genres')"
         @close="emitCloseDropdown('genres')" @toggle-item="(genre) => emitToggleFilterItem('genres', genre)" />
 
       <MultiSelectDropdown :label="$t('tags')" :items="filteredTagCounts.map(([tag, count]) => ({ value: tag, count }))"
-        :selected-items="localFilters.tags" :is-open="dropdowns.tags" :placeholder="$t('select-tags')"
+        :selected-items="searchFilters.tags" :is-open="dropdowns.tags" :placeholder="$t('select-tags')"
         no-items-message="No tags available" @toggle="emitToggleDropdown('tags')" @close="emitCloseDropdown('tags')"
         @toggle-item="(tag) => emitToggleFilterItem('tags', tag)" />
-
 
       <button class="clear-filters-btn" @click="emitClearAllFilters">
         {{ $t('clear-filters') }}
@@ -47,19 +46,20 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, watch } from 'vue';
 import FilterPill from '../gallery/FilterPill.vue';
 import MultiSelectDropdown from '../gallery/MultiSelectDropdown.vue';
 
+interface Filters {
+  title: string
+  author: string
+  status: string
+  rating: number | null
+  genres: string[]
+  tags: string[]
+}
+
 interface Props {
-  searchFilters: {
-    title: string
-    author: string
-    status: string
-    rating: number
-    genres: string[]
-    tags: string[]
-  },
+  searchFilters: Filters,
   allGenres: string[],
   allTags: string[],
   dropdowns: Record<string, boolean>,
@@ -76,7 +76,7 @@ const emit = defineEmits<{
   (e: 'toggle-filter-item', type: "genres" | "tags", item: string): void
   (e: 'clear-all-filters'): void
   (e: 'toggle-search-mode'): void
-  (e: 'update:searchFilters', filters: Props['searchFilters']): void
+  (e: 'update:searchFilters', filters: Filters): void
 }>();
 
 const emitToggleDropdown = (type: string) => emit('toggle-dropdown', type);
@@ -85,21 +85,9 @@ const emitToggleFilterItem = (type: "genres" | "tags", item: string) => emit('to
 const emitClearAllFilters = () => emit('clear-all-filters');
 const emitToggleSearchMode = () => emit('toggle-search-mode');
 
-const localFilters = reactive({ ...props.searchFilters });
-
-watch(
-  () => props.searchFilters,
-  (newVal) => {
-    Object.assign(localFilters, newVal);
-  },
-  { deep: true, immediate: true }
-);
-
-watch(
-  localFilters,
-  (updated) => {
-    emit('update:searchFilters', { ...updated });
-  },
-  { deep: true }
-);
+const searchFilters = props.searchFilters;
+const allGenres = props.allGenres;
+const dropdowns = props.dropdowns;
+const filteredTagCounts = props.filteredTagCounts;
+const expandedInputRef = props.expandedInputRef;
 </script>

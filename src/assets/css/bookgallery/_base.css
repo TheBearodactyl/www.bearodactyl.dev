@@ -1,3 +1,5 @@
+/* _base.css */
+
 @font-face {
   font-family: 'Cascadia Code Nerd Font';
   font-style: normal;
@@ -10,29 +12,30 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: 'Cascadia Code Nerd Font' !important;
+  font-family: 'Cascadia Code Nerd Font' !important; /* Consider if !important is strictly necessary here. It can lead to specificity issues. */
 }
 
 img {
   image-rendering: crisp-edges;
 }
 
+/* Scrollbar styling for Webkit browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
   width: 12px;
   height: 12px;
-  display: none;
+  display: none; /* Hides the scrollbar */
 }
 
 ::-webkit-scrollbar-track {
   background-color: var(--rp-base);
-  display: none;
+  display: none; /* Hides the scrollbar track */
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: var(--rp-foam);
   border-radius: 8px;
   border: 2px solid var(--rose-pine-wood);
-  display: none;
+  display: none; /* Hides the scrollbar thumb */
 }
 
 ::-webkit-scrollbar-button {
@@ -45,16 +48,17 @@ img {
   display: none;
 }
 
+/* Scrollbar styling for Firefox */
 * {
-  scrollbar-width: none;
-  scrollbar-color: var(--rose-pine-foam) var(--rose-pine-crust);
+  scrollbar-width: none; /* Hides the scrollbar */
+  scrollbar-color: var(--rose-pine-foam) var(--rose-pine-crust); /* Falls back if scrollbar-width is not supported */
 }
 
 html,
 body {
   margin: 0;
   padding: 0;
-  background: var(--rp-base);
+  background-color: var(--rp-base);
   color: var(--rp-text);
   font-family:
     'Inter',
@@ -101,6 +105,7 @@ body {
   background: rgba(25, 23, 36, 0.85);
   z-index: 999;
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Add vendor prefix */
   transition:
     opacity var(--transition-speed) var(--transition-ease),
     backdrop-filter var(--transition-speed) var(--transition-ease);
@@ -111,8 +116,7 @@ button {
   border: none;
   padding: 0;
   cursor: pointer;
-  font-family: inherit;
-  font-size: inherit;
+  font: inherit; /* Shorthand for font-family, font-size, etc. */
   color: inherit;
   transition:
     transform 0.2s var(--transition-ease),

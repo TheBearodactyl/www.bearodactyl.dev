@@ -12,7 +12,8 @@
     },
     "filters": {
       "search": "Search...",
-      "any-rating": "Any Rating"
+      "any-rating": "Any Rating",
+      "any-status": "Any Status"
     }
   },
   "cover-of-props-book-title": "Cover of {0}",

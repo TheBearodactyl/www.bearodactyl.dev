@@ -78,30 +78,16 @@ export function useData() {
       downloadProgress.value = 20
 
       const booksWithImages = data.filter((book: Book) => book.coverImage)
-      const totalImages = booksWithImages.length
 
-      if (totalImages > 0) {
-        let processedImages = 0
-        for (const book of data) {
-          if (book.coverImage) {
-            const imageStartProgress = 20 + Math.round((processedImages / totalImages) * 80)
-            const imageEndProgress = 20 + Math.round(((processedImages + 1) / totalImages) * 80)
+      const promises = booksWithImages.map(async (book: Book, index: number) => {
+        book.coverImage = await cacheCoverImage(book.coverImage!)
+        const progress = 20 + Math.round(((index + 1) / booksWithImages.length) * 80)
+        downloadProgress.value = progress
+      })
 
-            book.coverImage = await cacheCoverImage(book.coverImage, (imageProgress) => {
-              const currentProgress =
-                imageStartProgress +
-                Math.round((imageProgress / 100) * (imageEndProgress - imageStartProgress))
-              downloadProgress.value = currentProgress
-            })
-            processedImages++
-          }
-        }
-      } else {
-        downloadProgress.value = 100
-      }
+      await Promise.all(promises)
 
-      const woah = shuffleArray<Book>(data)
-      books.value = woah
+      books.value = shuffleArray<Book>(data)
       downloadProgress.value = 100
     } catch (err) {
       fetchError.value = err?.message ?? String(err)

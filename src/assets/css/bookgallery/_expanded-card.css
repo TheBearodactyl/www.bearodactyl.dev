@@ -1,3 +1,5 @@
+/* _expanded-card.css */
+
 @import url('/src/assets/css/bookgallery/_base.css');
 
 .expanded-card-overlay {
@@ -63,10 +65,8 @@
   display: flex;
   gap: 2.5rem;
   padding: 3rem;
-  position: relative;
-  top: 0;
   z-index: 100;
-  background: var(--rp-overlay);
+  background-color: var(--rp-overlay);
   transition:
     background 0.3s ease,
     box-shadow 0.3s ease;
@@ -80,16 +80,13 @@
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
-  background: none !important;
-  border: none;
   font-size: 2.5rem;
   cursor: pointer;
-  background-color: transparent !important;
   color: var(--rp-muted);
   transition:
     color 0.3s var(--transition-ease),
     transform 0.3s var(--transition-ease);
-  z-index: 1000;
+  z-index: 1000; /* Ensure it's above other content */
 }
 
 .close-btn:hover {
@@ -100,6 +97,8 @@
 }
 
 .book-expanded .close-btn {
+  /* This block might be redundant if .close-btn above covers all scenarios. */
+  /* If this is for specific overrides, ensure consistency. */
   position: absolute;
   top: 10px;
   right: 10px;
@@ -107,7 +106,7 @@
   border: none;
   font-size: 2rem;
   cursor: pointer;
-  color: var(--text-color);
+  color: var(--rp-text);
   z-index: 10;
   padding: 0 10px;
 }
@@ -122,8 +121,7 @@
   height: auto;
   transform: rotateZ(-2deg);
   transition: transform 0.4s var(--transition-ease);
-  margin-top: -0.5rem;
-  margin-bottom: -0.5rem;
+  /* Removed negative margins to make it part of flow */
   position: relative;
   display: flex;
   justify-content: center;
@@ -137,6 +135,7 @@
 
 .expanded-cover-image {
   width: 300px;
+  max-width: 100%;
   object-fit: contain;
   background-color: transparent;
   border-radius: 6px;
@@ -144,9 +143,7 @@
   border: 3px solid transparent;
   display: block;
   z-index: 61;
-  margin-top: 2rem;
-  margin-left: 2rem;
-  margin-bottom: 2rem;
+  margin: 2rem; /* Consistent margin for better flow */
 }
 
 .explicit-icon * {
@@ -179,7 +176,7 @@
 }
 
 .expanded-basic-info .book-genre {
-  background: var(--rp-surface);
+  background-color: var(--rp-surface);
   color: var(--rp-text);
   padding: 0.35rem 1rem;
   border-radius: 25px;
@@ -192,7 +189,7 @@
 }
 
 .expanded-content .book-tag {
-  background: var(--rp-highlight-high);
+  background-color: var(--rp-highlight-high);
   color: var(--rp-text);
   padding: 0.35rem 1rem;
   font-size: 1rem;
@@ -209,13 +206,13 @@
 }
 
 .expanded-content .book-tag:hover {
-  background: var(--rp-foam);
+  background-color: var(--rp-foam);
   transform: translateY(-2px);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
 }
 
 .expanded-basic-info .book-genre:hover {
-  background: var(--rp-foam);
+  background-color: var(--rp-foam);
   transform: translateY(-2px);
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
 }
@@ -225,8 +222,8 @@
   align-items: center;
   gap: 1rem;
   margin-top: 0.8rem;
-  margin-right: 21rem;
-  justify-content: center;
+  margin-right: 0; /* Removed large margin to better integrate with layout */
+  justify-content: flex-start; /* Aligned to start for left-aligned text, adjust if needed */
   padding-left: 0.5rem;
 }
 
@@ -242,12 +239,11 @@
     0 0 8px rgba(246, 193, 119, 0.5),
     0 0 15px rgba(246, 193, 119, 0.2);
   animation: bounceIn 0.5s var(--transition-ease);
-  font-size: 2rem;
 }
 
 .expanded-content {
   padding: 2.5rem 3rem 3rem;
-  background: var(--rp-surface);
+  background-color: var(--rp-surface);
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
@@ -295,7 +291,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.9rem 1.4rem;
-  background: var(--rp-overlay);
+  background-color: var(--rp-overlay);
   border-radius: 12px;
   text-decoration: none;
   color: var(--rp-text);
@@ -306,7 +302,7 @@
 }
 
 .book-link:hover {
-  background: var(--rp-highlight-high);
+  background-color: var(--rp-highlight-high);
   transform: translateY(-4px) scale(1.03);
   border-color: var(--rp-foam);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
@@ -329,6 +325,7 @@
   transform: translateX(5px);
 }
 
+/* Specific scrollbar hiding for the expanded book */
 .expanded-card-overlay .book-expanded::-webkit-scrollbar {
   width: 0;
   background: transparent;

@@ -1,11 +1,13 @@
+/* _gallery.css */
+
 .book-gallery {
   padding: 3rem 2.5rem;
-  max-width: unset;
+  max-width: 100%;
   margin: 0 auto;
   position: relative;
-  background: var(--rp-base);
+  background-color: var(--rp-base);
   min-height: 100vh;
-  overflow: hidden;
+  overflow: visible;
   flex-grow: 1;
 }
 
@@ -13,7 +15,7 @@
   text-align: center;
   margin-bottom: 3.5rem;
   font-size: clamp(2rem, 5vw, 3.5rem);
-  color: var(--rp-iris);
+  color: var(--rp-iris); /* This will be overridden by background-clip: text but is good fallback */
   font-weight: 800;
   letter-spacing: -0.04em;
   text-shadow:
@@ -25,13 +27,14 @@
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: fadeInDown 1s var(--transition-ease) forwards;
-  opacity: 0;
+  opacity: 0; /* Starts hidden for animation */
 }
 
 .book-grid {
   padding-bottom: 3rem;
   column-count: 3;
   column-gap: 2rem;
+  width: 100%;
 }
 
 .book-grid > * {
@@ -43,14 +46,14 @@
   margin: 2rem 0;
   padding: 1.5rem 1.8rem;
   text-align: center;
-  background: var(--rp-surface);
+  background-color: var(--rp-surface);
   border-radius: 18px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   border: 1px solid var(--rp-highlight-low);
   display: flex;
   flex-direction: column;
   align-items: center;
-  animation: fadeIn 1s var(--transition-ease) 0.5s forwards;
+  animation: fadeIn 1s var(--transition-ease) 0.5s forwards; /* 'fadeIn' animation needs to be defined in _animations.css */
   opacity: 0;
 }
 
@@ -87,5 +90,5 @@
   background-position: center;
   background-repeat: no-repeat;
   transition: background-image 1s ease-in-out;
-  z-index: 500000;
+  z-index: 500000; /* Extremely high z-index, ensure this is intended */
 }

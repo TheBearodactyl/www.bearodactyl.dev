@@ -1,7 +1,9 @@
+/* _filters.css */
+
 .filter-pill {
   display: flex;
   align-items: center;
-  background: var(--rp-overlay);
+  background-color: var(--rp-overlay);
   border-radius: 50px;
   padding: 0.7rem 1.4rem;
   max-width: 500px;
@@ -38,7 +40,7 @@
 }
 
 .pill-filter-btn {
-  background: var(--rp-surface);
+  background-color: var(--rp-surface);
   border: none;
   border-radius: 50%;
   width: 2.5rem;
@@ -55,7 +57,7 @@
 }
 
 .pill-filter-btn:hover {
-  background: var(--rp-highlight-med);
+  background-color: var(--rp-highlight-med);
   color: var(--rp-foam);
   transform: rotate(15deg) scale(1.1);
   box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
@@ -65,7 +67,7 @@
   display: flex;
   flex-direction: column;
   gap: 1.2rem;
-  background: var(--rp-surface);
+  background-color: var(--rp-surface);
   padding: 2rem;
   border-radius: 20px;
   margin: 1.5rem auto;
@@ -78,7 +80,7 @@
 .filter-bar input,
 .filter-bar select {
   padding: 0.8rem 1rem;
-  background: var(--rp-base);
+  background-color: var(--rp-base);
   border: 1px solid var(--rp-highlight-med);
   border-radius: 10px;
   color: var(--rp-text);
@@ -118,8 +120,8 @@
 }
 
 .filter-bar-header .collapse-btn:hover {
-  background-color: rgba(0, 0, 0, 0) !important;
-  color: red;
+  background-color: transparent !important;
+  color: red; /* Is this intended to be red on hover? */
 }
 
 .filter-heading {
@@ -148,7 +150,7 @@
 
 .clear-filters-btn {
   align-self: flex-end;
-  background: var(--rp-love);
+  background-color: var(--rp-love);
   border: none;
   color: var(--rp-text);
   padding: 0.8rem 1.4rem;
@@ -163,7 +165,7 @@
 }
 
 .clear-filters-btn:hover {
-  background: var(--rp-gold);
+  background-color: var(--rp-gold);
   transform: translateY(-3px) scale(1.02);
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
@@ -196,6 +198,8 @@
     border-color 0.25s var(--transition-ease),
     box-shadow 0.25s var(--transition-ease);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .dropdown:hover {
@@ -237,6 +241,8 @@
   user-select: none;
   color: var(--rp-foam);
   transition: transform 0.2s ease;
+  position: relative;
+  z-index: 1;
 }
 
 .dropdown-list {
@@ -285,7 +291,7 @@
   font-weight: 700;
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
   -webkit-appearance: none;
   appearance: none;
   width: 1.2em;
@@ -301,23 +307,23 @@ input[type="checkbox"] {
     border-color 0.25s var(--transition-ease);
 }
 
-input[type="checkbox"]::before {
-  content: "";
+input[type='checkbox']::before {
+  content: '';
   width: 0.8em;
   height: 0.8em;
   transform: scale(0);
-  transition: 150ms transform var(--transition-ease);
+  transition: transform 150ms var(--transition-ease);
   box-shadow: inset 1em 1em var(--rp-rose);
   clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
   background-color: var(--rp-rose);
 }
 
-input[type="checkbox"]:checked {
+input[type='checkbox']:checked {
   background-color: var(--rp-pine);
   border-color: var(--rp-pine);
   animation: popIn 0.3s var(--transition-ease);
 }
 
-input[type="checkbox"]:checked::before {
+input[type='checkbox']:checked::before {
   transform: scale(1);
 }
