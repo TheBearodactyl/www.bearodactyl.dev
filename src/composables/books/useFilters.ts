@@ -140,6 +140,41 @@ export function useFilters(allBooks: Ref<Book[]>) {
     return [...tagMap.entries()].sort((a, b) => b[1] - a[1])
   })
 
+  const filteredGenreCounts = computed(() => {
+    const genreMap = new Map<string, number>()
+    const selectedGenres = new Set(searchFilters.value.genres)
+
+    const filteredBooks = allBooks.value.filter((book: Book) => {
+      const { genres, rating, status } = searchFilters.value
+
+      if (
+        (genres.length && !genres.every((g) => book.genres.includes(g))) ||
+        (rating && (book.rating ?? 0) < rating) ||
+        (status && book.status !== status)
+      ) {
+        return false
+      }
+
+      if (hasSearch.value && fuse.value) {
+        const query = `${searchFilters.value.title} ${searchFilters.value.author}`.trim()
+        const matched = fuse.value.search(query).some((r) => r.item.id === book.id)
+        if (!matched) return false
+      }
+
+      return true
+    })
+
+    for (const book of filteredBooks) {
+      for (const genre of book.genres || []) {
+        if (!selectedGenres.has(genre)) {
+          genreMap.set(genre, (genreMap.get(genre) || 0) + 1)
+        }
+      }
+    }
+
+    return [...genreMap.entries()].sort((a, b) => b[1] - a[1])
+  })
+
   function clearAllFilters() {
     searchFilters.value = {
       title: '',
@@ -157,10 +192,11 @@ export function useFilters(allBooks: Ref<Book[]>) {
     allTags,
     filteredBooks,
     dropdowns,
+    filteredTagCounts,
+    filteredGenreCounts,
     toggleDropdown,
     closeDropdown,
     toggleFilterItem,
-    filteredTagCounts,
     clearAllFilters,
   }
 }

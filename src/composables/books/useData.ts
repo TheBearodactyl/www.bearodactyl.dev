@@ -15,6 +15,7 @@ export interface Book {
   links?: { title: string; url: string }[]
   coverImage?: string
   explicit: boolean
+  color?: string
 }
 
 const IMAGE_CACHE_NAME = 'book-cover-cache'

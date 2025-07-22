@@ -39,7 +39,7 @@
 .book-card:hover:not(.expanded) {
   transform: translateY(-12px) scale(var(--hover-scale));
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-  border-color: var(--rp-love);
+  border-color: var(--hover-border-color, var(--rp-love)); /* <-- Use book.color if set */
   background: linear-gradient(135deg, var(--rp-surface) 0%, var(--rp-overlay) 100%);
 }
 

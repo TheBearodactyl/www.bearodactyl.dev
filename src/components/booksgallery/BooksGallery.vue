@@ -3,9 +3,10 @@
     <h1 class="gallery-title">{{ $t('read-watch-list') }}</h1>
 
     <Filters :searchFilters="searchFilters" :allGenres="allGenres" :allTags="allTags" :dropdowns="dropdowns"
-      :filteredTagCounts="filteredTagCounts" @toggle-dropdown="toggleDropdown" @close-dropdown="closeDropdown"
-      @toggle-filter-item="toggleFilterItem" @clear-all-filters="clearAllFilters" @toggle-search-mode="toggleSearchMode"
-      :expandedInputRef="expandedInputRef" :is-filter-collapsed="isFilterCollapsed" />
+      :filteredTagCounts="filteredTagCounts" :filteredGenreCounts="filteredGenreCounts"
+      @toggle-dropdown="toggleDropdown" @close-dropdown="closeDropdown" @toggle-filter-item="toggleFilterItem"
+      @clear-all-filters="clearAllFilters" @toggle-search-mode="toggleSearchMode" :expandedInputRef="expandedInputRef"
+      :is-filter-collapsed="isFilterCollapsed" />
 
     <div v-if="isLoading" class="progress-wrapper">
       <div class="progress-bar">
@@ -53,10 +54,11 @@ const {
   allTags,
   filteredBooks,
   dropdowns,
+  filteredTagCounts,
+  filteredGenreCounts,
   toggleDropdown,
   closeDropdown,
   toggleFilterItem,
-  filteredTagCounts,
   clearAllFilters
 } = useFilters(books);
 

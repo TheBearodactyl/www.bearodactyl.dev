@@ -28,7 +28,8 @@
         </option>
       </select>
 
-      <MultiSelectDropdown :label="$t('genres')" :items="allGenres.map(g => ({ value: g }))"
+      <MultiSelectDropdown :label="$t('genres')"
+        :items="filteredGenreCounts.map(([genre, count]) => ({ value: genre, count }))"
         :selected-items="searchFilters.genres" :is-open="dropdowns.genres" :placeholder="$t('select-genres')"
         no-items-message="No genres available" @toggle="emitToggleDropdown('genres')"
         @close="emitCloseDropdown('genres')" @toggle-item="(genre) => emitToggleFilterItem('genres', genre)" />
@@ -65,6 +66,7 @@ interface Props {
   dropdowns: Record<string, boolean>,
   isFilterCollapsed: boolean,
   filteredTagCounts: [string, number][],
+  filteredGenreCounts: [string, number][],
   expandedInputRef: (el: HTMLInputElement | null) => void
 }
 
@@ -86,8 +88,5 @@ const emitClearAllFilters = () => emit('clear-all-filters');
 const emitToggleSearchMode = () => emit('toggle-search-mode');
 
 const searchFilters = props.searchFilters;
-const allGenres = props.allGenres;
-const dropdowns = props.dropdowns;
-const filteredTagCounts = props.filteredTagCounts;
 const expandedInputRef = props.expandedInputRef;
 </script>

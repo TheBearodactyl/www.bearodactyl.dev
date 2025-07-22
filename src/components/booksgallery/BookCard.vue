@@ -1,6 +1,6 @@
 <template>
   <BaseCard :index="index" :expanded="isExpanded" :view-mode="viewMode"
-    :card-classes="{ 'explicit-content': props.book.explicit }" @toggle="emitToggleCard">
+    :card-classes="{ 'explicit-content': props.book.explicit }" @toggle="emitToggleCard" :style="cardStyle">
     <div class="book-compact" v-show="!isExpanded">
       <div class="book-cover">
         <img :src="props.book.coverImage" :alt="$t('cover-of-props-book-title', [props.book.title])"
@@ -41,6 +41,7 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue';
 import BaseCard from '../gallery/BaseCard.vue';
 
 const props = defineProps({
@@ -54,4 +55,12 @@ const emit = defineEmits(['toggle-card']);
 const emitToggleCard = () => {
   emit('toggle-card');
 };
+
+const cardStyle = computed(() => {
+  return {
+    '--hover-border-color': !props.isExpanded && props.book.color
+      ? props.book.color
+      : 'var(--rp-love)',
+  };
+});
 </script>
