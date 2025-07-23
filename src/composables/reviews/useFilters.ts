@@ -1,6 +1,6 @@
-import { ref, computed, watch, type Ref } from 'vue'
-import { useStorage } from '@vueuse/core'
-import Fuse from 'fuse.js'
+import { ref, computed, watch, type Ref } from "vue"
+import { useStorage } from "@vueuse/core"
+import Fuse from "fuse.js"
 
 interface Review {
   chapter: number
@@ -15,8 +15,8 @@ interface ReviewFilters {
 }
 
 export function useFilters(allReviews: Ref<Review[]>) {
-  const rawFilters = useStorage<ReviewFilters>('review-filters', {
-    search: '',
+  const rawFilters = useStorage<ReviewFilters>("review-filters", {
+    search: "",
     minRating: undefined,
   })
 
@@ -32,7 +32,7 @@ export function useFilters(allReviews: Ref<Review[]>) {
 
   const fuse = computed(() => {
     return new Fuse(allReviews.value, {
-      keys: ['description', 'thoughts'],
+      keys: ["description", "thoughts"],
       threshold: 0.3,
     })
   })
@@ -46,7 +46,7 @@ export function useFilters(allReviews: Ref<Review[]>) {
       result = fuse.value.search(query).map(({ item }) => item)
     }
 
-    if (typeof searchFilters.value.minRating === 'number') {
+    if (typeof searchFilters.value.minRating === "number") {
       result = result.filter((review) => review.rating >= searchFilters.value.minRating!)
     }
 

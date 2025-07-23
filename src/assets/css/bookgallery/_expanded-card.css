@@ -1,6 +1,6 @@
 /* _expanded-card.css */
 
-@import url('/src/assets/css/bookgallery/_base.css');
+@import url("/src/assets/css/bookgallery/_base.css");
 
 .expanded-card-overlay {
   position: fixed;

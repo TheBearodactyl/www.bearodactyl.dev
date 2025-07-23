@@ -1,6 +1,6 @@
-import { ref, onMounted, type Ref } from 'vue'
-import { getGithubRelease } from '@/utils/getGithubRelease'
-import { shuffleArray } from '@/utils/shuffleArray'
+import { ref, onMounted, type Ref } from "vue"
+import { getGithubRelease } from "@/utils/getGithubRelease"
+import { shuffleArray } from "@/utils/shuffleArray"
 
 export interface Book {
   id: string | number
@@ -18,7 +18,7 @@ export interface Book {
   color?: string
 }
 
-const IMAGE_CACHE_NAME = 'book-cover-cache'
+const IMAGE_CACHE_NAME = "book-cover-cache"
 
 async function cacheCoverImage(
   url: string,
@@ -35,7 +35,7 @@ async function cacheCoverImage(
     }
 
     onProgress?.(25)
-    const response = await fetch(url, { mode: 'cors' })
+    const response = await fetch(url, { mode: "cors" })
 
     if (response.ok) {
       onProgress?.(75)
@@ -70,9 +70,9 @@ export function useData() {
       downloadProgress.value = 5
 
       const file_contents = await getGithubRelease(
-        'thebearodactyl',
-        'bearodactyl.dev',
-        'books.json',
+        "thebearodactyl",
+        "bearodactyl.dev",
+        "books.json",
       )
       const data = JSON.parse(await file_contents.text())
 
@@ -92,7 +92,7 @@ export function useData() {
       downloadProgress.value = 100
     } catch (err) {
       fetchError.value = err?.message ?? String(err)
-      console.error('Error loading books:', err)
+      console.error("Error loading books:", err)
     } finally {
       isLoading.value = false
     }

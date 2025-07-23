@@ -1,11 +1,21 @@
 <template>
   <div class="navigation-gallery-wrapper">
     <div class="navigation-gallery">
-      <component v-for="item in navItems" :key="item.title" :is="item.title === 'Emergency frog!' ? 'div' : RouterLink"
-        :to="item.title === 'Emergency frog!' ? undefined : item.route" class="nav-card" @click="handleCardClick(item)">
+      <component
+        v-for="item in navItems"
+        :key="item.title"
+        :is="item.title === 'Emergency frog!' ? 'div' : RouterLink"
+        :to="item.title === 'Emergency frog!' ? undefined : item.route"
+        class="nav-card"
+        @click="handleCardClick(item)"
+      >
         <div class="card-image-container">
-          <img v-if="item.coverImage" :src="item.coverImage" :alt="$t('cover-for-item-title', [item.title])"
-            class="card-image" />
+          <img
+            v-if="item.coverImage"
+            :src="item.coverImage"
+            :alt="$t('cover-for-item-title', [item.title])"
+            class="card-image"
+          />
           <div v-else class="placeholder-image">?</div>
         </div>
         <div class="card-content">
@@ -18,36 +28,36 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { RouterLink } from 'vue-router';
+import { ref } from "vue"
+import { RouterLink } from "vue-router"
 
 export interface NavItem {
-  title: string;
-  description: string;
-  coverImage?: string;
-  route: string;
+  title: string
+  description: string
+  coverImage?: string
+  route: string
 }
 
 defineProps<{
-  navItems: NavItem[];
-}>();
+  navItems: NavItem[]
+}>()
 
-const showEmergency = ref(false);
+const showEmergency = ref(false)
 
 function handleCardClick(item: NavItem) {
-  if (item.title === 'Emergency frog!') {
-    playEmergency();
+  if (item.title === "Emergency frog!") {
+    playEmergency()
   }
 }
 
 function playEmergency() {
-  const audio = new Audio('https://www.myinstants.com/media/sounds/emergency-frog-situation.mp3');
-  audio.play();
-  showEmergency.value = true;
+  const audio = new Audio("https://www.myinstants.com/media/sounds/emergency-frog-situation.mp3")
+  audio.play()
+  showEmergency.value = true
 
   setTimeout(() => {
-    showEmergency.value = false;
-  }, 3500);
+    showEmergency.value = false
+  }, 3500)
 }
 </script>
 
@@ -80,7 +90,9 @@ function playEmergency() {
   flex-direction: column;
   text-decoration: none;
   color: var(--text);
-  transition: transform 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   margin-bottom: 1.5rem;
   break-inside: avoid-column;
@@ -179,7 +191,9 @@ function playEmergency() {
   padding: 1.5rem 3rem;
   border-radius: 1rem;
   z-index: 1000;
-  animation: shake 0.05s infinite, pulse 1s infinite alternate;
+  animation:
+    shake 0.05s infinite,
+    pulse 1s infinite alternate;
   box-shadow: 0 0 30px red;
 }
 

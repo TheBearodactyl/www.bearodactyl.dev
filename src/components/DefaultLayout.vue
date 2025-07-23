@@ -1,7 +1,7 @@
 <template>
   <div v-if="currentRoutePath !== '/misc/css-testing-grounds'">
     <div class="quick-buttons">
-      <div class="menu-items" :class="{ 'open': isMenuOpen }">
+      <div class="menu-items" :class="{ open: isMenuOpen }">
         <div class="theme-switcher">
           <select id="theme-select" v-model="selectedTheme" @change="changeTheme">
             <option value="kanagawa">Kanagawa</option>
@@ -30,12 +30,22 @@
           </select>
         </div>
         <LangSwitcher class="lang-switcher-aligned" />
-        <button v-if="currentRoutePath !== '/'" class="home_button" @click="goHome" aria-label="Home"
-          :title="$t('go-to-home')">
+        <button
+          v-if="currentRoutePath !== '/'"
+          class="home_button"
+          @click="goHome"
+          aria-label="Home"
+          :title="$t('go-to-home')"
+        >
           <HomeIcon />
         </button>
       </div>
-      <button class="menu-toggle" @click="toggleMenu" :class="{ 'active': isMenuOpen }" aria-label="Toggle menu">
+      <button
+        class="menu-toggle"
+        @click="toggleMenu"
+        :class="{ active: isMenuOpen }"
+        aria-label="Toggle menu"
+      >
         <MenuIcon />
       </button>
     </div>
@@ -45,42 +55,45 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, computed, watch } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
+import { ref, onMounted, computed, watch } from "vue"
+import { useRouter, useRoute } from "vue-router"
 import LangSwitcher from "@/components/LangSwitcher.vue"
-import HomeIcon from './icons/HomeIcon.vue';
-import MenuIcon from './icons/MenuIcon.vue';
+import HomeIcon from "./icons/HomeIcon.vue"
+import MenuIcon from "./icons/MenuIcon.vue"
 
-const router = useRouter();
-const route = useRoute();
-const selectedTheme = ref("rose-pine");
-const isMenuOpen = ref(false);
-const currentRoutePath = computed(() => route.path);
+const router = useRouter()
+const route = useRoute()
+const selectedTheme = ref("rose-pine")
+const isMenuOpen = ref(false)
+const currentRoutePath = computed(() => route.path)
 
-watch(() => route.path, () => {
-  isMenuOpen.value = false;
-})
+watch(
+  () => route.path,
+  () => {
+    isMenuOpen.value = false
+  },
+)
 
 function goHome() {
-  router.push("/");
+  router.push("/")
 }
 
 function changeTheme() {
-  document.documentElement.setAttribute("data-theme", selectedTheme.value);
-  localStorage.setItem("theme", selectedTheme.value);
+  document.documentElement.setAttribute("data-theme", selectedTheme.value)
+  localStorage.setItem("theme", selectedTheme.value)
 }
 
 function toggleMenu() {
-  isMenuOpen.value = !isMenuOpen.value;
+  isMenuOpen.value = !isMenuOpen.value
 }
 
 onMounted(() => {
-  const storedTheme = localStorage.getItem("theme");
+  const storedTheme = localStorage.getItem("theme")
   if (storedTheme) {
-    selectedTheme.value = storedTheme;
-    document.documentElement.setAttribute("data-theme", storedTheme);
+    selectedTheme.value = storedTheme
+    document.documentElement.setAttribute("data-theme", storedTheme)
   }
-});
+})
 </script>
 
 <style>
@@ -115,7 +128,7 @@ onMounted(() => {
   --rp-highlight-high: #2d4f67;
 }
 
-html[data-theme='rose-pine'] {
+html[data-theme="rose-pine"] {
   --rose-pine-bg: #191724;
   --rose-pine-wood: #26233a;
   --rose-pine-sky: #6e6a86;
@@ -144,14 +157,11 @@ html[data-theme='rose-pine'] {
   --rp-highlight-med: #403d52;
   --rp-highlight-high: #524f67;
   --transition-speed: 0.4s;
-  --transition-ease: cubic-bezier(0.25,
-      0.46,
-      0.45,
-      0.94);
+  --transition-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --hover-scale: 1.02;
 }
 
-html[data-theme='rose-pine-moon'] {
+html[data-theme="rose-pine-moon"] {
   --rose-pine-bg: #232136;
   --rose-pine-wood: #2a273a;
   --rose-pine-sky: #6e6a86;
@@ -181,7 +191,7 @@ html[data-theme='rose-pine-moon'] {
   --rp-highlight-high: #5c5775;
 }
 
-html[data-theme='rose-pine-dawn'] {
+html[data-theme="rose-pine-dawn"] {
   --rose-pine-bg: #faf4ed;
   --rose-pine-wood: #fffaf3;
   --rose-pine-sky: #9893a5;
@@ -211,7 +221,7 @@ html[data-theme='rose-pine-dawn'] {
   --rp-highlight-high: #dcd7d1;
 }
 
-html[data-theme='catppuccin-mocha'] {
+html[data-theme="catppuccin-mocha"] {
   --rose-pine-bg: #1e1e2e;
   --rose-pine-wood: #313244;
   --rose-pine-sky: #6c7086;
@@ -241,7 +251,7 @@ html[data-theme='catppuccin-mocha'] {
   --rp-highlight-high: #585b70;
 }
 
-html[data-theme='catppuccin-macchiato'] {
+html[data-theme="catppuccin-macchiato"] {
   --rose-pine-bg: #24273a;
   --rose-pine-wood: #363a4f;
   --rose-pine-sky: #6e738d;
@@ -271,7 +281,7 @@ html[data-theme='catppuccin-macchiato'] {
   --rp-highlight-high: #5b6078;
 }
 
-html[data-theme='catppuccin-frappe'] {
+html[data-theme="catppuccin-frappe"] {
   --rose-pine-bg: #303446;
   --rose-pine-wood: #414559;
   --rose-pine-sky: #737994;
@@ -301,7 +311,7 @@ html[data-theme='catppuccin-frappe'] {
   --rp-highlight-high: #626880;
 }
 
-html[data-theme='catppuccin-latte'] {
+html[data-theme="catppuccin-latte"] {
   --rose-pine-bg: #eff1f5;
   --rose-pine-wood: #e6e9ef;
   --rose-pine-sky: #9ca0b0;
@@ -331,7 +341,7 @@ html[data-theme='catppuccin-latte'] {
   --rp-highlight-high: #ccd0da;
 }
 
-html[data-theme='nord'] {
+html[data-theme="nord"] {
   --rose-pine-bg: #2e3440;
   --rose-pine-wood: #3b4252;
   --rose-pine-sky: #616e88;
@@ -361,7 +371,7 @@ html[data-theme='nord'] {
   --rp-highlight-high: #4c566a;
 }
 
-html[data-theme='gruvbox-dark'] {
+html[data-theme="gruvbox-dark"] {
   --rose-pine-bg: #282828;
   --rose-pine-wood: #3c3836;
   --rose-pine-sky: #7c6f64;
@@ -391,7 +401,7 @@ html[data-theme='gruvbox-dark'] {
   --rp-highlight-high: #665c54;
 }
 
-html[data-theme='gruvbox-light'] {
+html[data-theme="gruvbox-light"] {
   --rose-pine-bg: #fbf1c7;
   --rose-pine-wood: #f2e5bc;
   --rose-pine-sky: #7c6f64;
@@ -421,7 +431,7 @@ html[data-theme='gruvbox-light'] {
   --rp-highlight-high: #d5c4a1;
 }
 
-html[data-theme='alduin'] {
+html[data-theme="alduin"] {
   --rp-base: #202020;
   --rp-surface: #2a2a2a;
   --rp-overlay: #3c3836;
@@ -439,7 +449,7 @@ html[data-theme='alduin'] {
   --rp-highlight-high: #504945;
 }
 
-html[data-theme='angr'] {
+html[data-theme="angr"] {
   --rp-base: #1c1c1c;
   --rp-surface: #2e2e2e;
   --rp-overlay: #444444;
@@ -457,7 +467,7 @@ html[data-theme='angr'] {
   --rp-highlight-high: #5c5c5c;
 }
 
-html[data-theme='ayu'] {
+html[data-theme="ayu"] {
   --rp-base: #0f1419;
   --rp-surface: #1f2429;
   --rp-overlay: #2d3237;
@@ -475,7 +485,7 @@ html[data-theme='ayu'] {
   --rp-highlight-high: #3e4a56;
 }
 
-html[data-theme='carbonized'] {
+html[data-theme="carbonized"] {
   --rp-base: #111111;
   --rp-surface: #222222;
   --rp-overlay: #333333;
@@ -493,7 +503,7 @@ html[data-theme='carbonized'] {
   --rp-highlight-high: #444444;
 }
 
-html[data-theme='gotham'] {
+html[data-theme="gotham"] {
   --rp-base: #0c1014;
   --rp-surface: #11151c;
   --rp-overlay: #1a1f26;
@@ -511,7 +521,7 @@ html[data-theme='gotham'] {
   --rp-highlight-high: #2f3541;
 }
 
-html[data-theme='iceberg'] {
+html[data-theme="iceberg"] {
   --rp-base: #161821;
   --rp-surface: #1e2132;
   --rp-overlay: #2e3340;
@@ -529,7 +539,7 @@ html[data-theme='iceberg'] {
   --rp-highlight-high: #3e4452;
 }
 
-html[data-theme='papercolor'] {
+html[data-theme="papercolor"] {
   --rp-base: #eeeeee;
   --rp-surface: #ffffff;
   --rp-overlay: #dddddd;
@@ -547,7 +557,7 @@ html[data-theme='papercolor'] {
   --rp-highlight-high: #bbbbbb;
 }
 
-html[data-theme='jellybeans'] {
+html[data-theme="jellybeans"] {
   --rp-base: #1c1c1c;
   --rp-surface: #262626;
   --rp-overlay: #303030;
@@ -565,7 +575,7 @@ html[data-theme='jellybeans'] {
   --rp-highlight-high: #444444;
 }
 
-html[data-theme='materialbox'] {
+html[data-theme="materialbox"] {
   --rp-base: #263238;
   --rp-surface: #2e3c43;
   --rp-overlay: #314549;
@@ -583,7 +593,7 @@ html[data-theme='materialbox'] {
   --rp-highlight-high: #37474f;
 }
 
-html[data-theme='onedark'] {
+html[data-theme="onedark"] {
   --rp-base: #282c34;
   --rp-surface: #353b45;
   --rp-overlay: #3e4451;
@@ -601,7 +611,7 @@ html[data-theme='onedark'] {
   --rp-highlight-high: #4b5263;
 }
 
-html[data-theme='pink-moon'] {
+html[data-theme="pink-moon"] {
   --rp-base: #2e1a2f;
   --rp-surface: #3b253b;
   --rp-overlay: #4a2c4a;
@@ -619,7 +629,7 @@ html[data-theme='pink-moon'] {
   --rp-highlight-high: #5c3a5c;
 }
 
-html[data-theme='tokyo-night'] {
+html[data-theme="tokyo-night"] {
   --rp-base: #1a1b26;
   --rp-surface: #1f2335;
   --rp-overlay: #2a2f48;
@@ -679,7 +689,7 @@ select {
   border: 1px solid var(--rp-highlight);
   border-radius: 6px;
   padding: 0.5em 1em;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: "JetBrains Mono", monospace;
   appearance: none;
   cursor: pointer;
   outline: none;
@@ -700,7 +710,7 @@ select:focus {
 
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: var(--rp-base);
   color: var(--rp-text);
   line-height: 1.6;
@@ -863,7 +873,6 @@ body {
 }
 
 @media (max-width: 768px) {
-
   .quick-buttons button,
   .theme-switcher select {
     font-size: 0.75rem;

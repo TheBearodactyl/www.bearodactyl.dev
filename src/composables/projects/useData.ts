@@ -1,5 +1,5 @@
-import { getGithubRelease } from '@/utils/getGithubRelease'
-import { onMounted, ref, type Ref } from 'vue'
+import { getGithubRelease } from "@/utils/getGithubRelease"
+import { onMounted, ref, type Ref } from "vue"
 
 interface Project {
   name: string
@@ -10,7 +10,7 @@ interface Project {
   installCommand?: string
 }
 
-const IMAGE_CACHE_NAME = 'project-cover-cache'
+const IMAGE_CACHE_NAME = "project-cover-cache"
 
 async function cacheCoverImage(url: string): Promise<string> {
   try {
@@ -22,7 +22,7 @@ async function cacheCoverImage(url: string): Promise<string> {
       return URL.createObjectURL(blob)
     }
 
-    const response = await fetch(url, { mode: 'cors' })
+    const response = await fetch(url, { mode: "cors" })
     if (response.ok) {
       await cache.put(url, response.clone())
       const blob = await response.blob()
@@ -49,9 +49,9 @@ export function useData() {
       downloadProgress.value = 10
 
       const fileContents = await getGithubRelease(
-        'TheBearodactyl',
-        'bearodactyl.dev',
-        'projects.json',
+        "TheBearodactyl",
+        "bearodactyl.dev",
+        "projects.json",
       )
 
       downloadProgress.value = 50
@@ -73,7 +73,7 @@ export function useData() {
       downloadProgress.value = 100
     } catch (err) {
       fetchError.value = err?.message ?? String(err)
-      console.error('Error loading projects: ', err)
+      console.error("Error loading projects: ", err)
     } finally {
       isLoading.value = false
     }

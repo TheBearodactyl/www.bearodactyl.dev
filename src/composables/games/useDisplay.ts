@@ -1,11 +1,11 @@
-import { ref, watch, nextTick, onMounted, onUnmounted, type Ref } from 'vue'
-import { useStorage } from '@vueuse/core'
+import { ref, watch, nextTick, onMounted, onUnmounted, type Ref } from "vue"
+import { useStorage } from "@vueuse/core"
 
 export function useDisplay() {
   const isFilterCollapsed: Ref<boolean> = ref(true)
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const expandedInputRef: Ref<any> = ref(null)
-  const viewMode: Ref<string> = useStorage('game-gallery-view-mode', 'grid')
+  const viewMode: Ref<string> = useStorage("game-gallery-view-mode", "grid")
   const expandedCard: Ref<string | number | null> = ref(null)
   const idleTimeout: Ref<ReturnType<typeof setTimeout>> = ref(setTimeout(() => {}, 0))
   const isIdle: Ref<boolean> = ref(false)
@@ -26,7 +26,7 @@ export function useDisplay() {
   }
 
   const handleEscape = (event: KeyboardEvent) => {
-    if (event.key === 'Escape') {
+    if (event.key === "Escape") {
       closeCard()
     }
   }
@@ -42,21 +42,21 @@ export function useDisplay() {
   onMounted(() => {
     resetIdleTimer()
 
-    document.addEventListener('keydown', handleEscape)
-    window.addEventListener('mousemove', resetIdleTimer)
-    window.addEventListener('keydown', resetIdleTimer)
-    window.addEventListener('scroll', resetIdleTimer)
-    window.addEventListener('click', resetIdleTimer)
+    document.addEventListener("keydown", handleEscape)
+    window.addEventListener("mousemove", resetIdleTimer)
+    window.addEventListener("keydown", resetIdleTimer)
+    window.addEventListener("scroll", resetIdleTimer)
+    window.addEventListener("click", resetIdleTimer)
   })
 
   onUnmounted(() => {
     clearTimeout(idleTimeout.value)
 
-    document.removeEventListener('keydown', handleEscape)
-    window.removeEventListener('mousemove', resetIdleTimer)
-    window.removeEventListener('keydown', resetIdleTimer)
-    window.removeEventListener('scroll', resetIdleTimer)
-    window.removeEventListener('click', resetIdleTimer)
+    document.removeEventListener("keydown", handleEscape)
+    window.removeEventListener("mousemove", resetIdleTimer)
+    window.removeEventListener("keydown", resetIdleTimer)
+    window.removeEventListener("scroll", resetIdleTimer)
+    window.removeEventListener("click", resetIdleTimer)
   })
 
   const toggleSearchMode = () => {

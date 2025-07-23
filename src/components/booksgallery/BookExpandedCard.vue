@@ -4,8 +4,11 @@
       <div class="expanded-header">
         <button class="close-btn" @click.stop="emitCloseCard">×</button>
         <div class="expanded-cover">
-          <img :src="book.coverImage" :alt="$t('cover-of-props-book-title', [book.title])"
-            class="expanded-cover-image" />
+          <img
+            :src="book.coverImage"
+            :alt="$t('cover-of-props-book-title', [book.title])"
+            class="expanded-cover-image"
+          />
           <div v-if="book.explicit" class="explicit-icon">
             <span class="icon-warning">⚠️</span>
             <span class="explicit-label">{{ $t("gallery.explicit") }}</span>
@@ -22,10 +25,15 @@
           </div>
           <div class="expanded-rating">
             <span class="stars">
-              <span v-for="star in (book.title === 'One Piece' ? 50 : 5)" :key="star" class="star"
-                :class="{ 'filled': star <= book.rating }">★</span>
+              <span
+                v-for="star in book.title === 'One Piece' ? 50 : 5"
+                :key="star"
+                class="star"
+                :class="{ filled: star <= book.rating }"
+                >★</span
+              >
             </span>
-            <span class="rating-text">{{ $t('props-book-rating-5', [book.rating]) }}</span>
+            <span class="rating-text">{{ $t("props-book-rating-5", [book.rating]) }}</span>
           </div>
         </div>
       </div>
@@ -44,8 +52,14 @@
         <div class="links-section" v-if="book.links && book.links.length > 0">
           <h4>{{ $t("gallery.expanded.links") }}</h4>
           <div class="links-grid">
-            <a v-for="link in book.links" :key="link.title" :href="link.url" target="_blank" rel="noopener noreferrer"
-              class="book-link">
+            <a
+              v-for="link in book.links"
+              :key="link.title"
+              :href="link.url"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="book-link"
+            >
               <span class="link-title">{{ link.title }}</span>
             </a>
           </div>
@@ -57,12 +71,12 @@
 
 <script setup lang="ts">
 defineProps({
-  book: Object
-});
+  book: Object,
+})
 
-const emit = defineEmits(['close-card']);
+const emit = defineEmits(["close-card"])
 
 const emitCloseCard = () => {
-  emit('close-card');
-};
+  emit("close-card")
+}
 </script>

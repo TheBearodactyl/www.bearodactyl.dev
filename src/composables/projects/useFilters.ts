@@ -1,6 +1,6 @@
-import { ref, computed, watch, reactive, type Ref } from 'vue'
-import { useStorage } from '@vueuse/core'
-import Fuse from 'fuse.js'
+import { ref, computed, watch, reactive, type Ref } from "vue"
+import { useStorage } from "@vueuse/core"
+import Fuse from "fuse.js"
 
 interface Project {
   name: string
@@ -17,8 +17,8 @@ interface ProjectFilters {
 }
 
 export function useFilters(allProjects: Ref<Project[]>) {
-  const rawFilters = useStorage<ProjectFilters>('project-filters', {
-    name: '',
+  const rawFilters = useStorage<ProjectFilters>("project-filters", {
+    name: "",
     tags: [],
   })
 
@@ -34,7 +34,7 @@ export function useFilters(allProjects: Ref<Project[]>) {
 
   const fuse = computed(() => {
     return new Fuse(allProjects.value, {
-      keys: ['name', 'description', 'tags'],
+      keys: ["name", "description", "tags"],
       threshold: 0.3,
     })
   })
@@ -65,20 +65,20 @@ export function useFilters(allProjects: Ref<Project[]>) {
 
   const dropdowns = reactive<{ tags: boolean }>({ tags: false })
 
-  function toggleDropdown(type: 'tags') {
+  function toggleDropdown(type: "tags") {
     dropdowns[type] = !dropdowns[type]
   }
 
-  function closeDropdown(type: 'tags') {
+  function closeDropdown(type: "tags") {
     dropdowns[type] = false
   }
 
-  function openDropdown(type: 'tags') {
+  function openDropdown(type: "tags") {
     dropdowns[type] = true
   }
 
   function toggleFilterTag(tag: string) {
-    const arr = searchFilters.value['tags']
+    const arr = searchFilters.value["tags"]
     const idx = arr.indexOf(tag)
     if (idx === -1) {
       arr.push(tag)
@@ -87,7 +87,7 @@ export function useFilters(allProjects: Ref<Project[]>) {
     }
   }
 
-  function delayedCloseDropdown(type: 'tags') {
+  function delayedCloseDropdown(type: "tags") {
     setTimeout(() => {
       closeDropdown(type)
     }, 150)

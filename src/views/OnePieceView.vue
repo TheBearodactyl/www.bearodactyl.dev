@@ -2,13 +2,16 @@
   <div class="gallery-wrapper">
     <h1 class="title">My Reviews</h1>
 
-    <div v-if="isLoading" class="loading">
-      Loading reviews... {{ downloadProgress }}%
-    </div>
+    <div v-if="isLoading" class="loading">Loading reviews... {{ downloadProgress }}%</div>
     <div v-if="fetchError" class="error">Error: {{ fetchError }}</div>
 
     <div class="filters">
-      <input v-model="searchFilters.search" type="text" placeholder="Search reviews..." class="search-input" />
+      <input
+        v-model="searchFilters.search"
+        type="text"
+        placeholder="Search reviews..."
+        class="search-input"
+      />
     </div>
 
     <div class="gallery" v-if="!isLoading && !fetchError">
@@ -29,11 +32,11 @@
 </template>
 
 <script lang="ts" setup>
-import { useHead } from '@unhead/vue'
-import { useData } from '@/composables/reviews/useData'
-import { useFilters } from '@/composables/reviews/useFilters'
+import { useHead } from "@unhead/vue"
+import { useData } from "@/composables/reviews/useData"
+import { useFilters } from "@/composables/reviews/useFilters"
 
-useHead({ title: 'Reviews List' })
+useHead({ title: "Reviews List" })
 
 const { reviews, isLoading, fetchError, downloadProgress } = useData()
 const { searchFilters, filteredReviews } = useFilters(reviews)
@@ -44,7 +47,9 @@ const { searchFilters, filteredReviews } = useFilters(reviews)
 
 .dropdown-fade-enter-active,
 .dropdown-fade-leave-active {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .dropdown-fade-enter-from,
@@ -152,7 +157,6 @@ const { searchFilters, filteredReviews } = useFilters(reviews)
 .expand-button:hover {
   background-color: var(--rp-highlight-med);
 }
-
 
 .selected-tags::-webkit-scrollbar {
   height: 4px;

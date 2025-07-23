@@ -2,26 +2,35 @@
   <div class="gallery-wrapper">
     <h1 class="title">My Projects</h1>
 
-    <div v-if="isLoading" class="loading">
-      Loading projects... {{ downloadProgress }}%
-    </div>
+    <div v-if="isLoading" class="loading">Loading projects... {{ downloadProgress }}%</div>
     <div v-if="fetchError" class="error">Error: {{ fetchError }}</div>
 
     <div class="filters">
-      <input v-model="searchFilters.name" type="text" placeholder="Search projects..." class="search-input" />
+      <input
+        v-model="searchFilters.name"
+        type="text"
+        placeholder="Search projects..."
+        class="search-input"
+      />
 
       <div class="multi-select" ref="tagsDropdownRef">
-        <div class="dropdown" @click.stop="openDropdown('tags')" :class="{ open: dropdowns.tags }" tabindex="0"
-          @blur.capture="delayedCloseDropdown('tags')">
-
+        <div
+          class="dropdown"
+          @click.stop="openDropdown('tags')"
+          :class="{ open: dropdowns.tags }"
+          tabindex="0"
+          @blur.capture="delayedCloseDropdown('tags')"
+        >
           <div class="dropdown-content">
-            <span v-if="searchFilters.tags.length === 0" class="placeholder">
-              Select tags...
-            </span>
+            <span v-if="searchFilters.tags.length === 0" class="placeholder"> Select tags... </span>
             <div v-else class="selected-tags">
               <transition-group name="fade" tag="div" class="tags-wrapper">
-                <span v-for="tag in searchFilters.tags" :key="tag" class="tag-button"
-                  @click.stop="toggleFilterTag(tag)">
+                <span
+                  v-for="tag in searchFilters.tags"
+                  :key="tag"
+                  class="tag-button"
+                  @click.stop="toggleFilterTag(tag)"
+                >
                   {{ tag }} <span class="remove-icon">×</span>
                 </span>
               </transition-group>
@@ -32,8 +41,12 @@
 
           <ul class="dropdown-list" v-if="dropdowns.tags">
             <template v-if="filteredTagCounts.length > 0">
-              <li v-for="[tag, count] in filteredTagCounts" :key="tag"
-                :class="{ selected: searchFilters.tags.includes(tag) }" @click.stop="toggleFilterTag(tag)">
+              <li
+                v-for="[tag, count] in filteredTagCounts"
+                :key="tag"
+                :class="{ selected: searchFilters.tags.includes(tag) }"
+                @click.stop="toggleFilterTag(tag)"
+              >
                 <input type="checkbox" :checked="searchFilters.tags.includes(tag)" readonly />
                 {{ tag }} <span class="tag-count">({{ count }})</span>
               </li>
@@ -53,7 +66,9 @@
           <p class="project-description">{{ project.description }}</p>
 
           <div class="book-tags" v-if="project.tags">
-            <span v-for="tag in project.tags.slice(0, 5)" :key="tag" class="book-tag">{{ tag }}</span>
+            <span v-for="tag in project.tags.slice(0, 5)" :key="tag" class="book-tag">{{
+              tag
+            }}</span>
           </div>
 
           <a :href="project.source" class="project-link" target="_blank" rel="noopener noreferrer">
@@ -61,16 +76,27 @@
           </a>
 
           <button class="expand-button" @click="toggleInstallCmd(project.name)">
-            {{ expandedCards[project.name] ? 'Hide' : 'Show' }} Install Command
+            {{ expandedCards[project.name] ? "Hide" : "Show" }} Install Command
           </button>
 
           <transition name="fade">
             <div v-if="expandedCards[project.name]" class="install-section">
-              <code class="install-command">{{ project.installCommand || 'No install command provided.' }}</code>
+              <code class="install-command">{{
+                project.installCommand || "No install command provided."
+              }}</code>
               <button class="copy-button" @click="copyInstallCommand(project.installCommand)">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-copy">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="feather feather-copy"
+                >
                   <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
                   <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
                 </svg>
@@ -86,18 +112,17 @@
   </div>
 </template>
 
-
 <script lang="ts" setup>
-import { useData } from "@/composables/projects/useData";
-import { useFilters } from "@/composables/projects/useFilters";
-import { ref, reactive } from "vue";
-import { useHead } from '@unhead/vue';
+import { useData } from "@/composables/projects/useData"
+import { useFilters } from "@/composables/projects/useFilters"
+import { ref, reactive } from "vue"
+import { useHead } from "@unhead/vue"
 
 useHead({
-  title: "Projects List"
+  title: "Projects List",
 })
 
-const { projects, isLoading, fetchError, downloadProgress } = useData();
+const { projects, isLoading, fetchError, downloadProgress } = useData()
 const {
   searchFilters,
   filteredProjects,
@@ -106,20 +131,20 @@ const {
   openDropdown,
   toggleFilterTag,
   delayedCloseDropdown,
-} = useFilters(projects);
+} = useFilters(projects)
 
-const tagsDropdownRef = ref<HTMLElement | null>(null);
-const expandedCards = reactive<Record<string, boolean>>({});
+const tagsDropdownRef = ref<HTMLElement | null>(null)
+const expandedCards = reactive<Record<string, boolean>>({})
 
 const toggleInstallCmd = (name: string) => {
-  expandedCards[name] = !expandedCards[name];
+  expandedCards[name] = !expandedCards[name]
 }
 
 const copyInstallCommand = async (text: string | undefined) => {
-  if (!text) return;
+  if (!text) return
   try {
-    await navigator.clipboard.writeText(text);
-    alert("Copied to clipboard");
+    await navigator.clipboard.writeText(text)
+    alert("Copied to clipboard")
   } catch (err) {
     alert("Failed to copy.")
     console.error("Clipboard copy error: ", err)
@@ -132,7 +157,9 @@ const copyInstallCommand = async (text: string | undefined) => {
 
 .dropdown-fade-enter-active,
 .dropdown-fade-leave-active {
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
 }
 
 .dropdown-fade-enter-from,
@@ -240,7 +267,6 @@ const copyInstallCommand = async (text: string | undefined) => {
 .expand-button:hover {
   background-color: var(--rp-highlight-med);
 }
-
 
 .selected-tags::-webkit-scrollbar {
   height: 4px;

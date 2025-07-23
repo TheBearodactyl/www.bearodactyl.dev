@@ -1,7 +1,7 @@
-import { ref, computed, watch, reactive, type Ref } from 'vue'
-import { useStorage } from '@vueuse/core'
-import Fuse from 'fuse.js'
-import type { Game } from './useData'
+import { ref, computed, watch, reactive, type Ref } from "vue"
+import { useStorage } from "@vueuse/core"
+import Fuse from "fuse.js"
+import type { Game } from "./useData"
 
 interface Filters {
   title: string
@@ -13,13 +13,13 @@ interface Filters {
 }
 
 export function useFilters(allGames: Ref<Game[]>) {
-  const rawFilters = useStorage<Filters>('game-filters', {
-    title: '',
-    developer: '',
+  const rawFilters = useStorage<Filters>("game-filters", {
+    title: "",
+    developer: "",
     genres: [],
     tags: [],
     rating: null,
-    status: '',
+    status: "",
   })
 
   const searchFilters: Ref<Filters> = ref({ ...rawFilters.value })
@@ -34,7 +34,7 @@ export function useFilters(allGames: Ref<Game[]>) {
 
   const fuse = computed(() => {
     return new Fuse(allGames.value, {
-      keys: ['title', 'developer', 'genres', 'tags'],
+      keys: ["title", "developer", "genres", "tags"],
       threshold: 0.3,
     })
   })
@@ -84,15 +84,15 @@ export function useFilters(allGames: Ref<Game[]>) {
     tags: false,
   })
 
-  function toggleDropdown(type: 'genres' | 'tags') {
+  function toggleDropdown(type: "genres" | "tags") {
     dropdowns[type] = !dropdowns[type]
   }
 
-  function closeDropdown(type: 'genres' | 'tags') {
+  function closeDropdown(type: "genres" | "tags") {
     dropdowns[type] = false
   }
 
-  function toggleFilterItem(type: 'genres' | 'tags', item: string) {
+  function toggleFilterItem(type: "genres" | "tags", item: string) {
     const arr = searchFilters.value[type]
     const idx = arr.indexOf(item)
     if (idx === -1) {
@@ -139,12 +139,12 @@ export function useFilters(allGames: Ref<Game[]>) {
 
   function clearAllFilters() {
     searchFilters.value = {
-      title: '',
-      developer: '',
+      title: "",
+      developer: "",
       genres: [],
       tags: [],
       rating: null,
-      status: '',
+      status: "",
     }
   }
 

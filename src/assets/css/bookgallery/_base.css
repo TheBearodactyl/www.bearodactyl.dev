@@ -1,10 +1,10 @@
 /* _base.css */
 
 @font-face {
-  font-family: 'Cascadia Code Nerd Font';
+  font-family: "Cascadia Code Nerd Font";
   font-style: normal;
   font-weight: 200;
-  src: url('/fonts/CaskaydiaCove/CaskaydiaCoveNerdFont-Light.ttf') format('truetype');
+  src: url("/fonts/CaskaydiaCove/CaskaydiaCoveNerdFont-Light.ttf") format("truetype");
   font-variant-ligatures: none;
 }
 
@@ -12,7 +12,7 @@
 *::before,
 *::after {
   box-sizing: border-box;
-  font-family: 'Cascadia Code Nerd Font' !important; /* Consider if !important is strictly necessary here. It can lead to specificity issues. */
+  font-family: "Cascadia Code Nerd Font" !important; /* Consider if !important is strictly necessary here. It can lead to specificity issues. */
 }
 
 img {
@@ -61,10 +61,10 @@ body {
   background-color: var(--rp-base);
   color: var(--rp-text);
   font-family:
-    'Inter',
+    "Inter",
     -apple-system,
     BlinkMacSystemFont,
-    'Segoe UI',
+    "Segoe UI",
     Roboto,
     sans-serif;
   line-height: 1.7;

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import BooksGallery from '@/components/booksgallery/BooksGallery.vue';
-import { useHead } from '@unhead/vue';
+import BooksGallery from "@/components/booksgallery/BooksGallery.vue"
+import { useHead } from "@unhead/vue"
 
 useHead({
-  title: "Read/Watch List"
+  title: "Read/Watch List",
 })
 </script>
 

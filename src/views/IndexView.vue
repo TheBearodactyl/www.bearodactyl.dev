@@ -10,18 +10,19 @@
 </template>
 
 <script setup lang="ts">
-import NavigationGallery, { type NavItem } from '@/components/NavigationGallery.vue';
-import { useHead } from '@unhead/vue';
+import NavigationGallery, { type NavItem } from "@/components/NavigationGallery.vue"
+import { useHead } from "@unhead/vue"
 
 useHead({
-  title: "The Motherfucking Bearodactyl"
+  title: "The Motherfucking Bearodactyl",
 })
 
 const navigationItems: NavItem[] = [
   {
     title: "Read/Watch List",
     description: "shit i've read/watched",
-    coverImage: "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Hobo-with-a-shotgun-movie-poster.jpg/250px-Hobo-with-a-shotgun-movie-poster.jpg",
+    coverImage:
+      "https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Hobo-with-a-shotgun-movie-poster.jpg/250px-Hobo-with-a-shotgun-movie-poster.jpg",
     route: "/lists/read-watch",
   },
   {
@@ -40,33 +41,34 @@ const navigationItems: NavItem[] = [
     title: "Game list",
     description: "Games i play",
     coverImage: "/images/gamer.gif",
-    route: "/lists/games"
+    route: "/lists/games",
   },
   {
     title: "Bearodactyl",
     description: "Bearodactyl",
     coverImage: "https://s3.amazonaws.com/theoatmeal-img/blog/bearodactyl_painting.jpg",
-    route: "/jokes/bearo"
+    route: "/jokes/bearo",
   },
   {
     title: "Emergency frog!",
     description: "Emergency Frog Situation!!!!",
     coverImage: "https://pbs.twimg.com/media/DIQFluYUwAEm6AH.jpg",
-    route: "/jokes/aaaaa"
+    route: "/jokes/aaaaa",
   },
   {
     title: "Woah",
     description: "Woah, it's Wulzy",
     coverImage: "https://static.wikia.nocookie.net/youtube/images/9/94/Wulzy_Face_Meme.jpg",
-    route: "/jokes/woah"
+    route: "/jokes/woah",
   },
   {
     title: "One Piece",
     description: "my reviews of OP chapters (HIGHLY WIP)",
-    coverImage: "https://occ-0-8407-92.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABRKIQnGja8FW7HtFjgOF_TmYAR_dn3eeN2Cayj3Gm2kEhjSETNusxVJj712wh_n7reHNrt3Bt6_S_U7jF4h8ugUgeXYHpcqbzHxO.jpg?r=485",
-    route: "/lists/one-piece"
-  }
-];
+    coverImage:
+      "https://occ-0-8407-92.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABRKIQnGja8FW7HtFjgOF_TmYAR_dn3eeN2Cayj3Gm2kEhjSETNusxVJj712wh_n7reHNrt3Bt6_S_U7jF4h8ugUgeXYHpcqbzHxO.jpg?r=485",
+    route: "/lists/one-piece",
+  },
+]
 </script>
 
 <style>
@@ -92,12 +94,11 @@ const navigationItems: NavItem[] = [
   color: var(--rp-iris);
   font-weight: 800;
   letter-spacing: -0.04em;
-  text-shadow: 0 0 20px rgba(196, 167, 231, 0.3),
+  text-shadow:
+    0 0 20px rgba(196, 167, 231, 0.3),
     0 0 40px rgba(196, 167, 231, 0.1);
   line-height: 1.1;
-  background: linear-gradient(90deg,
-      var(--rp-iris) 0%,
-      var(--rp-foam) 100%);
+  background: linear-gradient(90deg, var(--rp-iris) 0%, var(--rp-foam) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

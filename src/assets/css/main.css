@@ -1,4 +1,4 @@
-@import url('/src/assets/css/variables.css');
+@import url("/src/assets/css/variables.css");
 
 /* ========================================
    Base Styles
@@ -24,7 +24,7 @@ body {
 }
 
 body::after {
-  content: '';
+  content: "";
   position: fixed;
   bottom: 0;
   left: 0;
@@ -86,7 +86,7 @@ h2 {
 }
 
 .epic-tracks-player::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -217,7 +217,7 @@ button:disabled {
   color: var(--text-primary);
 }
 
-.volume-control input[type='range'] {
+.volume-control input[type="range"] {
   width: 100%;
   max-width: 300px;
   margin: var(--spacing-sm) 0;
@@ -229,11 +229,11 @@ button:disabled {
   transition: opacity var(--transition-normal);
 }
 
-.volume-control input[type='range']:hover {
+.volume-control input[type="range"]:hover {
   opacity: 1;
 }
 
-.volume-control input[type='range']::-webkit-slider-thumb {
+.volume-control input[type="range"]::-webkit-slider-thumb {
   appearance: none;
   width: 20px;
   height: 20px;
@@ -243,7 +243,7 @@ button:disabled {
   box-shadow: var(--shadow-sm);
 }
 
-.volume-control input[type='range']::-moz-range-thumb {
+.volume-control input[type="range"]::-moz-range-thumb {
   width: 20px;
   height: 20px;
   background: var(--accent-blue);
@@ -271,7 +271,7 @@ button:disabled {
   font-size: 0.9rem;
   color: var(--text-secondary);
   font-weight: 500;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   letter-spacing: 0.5px;
 }
 

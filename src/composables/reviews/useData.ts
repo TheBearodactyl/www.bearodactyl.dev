@@ -1,5 +1,5 @@
-import { getGithubRelease } from '@/utils/getGithubRelease'
-import { onMounted, ref, type Ref } from 'vue'
+import { getGithubRelease } from "@/utils/getGithubRelease"
+import { onMounted, ref, type Ref } from "vue"
 
 interface Review {
   chapter: number
@@ -20,9 +20,9 @@ export function useData() {
       downloadProgress.value = 20
 
       const fileContents = await getGithubRelease(
-        'TheBearodactyl',
-        'bearodactyl.dev',
-        'reviews.json',
+        "TheBearodactyl",
+        "bearodactyl.dev",
+        "reviews.json",
       )
 
       downloadProgress.value = 60
@@ -33,7 +33,7 @@ export function useData() {
       downloadProgress.value = 100
     } catch (err) {
       fetchError.value = err?.message ?? String(err)
-      console.error('Error loading reviews: ', err)
+      console.error("Error loading reviews: ", err)
     } finally {
       isLoading.value = false
     }

@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import LinkedImage from '@/components/LinkedImage.vue';
-import { useHead } from '@unhead/vue';
+import LinkedImage from "@/components/LinkedImage.vue"
+import { useHead } from "@unhead/vue"
 
 useHead({
-  title: "The Bearodactyl"
+  title: "The Bearodactyl",
 })
 </script>
 

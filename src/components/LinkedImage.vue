@@ -1,14 +1,19 @@
 <template>
-  <img :src="props.imageSrc" :alt="$t('click-to-play-audio')" @click="handleClick" class="clickable" />
+  <img
+    :src="props.imageSrc"
+    :alt="$t('click-to-play-audio')"
+    @click="handleClick"
+    class="clickable"
+  />
 </template>
 
 <script setup lang="ts">
-import { onUnmounted, ref } from 'vue';
+import { onUnmounted, ref } from "vue"
 
 const props = defineProps({
   imageSrc: {
     type: String,
-    required: true
+    required: true,
   },
   audioSrc: {
     type: String,
@@ -16,52 +21,52 @@ const props = defineProps({
   },
   gotoLink: {
     type: String,
-    required: false
+    required: false,
   },
   delay: {
     type: Number,
-    required: false
-  }
+    required: false,
+  },
 })
 
-const audio = ref<HTMLAudioElement | null>(null);
+const audio = ref<HTMLAudioElement | null>(null)
 
 const handleClick = async () => {
   try {
     if (!audio.value) {
-      let audioPath = props.audioSrc;
-      if (!audioPath.startsWith('http') && !audioPath.startsWith('/')) {
-        audioPath = `/${audioPath}`;
+      let audioPath = props.audioSrc
+      if (!audioPath.startsWith("http") && !audioPath.startsWith("/")) {
+        audioPath = `/${audioPath}`
       }
 
-      audio.value = new Audio(audioPath);
-      audio.value.addEventListener('error', (e) => {
-        console.error('Audio failed to load:', audioPath, e);
-      });
+      audio.value = new Audio(audioPath)
+      audio.value.addEventListener("error", (e) => {
+        console.error("Audio failed to load:", audioPath, e)
+      })
     }
 
-    await audio.value.play();
+    await audio.value.play()
 
     if (props.gotoLink) {
       setTimeout(() => {
         if (props.gotoLink.startsWith("http")) {
-          window.open(props.gotoLink, "_blank");
+          window.open(props.gotoLink, "_blank")
         } else {
-          window.location.href = props.gotoLink;
+          window.location.href = props.gotoLink
         }
-      }, props.delay ?? 100);
+      }, props.delay ?? 100)
     }
   } catch (error) {
-    console.error('Failed to play audio:', error);
+    console.error("Failed to play audio:", error)
   }
 }
 
 onUnmounted(() => {
   if (audio.value) {
-    audio.value.pause();
-    audio.value = null;
+    audio.value.pause()
+    audio.value = null
   }
-});
+})
 </script>
 
 <style>

@@ -1,7 +1,7 @@
-import { ref, computed, watch, reactive, type Ref } from 'vue'
-import { useStorage } from '@vueuse/core'
-import Fuse from 'fuse.js'
-import type { Book } from './useData'
+import { ref, computed, watch, reactive, type Ref } from "vue"
+import { useStorage } from "@vueuse/core"
+import Fuse from "fuse.js"
+import type { Book } from "./useData"
 
 interface Filters {
   title: string
@@ -13,13 +13,13 @@ interface Filters {
 }
 
 export function useFilters(allBooks: Ref<Book[]>) {
-  const rawFilters = useStorage<Filters>('book-filters', {
-    title: '',
-    author: '',
+  const rawFilters = useStorage<Filters>("book-filters", {
+    title: "",
+    author: "",
     genres: [],
     tags: [],
     rating: null,
-    status: '',
+    status: "",
   })
 
   const searchFilters: Ref<Filters> = ref({ ...rawFilters.value })
@@ -41,7 +41,7 @@ export function useFilters(allBooks: Ref<Book[]>) {
   const fuse = computed(() => {
     if (!hasSearch.value) return null
     return new Fuse(allBooks.value, {
-      keys: ['title', 'author', 'genres', 'tags'],
+      keys: ["title", "author", "genres", "tags"],
       threshold: 0.3,
     })
   })
@@ -94,7 +94,7 @@ export function useFilters(allBooks: Ref<Book[]>) {
     dropdowns[type] = false
   }
 
-  function toggleFilterItem(type: 'genres' | 'tags', item: string) {
+  function toggleFilterItem(type: "genres" | "tags", item: string) {
     const arr = searchFilters.value[type]
     const idx = arr.indexOf(item)
     if (idx === -1) {
@@ -176,12 +176,12 @@ export function useFilters(allBooks: Ref<Book[]>) {
 
   function clearAllFilters() {
     searchFilters.value = {
-      title: '',
-      author: '',
+      title: "",
+      author: "",
       genres: [],
       tags: [],
       rating: null,
-      status: '',
+      status: "",
     }
   }
 

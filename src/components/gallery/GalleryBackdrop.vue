@@ -4,11 +4,11 @@
 
 <script setup lang="ts">
 defineProps({
-  show: Boolean
-});
+  show: Boolean,
+})
 
-const emit = defineEmits(['click']);
+const emit = defineEmits(["click"])
 const emitClick = () => {
-  emit('click');
-};
+  emit("click")
+}
 </script>
