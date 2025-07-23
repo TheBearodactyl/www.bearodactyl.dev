@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router"
+import { createRouter, createWebHashHistory } from "vue-router"
 import IndexView from "@/views/IndexView.vue"
 import DefaultLayout from "@/components/DefaultLayout.vue"
 import ReadListView from "@/views/ReadListView.vue"
@@ -12,7 +12,7 @@ import TarpitView from "@/views/TarpitView.vue"
 import { makeRoute } from "@/utils/misc"
 
 const router = createRouter({
-  history: createWebHistory("/bearodactyl.dev/"),
+  history: createWebHashHistory(),
   routes: [
     makeRoute("/", "index", DefaultLayout, [
       makeRoute("", "home", IndexView),
