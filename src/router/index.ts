@@ -11,7 +11,7 @@ import OnePieceView from '@/views/OnePieceView.vue'
 import TarpitView from '@/views/TarpitView.vue'
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/bearodactyl.dev/'),
   routes: [
     {
       path: '/',
