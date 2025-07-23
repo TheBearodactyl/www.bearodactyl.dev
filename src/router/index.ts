@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import IndexView from '@/views/IndexView.vue'
 import DefaultLayout from '@/components/DefaultLayout.vue'
 import ReadListView from '@/views/ReadListView.vue'
@@ -8,9 +8,10 @@ import GamesView from '@/views/GamesView.vue'
 import ProjectsView from '@/views/ProjectsView.vue'
 import WebsiteSrcView from '@/views/WebsiteSrcView.vue'
 import OnePieceView from '@/views/OnePieceView.vue'
+import TarpitView from '@/views/TarpitView.vue'
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -22,6 +23,16 @@ const router = createRouter({
           component: IndexView,
           meta: {
             title: 'The Motherfucking Bearodactyl',
+          },
+        },
+        {
+          path: '/tarpit',
+          name: 'tarpit',
+          component: TarpitView,
+          beforeEnter: async (to, from, next) => {
+            console.log('goto robot jail >:(')
+            await new Promise((resolve) => setTimeout(resolve, 60000000))
+            next()
           },
         },
         {

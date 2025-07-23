@@ -32,21 +32,11 @@
         <LangSwitcher class="lang-switcher-aligned" />
         <button v-if="currentRoutePath !== '/'" class="home_button" @click="goHome" aria-label="Home"
           :title="$t('go-to-home')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-home">
-            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-            <polyline points="9 22 9 12 15 12 15 22"></polyline>
-          </svg>
+          <HomeIcon />
         </button>
       </div>
       <button class="menu-toggle" @click="toggleMenu" :class="{ 'active': isMenuOpen }" aria-label="Toggle menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="menu-icon">
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
+        <MenuIcon />
       </button>
     </div>
     <router-view />
@@ -56,8 +46,10 @@
 
 <script setup lang="ts">
 import { ref, onMounted, computed, watch } from 'vue';
-import { useRouter, useRoute } from 'vue-router'; // Import from vue-router directly
+import { useRouter, useRoute } from 'vue-router';
 import LangSwitcher from "@/components/LangSwitcher.vue"
+import HomeIcon from './icons/HomeIcon.vue';
+import MenuIcon from './icons/MenuIcon.vue';
 
 const router = useRouter();
 const route = useRoute();

@@ -50,7 +50,7 @@
 import FilterPill from '../gallery/FilterPill.vue';
 import MultiSelectDropdown from '../gallery/MultiSelectDropdown.vue';
 
-interface Filters {
+export interface Filters {
   title: string
   author: string
   status: string

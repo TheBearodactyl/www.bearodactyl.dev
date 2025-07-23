@@ -24,7 +24,6 @@ export function useFilters(allBooks: Ref<Book[]>) {
 
   const searchFilters: Ref<Filters> = ref({ ...rawFilters.value })
 
-  // Avoid writing to storage unless something actually changes
   watch(
     searchFilters,
     (newVal, oldVal) => {

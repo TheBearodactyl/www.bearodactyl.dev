@@ -7,13 +7,7 @@
           class="cover-image" />
         <div v-if="props.game.explicit" class="explicit-icon">
           <span class="icon-warning">
-            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="red"
-              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-triangle">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
-              </path>
-              <line x1="12" y1="9" x2="12" y2="13"></line>
-              <line x1="12" y1="17" x2="12.01" y2="17"></line>
-            </svg>
+            <WarningIcon />
           </span>
           <span class="explicit-label">{{ $t("gallery.explicit") }}</span>
         </div>
@@ -30,7 +24,7 @@
         </div>
         <div class="book-rating">
           <span class="stars">
-            <span v-for="star in (props.game.title === 'One Piece' ? 50 : 5)" :key="star" class="star"
+            <span v-for="star in (isPeakFiction(props.game) ? 50 : 5)" :key="star" class="star"
               :class="{ 'filled': star <= props.game.rating }">★</span>
           </span>
           <span class="rating-text">{{ $t('props-game-rating-5', [props.game.rating]) }}</span>
@@ -41,14 +35,17 @@
 </template>
 
 <script setup lang="ts">
+import { isPeakFiction } from '@/utils/isPeakFiction';
 import BaseCard from '../gallery/BaseCard.vue';
+import WarningIcon from '../icons/WarningIcon.vue';
+import type { Game } from '@/composables/games/useData';
 
-const props = defineProps({
-  game: Object,
-  index: Number,
-  isExpanded: Boolean,
-  viewMode: String,
-});
+const props = defineProps<{
+  game: Game,
+  index: number,
+  isExpanded: boolean,
+  viewMode: string
+}>();
 
 const emit = defineEmits(['toggle-card']);
 const emitToggleCard = () => {

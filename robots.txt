@@ -1,0 +1,132 @@
+# My policy (based on https://sr.ht/robots.txt)
+#
+# Allowed:
+# - Search engine indexers
+# - Archival services (e.g. IA)
+#
+# Disallowed:
+# - Marketing or SEO crawlers
+# - Anything used to feed a machine learning model
+# - Bots which are too aggressive by default. This is subjective, if you annoy
+#   our sysadmins you'll be blocked.
+#
+# If you do not respect robots.txt or you deliberately circumvent it we will
+# block your subnets and leave a bag of flaming dog shit on your mother's front
+# porch.
+#
+# Reach out to bearodactyl11@gmail.com if you have questions.
+
+User-agent: *
+Disallow: /*?*
+Disallow: /*.tar.gz$
+Disallow: /metrics
+Disallow: /*/*/blame/*
+Disallow: /*/*/commit/*
+Disallow: /*/*/log/*
+Disallow: /*/*/tree/*
+Disallow: /*/*/item/*
+Disallow: /*/*/mbox
+Disallow: /*/*/*/raw
+Disallow: /tarpit
+
+Disallow: /public/
+Disallow: /src/
+Disallow: /locales/
+Disallow: /env.d.ts
+Disallow: /eslint.config.ts
+Disallow: /tsconfig.json
+Disallow: /tsconfig.*.json
+Disallow: /vite.config.ts
+Disallow: /bun.lock
+Disallow: /README.md
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: SemrushBot-SA
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+User-agent: rogerbot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: AspiegelBot
+Disallow: /
+
+User-agent: ZoominfoBot
+Disallow: /
+
+User-agent: Yandex
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: Amazonbot
+Disallow: /
+
+User-agent: turnitinbot
+Disallow: /
+
+User-agent: Turnitin
+Disallow: /
+
+User-agent: Seekport Crawler
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: serpstatbot
+Disallow: /
+
+User-agent: barkrowler
+Disallow: /
+
+User-agent: Bytedance
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: TikTokSpider
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
+User-agent: OAI-SearchBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: AwarioRssBot
+Disallow: /
+
+User-agent: AwarioSmartBot
+Disallow: /
+
+User-Agent: ImagesiftBot
+Disallow: /
+
+User-Agent: Crawlspace
+Disallow: /
+

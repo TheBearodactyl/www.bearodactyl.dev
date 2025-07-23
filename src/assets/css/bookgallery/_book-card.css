@@ -187,6 +187,7 @@
   flex-wrap: wrap;
   gap: 0.5rem;
   margin-bottom: 1.2rem;
+  min-width: 100%;
 }
 
 .book-tag,
@@ -194,7 +195,7 @@
   background-color: var(--rp-highlight-low);
   color: var(--rp-text);
   padding: 0.35rem 0.9rem;
-  font-size: 0.85rem;
+  /* font-size: 0.85rem; */
   border-radius: 25px;
   font-weight: 600;
   opacity: 0.95;

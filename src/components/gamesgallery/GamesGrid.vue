@@ -9,14 +9,7 @@
             <img :src="game.coverImage" :alt="$t('cover-of-props-game-title', [game.title])" class="cover-image" />
             <div v-if="game.explicit" class="explicit-icon">
               <span class="icon-warning">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
-                  stroke="red" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="feather feather-alert-triangle">
-                  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z">
-                  </path>
-                  <line x1="12" y1="9" x2="12" y2="13"></line>
-                  <line x1="12" y1="17" x2="12.01" y2="17"></line>
-                </svg>
+                <WarningIcon />
               </span>
               <span class="explicit-label">{{ $t('gallery.explicit') }}</span>
             </div>
@@ -27,7 +20,7 @@
             <div class="read-status">{{ game.status }}</div>
             <div class="book-genres">
               <span v-for="genre in game.genres.slice(0, 5)" :key="genre" class="book-genre">{{ genre
-              }}</span>
+                }}</span>
             </div>
             <div class="book-tags" v-if="game.tags">
               <span v-for="tag in game.tags.slice(0, 5)" :key="tag" class="book-tag">{{ tag }}</span>
@@ -51,6 +44,7 @@
 
 <script setup lang="ts">
 import type { Game } from '@/composables/games/useData';
+import WarningIcon from '../icons/WarningIcon.vue';
 
 defineProps<{
   filteredGames: Game[];
