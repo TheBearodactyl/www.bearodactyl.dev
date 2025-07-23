@@ -65,7 +65,7 @@
 import { computed } from "vue"
 import BaseCard from "../gallery/BaseCard.vue"
 import type { Book } from "@/composables/books/useData"
-import { isPeakFiction } from "@/utils/isPeakFiction"
+import { isPeakFiction } from "@/utils/misc"
 import WarningIcon from "../icons/WarningIcon.vue"
 
 const props = defineProps<{
