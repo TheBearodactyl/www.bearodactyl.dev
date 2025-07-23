@@ -2,7 +2,10 @@
   <div class="expanded-card-overlay">
     <div
       class="book-expanded"
-      :class="{ show: props.game !== null, 'explicit-content': props.game.explicit }"
+      :class="{
+        show: props.game !== null,
+        'explicit-content': props.game.explicit,
+      }"
     >
       <div class="expanded-header">
         <button class="close-btn" @click.stop="emitCloseCard">×</button>
@@ -21,12 +24,17 @@
           <h3 class="expanded-title">{{ props.game.title }}</h3>
           <p class="expanded-author">{{ props.game.developer }}</p>
           <div class="book-genres">
-            <span v-for="genre in props.game.genres" :key="genre" class="book-genre">{{
-              genre
-            }}</span>
+            <span
+              v-for="genre in props.game.genres"
+              :key="genre"
+              class="book-genre"
+              >{{ genre }}</span
+            >
           </div>
-          <div class="book-tags" v-if="props.game.tags">
-            <span v-for="tag in props.game.tags" :key="tag" class="book-tag">{{ tag }}</span>
+          <div v-if="props.game.tags" class="book-tags">
+            <span v-for="tag in props.game.tags" :key="tag" class="book-tag">{{
+              tag
+            }}</span>
           </div>
           <div class="expanded-rating">
             <span class="stars">
@@ -38,7 +46,9 @@
                 >★</span
               >
             </span>
-            <span class="rating-text">{{ $t("props-game-rating-5", [props.game.rating]) }}</span>
+            <span class="rating-text">{{
+              $t("props-game-rating-5", [props.game.rating])
+            }}</span>
           </div>
         </div>
       </div>
@@ -54,7 +64,10 @@
           <p>{{ props.game.myThoughts }}</p>
         </div>
 
-        <div class="links-section" v-if="props.game.links && props.game.links.length > 0">
+        <div
+          v-if="props.game.links && props.game.links.length > 0"
+          class="links-section"
+        >
           <h4>{{ $t("gallery.expanded.links") }}</h4>
           <div class="links-grid">
             <a
@@ -75,9 +88,11 @@
 </template>
 
 <script setup lang="ts">
-const props = defineProps({
-  game: Object,
-})
+import type { Game } from "@/composables/games/useData"
+
+const props = defineProps<{
+  game: Game
+}>()
 
 const emit = defineEmits(["close-card"])
 

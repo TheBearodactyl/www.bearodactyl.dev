@@ -6,7 +6,7 @@
         :key="book.id"
         :book="book"
         :index="index"
-        :viewMode="viewMode"
+        :view-mode="viewMode"
         :is-expanded="expandedCard === book.id"
         @toggle-card="emitToggleCard(book.id)"
       />

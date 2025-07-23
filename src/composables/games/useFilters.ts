@@ -41,23 +41,29 @@ export function useFilters(allGames: Ref<Game[]>) {
 
   const allGenres = computed(() => {
     const genreSet = new Set<string>()
-    allGames.value.forEach((game) => game.genres.forEach((genre) => genreSet.add(genre)))
+    allGames.value.forEach((game) => {
+      game.genres.forEach((genre) => genreSet.add(genre))
+    })
     return Array.from(genreSet).sort()
   })
 
   const allTags = computed(() => {
     const tagSet = new Set<string>()
-    allGames.value.forEach((game) => game.tags?.forEach((tag) => tagSet.add(tag)))
+    allGames.value.forEach((game) => {
+      game.tags.forEach((tag) => tagSet.add(tag))
+    })
     return Array.from(tagSet).sort()
   })
 
   const filteredGames = computed(() => {
     let result = allGames.value
 
-    const hasSearch = searchFilters.value.title.trim() || searchFilters.value.developer.trim()
+    const hasSearch =
+      searchFilters.value.title.trim() || searchFilters.value.developer.trim()
 
     if (hasSearch) {
-      const query = `${searchFilters.value.title} ${searchFilters.value.developer}`.trim()
+      const query =
+        `${searchFilters.value.title} ${searchFilters.value.developer}`.trim()
       result = fuse.value.search(query).map(({ item }) => item)
     }
 
@@ -68,12 +74,14 @@ export function useFilters(allGames: Ref<Game[]>) {
 
       const tagMatch =
         searchFilters.value.tags.length === 0 ||
-        (game.tags && searchFilters.value.tags.every((tag) => game.tags.includes(tag)))
+        searchFilters.value.tags.every((tag) => game.tags.includes(tag))
 
       const ratingMatch =
-        !searchFilters.value.rating || (game.rating ?? 0) >= searchFilters.value.rating
+        !searchFilters.value.rating || game.rating >= searchFilters.value.rating
 
-      const statusMatch = !searchFilters.value.status || game.status === searchFilters.value.status
+      const statusMatch =
+        !searchFilters.value.status ||
+        game.status === searchFilters.value.status
 
       return genreMatch && tagMatch && ratingMatch && statusMatch
     })
@@ -111,22 +119,28 @@ export function useFilters(allGames: Ref<Game[]>) {
         searchFilters.value.genres.every((genre) => game.genres.includes(genre))
 
       const ratingMatch =
-        !searchFilters.value.rating || (game.rating ?? 0) >= searchFilters.value.rating
+        !searchFilters.value.rating || game.rating >= searchFilters.value.rating
 
-      const statusMatch = !searchFilters.value.status || game.status === searchFilters.value.status
+      const statusMatch =
+        !searchFilters.value.status ||
+        game.status === searchFilters.value.status
 
-      const hasSearch = searchFilters.value.title.trim() || searchFilters.value.developer.trim()
+      const hasSearch =
+        searchFilters.value.title.trim() || searchFilters.value.developer.trim()
       let searchMatch = true
       if (hasSearch) {
-        const query = `${searchFilters.value.title} ${searchFilters.value.developer}`.trim()
-        searchMatch = fuse.value.search(query).some((result) => result.item.id === game.id)
+        const query =
+          `${searchFilters.value.title} ${searchFilters.value.developer}`.trim()
+        searchMatch = fuse.value
+          .search(query)
+          .some((result) => result.item.id === game.id)
       }
 
       return genreMatch && ratingMatch && statusMatch && searchMatch
     })
 
     for (const game of gamesBeforeCurrentTagFilter) {
-      for (const tag of game.tags || []) {
+      for (const tag of game.tags) {
         if (!searchFilters.value.tags.includes(tag)) {
           // Only count tags not currently selected
           tagCountMap.set(tag, (tagCountMap.get(tag) || 0) + 1)

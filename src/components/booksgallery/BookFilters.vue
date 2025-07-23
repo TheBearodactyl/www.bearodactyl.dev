@@ -19,7 +19,10 @@
         @keydown.left="emitToggleSearchMode"
       />
 
-      <input v-model="searchFilters.author" :placeholder="$t('search-author')" />
+      <input
+        v-model="searchFilters.author"
+        :placeholder="$t('search-author')"
+      />
 
       <select v-model="searchFilters.status">
         <option value="">{{ $t("gallery.filters.any-status") }}</option>
@@ -31,14 +34,20 @@
 
       <select v-model.number="searchFilters.rating">
         <option :value="null">{{ $t("gallery.filters.any-rating") }}</option>
-        <option v-for="r in [1, 2, 3, 4, 5, 10, 20, 30, 40, 50]" :key="r" :value="r">
+        <option
+          v-for="r in [1, 2, 3, 4, 5, 10, 20, 30, 40, 50]"
+          :key="r"
+          :value="r"
+        >
           {{ $t("rating", [r]) }}
         </option>
       </select>
 
       <MultiSelectDropdown
         :label="$t('genres')"
-        :items="filteredGenreCounts.map(([genre, count]) => ({ value: genre, count }))"
+        :items="
+          filteredGenreCounts.map(([genre, count]) => ({ value: genre, count }))
+        "
         :selected-items="searchFilters.genres"
         :is-open="dropdowns.genres"
         :placeholder="$t('select-genres')"
@@ -50,7 +59,9 @@
 
       <MultiSelectDropdown
         :label="$t('tags')"
-        :items="filteredTagCounts.map(([tag, count]) => ({ value: tag, count }))"
+        :items="
+          filteredTagCounts.map(([tag, count]) => ({ value: tag, count }))
+        "
         :selected-items="searchFilters.tags"
         :is-open="dropdowns.tags"
         :placeholder="$t('select-tags')"
@@ -68,6 +79,7 @@
 </template>
 
 <script setup lang="ts">
+import type { VNodeRef } from "vue"
 import FilterPill from "../gallery/FilterPill.vue"
 import MultiSelectDropdown from "../gallery/MultiSelectDropdown.vue"
 
@@ -88,26 +100,34 @@ interface Props {
   isFilterCollapsed: boolean
   filteredTagCounts: [string, number][]
   filteredGenreCounts: [string, number][]
-  expandedInputRef: (el: HTMLInputElement | null) => void
+  expandedInputRef: VNodeRef | undefined
 }
 
 const props = defineProps<Props>()
+type FilterType = "genres" | "tags"
 
 const emit = defineEmits<{
-  (e: "toggle-dropdown", type: string): void
-  (e: "close-dropdown", type: string): void
-  (e: "toggle-filter-item", type: "genres" | "tags", item: string): void
-  (e: "clear-all-filters"): void
-  (e: "toggle-search-mode"): void
+  (e: "close-dropdown" | "toggle-dropdown", type: FilterType): void
+  (e: "toggle-filter-item", type: FilterType, item: string): void
+  (e: "clear-all-filters" | "toggle-search-mode"): void
   (e: "update:searchFilters", filters: Filters): void
 }>()
 
-const emitToggleDropdown = (type: string) => emit("toggle-dropdown", type)
-const emitCloseDropdown = (type: string) => emit("close-dropdown", type)
-const emitToggleFilterItem = (type: "genres" | "tags", item: string) =>
+const emitToggleDropdown = (type: FilterType) => {
+  emit("toggle-dropdown", type)
+}
+const emitCloseDropdown = (type: FilterType) => {
+  emit("close-dropdown", type)
+}
+const emitToggleFilterItem = (type: "genres" | "tags", item: string) => {
   emit("toggle-filter-item", type, item)
-const emitClearAllFilters = () => emit("clear-all-filters")
-const emitToggleSearchMode = () => emit("toggle-search-mode")
+}
+const emitClearAllFilters = () => {
+  emit("clear-all-filters")
+}
+const emitToggleSearchMode = () => {
+  emit("toggle-search-mode")
+}
 
 const searchFilters = props.searchFilters
 const expandedInputRef = props.expandedInputRef

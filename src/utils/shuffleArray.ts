@@ -5,8 +5,8 @@ export function shuffleArray<T>(input: readonly T[]): T[] {
     const j = Math.floor(Math.random() * (i + 1))
 
     if (j >= 0 && j < array.length) {
-      const temp = array[i]!
-      array[i] = array[j]!
+      const temp = array[i]
+      array[i] = array[j]
       array[j] = temp
     }
   }

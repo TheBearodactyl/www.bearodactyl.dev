@@ -11,13 +11,13 @@ interface Review {
 
 interface ReviewFilters {
   search: string
-  minRating?: number
+  minRating: number
 }
 
 export function useFilters(allReviews: Ref<Review[]>) {
   const rawFilters = useStorage<ReviewFilters>("review-filters", {
     search: "",
-    minRating: undefined,
+    minRating: 1,
   })
 
   const searchFilters: Ref<ReviewFilters> = ref({ ...rawFilters.value })
@@ -47,7 +47,7 @@ export function useFilters(allReviews: Ref<Review[]>) {
     }
 
     if (typeof searchFilters.value.minRating === "number") {
-      result = result.filter((review) => review.rating >= searchFilters.value.minRating!)
+      result = result.filter((review) => review.rating >= searchFilters.value.minRating)
     }
 
     return result

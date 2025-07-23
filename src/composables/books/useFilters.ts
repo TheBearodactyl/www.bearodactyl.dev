@@ -57,7 +57,7 @@ export function useFilters(allBooks: Ref<Book[]>) {
   const allTags = computed(() => {
     const tags = new Set<string>()
     for (const book of allBooks.value) {
-      for (const t of book.tags ?? []) tags.add(t)
+      for (const t of book.tags) tags.add(t)
     }
     return [...tags].sort()
   })
@@ -66,8 +66,8 @@ export function useFilters(allBooks: Ref<Book[]>) {
     const { genres, tags, rating, status } = searchFilters.value
 
     if (genres.length && !genres.every((g) => book.genres.includes(g))) return false
-    if (tags.length && !(book.tags && tags.every((t) => book.tags.includes(t)))) return false
-    if (rating && (book.rating ?? 0) < rating) return false
+    if (tags.length && !tags.every((t) => book.tags.includes(t))) return false
+    if (rating && book.rating < rating) return false
     if (status && book.status !== status) return false
 
     return true
@@ -113,7 +113,7 @@ export function useFilters(allBooks: Ref<Book[]>) {
 
       if (
         (genres.length && !genres.every((g) => book.genres.includes(g))) ||
-        (rating && (book.rating ?? 0) < rating) ||
+        (rating && book.rating < rating) ||
         (status && book.status !== status)
       ) {
         return false
@@ -129,7 +129,7 @@ export function useFilters(allBooks: Ref<Book[]>) {
     })
 
     for (const book of filteredBooks) {
-      for (const tag of book.tags || []) {
+      for (const tag of book.tags) {
         if (!selectedTags.has(tag)) {
           tagMap.set(tag, (tagMap.get(tag) || 0) + 1)
         }
@@ -148,7 +148,7 @@ export function useFilters(allBooks: Ref<Book[]>) {
 
       if (
         (genres.length && !genres.every((g) => book.genres.includes(g))) ||
-        (rating && (book.rating ?? 0) < rating) ||
+        (rating && book.rating < rating) ||
         (status && book.status !== status)
       ) {
         return false
@@ -164,7 +164,7 @@ export function useFilters(allBooks: Ref<Book[]>) {
     })
 
     for (const book of filteredBooks) {
-      for (const genre of book.genres || []) {
+      for (const genre of book.genres) {
         if (!selectedGenres.has(genre)) {
           genreMap.set(genre, (genreMap.get(genre) || 0) + 1)
         }

@@ -1,8 +1,12 @@
 <template>
   <div class="locale-switcher">
     <select v-model="currentLocale" @change="setLocale">
-      <option v-for="locale in availableLocales" :key="`locale-${locale}`" :value="locale">
-        {{ locale }}
+      <option
+        v-for="localeVal in availableLocales"
+        :key="`locale-${localeVal}`"
+        :value="localeVal"
+      >
+        {{ localeVal }}
       </option>
     </select>
   </div>

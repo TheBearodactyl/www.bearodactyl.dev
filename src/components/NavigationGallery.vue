@@ -2,9 +2,9 @@
   <div class="navigation-gallery-wrapper">
     <div class="navigation-gallery">
       <component
+        :is="item.title === 'Emergency frog!' ? 'div' : RouterLink"
         v-for="item in navItems"
         :key="item.title"
-        :is="item.title === 'Emergency frog!' ? 'div' : RouterLink"
         :to="item.title === 'Emergency frog!' ? undefined : item.route"
         class="nav-card"
         @click="handleCardClick(item)"
@@ -44,15 +44,17 @@ defineProps<{
 
 const showEmergency = ref(false)
 
-function handleCardClick(item: NavItem) {
+async function handleCardClick(item: NavItem) {
   if (item.title === "Emergency frog!") {
-    playEmergency()
+    await playEmergency()
   }
 }
 
-function playEmergency() {
-  const audio = new Audio("https://www.myinstants.com/media/sounds/emergency-frog-situation.mp3")
-  audio.play()
+async function playEmergency() {
+  const audio = new Audio(
+    "https://www.myinstants.com/media/sounds/emergency-frog-situation.mp3",
+  )
+  await audio.play()
   showEmergency.value = true
 
   setTimeout(() => {

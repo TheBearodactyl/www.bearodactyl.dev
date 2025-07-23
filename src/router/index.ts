@@ -16,23 +16,23 @@ const router = createRouter({
   routes: [
     makeRoute("/", "index", DefaultLayout, [
       makeRoute("", "home", IndexView),
-      makeRoute("/tarpit", "tarpit", TarpitView, null, async (to, from, next) => {
+      makeRoute("/tarpit", "tarpit", TarpitView, undefined, async (to, from, next) => {
         console.log("goto robot jail >:(")
         await new Promise((resolve) => setTimeout(resolve, 60000000))
         next()
       }),
-      makeRoute("/lists", "lists", null, [
+      makeRoute("/lists", "lists", undefined, [
         makeRoute("read-watch", "read-watch", ReadListView),
         makeRoute("games", "games", GamesView),
         makeRoute("projects", "projects", ProjectsView),
         makeRoute("one-piece", "one-piece", OnePieceView),
       ]),
-      makeRoute("/jokes", "jokes", null, [
+      makeRoute("/jokes", "jokes", undefined, [
         makeRoute("woah", "woah", WoahView),
         makeRoute("bearo", "bearo", BearoView),
       ]),
       makeRoute("/website-src", "website-src", WebsiteSrcView),
-      makeRoute("/misc", "misc", null, []),
+      makeRoute("/misc", "misc", undefined, []),
     ]),
   ],
 })

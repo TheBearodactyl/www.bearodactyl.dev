@@ -103,7 +103,8 @@ export function useData() {
 
       games.value = shuffleArray<Game>(data)
       downloadProgress.value = 100
-    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
       fetchError.value = err?.message ?? String(err)
       console.error("Error loading books:", err)
     } finally {
@@ -111,8 +112,8 @@ export function useData() {
     }
   }
 
-  onMounted(() => {
-    loadWithProgress()
+  onMounted(async () => {
+    await loadWithProgress()
   })
 
   return {

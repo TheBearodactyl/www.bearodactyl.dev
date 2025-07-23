@@ -3,7 +3,11 @@
     <div class="quick-buttons">
       <div class="menu-items" :class="{ open: isMenuOpen }">
         <div class="theme-switcher">
-          <select id="theme-select" v-model="selectedTheme" @change="changeTheme">
+          <select
+            id="theme-select"
+            v-model="selectedTheme"
+            @change="changeTheme"
+          >
             <option value="kanagawa">Kanagawa</option>
             <option value="rose-pine">Rose Pine</option>
             <option value="rose-pine-moon">Rose Pine Moon</option>
@@ -33,18 +37,18 @@
         <button
           v-if="currentRoutePath !== '/'"
           class="home_button"
-          @click="goHome"
           aria-label="Home"
           :title="$t('go-to-home')"
+          @click="goHome"
         >
           <HomeIcon />
         </button>
       </div>
       <button
         class="menu-toggle"
-        @click="toggleMenu"
         :class="{ active: isMenuOpen }"
         aria-label="Toggle menu"
+        @click="toggleMenu"
       >
         <MenuIcon />
       </button>
@@ -74,8 +78,8 @@ watch(
   },
 )
 
-function goHome() {
-  router.push("/")
+async function goHome() {
+  await router.push("/")
 }
 
 function changeTheme() {

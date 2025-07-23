@@ -3,26 +3,28 @@ import { useStorage } from "@vueuse/core"
 
 export function useDisplay() {
   const isFilterCollapsed: Ref<boolean> = ref(true)
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const expandedInputRef: Ref<any> = ref(null)
+
+  const expandedInputRef: Ref = ref(null)
   const viewMode: Ref<string> = useStorage("game-gallery-view-mode", "grid")
-  const expandedCard: Ref<string | number | null> = ref(null)
-  const idleTimeout: Ref<ReturnType<typeof setTimeout>> = ref(setTimeout(() => {}, 0))
+  const expandedCard: Ref<string | number> = ref(-1)
+  const idleTimeout: Ref<ReturnType<typeof setTimeout>> = ref(
+    setTimeout(() => {}, 0),
+  )
   const isIdle: Ref<boolean> = ref(false)
   const IDLE_SECONDS = 60 * 3
 
-  watch(isFilterCollapsed, (collapsed) => {
+  watch(isFilterCollapsed, async (collapsed) => {
     if (!collapsed) {
-      nextTick(() => expandedInputRef.value?.focus())
+      await nextTick(() => expandedInputRef.value?.focus())
     }
   })
 
   const toggleCard = (gameId: string | number) => {
-    expandedCard.value = expandedCard.value === gameId ? null : gameId
+    expandedCard.value = expandedCard.value === gameId ? -1 : gameId
   }
 
   const closeCard = () => {
-    expandedCard.value = null
+    expandedCard.value = -1
   }
 
   const handleEscape = (event: KeyboardEvent) => {

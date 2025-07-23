@@ -11,7 +11,7 @@ export async function getGithubRelease(
     const res: Response = await fetch(proxyUrl)
     console.log(res.json())
 
-    return (await fetch(proxyUrl)).blob()
+    return await (await fetch(proxyUrl)).blob()
   } catch (err) {
     console.error("Error fetching GitHub release via proxy:", err)
     throw err instanceof Error ? err : new Error(String(err))

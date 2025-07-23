@@ -1,6 +1,9 @@
 <template>
   <div class="expanded-card-overlay">
-    <div class="book-expanded" :class="{ show: book !== null, 'explicit-content': book.explicit }">
+    <div
+      class="book-expanded"
+      :class="{ show: book !== null, 'explicit-content': book.explicit }"
+    >
       <div class="expanded-header">
         <button class="close-btn" @click.stop="emitCloseCard">×</button>
         <div class="expanded-cover">
@@ -18,10 +21,17 @@
           <h3 class="expanded-title">{{ book.title }}</h3>
           <p class="expanded-author">{{ book.author }}</p>
           <div class="book-genres">
-            <span v-for="genre in book.genres" :key="genre" class="book-genre">{{ genre }}</span>
+            <span
+              v-for="genre in book.genres"
+              :key="genre"
+              class="book-genre"
+              >{{ genre }}</span
+            >
           </div>
-          <div class="book-tags" v-if="book.tags">
-            <span v-for="tag in book.tags" :key="tag" class="book-tag">{{ tag }}</span>
+          <div v-if="book.tags" class="book-tags">
+            <span v-for="tag in book.tags" :key="tag" class="book-tag">{{
+              tag
+            }}</span>
           </div>
           <div class="expanded-rating">
             <span class="stars">
@@ -33,7 +43,9 @@
                 >★</span
               >
             </span>
-            <span class="rating-text">{{ $t("props-book-rating-5", [book.rating]) }}</span>
+            <span class="rating-text">{{
+              $t("props-book-rating-5", [book.rating])
+            }}</span>
           </div>
         </div>
       </div>
@@ -49,7 +61,7 @@
           <p>{{ book.myThoughts }}</p>
         </div>
 
-        <div class="links-section" v-if="book.links && book.links.length > 0">
+        <div v-if="book.links && book.links.length > 0" class="links-section">
           <h4>{{ $t("gallery.expanded.links") }}</h4>
           <div class="links-grid">
             <a
@@ -70,9 +82,11 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  book: Object,
-})
+import type { Book } from "@/composables/books/useData"
+
+defineProps<{
+  book: Book
+}>()
 
 const emit = defineEmits(["close-card"])
 

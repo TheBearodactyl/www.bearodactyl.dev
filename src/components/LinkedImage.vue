@@ -2,32 +2,20 @@
   <img
     :src="props.imageSrc"
     :alt="$t('click-to-play-audio')"
-    @click="handleClick"
     class="clickable"
+    @click="handleClick"
   />
 </template>
 
 <script setup lang="ts">
 import { onUnmounted, ref } from "vue"
 
-const props = defineProps({
-  imageSrc: {
-    type: String,
-    required: true,
-  },
-  audioSrc: {
-    type: String,
-    required: true,
-  },
-  gotoLink: {
-    type: String,
-    required: false,
-  },
-  delay: {
-    type: Number,
-    required: false,
-  },
-})
+const props = defineProps<{
+  imageSrc: string
+  audioSrc: string
+  gotoLink?: string
+  delay?: number
+}>()
 
 const audio = ref<HTMLAudioElement | null>(null)
 
@@ -49,10 +37,10 @@ const handleClick = async () => {
 
     if (props.gotoLink) {
       setTimeout(() => {
-        if (props.gotoLink.startsWith("http")) {
+        if ((props.gotoLink ?? window.location.href).startsWith("http")) {
           window.open(props.gotoLink, "_blank")
         } else {
-          window.location.href = props.gotoLink
+          window.location.href = props.gotoLink ?? window.location.href
         }
       }, props.delay ?? 100)
     }

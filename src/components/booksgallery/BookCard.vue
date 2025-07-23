@@ -4,10 +4,10 @@
     :expanded="isExpanded"
     :view-mode="viewMode"
     :card-classes="{ 'explicit-content': props.book.explicit }"
-    @toggle="emitToggleCard"
     :style="cardStyle"
+    @toggle="emitToggleCard"
   >
-    <div class="book-compact" v-show="!isExpanded">
+    <div v-show="!isExpanded" class="book-compact">
       <div class="book-cover">
         <img
           :src="props.book.coverImage"
@@ -26,14 +26,21 @@
         <p class="book-author">{{ props.book.author }}</p>
         <div class="read-status">{{ props.book.status }}</div>
         <div class="book-genres">
-          <span v-for="genre in props.book.genres.slice(0, 5)" :key="genre" class="book-genre">
+          <span
+            v-for="genre in props.book.genres.slice(0, 5)"
+            :key="genre"
+            class="book-genre"
+          >
             {{ genre }}
           </span>
         </div>
-        <div class="book-tags" v-if="props.book.tags">
-          <span v-for="tag in props.book.tags.slice(0, 5)" :key="tag" class="book-tag">{{
-            tag
-          }}</span>
+        <div v-if="props.book.tags" class="book-tags">
+          <span
+            v-for="tag in props.book.tags.slice(0, 5)"
+            :key="tag"
+            class="book-tag"
+            >{{ tag }}</span
+          >
         </div>
         <div class="book-rating">
           <span class="stars">
@@ -45,7 +52,9 @@
               >★</span
             >
           </span>
-          <span class="rating-text">{{ $t("props-book-rating-5", [props.book.rating]) }}</span>
+          <span class="rating-text">{{
+            $t("props-book-rating-5", [props.book.rating])
+          }}</span>
         </div>
       </div>
     </div>
@@ -74,7 +83,9 @@ const emitToggleCard = () => {
 const cardStyle = computed(() => {
   return {
     "--hover-border-color":
-      !props.isExpanded && props.book.color ? props.book.color : "var(--rp-love)",
+      !props.isExpanded && props.book.color
+        ? props.book.color
+        : "var(--rp-love)",
   }
 })
 </script>

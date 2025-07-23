@@ -51,7 +51,7 @@ export function useFilters(allProjects: Ref<Project[]>) {
     const hasSearch = searchFilters.value.name.trim()
 
     if (hasSearch) {
-      const query = `${searchFilters.value.name}`.trim()
+      const query = searchFilters.value.name.trim()
       result = fuse.value.search(query).map(({ item }) => item)
     }
 
@@ -100,7 +100,7 @@ export function useFilters(allProjects: Ref<Project[]>) {
       const hasSearch = searchFilters.value.name.trim()
       let searchMatch = true
       if (hasSearch) {
-        const query = `${searchFilters.value.name}`.trim()
+        const query = searchFilters.value.name.trim()
         searchMatch = fuse.value.search(query).some((result) => result.item.name === project.name)
       }
       return searchMatch

@@ -13,7 +13,7 @@
         :style="{ 'animation-delay': `${index * 0.1}s` }"
         @click="emitToggleCard(game.id)"
       >
-        <div class="book-compact" v-show="expandedCard !== game.id">
+        <div v-show="expandedCard !== game.id" class="book-compact">
           <div class="book-cover">
             <img
               :src="game.coverImage"
@@ -32,14 +32,20 @@
             <p class="book-author">{{ game.developer }}</p>
             <div class="read-status">{{ game.status }}</div>
             <div class="book-genres">
-              <span v-for="genre in game.genres.slice(0, 5)" :key="genre" class="book-genre">{{
-                genre
-              }}</span>
+              <span
+                v-for="genre in game.genres.slice(0, 5)"
+                :key="genre"
+                class="book-genre"
+                >{{ genre }}</span
+              >
             </div>
-            <div class="book-tags" v-if="game.tags">
-              <span v-for="tag in game.tags.slice(0, 5)" :key="tag" class="book-tag">{{
-                tag
-              }}</span>
+            <div v-if="game.tags" class="book-tags">
+              <span
+                v-for="tag in game.tags.slice(0, 5)"
+                :key="tag"
+                class="book-tag"
+                >{{ tag }}</span
+              >
             </div>
             <div class="book-rating">
               <span class="stars">
@@ -51,7 +57,9 @@
                   >★</span
                 >
               </span>
-              <span class="rating-text">{{ $t("props-game-rating-5", [game.rating]) }}</span>
+              <span class="rating-text">{{
+                $t("props-game-rating-5", [game.rating])
+              }}</span>
             </div>
           </div>
         </div>
@@ -76,7 +84,7 @@ defineProps<{
 
 const emit = defineEmits(["toggle-card"])
 
-const emitToggleCard = (bookId) => {
+const emitToggleCard = (bookId: number | string) => {
   emit("toggle-card", bookId)
 }
 </script>

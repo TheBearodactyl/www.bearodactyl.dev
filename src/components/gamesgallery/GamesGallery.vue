@@ -3,23 +3,26 @@
     <h1 class="gallery-title">{{ $t("games-list") }}</h1>
 
     <GameFilters
-      :searchFilters="searchFilters"
-      :allGenres="allGenres"
-      :allTags="allTags"
+      :search-filters="searchFilters"
+      :all-genres="allGenres"
+      :all-tags="allTags"
       :dropdowns="dropdowns"
-      :isFilterCollapsed="isFilterCollapsed"
-      :filteredTagCounts="filteredTagCounts"
+      :is-filter-collapsed="isFilterCollapsed"
+      :filtered-tag-counts="filteredTagCounts"
+      :expanded-input-ref="expandedInputRef"
       @toggle-dropdown="toggleDropdown"
       @close-dropdown="closeDropdown"
       @toggle-filter-item="toggleFilterItem"
       @clear-all-filters="clearAllFilters"
       @toggle-search-mode="toggleSearchMode"
-      :expandedInputRef="expandedInputRef"
     />
 
     <div v-if="isLoading" class="progress-wrapper">
       <div class="progress-bar">
-        <div class="progress-fill" :style="{ width: downloadProgress + '%' }"></div>
+        <div
+          class="progress-fill"
+          :style="{ width: downloadProgress + '%' }"
+        ></div>
       </div>
       <p>{{ $t("loading-games-downloadprogress", [downloadProgress]) }}</p>
     </div>
@@ -31,15 +34,20 @@
     <GamesGrid
       v-if="!isLoading && !fetchError"
       :filtered-games="filteredGames"
-      :isContentVisible="isContentVisible"
-      :viewMode="viewMode"
-      :expandedCard="expandedCard"
+      :is-content-visible="isContentVisible"
+      :view-mode="viewMode"
+      :expanded-card="expandedCard"
       @toggle-card="toggleCard"
     />
 
     <GameExpandedCard
-      v-if="expandedCard !== null && !isLoading && !fetchError"
-      :game="filteredGames.find((b) => b.id === expandedCard)"
+      v-if="
+        expandedCard !== null &&
+        !isLoading &&
+        !fetchError &&
+        expandedGame !== undefined
+      "
+      :game="expandedGame"
       @close-card="closeCard"
     />
 
@@ -53,25 +61,27 @@
 </template>
 
 <script setup lang="ts">
-import { useData } from "@/composables/games/useData"
+import { useData, type Game } from "@/composables/games/useData"
 import { useFilters } from "@/composables/games/useFilters"
 import { useDisplay } from "@/composables/games/useDisplay"
 
 import GameFilters from "./GameFilters.vue"
 import GameExpandedCard from "./GameExpandedCard.vue"
 import GamesGrid from "./GamesGrid.vue"
+import { ref, watch } from "vue"
 
-const { games, isLoading, fetchError, downloadProgress, isContentVisible } = useData()
+const { games, isLoading, fetchError, downloadProgress, isContentVisible } =
+  useData()
 const {
   searchFilters,
   allGenres,
   allTags,
   filteredGames,
   dropdowns,
+  filteredTagCounts,
   toggleDropdown,
   closeDropdown,
   toggleFilterItem,
-  filteredTagCounts,
   clearAllFilters,
 } = useFilters(games)
 const {
@@ -84,6 +94,12 @@ const {
   closeCard,
   toggleSearchMode,
 } = useDisplay()
+
+const expandedGame = ref<Game | undefined>(undefined)
+
+watch(expandedCard, (newCard) => {
+  expandedGame.value = filteredGames.value.find((b) => b.id === newCard)
+})
 </script>
 
 <style>

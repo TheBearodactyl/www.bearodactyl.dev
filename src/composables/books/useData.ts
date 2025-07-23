@@ -13,7 +13,7 @@ export interface Book {
   description: string
   myThoughts: string
   links?: { title: string; url: string }[]
-  coverImage?: string
+  coverImage: string
   explicit: boolean
   color?: string
 }
@@ -69,19 +69,15 @@ export function useData() {
 
       downloadProgress.value = 5
 
-      const file_contents = await getGithubRelease(
-        "thebearodactyl",
-        "bearodactyl.dev",
-        "books.json",
-      )
-      const data = JSON.parse(await file_contents.text())
+      const fileContents = await getGithubRelease("thebearodactyl", "bearodactyl.dev", "books.json")
+      const data = JSON.parse(await fileContents.text())
 
       downloadProgress.value = 20
 
       const booksWithImages = data.filter((book: Book) => book.coverImage)
 
       const promises = booksWithImages.map(async (book: Book, index: number) => {
-        book.coverImage = await cacheCoverImage(book.coverImage!)
+        book.coverImage = await cacheCoverImage(book.coverImage)
         const progress = 20 + Math.round(((index + 1) / booksWithImages.length) * 80)
         downloadProgress.value = progress
       })
@@ -90,7 +86,8 @@ export function useData() {
 
       books.value = shuffleArray<Book>(data)
       downloadProgress.value = 100
-    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (err: any) {
       fetchError.value = err?.message ?? String(err)
       console.error("Error loading books:", err)
     } finally {
@@ -98,8 +95,8 @@ export function useData() {
     }
   }
 
-  onMounted(() => {
-    loadBooksWithProgress()
+  onMounted(async () => {
+    await loadBooksWithProgress()
   })
 
   return {

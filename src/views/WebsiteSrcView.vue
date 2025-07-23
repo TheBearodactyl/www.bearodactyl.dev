@@ -11,8 +11,8 @@ const router = useRouter()
 const openSource = () => {
   window.open("https://github.com/TheBearodactyl/bearodactyl.dev", "_blank")
 
-  setTimeout(() => {
-    router.push("/")
+  setTimeout(async () => {
+    await router.push("/")
   }, 800)
 }
 
