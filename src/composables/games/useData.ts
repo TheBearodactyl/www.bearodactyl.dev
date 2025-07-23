@@ -1,6 +1,6 @@
 import { ref, onMounted, type Ref } from "vue"
 import { getGithubRelease } from "@/utils/getGithubRelease"
-import { shuffleArray } from "@/utils/shuffleArray"
+import { shuffleArray } from "@/utils/misc"
 
 export interface Game {
   id: string | number
@@ -85,15 +85,23 @@ export function useData() {
         let processedImages = 0
         for (const game of data) {
           if (game.coverImage) {
-            const imageStartProgress = 20 + Math.round((processedImages / totalImages) * 80)
-            const imageEndProgress = 20 + Math.round(((processedImages + 1) / totalImages) * 80)
+            const imageStartProgress =
+              20 + Math.round((processedImages / totalImages) * 80)
+            const imageEndProgress =
+              20 + Math.round(((processedImages + 1) / totalImages) * 80)
 
-            game.coverImage = await cacheCoverImage(game.coverImage, (imageProgress) => {
-              const currentProgress =
-                imageStartProgress +
-                Math.round((imageProgress / 100) * (imageEndProgress - imageStartProgress))
-              downloadProgress.value = currentProgress
-            })
+            game.coverImage = await cacheCoverImage(
+              game.coverImage,
+              (imageProgress) => {
+                const currentProgress =
+                  imageStartProgress +
+                  Math.round(
+                    (imageProgress / 100) *
+                      (imageEndProgress - imageStartProgress),
+                  )
+                downloadProgress.value = currentProgress
+              },
+            )
             processedImages++
           }
         }

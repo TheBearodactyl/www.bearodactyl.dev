@@ -1,7 +1,8 @@
 import { getGithubRelease } from "@/utils/getGithubRelease"
+import { sortReviews } from "@/utils/misc"
 import { onMounted, ref, type Ref } from "vue"
 
-interface Review {
+export interface Review {
   chapter: number
   description: string
   rating: number
@@ -27,7 +28,8 @@ export function useData() {
 
       downloadProgress.value = 60
 
-      const data: Review[] = JSON.parse(await fileContents.text())
+      let data: Review[] = JSON.parse(await fileContents.text())
+      data = sortReviews(data)
       reviews.value = data
 
       downloadProgress.value = 100

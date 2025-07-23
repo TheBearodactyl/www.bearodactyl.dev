@@ -1,6 +1,6 @@
 import { ref, onMounted, type Ref } from "vue"
 import { getGithubRelease } from "@/utils/getGithubRelease"
-import { shuffleArray } from "@/utils/shuffleArray"
+import { shuffleArray } from "@/utils/misc"
 
 export interface Book {
   id: string | number
@@ -69,18 +69,25 @@ export function useData() {
 
       downloadProgress.value = 5
 
-      const fileContents = await getGithubRelease("thebearodactyl", "bearodactyl.dev", "books.json")
+      const fileContents = await getGithubRelease(
+        "thebearodactyl",
+        "bearodactyl.dev",
+        "books.json",
+      )
       const data = JSON.parse(await fileContents.text())
 
       downloadProgress.value = 20
 
       const booksWithImages = data.filter((book: Book) => book.coverImage)
 
-      const promises = booksWithImages.map(async (book: Book, index: number) => {
-        book.coverImage = await cacheCoverImage(book.coverImage)
-        const progress = 20 + Math.round(((index + 1) / booksWithImages.length) * 80)
-        downloadProgress.value = progress
-      })
+      const promises = booksWithImages.map(
+        async (book: Book, index: number) => {
+          book.coverImage = await cacheCoverImage(book.coverImage)
+          const progress =
+            20 + Math.round(((index + 1) / booksWithImages.length) * 80)
+          downloadProgress.value = progress
+        },
+      )
 
       await Promise.all(promises)
 
