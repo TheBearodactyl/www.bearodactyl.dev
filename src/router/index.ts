@@ -9,31 +9,89 @@ import ProjectsView from "@/views/ProjectsView.vue"
 import WebsiteSrcView from "@/views/WebsiteSrcView.vue"
 import OnePieceView from "@/views/OnePieceView.vue"
 import TarpitView from "@/views/TarpitView.vue"
-import { makeRoute } from "@/utils/misc"
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes: [
-    makeRoute("/", "index", DefaultLayout, [
-      makeRoute("", "home", IndexView),
-      makeRoute("/tarpit", "tarpit", TarpitView, undefined, async (to, from, next) => {
-        console.log("goto robot jail >:(")
-        await new Promise((resolve) => setTimeout(resolve, 60000000))
-        next()
-      }),
-      makeRoute("/lists", "lists", undefined, [
-        makeRoute("read-watch", "read-watch", ReadListView),
-        makeRoute("games", "games", GamesView),
-        makeRoute("projects", "projects", ProjectsView),
-        makeRoute("one-piece", "one-piece", OnePieceView),
-      ]),
-      makeRoute("/jokes", "jokes", undefined, [
-        makeRoute("woah", "woah", WoahView),
-        makeRoute("bearo", "bearo", BearoView),
-      ]),
-      makeRoute("/website-src", "website-src", WebsiteSrcView),
-      makeRoute("/misc", "misc", undefined, []),
-    ]),
+    {
+      path: "/",
+      component: DefaultLayout,
+      children: [
+        {
+          path: "",
+          name: "home",
+          component: IndexView,
+          meta: {
+            title: "The Motherfucking Bearodactyl",
+          },
+        },
+        {
+          path: "/tarpit",
+          name: "tarpit",
+          component: TarpitView,
+          beforeEnter: async (to, from, next) => {
+            console.log("goto robot jail >:(")
+            await new Promise((resolve) => setTimeout(resolve, 60000000))
+            next()
+          },
+        },
+        {
+          path: "/lists",
+          name: "lists",
+          children: [
+            {
+              path: "read-watch",
+              name: "read-watch",
+              component: ReadListView,
+              meta: {
+                title: "Read/Watch List",
+              },
+            },
+            {
+              path: "games",
+              name: "games",
+              component: GamesView,
+            },
+            {
+              path: "projects",
+              name: "projects",
+              component: ProjectsView,
+            },
+            {
+              path: "one-piece",
+              name: "one-piece",
+              component: OnePieceView,
+            },
+          ],
+        },
+        {
+          path: "/jokes",
+          name: "jokes",
+          children: [
+            {
+              path: "woah",
+              name: "woah",
+              component: WoahView,
+            },
+            {
+              path: "bearo",
+              name: "bearo",
+              component: BearoView,
+            },
+          ],
+        },
+        {
+          path: "website-src",
+          name: "website-src",
+          component: WebsiteSrcView,
+        },
+        {
+          path: "/misc",
+          name: "misc",
+          children: [],
+        },
+      ],
+    },
   ],
 })
 
