@@ -9,6 +9,7 @@ import ProjectsView from "@/views/ProjectsView.vue"
 import WebsiteSrcView from "@/views/WebsiteSrcView.vue"
 import OnePieceView from "@/views/OnePieceView.vue"
 import TarpitView from "@/views/TarpitView.vue"
+import LicenseView from "@/views/LicenseView.vue"
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -24,6 +25,11 @@ const router = createRouter({
           meta: {
             title: "The Motherfucking Bearodactyl",
           },
+        },
+        {
+          path: "/license",
+          name: "license",
+          component: LicenseView,
         },
         {
           path: "/lists",

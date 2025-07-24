@@ -6,11 +6,21 @@
     </div>
 
     <NavigationGallery :nav-items="navigationItems" />
+    <div class="index-footer">
+      <pre>
+        All icons made by me in Inkscape
+        Rabies before babies
+        All code on this website is within the public domain
+        See `/license`
+      </pre>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import NavigationGallery, { type NavItem } from "@/components/NavigationGallery.vue"
+import NavigationGallery, {
+  type NavItem,
+} from "@/components/NavigationGallery.vue"
 import { useHead } from "@unhead/vue"
 
 useHead({
@@ -46,19 +56,21 @@ const navigationItems: NavItem[] = [
   {
     title: "Bearodactyl",
     description: "Bearodactyl",
-    coverImage: "https://s3.amazonaws.com/theoatmeal-img/blog/bearodactyl_painting.jpg",
+    coverImage:
+      "https://s3.amazonaws.com/theoatmeal-img/blog/bearodactyl_painting.jpg",
     route: "/jokes/bearo",
   },
-  {
-    title: "Emergency frog!",
-    description: "Emergency Frog Situation!!!!",
-    coverImage: "https://pbs.twimg.com/media/DIQFluYUwAEm6AH.jpg",
-    route: "/jokes/aaaaa",
-  },
+  // {
+  //   title: "Emergency frog!",
+  //   description: "Emergency Frog Situation!!!!",
+  //   coverImage: "https://pbs.twimg.com/media/DIQFluYUwAEm6AH.jpg",
+  //   route: "/jokes/aaaaa",
+  // },
   {
     title: "Woah",
     description: "Woah, it's Wulzy",
-    coverImage: "https://static.wikia.nocookie.net/youtube/images/9/94/Wulzy_Face_Meme.jpg",
+    coverImage:
+      "https://static.wikia.nocookie.net/youtube/images/9/94/Wulzy_Face_Meme.jpg",
     route: "/jokes/woah",
   },
   {
@@ -68,6 +80,12 @@ const navigationItems: NavItem[] = [
       "https://occ-0-8407-92.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABRKIQnGja8FW7HtFjgOF_TmYAR_dn3eeN2Cayj3Gm2kEhjSETNusxVJj712wh_n7reHNrt3Bt6_S_U7jF4h8ugUgeXYHpcqbzHxO.jpg?r=485",
     route: "/lists/one-piece",
   },
+  {
+    title: "My License",
+    description: "My custom license that I use for all my code",
+    coverImage: "/images/deathtoamerica.gif",
+    route: "/license"
+  }
 ]
 </script>
 
@@ -78,7 +96,8 @@ const navigationItems: NavItem[] = [
   font-family: "Cascadia Code Nerd Font";
   font-style: normal;
   font-weight: 200;
-  src: url("/fonts/CaskaydiaCove/CaskaydiaCoveNerdFont-Light.ttf") format("truetype");
+  src: url("/fonts/CaskaydiaCove/CaskaydiaCoveNerdFont-Light.ttf")
+    format("truetype");
   font-variant-ligatures: normal;
 }
 
@@ -104,5 +123,12 @@ const navigationItems: NavItem[] = [
   -webkit-text-fill-color: transparent;
   animation: fadeInDown 1s var(--transition-ease) forwards;
   opacity: 1;
+}
+
+.index-footer {
+  margin-top: 5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: var(--rp-highlight-high);
 }
 </style>
