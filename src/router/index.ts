@@ -31,7 +31,7 @@ const router = createRouter({
           component: TarpitView,
           beforeEnter: async (to, from, next) => {
             console.log("goto robot jail >:(")
-            await new Promise((resolve) => setTimeout(resolve, 60000000))
+            await new Promise((resolve) => setTimeout(resolve, 6000))
             next()
           },
         },
