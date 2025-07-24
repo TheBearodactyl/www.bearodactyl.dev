@@ -26,16 +26,6 @@ const router = createRouter({
           },
         },
         {
-          path: "/tarpit",
-          name: "tarpit",
-          component: TarpitView,
-          beforeEnter: async (to, from, next) => {
-            console.log("goto robot jail >:(")
-            await new Promise((resolve) => setTimeout(resolve, 6000))
-            next()
-          },
-        },
-        {
           path: "/lists",
           name: "lists",
           children: [
@@ -91,6 +81,16 @@ const router = createRouter({
           children: [],
         },
       ],
+    },
+    {
+      path: "/tarpit",
+      name: "tarpit",
+      component: TarpitView,
+      beforeEnter: async (to, from, next) => {
+        console.log("goto robot jail >:(")
+        await new Promise((resolve) => setTimeout(resolve, 6000))
+        next()
+      },
     },
   ],
 })
