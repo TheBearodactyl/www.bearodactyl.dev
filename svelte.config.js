@@ -8,9 +8,6 @@ const config = {
   preprocess: vitePreprocess(),
   kit: {
     adapter: adapter(),
-    paths: {
-      base: "/bearodactyl.dev/"
-    }
   }
 };
 
