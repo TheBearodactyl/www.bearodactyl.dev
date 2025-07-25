@@ -7,7 +7,7 @@
 		{
 			title: 'Read/Watch List',
 			description: "shit i've read/watched",
-			coverImage: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Hobo-with-a-shotgun-movie-poster.jpg/250px-Hobo-with-a-shotgun-movie-poster.jpg',
+			coverImage: '/images/hobo.avif',
 			route: '/lists/read-watch'
 		},
 		{
@@ -31,7 +31,7 @@
 		{
 			title: 'Bearodactyl',
 			description: 'Bearodactyl',
-			coverImage: 'https://s3.amazonaws.com/theoatmeal-img/blog/bearodactyl_painting.jpg',
+			coverImage: '/images/bearodactyl_painting.avif',
 			route: '/jokes/bearo'
 		},
 		// {
@@ -43,14 +43,13 @@
 		{
 			title: 'Woah',
 			description: "Woah, it's Wulzy",
-			coverImage: 'https://static.wikia.nocookie.net/youtube/images/9/94/Wulzy_Face_Meme.jpg',
+			coverImage: '/images/wulzy.avif',
 			route: '/jokes/woah'
 		},
 		{
 			title: 'One Piece',
 			description: 'my reviews of OP chapters (HIGHLY WIP)',
-			coverImage:
-				'https://occ-0-8407-92.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABRKIQnGja8FW7HtFjgOF_TmYAR_dn3eeN2Cayj3Gm2kEhjSETNusxVJj712wh_n7reHNrt3Bt6_S_U7jF4h8ugUgeXYHpcqbzHxO.jpg?r=485',
+			coverImage: '/images/op.avif',
 			route: '/lists/one-piece'
 		},
 		{
