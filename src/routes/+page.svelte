@@ -150,9 +150,9 @@
         filter: contrast(95);
     }
 
-    @media (max-width: 768px) {
+    /* @media (max-width: 768px) {
         .buggy {
             filter: none;
         }
-    }
+    } */
 </style>
