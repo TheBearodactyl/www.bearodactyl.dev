@@ -1,4 +1,6 @@
 <script lang="ts">
+	export const prerender = true;
+
 	import { onMount } from 'svelte';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';

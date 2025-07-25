@@ -7,7 +7,16 @@ const config = {
 	// for more information about preprocessors
 	preprocess: vitePreprocess(),
 	kit: {
-		adapter: adapterGhPages()
+		adapter: adapterGhPages({
+			pages: "build",
+			assets: "build",
+			fallback: "404.html",
+			precompress: false,
+			strict: true
+		}),
+		paths: {
+			base: process.env.BASE_PATH || ""
+		}
 	}
 };
 
