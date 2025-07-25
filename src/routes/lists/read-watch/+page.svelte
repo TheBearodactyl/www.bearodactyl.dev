@@ -1,6 +1,5 @@
 <script>
-	import BookGallery from "../../../components/booksgallery/BookGallery.svelte";
-
+    import BookGallery from "../../../components/booksgallery/BookGallery.svelte";
 </script>
 
 <BookGallery />
