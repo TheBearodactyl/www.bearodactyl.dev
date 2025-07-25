@@ -2,6 +2,20 @@
     import type { NavItem } from "$lib/types";
     import NavigationGallery from "../components/NavigationGallery.svelte";
     import { _ } from "svelte-i18n";
+    import { onMount } from "svelte";
+
+    let isMobile = false;
+
+    onMount(() => {
+        if (typeof window !== "undefined") {
+            const mediaQuery = window.matchMedia("(max-width: 768px)"); // Example breakpoint
+            isMobile = mediaQuery.matches;
+
+            mediaQuery.addEventListener("change", (e) => {
+                isMobile = e.matches;
+            });
+        }
+    });
 
     const navigationItems: NavItem[] = [
         {
@@ -68,12 +82,16 @@
 <div>
     <div class="index-header">
         <h1>{$_("index.title")}</h1>
-        <p class="index-desc">
-            {desc.substring(0, desc.length / 2 + 1)}
-        </p>
-        <p>
-            {desc.substring((desc.length + 2) / 2)}
-        </p>
+        {#if isMobile}
+            <p class="index-desc">
+                {desc.substring(0, desc.length / 2 + 1)}
+            </p>
+            <p>
+                {desc.substring((desc.length + 2) / 2)}
+            </p>
+        {:else}
+            <p class="index-desc">{desc}</p>
+        {/if}
         <img
             class="buggy"
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGF_q6GCsDbXaWMXWk_wlaotuYcUvM5xO-Ig&s"
