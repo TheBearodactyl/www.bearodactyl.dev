@@ -29,6 +29,11 @@
     });
 </script>
 
+<svelte:head>
+    <title>my projects</title>
+    <meta charset="utf-8" />
+</svelte:head>
+
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div class="gallery-wrapper">
     <h1 class="title">My Projects</h1>
@@ -188,34 +193,6 @@
 
 <style>
     @import url("/src/assets/css/bookgallery.css");
-
-    .dropdown-fade-enter-active,
-    .dropdown-fade-leave-active {
-        transition:
-            opacity 0.25s ease,
-            transform 0.25s ease;
-    }
-
-    .dropdown-fade-enter-from,
-    .dropdown-fade-leave-to {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-
-    .dropdown-fade-enter-to,
-    .dropdown-fade-leave-from {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .checkbox-label {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        cursor: pointer;
-        color: var(--text);
-        padding: 0.3rem 1rem;
-    }
 
     .gallery-wrapper {
         background-color: var(--rp-base);
@@ -437,34 +414,6 @@
         flex-shrink: 0;
     }
 
-    .dropdown-btn {
-        background-color: var(--rp-surface);
-        border: 1px solid var(--rp-highlight-low);
-        border-radius: 9999px;
-        color: var(--text);
-        padding: 0.5rem 1rem;
-        cursor: pointer;
-        font-size: 1rem;
-        min-width: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .dropdown-selected {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0.5rem 0.75rem;
-        border: 1px solid var(--rp-highlight-low);
-        border-radius: 9999px;
-        background-color: var(--rp-surface);
-        color: var(--text);
-        cursor: pointer;
-        min-height: 38px;
-        width: 100%;
-    }
-
     .dropdown-arrow {
         color: var(--rp-text);
         font-size: 1rem;
@@ -567,20 +516,5 @@
         color: var(--rp-muted);
         font-size: 0.85em;
         margin-left: 0.5em;
-    }
-
-    .fade-enter-active,
-    .fade-leave-active {
-        transition: opacity 0.3s ease;
-    }
-
-    .fade-enter-from,
-    .fade-leave-to {
-        opacity: 0;
-    }
-
-    .fade-enter-to,
-    .fade-leave-from {
-        opacity: 1;
     }
 </style>

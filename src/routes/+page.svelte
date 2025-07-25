@@ -77,7 +77,10 @@
     const desc = $_("index.desc");
 </script>
 
-<svelte:head></svelte:head>
+<svelte:head>
+    <title>The Motherfucking Bearodactyl</title>
+    <meta charset="utf-8">
+</svelte:head>
 
 <div>
     <div class="index-header">
@@ -145,5 +148,11 @@
         width: 30%;
         margin-bottom: -3.9rem;
         filter: contrast(95);
+    }
+
+    @media (max-width: 768px) {
+        .buggy {
+            filter: none;
+        }
     }
 </style>

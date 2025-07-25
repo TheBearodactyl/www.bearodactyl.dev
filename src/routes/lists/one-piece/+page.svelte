@@ -6,6 +6,11 @@
     let filters = useFilters(data.reviews);
 </script>
 
+<svelte:head>
+    <title>one piece chapter reviews</title>
+    <meta charset="utf-8" />
+</svelte:head>
+
 <div class="gallery-wrapper">
     <h1 class="title">My Reviews</h1>
 
