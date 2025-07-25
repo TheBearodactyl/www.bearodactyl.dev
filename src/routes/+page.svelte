@@ -3,6 +3,7 @@
     import NavigationGallery from "../components/NavigationGallery.svelte";
     import { _ } from "svelte-i18n";
     import { onMount } from "svelte";
+    import { error } from "@sveltejs/kit";
 
     let isMobile = false;
 
@@ -79,7 +80,7 @@
 
 <svelte:head>
     <title>The Motherfucking Bearodactyl</title>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
 </svelte:head>
 
 <div>
@@ -95,11 +96,7 @@
         {:else}
             <p class="index-desc">{desc}</p>
         {/if}
-        <img
-            class="buggy"
-            src="/images/buggy.webp"
-            alt="get it? 'buggy'?"
-        />
+        <img class="buggy" src="/images/buggy.webp" alt="get it? 'buggy'?" />
     </div>
 </div>
 
@@ -109,7 +106,7 @@
     <pre>
         All icons made by me in Inkscape
         All code on this website is within the public domain
-        See <a href="/license">`/license`</a>
+        See <code><a href="/license">/license</a></code>
         Rabies before babies
       </pre>
 </div>
@@ -139,7 +136,7 @@
     }
 
     .index-footer {
-        margin-top: 5rem;
+        margin-top: 1rem;
         margin-bottom: 1rem;
         text-align: center;
         color: var(--rp-highlight-high);

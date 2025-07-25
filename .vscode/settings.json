@@ -2,5 +2,8 @@
     "i18n-ally.localesPaths": [
         "src/messages",
         "src/lib/i18n"
+    ],
+    "i18n-ally.extract.ignored": [
+        "(max-width: 768px)"
     ]
 }

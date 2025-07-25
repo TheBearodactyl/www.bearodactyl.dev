@@ -3,7 +3,7 @@
 </script>
 
 <svelte:head>
-    <title>Games I play</title>
+    <title>games i play</title>
     <meta charset="utf-8" />
 </svelte:head>
 
