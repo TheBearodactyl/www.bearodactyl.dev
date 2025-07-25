@@ -75,9 +75,9 @@
 <div class="index-footer">
 	<pre>
         All icons made by me in Inkscape
-        Rabies before babies
         All code on this website is within the public domain
-        See `/license`
+        See <a href="/license">`/license`</a>
+        Rabies before babies
       </pre>
 </div>
 

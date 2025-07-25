@@ -1,8 +1,7 @@
-// src/lib/i18n/index.ts
 import { browser } from '$app/environment';
 import { init, register, locale as $locale, locales as $availableLocales } from 'svelte-i18n';
 
-const defaultLocale = 'jp';
+const defaultLocale = 'en';
 
 register('en', () => import('../../messages/en.json'));
 register('jp', () => import('../../messages/jp.json'));

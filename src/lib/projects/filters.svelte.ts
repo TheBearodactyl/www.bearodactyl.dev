@@ -35,7 +35,6 @@ function createFiltersStore() {
 			}
 		}
 
-		// Persist changes to localStorage
 		$effect(() => {
 			localStorage.setItem('project-filters', JSON.stringify(filters));
 		});
@@ -80,7 +79,9 @@ export function useFilters(allProjects: () => Project[]) {
 
 		if (hasSearch) {
 			const query = storage.filters.name.trim();
-			result = fuse().search(query).map(({ item }) => item);
+			result = fuse()
+				.search(query)
+				.map(({ item }) => item);
 		}
 
 		return result.filter((project) => {
@@ -98,7 +99,9 @@ export function useFilters(allProjects: () => Project[]) {
 		const projectsBeforeCurrentTagFilter = allProjects().filter((project) => {
 			if (!hasSearch) return true;
 			const query = storage.filters.name.trim();
-			return fuse().search(query).some((result) => result.item.name === project.name);
+			return fuse()
+				.search(query)
+				.some((result) => result.item.name === project.name);
 		});
 
 		for (const project of projectsBeforeCurrentTagFilter) {
