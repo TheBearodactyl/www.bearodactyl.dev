@@ -44,7 +44,7 @@
 				<a href={item.route} class="nav-card">
 					<div class="card-image-container">
 						{#if item.coverImage && !item.coverImage.endsWith('webm')}
-							<img src={item.coverImage} fetchpriority="high" alt={`Cover for ${item.title}`} class="card-image" />
+							<img src={item.coverImage} alt={`Cover for ${item.title}`} class="card-image" />
 						{:else if item.coverImage && item.coverImage.endsWith('webm')}
 							<video autoplay loop muted playsinline class="card-image">
 								<source src={item.coverImage} type="video/webm" />
