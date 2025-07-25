@@ -1,0 +1,96 @@
+/* _gallery.css */
+
+	.book-gallery {
+		padding: 3rem 2.5rem;
+		max-width: 100%;
+		margin: 0 auto;
+		position: relative;
+		background-color: var(--rp-base);
+		min-height: 100vh;
+		overflow: visible;
+		flex-grow: 1;
+	}
+
+	.gallery-title {
+		text-align: center;
+		margin-bottom: 3.5rem;
+		font-size: clamp(2rem, 5vw, 3.5rem);
+		color: var(
+			--rp-iris
+		); /* This will be overridden by background-clip: text but is good fallback */
+		font-weight: 800;
+		letter-spacing: -0.04em;
+		text-shadow:
+			0 0 20px rgba(196, 167, 231, 0.3),
+			0 0 40px rgba(196, 167, 231, 0.1);
+		line-height: 1.1;
+		background: linear-gradient(90deg, var(--rp-iris) 0%, var(--rp-foam) 100%);
+		-webkit-background-clip: text;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+		animation: fadeInDown 1s var(--transition-ease) forwards;
+		opacity: 0; /* Starts hidden for animation */
+	}
+
+	.book-grid {
+		padding-bottom: 3rem;
+		column-count: 3;
+		column-gap: 2rem;
+		width: 100%;
+	}
+
+	.book-grid > * {
+		break-inside: avoid-column;
+		margin-bottom: 2rem;
+	}
+
+	.progress-wrapper {
+		margin: 2rem 0;
+		padding: 1.5rem 1.8rem;
+		text-align: center;
+		background-color: var(--rp-surface);
+		border-radius: 18px;
+		box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+		border: 1px solid var(--rp-highlight-low);
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		animation: fadeIn 1s var(--transition-ease) 0.5s forwards; /* 'fadeIn' animation needs to be defined in _animations.css */
+		opacity: 0;
+	}
+
+	.progress-bar {
+		width: 100%;
+		max-width: 600px;
+		height: 28px;
+		background-color: var(--rp-overlay);
+		border-radius: 14px;
+		overflow: hidden;
+		margin-bottom: 1rem;
+		border: 1px solid var(--rp-highlight-med);
+		box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+	}
+
+	.progress-fill {
+		height: 100%;
+		background: linear-gradient(to right, var(--rp-foam), var(--rp-pine), var(--rp-iris));
+		transition: width 0.5s var(--transition-ease);
+		border-radius: 14px 0 0 14px;
+		box-shadow: 0 0 10px rgba(156, 207, 216, 0.5);
+	}
+
+	.progress-text {
+		font-size: 1.1rem;
+		color: var(--rp-subtle);
+		font-weight: 600;
+		letter-spacing: 0.02em;
+	}
+
+	.book-gallery.idle-background {
+		background-image: url('/images/deathtoamerica.gif');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		transition: background-image 1s ease-in-out;
+		z-index: 500000; /* Extremely high z-index, ensure this is intended */
+	}

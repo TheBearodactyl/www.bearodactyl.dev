@@ -1,0 +1,49 @@
+{
+	"index": {
+		"title": "The Motherfucking Bearodactyl",
+		"desc": "this is my website, check out some stuff i made (it's a bit buggy)"
+	},
+	"gallery": {
+		"explicit": "Contains Explicit Content",
+		"expanded": {
+			"description": "Description",
+			"my-thoughts": "My Thoughts",
+			"links": "Links"
+		},
+		"filters": {
+			"search": "Search...",
+			"any-rating": "Any Rating",
+			"any-status": "Any Status"
+		}
+	},
+	"cover-of-props-book-title": "Cover of {title}",
+	"props-book-rating-5": "{rating}/5",
+	"rating": "{rating}+",
+	"genres": "Genres",
+	"select-genres": "Select Genres",
+	"tags": "Tags",
+	"select-tags": "Select Tags",
+	"clear-filters": "Clear Filters",
+	"title": "Title",
+	"search-title": "Search title...",
+	"search-author": "Search author...",
+	"read-watch-list": "Read/Watch List",
+	"loading-downloadprogress": "Loading... {progress}%",
+	"error-loading-list-fetcherror": "Error loading list: {err}",
+	"no-results": "No Results",
+	"label": "{label}:",
+	"item-count": "({count})",
+	"cover-of-props-game-title": "Cover of {title}",
+	"props-game-rating-5": "{rating}/5",
+	"cover-of-props-game-title-0": "Cover of {title}",
+	"contains-explicit-content": "Contains Explicit Content",
+	"props-game-rating-5-0": "{rating}/5",
+	"search-developer": "Search developer...",
+	"games-list": "Games List",
+	"loading-games-downloadprogress": "Loading Games: {progress}%",
+	"error-loading-games-fetcherror": "Error Loading Games: {err}",
+	"no-results-0": "No Results...",
+	"go-to-home": "Go to Home",
+	"click-to-play-audio": "Click to play audio",
+	"cover-for-item-title": "Cover for {title}"
+}

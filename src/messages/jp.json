@@ -1,0 +1,49 @@
+{
+  "index": {
+    "title": "The Motherfucking Bearodactyl",
+    "desc": "これは俺のウェブサイトだ。俺の作ったことを見てみよう！（ちょっとバグがあるよなぁ）"
+  },
+  "gallery": {
+    "explicit": "成人向けのコンテンツがある",
+    "expanded": {
+      "description": "説明",
+      "my-thoughts": "俺の意見",
+      "links": "リンク"
+    },
+    "filters": {
+      "search": "検索...",
+      "any-rating": "任意の評価",
+      "any-status": "TODO"
+    }
+  },
+  "cover-of-props-book-title": "{title}の表紙ページ",
+  "props-book-rating-5": "{rating}/5",
+  "rating": "{rating}+",
+  "genres": "ジャンル",
+  "select-genres": "ジャンルを選択",
+  "tags": "タグ",
+  "select-tags": "タグを選択",
+  "clear-filters": "フィルターを削除",
+  "title": "タイトル",
+  "search-title": "タイトルの検索...",
+  "search-author": "作者の検索...",
+  "read-watch-list": "視聴のリスト",
+  "loading-downloadprogress": "ロード中... {progress}%",
+  "error-loading-list-fetcherror": "リストのロードに発生したエラー： {err}",
+  "no-results": "検索結果なし",
+  "label": "{label}:",
+  "item-count": "({count})",
+  "cover-of-props-game-title": "{title}の表紙ページ",
+  "props-game-rating-5": "{rating}/5",
+  "cover-of-props-game-title-0": "{title}の表紙ページ",
+  "contains-explicit-content": "成人向けのコンテンツがある",
+  "props-game-rating-5-0": "{rating}/5",
+  "search-developer": "開発者の検索...",
+  "games-list": "ゲームのリスト",
+  "loading-games-downloadprogress": "ゲームをロード中: {progress}%",
+  "error-loading-games-fetcherror": "ゲームのロードに発生したエラー: {err}",
+  "no-results-0": "検索結果なし...",
+  "go-to-home": "ホームページへ",
+  "click-to-play-audio": "クリックしてオーディオを再生する",
+  "cover-for-item-title": "{title}の表紙ページ"
+}

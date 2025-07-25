@@ -1,0 +1,337 @@
+/* _expanded-card.css */
+
+@import url("/src/assets/css/bookgallery/_base.css");
+
+.expanded-card-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2.5rem;
+  pointer-events: none;
+  background-color: transparent;
+  opacity: 0;
+  animation: fadeOverlayIn 0.5s var(--transition-ease) forwards;
+}
+
+.expanded-card-overlay.closing {
+  animation: fadeOverlayOut 0.4s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+}
+
+.expanded-card-overlay .book-expanded {
+  position: relative;
+  border-radius: 20px;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.7);
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  pointer-events: auto;
+  background-color: var(--rp-surface);
+  transform: scale(0.75) translateY(60px);
+  opacity: 0;
+  animation: expandIn 0.6s var(--transition-ease) 0.1s forwards;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  border: 2px solid var(--rp-highlight-med);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.expanded-card-overlay.closing .book-expanded {
+  animation: contractOut 0.4s cubic-bezier(0.55, 0.06, 0.68, 0.19) forwards;
+}
+
+.book-expanded * {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.book-expanded .expanded-content,
+.book-expanded .description-section,
+.book-expanded .thoughts-section {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.expanded-header {
+  display: flex;
+  gap: 2.5rem;
+  padding: 3rem;
+  z-index: 100;
+  background-color: var(--rp-overlay);
+  transition:
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  border-radius: 18px 18px 0 0;
+  box-shadow: inset 0 -4px 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  justify-content: center;
+}
+
+.close-btn {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: var(--rp-muted);
+  transition:
+    color 0.3s var(--transition-ease),
+    transform 0.3s var(--transition-ease);
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.close-btn:hover {
+  background-color: transparent !important;
+  background: none !important;
+  color: var(--rp-love);
+  transform: rotate(180deg) scale(1.1);
+}
+
+.book-expanded .close-btn {
+  /* This block might be redundant if .close-btn above covers all scenarios. */
+  /* If this is for specific overrides, ensure consistency. */
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--rp-text);
+  z-index: 10;
+  padding: 0 10px;
+}
+
+.book-expanded .close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.expanded-cover {
+  flex-shrink: 0;
+  width: auto;
+  height: auto;
+  transform: rotateZ(-2deg);
+  transition: transform 0.4s var(--transition-ease);
+  /* Removed negative margins to make it part of flow */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 60;
+}
+
+.expanded-cover:hover {
+  transform: rotateZ(2deg) scale(1.02);
+}
+
+.expanded-cover-image {
+  width: 300px;
+  max-width: 100%;
+  object-fit: contain;
+  background-color: transparent;
+  border-radius: 6px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+  border: 3px solid transparent;
+  display: block;
+  z-index: 61;
+  margin: 2rem; /* Consistent margin for better flow */
+}
+
+.explicit-icon * {
+  pointer-events: none;
+}
+
+.expanded-basic-info {
+  flex: 1;
+  padding-top: 0.8rem;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  text-align: left;
+}
+
+.expanded-title {
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 800;
+  margin-bottom: 0.8rem;
+  color: var(--rp-text);
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+
+.expanded-author {
+  color: var(--rp-subtle);
+  font-size: clamp(1.2rem, 2vw, 1.4rem);
+  margin: 0 0 1.5rem 0;
+  font-style: italic;
+}
+
+.expanded-basic-info .book-genre {
+  background-color: var(--rp-surface);
+  color: var(--rp-text);
+  padding: 0.35rem 1rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  display: inline-block;
+  margin: 0.25rem;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.02em;
+}
+
+.expanded-content .book-tag {
+  background-color: var(--rp-highlight-high);
+  color: var(--rp-text);
+  padding: 0.35rem 1rem;
+  font-size: 1rem;
+  border-radius: 25px;
+  font-weight: 600;
+  opacity: 0.95;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+  display: inline-block;
+  margin: 0.25rem;
+}
+
+.expanded-content .book-tag:hover {
+  background-color: var(--rp-foam);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.expanded-basic-info .book-genre:hover {
+  background-color: var(--rp-foam);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.expanded-rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 0.8rem;
+  margin-right: 0; /* Removed large margin to better integrate with layout */
+  justify-content: flex-start; /* Aligned to start for left-aligned text, adjust if needed */
+  padding-left: 0.5rem;
+}
+
+.expanded-rating .star {
+  color: var(--rp-muted);
+  font-size: 2rem;
+  transition: color 0.2s ease;
+}
+
+.expanded-rating .star.filled {
+  color: var(--rp-gold);
+  text-shadow:
+    0 0 8px rgba(246, 193, 119, 0.5),
+    0 0 15px rgba(246, 193, 119, 0.2);
+  animation: bounceIn 0.5s var(--transition-ease);
+}
+
+.expanded-content {
+  padding: 2.5rem 3rem 3rem;
+  background-color: var(--rp-surface);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+  border-radius: 0 0 20px 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.expanded-content h4 {
+  color: var(--rp-rose);
+  margin: 2.5rem 0 1.5rem 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  border-bottom: 2px solid var(--rp-highlight-med);
+  padding-bottom: 0.7rem;
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 5px rgba(235, 111, 146, 0.2);
+}
+
+.expanded-content p {
+  color: var(--rp-text);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.description-section {
+  padding-bottom: 2rem;
+}
+
+.thoughts-section {
+  padding-bottom: 2rem;
+}
+
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+  justify-items: center;
+}
+
+.book-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 1.4rem;
+  background-color: var(--rp-overlay);
+  border-radius: 12px;
+  text-decoration: none;
+  color: var(--rp-text);
+  transition: all 0.3s var(--transition-ease);
+  border: 2px solid var(--rp-highlight-med);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  font-weight: 600;
+}
+
+.book-link:hover {
+  background-color: var(--rp-highlight-high);
+  transform: translateY(-4px) scale(1.03);
+  border-color: var(--rp-foam);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.link-title {
+  font-weight: 700;
+  color: var(--rp-text);
+  font-size: 1.15rem;
+  letter-spacing: 0.01em;
+}
+
+.link-icon {
+  font-size: 1.6rem;
+  color: var(--rp-foam);
+  transition: transform 0.2s ease;
+}
+
+.book-link:hover .link-icon {
+  transform: translateX(5px);
+}
+
+/* Specific scrollbar hiding for the expanded book */
+.expanded-card-overlay .book-expanded::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+.expanded-card-overlay .book-expanded {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
