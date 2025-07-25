@@ -35,7 +35,7 @@
 
     const { children } = $props();
 
-    let selectedTheme = $state("rose-pine");
+    let selectedTheme = $state("kanagawa");
     let isMenuOpen = $state(false);
 
     const currentRoutePath = derived(page, ($page) => $page.url.pathname);
@@ -98,7 +98,7 @@
 <style>
     :global {
         /* My Fingers Hurt :'D */
-        :root {
+        :root[data-theme="kanagawa"] {
             --rose-pine-bg: #1f1f28;
             --rose-pine-wood: #16161d;
             --rose-pine-sky: #727169;
