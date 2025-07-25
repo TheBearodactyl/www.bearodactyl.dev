@@ -7,8 +7,7 @@
 		{
 			title: 'Read/Watch List',
 			description: "shit i've read/watched",
-			coverImage:
-				'https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Hobo-with-a-shotgun-movie-poster.jpg/250px-Hobo-with-a-shotgun-movie-poster.jpg',
+			coverImage: 'https://upload.wikimedia.org/wikipedia/en/thumb/9/93/Hobo-with-a-shotgun-movie-poster.jpg/250px-Hobo-with-a-shotgun-movie-poster.jpg',
 			route: '/lists/read-watch'
 		},
 		{
@@ -17,16 +16,16 @@
 			coverImage: 'https://art.pixilart.com/3e584658c53335d.png',
 			route: '/lists/projects'
 		},
-		// {
-		// 	title: 'Website Source Code',
-		// 	description: 'a lot of code. waow',
-		// 	coverImage: '/images/hackermans.gif',
-		// 	route: '/website-src'
-		// },
+		{
+			title: 'Website Source Code',
+			description: 'a lot of code. waow',
+			coverImage: '/videos/hackermans.webm',
+			route: 'https://github.com/thebearodactyl/bearodactyl.dev'
+		},
 		{
 			title: 'Game list',
 			description: 'Games i play',
-			coverImage: '/images/gamer.gif',
+			coverImage: '/videos/gamer.webm',
 			route: '/lists/games'
 		},
 		{
@@ -57,7 +56,7 @@
 		{
 			title: 'My License',
 			description: 'My custom license that I use for all my code',
-			coverImage: '/images/deathtoamerica.gif',
+			coverImage: '/videos/deathtoamerica.webm',
 			route: '/license'
 		}
 	];
@@ -82,13 +81,12 @@
 </div>
 
 <style>
-	:global {
-		@import url('/src/assets/css/bookgallery/_base.css');
-	}
+	@import url('/src/assets/css/bookgallery.css');
 
 	@font-face {
 		font-family: 'Cascadia Code Nerd Font';
 		font-style: normal;
+		font-display: swap;
 		font-weight: 200;
 		src: url('/fonts/CaskaydiaCove/CaskaydiaCoveNerdFont-Light.ttf') format('truetype');
 		font-variant-ligatures: normal;

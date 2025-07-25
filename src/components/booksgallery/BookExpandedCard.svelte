@@ -17,7 +17,7 @@
 			<div class="expanded-cover">
 				<img
 					src={book.coverImage}
-					alt={$_('cover-of-props-book-title', { values: { title: book.title } })}
+					alt={$_('gallery.book.cover-alt', { values: { title: book.title } })}
 					class="expanded-cover-image"
 				/>
 				{#if book.explicit}

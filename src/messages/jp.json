@@ -14,9 +14,11 @@
       "search": "検索...",
       "any-rating": "任意の評価",
       "any-status": "TODO"
+    },
+    "book": {
+      "cover-alt": "{title}の表紙ページ"
     }
   },
-  "cover-of-props-book-title": "{title}の表紙ページ",
   "props-book-rating-5": "{rating}/5",
   "rating": "{rating}+",
   "genres": "ジャンル",

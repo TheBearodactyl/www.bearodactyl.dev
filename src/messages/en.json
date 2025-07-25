@@ -16,7 +16,6 @@
 			"any-status": "Any Status"
 		}
 	},
-	"cover-of-props-book-title": "Cover of {title}",
 	"props-book-rating-5": "{rating}/5",
 	"rating": "{rating}+",
 	"genres": "Genres",

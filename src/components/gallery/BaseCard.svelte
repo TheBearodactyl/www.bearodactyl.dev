@@ -22,7 +22,7 @@
 	class:list-view={viewMode === 'list'}
 	class:cardClasses
 	style:animation-delay="{index * 0.1}s"
-	class:explicit-content={ explicit }
+	class:explicit-content={explicit}
 	onmousedown={handleToggle}
 	role="button"
 	tabindex="0"

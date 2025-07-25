@@ -14,13 +14,9 @@
 	}
 
 	let { book, index, isExpanded, viewMode, onToggleCard }: Props = $props();
-
-	const cardStyle = $derived(() => ({
-		'--hover-border-color': !isExpanded && book.color ? book.color : 'var(--rp-love)'
-	}));
 </script>
 
-<div style="--hover-border-color: {book.color};">
+<div style="--hover-border-color: {!isExpanded && book.color ? book.color : 'var(--rp-love)'};">
 	<BaseCard
 		{index}
 		expanded={isExpanded}
@@ -34,7 +30,7 @@
 				<div class="book-cover">
 					<img
 						src={book.coverImage}
-						alt={$_('cover-of-props-book-title', { values: { title: book.title } })}
+						alt={$_('gallery.book.cover-alt', { values: { title: book.title } })}
 						class="cover-image"
 					/>
 					{#if book.explicit}

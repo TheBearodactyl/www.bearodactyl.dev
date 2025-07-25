@@ -5,6 +5,9 @@ export default defineConfig({
 	plugins: [
 		sveltekit()
 	],
+	build: {
+		cssMinify: "lightningcss"
+	},
 	test: {
 		projects: [
 			{

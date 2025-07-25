@@ -17,7 +17,7 @@
 			<div class="expanded-cover">
 				<img
 					src={game.coverImage}
-					alt={$_('cover-of-props-book-title', { values: { title: game.title } })}
+					alt={$_('gallery.book.cover-alt', { values: { title: game.title } })}
 					class="expanded-cover-image"
 				/>
 				{#if game.explicit}

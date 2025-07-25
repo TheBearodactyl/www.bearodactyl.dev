@@ -265,7 +265,6 @@
 	animation: bounceIn 0.5s var(--transition-ease);
 }
 
-/* Consider using Vue's transition classes directly if these are just for v-show */
 .book-compact,
 .book-expanded {
 	transition: opacity var(--transition-speed) ease;
