@@ -814,7 +814,7 @@
     }
 
     .quick-buttons {
-        position: fixed;
+        position: absolute;
         top: 1rem;
         right: 1rem;
         display: flex;

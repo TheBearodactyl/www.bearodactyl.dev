@@ -59,12 +59,26 @@
             route: "/license"
         }
     ];
+
+    const desc = $_("index.desc");
 </script>
+
+<svelte:head></svelte:head>
 
 <div>
     <div class="index-header">
         <h1>{$_("index.title")}</h1>
-        <p>{$_("index.desc")}</p>
+        <p class="index-desc">
+            {desc.substring(0, desc.length / 2 + 1)}
+        </p>
+        <p>
+            {desc.substring((desc.length + 2) / 2)}
+        </p>
+        <img
+            class="buggy"
+            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGF_q6GCsDbXaWMXWk_wlaotuYcUvM5xO-Ig&s"
+            alt="get it? 'buggy'?"
+        />
     </div>
 </div>
 
@@ -107,5 +121,11 @@
         margin-bottom: 1rem;
         text-align: center;
         color: var(--rp-highlight-high);
+    }
+
+    .buggy {
+        width: 15rem;
+        margin-bottom: -3.9rem;
+        filter: contrast(10000000);
     }
 </style>

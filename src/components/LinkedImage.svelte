@@ -43,7 +43,6 @@
 
     $effect(() => {
         return () => {
-            // Cleanup on unmount
             if (audio) {
                 audio.pause();
                 audio = null;
@@ -53,9 +52,14 @@
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
-<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore event_directive_deprecated -->
-<img src={imageSrc} alt={$_("click-to-play-audio")} class="clickable" on:click={handleClick} />
+<enhanced:img
+    src={imageSrc}
+    alt={$_("click-to-play-audio")}
+    class="clickable"
+    on:click={handleClick}
+/>
 
 <style>
     .clickable {
