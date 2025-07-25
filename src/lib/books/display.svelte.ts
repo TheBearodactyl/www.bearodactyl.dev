@@ -14,7 +14,7 @@ function createPersistentState<T>(key: string, defaultValue: T) {
 			}
 		}
 
-		localStorage.setItem(key, JSON.stringify(value));
+		localStorage.setItem(key, JSON.stringify(() => value));
 	}
 
 	return {
