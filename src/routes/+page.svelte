@@ -83,19 +83,6 @@
 <style>
 	@import url('/src/assets/css/bookgallery.css');
 
-	@font-face {
-		font-family: 'Cascadia Code Nerd Font';
-		font-style: normal;
-		font-display: swap;
-		font-weight: 200;
-		src: url('/fonts/CaskaydiaCove/CaskaydiaCoveNerdFont-Light.ttf') format('truetype');
-		font-variant-ligatures: normal;
-	}
-
-	* {
-		font-family: 'Cascadia Code Nerd Font' !important;
-	}
-
 	.index-header {
 		text-align: center;
 		margin-bottom: 3.5rem;
