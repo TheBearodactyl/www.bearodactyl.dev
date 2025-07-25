@@ -94,7 +94,7 @@
         {/if}
         <img
             class="buggy"
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGF_q6GCsDbXaWMXWk_wlaotuYcUvM5xO-Ig&s"
+            src="/images/buggy.webp"
             alt="get it? 'buggy'?"
         />
     </div>
@@ -142,8 +142,8 @@
     }
 
     .buggy {
-        width: 15rem;
+        width: 30%;
         margin-bottom: -3.9rem;
-        filter: contrast(10000000);
+        filter: contrast(95);
     }
 </style>
