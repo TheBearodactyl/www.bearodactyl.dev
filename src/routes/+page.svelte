@@ -124,7 +124,8 @@
         font-size: 1.5rem;
         color: var(--rp-iris);
         font-weight: 800;
-        letter-spacing: -0.04em;
+        letter-spacing: -0.05em;
+        word-spacing: -0.1em;
         text-shadow:
             0 0 20px rgba(196, 167, 231, 0.3),
             0 0 40px rgba(196, 167, 231, 0.1);
@@ -149,10 +150,4 @@
         margin-bottom: -3.9rem;
         filter: contrast(95);
     }
-
-    /* @media (max-width: 768px) {
-        .buggy {
-            filter: none;
-        }
-    } */
 </style>
