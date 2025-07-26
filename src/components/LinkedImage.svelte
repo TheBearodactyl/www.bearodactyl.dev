@@ -54,7 +54,8 @@
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore event_directive_deprecated -->
-<enhanced:img
+<!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+<img
     src={imageSrc}
     alt={$_("click-to-play-audio")}
     class="clickable"
