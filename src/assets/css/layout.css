@@ -1,6 +1,6 @@
 :global {
     /* My Fingers Hurt :'D */
-    html[data-theme="kanagawa"] {
+    :root[data-theme="kanagawa"] {
         --rose-pine-bg: #1f1f28;
         --rose-pine-wood: #16161d;
         --rose-pine-sky: #727169;
@@ -644,7 +644,11 @@ select:focus {
     width: fit-content;
     height: fit-content;
     outline: none;
-    transition: all var(--transition-speed) var(--transition-ease);
+    transition:
+        all var(--transition-speed) var(--transition-ease),
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease; /* Added more specific transitions */
     /* Consistent shadow */
     display: flex;
     align-items: center;
@@ -654,10 +658,6 @@ select:focus {
     -moz-appearance: none;
     appearance: none;
     white-space: nowrap;
-
-    @media (max-width: 920px) {
-        align-items: center;
-    }
 }
 
 .theme-switcher select {
@@ -669,14 +669,16 @@ select:focus {
 }
 
 :global(
-    .quick-buttons button:hover,
-    .theme-switcher select:hover,
-    .lang-switcher-aligned select:hover
-) {
+		.quick-buttons button:hover,
+		.theme-switcher select:hover,
+		.lang-switcher-aligned select:hover,
+		.routes-menu-button:hover /* Combined hover state */
+	) {
     background-color: var(--rp-overlay);
     border-color: var(--rp-iris);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-    transform: translateY(-2px);
+    color: var(--rp-iris); /* Added color change on hover */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6); /* Slightly adjusted shadow on hover */
+    transform: translateY(-3px) scale(1.02); /* More pronounced lift and slight scale */
 }
 
 .home_button {
@@ -689,14 +691,16 @@ select:focus {
     width: 1.25em;
     height: 1.25em;
     stroke: var(--rp-text);
+    transition: stroke 0.3s ease; /* Transition for SVG stroke */
 }
 
 :global(.home_button:hover svg) {
-    stroke: var(--rp-iris);
+    stroke: var(--rp-gold); /* Changed to gold for more contrast */
 }
 
 .home_button:active {
     transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Reduced shadow on active */
 }
 
 .lang-switcher-aligned {
@@ -708,6 +712,7 @@ select:focus {
     background-repeat: no-repeat;
     background-position: right 0.75rem center;
     background-size: 1.25em;
+    border-color: var(--rp-gold); /* Distinct border color for theme switcher */
 }
 
 .theme-switcher select option {
@@ -725,11 +730,18 @@ select:focus {
     align-items: center;
     gap: 0.75rem;
     z-index: 1000;
+    /* Animation for quick buttons to slide in */
+    animation: fadeInSlideIn 0.5s ease-out forwards;
+}
 
-    @media (max-width: 768px) {
-        top: 0.5rem;
-        right: 0.5rem;
-        gap: 0.5rem;
+@keyframes fadeInSlideIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
     }
 }
 
@@ -742,7 +754,10 @@ select:focus {
     padding: 0.75rem;
     cursor: pointer;
     outline: none;
-    transition: all var(--transition-speed) var(--transition-ease);
+    transition:
+        all var(--transition-speed) var(--transition-ease),
+        background-color 0.3s ease,
+        border-color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -752,13 +767,19 @@ select:focus {
 :global(.menu-toggle .menu-icon) {
     width: 16px;
     height: 16px;
+    stroke: var(--rp-text); /* Ensure icon color matches text */
+    transition: stroke 0.3s ease;
 }
 
 .menu-toggle:hover {
-    background-color: var(--rp-overlay);
-    border-color: var(--rp-iris);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-    transform: translateY(-2px);
+    background-color: var(--rp-iris); /* More distinct hover color */
+    border-color: var(--rp-foam); /* Contrasting border */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px) scale(1.05); /* Increased scale on hover */
+}
+
+.menu-toggle:hover :global(.menu-icon) {
+    stroke: var(--rp-base); /* Icon color changes on hover for contrast */
 }
 
 .menu-items {
@@ -778,146 +799,22 @@ select:focus {
     visibility: visible;
     transform: translateX(0);
     pointer-events: auto;
+    animation: menuItemsSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* Bouncy animation */
 }
 
-.routes-menu-container {
-    position: relative;
-}
-
-.routes-menu-button {
-    background-color: var(--rp-surface);
-    color: var(--rp-text);
-    border: 2px solid var(--rp-highlight-low);
-    border-radius: 9999px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8);
-    padding: 0.75rem 1.25rem;
-    font-size: 0.875rem;
-    cursor: pointer;
-    outline: none;
-    transition: all var(--transition-speed) var(--transition-ease);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-}
-
-.routes-menu-button:hover {
-    background-color: var(--rp-overlay);
-    border-color: var(--rp-iris);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-    transform: translateY(-2px);
-}
-
-.routes-dropdown {
-    position: absolute;
-    top: calc(100% + 0.5rem);
-    right: 0;
-    background-color: var(--rp-surface);
-    border: 2px solid var(--rp-highlight-low);
-    border-radius: 12px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-    min-width: 160px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px) scale(0.95);
-    transition: all 0.2s ease;
-    pointer-events: none;
-    z-index: 1001;
-    overflow: hidden;
-}
-
-.routes-dropdown.open {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
-}
-
-.route-item {
-    display: block;
-    width: 100%;
-    background: none;
-    border: none;
-    padding: 0.75rem 1rem;
-    color: var(--rp-text);
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    border-radius: 0;
-    font-size: 0.875rem;
-    opacity: 0;
-    transform: translateX(-10px);
-    animation: none;
-}
-
-.routes-dropdown.open .route-item {
-    animation: slideInFade 0.3s ease forwards;
-}
-
-@keyframes slideInFade {
+@keyframes menuItemsSlideIn {
     from {
         opacity: 0;
-        transform: translateX(-10px);
+        transform: translateX(-20px) scale(0.8);
     }
     to {
         opacity: 1;
-        transform: translateX(0);
+        transform: translateX(0) scale(1);
     }
-}
-
-.route-item:hover {
-    background-color: var(--rp-overlay);
-    color: var(--rp-iris);
-    transform: translateX(4px);
-}
-
-.route-item.current {
-    background-color: var(--rp-highlight-low);
-    color: var(--rp-gold);
-    font-weight: 600;
-}
-
-.route-item.current:hover {
-    background-color: var(--rp-highlight-med);
-    color: var(--rp-gold);
-}
-
-.route-item:first-child {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.route-item:last-child {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
 }
 
 .routes-menu-container {
     position: relative;
-}
-
-.routes-menu-button {
-    background-color: var(--rp-surface);
-    color: var(--rp-text);
-    border: 2px solid var(--rp-highlight-low);
-    border-radius: 9999px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8);
-    padding: 0.75rem 1.25rem;
-    font-size: 0.875rem;
-    cursor: pointer;
-    outline: none;
-    transition: all var(--transition-speed) var(--transition-ease);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    white-space: nowrap;
-}
-
-.routes-menu-button:hover {
-    background-color: var(--rp-overlay);
-    border-color: var(--rp-iris);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-    transform: translateY(-2px);
 }
 
 .routes-dropdown {
@@ -925,14 +822,14 @@ select:focus {
     top: calc(100% + 0.5rem);
     right: 0;
     background-color: var(--rp-surface);
-    border: 2px solid var(--rp-highlight-low);
+    border: 2px solid var(--rp-iris); /* Changed border to iris for pop */
     border-radius: 12px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6); /* Darker shadow */
     min-width: 160px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px) scale(0.95);
-    transition: all 0.2s ease;
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
     pointer-events: none;
     z-index: 1001;
     overflow: visible;
@@ -960,7 +857,7 @@ select:focus {
     color: var(--rp-text);
     text-align: left;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease-out; /* Smoother transition */
     border-radius: 0;
     font-size: 0.875rem;
     opacity: 0;
@@ -996,24 +893,25 @@ select:focus {
 
 .route-item:hover {
     background-color: var(--rp-overlay);
-    color: var(--rp-iris);
-    transform: translateX(4px);
-    overflow: hidden;
+    color: var(--rp-foam); /* Changed hover color for more pop */
+    transform: translateX(6px); /* More pronounced slide on hover */
 }
 
 .route-item:hover .arrow {
-    color: var(--rp-iris);
-    transform: translateX(2px);
+    color: var(--rp-foam);
+    transform: translateX(4px) rotate(5deg); /* Slight rotation on arrow hover */
 }
 
 .route-item.current {
-    background-color: var(--rp-highlight-low);
+    background-color: var(--rp-highlight-med); /* Slightly darker current background */
     color: var(--rp-gold);
-    font-weight: 600;
+    font-weight: 700; /* Bolder for current item */
+    border-left: 3px solid var(--rp-gold); /* Highlight border */
+    padding-left: 0.75rem; /* Adjust padding for border */
 }
 
 .route-item.current:hover {
-    background-color: var(--rp-highlight-med);
+    background-color: var(--rp-highlight-high); /* Even darker on hover for current */
     color: var(--rp-gold);
 }
 
@@ -1032,22 +930,21 @@ select:focus {
     top: 0;
     left: calc(100% + 0.5rem);
     background-color: var(--rp-surface);
-    border: 2px solid var(--rp-highlight-low);
+    border: 2px solid var(--rp-foam); /* Distinct border for nested menu */
     border-radius: 12px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
     min-width: 180px;
     z-index: 1002;
     overflow: hidden;
     opacity: 0;
     transform: translateX(-10px) scale(0.95);
-    animation: nestedMenuSlideIn 0.2s ease forwards;
-    overflow: hidden;
+    animation: nestedMenuSlideIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* Bouncy animation for nested menu */
 }
 
 @keyframes nestedMenuSlideIn {
     from {
         opacity: 0;
-        transform: translateX(-10px) scale(0.95);
+        transform: translateX(-20px) scale(0.9);
     }
     to {
         opacity: 1;
@@ -1064,7 +961,7 @@ select:focus {
     color: var(--rp-text);
     text-align: left;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.15s ease-out;
     border-radius: 0;
     font-size: 0.875rem;
     opacity: 0;
@@ -1074,18 +971,20 @@ select:focus {
 
 .nested-route-item:hover {
     background-color: var(--rp-overlay);
-    color: var(--rp-foam);
-    transform: translateX(4px);
+    color: var(--rp-pine); /* Distinct hover color for nested items */
+    transform: translateX(6px);
 }
 
 .nested-route-item.current {
-    background-color: var(--rp-highlight-low);
+    background-color: var(--rp-highlight-med);
     color: var(--rp-gold);
     font-weight: 600;
+    border-left: 3px solid var(--rp-gold); /* Highlight border */
+    padding-left: 0.75rem;
 }
 
 .nested-route-item.current:hover {
-    background-color: var(--rp-highlight-med);
+    background-color: var(--rp-highlight-high);
     color: var(--rp-gold);
 }
 
@@ -1099,7 +998,27 @@ select:focus {
     border-bottom-right-radius: 10px;
 }
 
+/* --- Consolidated Media Queries --- */
+@media (max-width: 920px) {
+    :global(
+        .quick-buttons button,
+        .theme-switcher select,
+        .theme-switcher button,
+        .lang-switcher-aligned select,
+        .lang-switcher-aligned button,
+        .routes-menu-button
+    ) {
+        align-items: center;
+    }
+}
+
 @media (max-width: 768px) {
+    .quick-buttons {
+        top: 0.5rem;
+        right: 0.5rem;
+        gap: 0.5rem;
+    }
+
     .routes-menu-button {
         font-size: 0.75rem;
         padding: 0.6rem 1rem;
@@ -1132,26 +1051,7 @@ select:focus {
     .arrow {
         font-size: 0.875rem;
     }
-}
 
-@media (max-width: 768px) {
-    .routes-menu-button {
-        font-size: 0.75rem;
-        padding: 0.6rem 1rem;
-    }
-
-    .routes-dropdown {
-        min-width: 140px;
-        right: -0.5rem;
-    }
-
-    .route-item {
-        padding: 0.6rem 0.875rem;
-        font-size: 0.75rem;
-    }
-}
-
-@media (max-width: 768px) {
     .quick-buttons button,
     .theme-switcher select {
         font-size: 0.75rem;
@@ -1184,30 +1084,4 @@ select:focus {
     .menu-items {
         gap: 0.5rem;
     }
-}
-.quick-buttons button,
-.theme-switcher select {
-    font-size: 0.75rem;
-    padding: 0.6rem 1rem;
-}
-.theme-switcher select {
-    padding-right: 2rem;
-    background-position: right 0.5rem center;
-}
-.home_button {
-    padding: 0.6rem 0.8rem;
-}
-:global(.home_buttonsvg) {
-    width: 1em;
-    height: 1em;
-}
-.menu-toggle {
-    padding: 0.4rem;
-}
-:global(.menu-toggle.menu-icon) {
-    width: 14px;
-    height: 14px;
-}
-.menu-items {
-    gap: 0.5rem;
 }
