@@ -2,7 +2,7 @@
     import { page } from "$app/state";
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
-    import ChromaKeyed from "../components/ChromaKeyed.svelte";
+    import ChromaKeyed from "../../components/ChromaKeyed.svelte";
 
     const gifUrl = "https://media.tenor.com/nQjGzxSGnjUAAAAM/buggy-dance.gif";
 
