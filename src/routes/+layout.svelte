@@ -36,7 +36,7 @@
     const routes = [
         { path: "/", name: "Home" },
         {
-            path: "/",
+            path: "/lists",
             name: "Lists",
             children: [
                 { path: "/lists/games", name: "Games" },
@@ -46,7 +46,7 @@
             ]
         },
         {
-            path: "/",
+            path: "/jokes",
             name: "Joke Pages",
             children: [
                 { path: "/jokes/bearo", name: "The MF Bearodactyl" },

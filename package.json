@@ -25,6 +25,7 @@
 		"@sveltejs/enhanced-img": "^0.7.0",
 		"@sveltejs/kit": "^2.22.0",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
+		"@types/omggif": "^1.0.5",
 		"@vitest/browser": "^3.2.3",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
@@ -46,6 +47,7 @@
 		"@sveltejs/adapter-static": "^3.0.8",
 		"fuse.js": "^7.1.0",
 		"gsap": "^3.13.0",
+		"omggif": "^1.0.10",
 		"svelte-adapter": "^0.5.0",
 		"svelte-adapter-ghpages": "^0.2.2",
 		"svelte-i18n": "^4.0.1"
