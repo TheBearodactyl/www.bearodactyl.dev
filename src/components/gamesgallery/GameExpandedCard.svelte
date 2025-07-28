@@ -44,7 +44,7 @@
                 {/if}
                 <div class="expanded-rating">
                     <span class="stars">
-                        {#each Array(game.title === "P5R" ? 50000000 : 5) as _, star}
+                        {#each Array(game.title === "P5R" ? 50 : 5) as _, star}
                             <span class="star" class:filled={star + 1 <= game.rating}>★</span>
                         {/each}
                     </span>
