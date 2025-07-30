@@ -5,5 +5,11 @@
     ],
     "i18n-ally.extract.ignored": [
         "(max-width: 768px)"
-    ]
+    ],
+    "files.exclude": {
+        "**/*.rpyc": true,
+        "**/*.rpa": true,
+        "**/*.rpymc": true,
+        "**/cache/": true
+    }
 }

@@ -2,6 +2,7 @@
     import { useData } from "$lib/projects/data.svelte";
     import { useFilters } from "$lib/projects/filters.svelte";
     import { fade } from "svelte/transition";
+    import Seo from "../../../components/SEO.svelte";
 
     const data = useData();
     const filters = useFilters(data.projects);
@@ -29,10 +30,12 @@
     });
 </script>
 
-<svelte:head>
-    <title>my projects</title>
-    <meta charset="utf-8" />
-</svelte:head>
+<Seo 
+    title="The Motherfucking Projects List"
+    desc="a list of projects i work on"
+    image="https://images.genius.com/1ded894752c2c0429ccd9affdcffff8b.500x500x1.png"
+    url="https://bearodactyl.dev/lists/projects"
+/>
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div class="gallery-wrapper">

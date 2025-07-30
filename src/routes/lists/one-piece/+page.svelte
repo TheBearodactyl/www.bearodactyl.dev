@@ -1,15 +1,18 @@
 <script lang="ts">
     import { useFilters } from "$lib/reviews/filters.svelte";
     import { useData } from "$lib/reviews/data.svelte";
+    import Seo from "../../../components/SEO.svelte";
 
     const data = useData();
     let filters = useFilters(data.reviews);
 </script>
 
-<svelte:head>
-    <title>one piece chapter reviews</title>
-    <meta charset="utf-8" />
-</svelte:head>
+<Seo
+    title="The Motherfucking Chapter Reviews"
+    desc="A list of my reviews of OP chapters"
+    image="https://static0.colliderimages.com/wordpress/wp-content/uploads/sharedimages/2025/01/0388694_poster_w780.jpg"
+    url="https://bearodactyl.dev/lists/one-piece"
+/>
 
 <div class="gallery-wrapper">
     <h1 class="title">My Reviews</h1>

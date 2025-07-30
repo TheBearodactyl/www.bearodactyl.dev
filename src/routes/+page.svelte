@@ -4,6 +4,7 @@
     import { _ } from "svelte-i18n";
     import { onMount } from "svelte";
     import { error } from "@sveltejs/kit";
+    import Seo from "../components/SEO.svelte";
 
     let isMobile = false;
 
@@ -78,10 +79,12 @@
     const desc = $_("index.desc");
 </script>
 
-<svelte:head>
-    <title>The Motherfucking Bearodactyl</title>
-    <meta charset="utf-8" />
-</svelte:head>
+<Seo
+    title="The Motherfucking Home Page"
+    desc="the main page of `bearodactyl.dev`"
+    image="https://s3.amazonaws.com/theoatmeal-img/comics/ptero/bearodactyl.png"
+    url="https://bearodactyl.dev"
+/>
 
 <div>
     <div class="index-header">

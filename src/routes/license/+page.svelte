@@ -1,6 +1,14 @@
 <script>
+    import Seo from "../../components/SEO.svelte";
     import SigmaPre from "../../components/SigmaPre.svelte";
 </script>
+
+<Seo
+    title="The Motherfucking Software License"
+    desc="my custom software license"
+    url="https://bearodactyl.dev/license"
+    image="https://d2zia2w5autnlg.cloudfront.net/188090/6399590be3b9c-large"
+/>
 
 <SigmaPre>
     <pre>
