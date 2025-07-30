@@ -1,20 +1,20 @@
 <script lang="ts">
     import type { Book } from "$lib/types";
-    import { lazyLoad } from "$lib/utils/lazyLoad"; //
-    import { isPeakFiction } from "$lib/utils/misc"; // [cite: 34]
-    import BaseCard from "../gallery/BaseCard.svelte"; // [cite: 34]
-    import WarningIcon from "../icons/WarningIcon.svelte"; // [cite: 34]
-    import { _ } from "svelte-i18n"; // [cite: 34]
+    import { lazyLoad } from "$lib/utils/lazyLoad";
+    import { isPeakFiction } from "$lib/utils/misc";
+    import BaseCard from "../gallery/BaseCard.svelte";
+    import WarningIcon from "../icons/WarningIcon.svelte";
+    import { _ } from "svelte-i18n";
 
     interface Props {
-        book: Book; // [cite: 35]
-        index: number; // [cite: 35]
-        isExpanded: boolean; // [cite: 35]
-        viewMode: string; // [cite: 35]
-        onToggleCard: () => void; // [cite: 36]
+        book: Book;
+        index: number;
+        isExpanded: boolean;
+        viewMode: string;
+        onToggleCard: () => void;
     }
 
-    let { book, index, isExpanded, viewMode, onToggleCard }: Props = $props(); // [cite: 36]
+    let { book, index, isExpanded, viewMode, onToggleCard }: Props = $props();
 </script>
 
 <div style="--hover-border-color: {!isExpanded && book.color ? book.color : 'var(--rp-love)'};">

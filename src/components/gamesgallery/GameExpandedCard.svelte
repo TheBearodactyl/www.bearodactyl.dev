@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Book, Game } from "$lib/types";
+    import type { Game } from "$lib/types";
     import { _ } from "svelte-i18n";
 
     interface Props {
