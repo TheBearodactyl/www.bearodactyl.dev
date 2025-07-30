@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Book } from "$lib/types";
+    import { lazyLoad } from "$lib/utils/lazyLoad";
     import { isPeakFiction } from "$lib/utils/misc";
     import BaseCard from "../gallery/BaseCard.svelte";
     import WarningIcon from "../icons/WarningIcon.svelte";
@@ -29,7 +30,7 @@
             {#if viewMode === "list"}
                 <div class="book-list-item">
                     <div class="book-cover-small">
-                        <img src={book.coverImage} alt={book.title} class="cover-image-small" />
+                        <img use:lazyLoad data-src={book.coverImage} alt={book.title} class="cover-image-small" />
                         {#if book.explicit}
                             <div class="explicit-icon-small">
                                 <span class="icon-warning-small">⚠️</span>

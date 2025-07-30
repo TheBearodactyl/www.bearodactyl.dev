@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { Book } from "$lib/types";
+    import { lazyLoad } from "$lib/utils/lazyLoad";
     import { _ } from "svelte-i18n";
 
     interface Props {
@@ -16,7 +17,8 @@
             <button class="close-btn" onclick={onCloseCard}>×</button>
             <div class="expanded-cover">
                 <img
-                    src={book.coverImage}
+                    use:lazyLoad
+                    data-src={book.coverImage}
                     alt={$_("gallery.book.cover-alt", { values: { title: book.title } })}
                     class="expanded-cover-image"
                 />
