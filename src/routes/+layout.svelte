@@ -85,10 +85,6 @@
         }
     }
 
-    async function goHome() {
-        await goto("/");
-    }
-
     async function navigateToRoute(path: string) {
         isRoutesMenuOpen = false;
         isMenuOpen = false;

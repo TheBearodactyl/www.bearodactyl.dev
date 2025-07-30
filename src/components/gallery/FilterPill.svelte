@@ -3,13 +3,44 @@
         modelValue: string;
         "onupdate:modelValue"?: (value: string) => void;
         "ontoggle-search-mode"?: () => void;
+        viewMode: "masonry" | "list";
+        setViewMode: (mode: "masonry" | "list") => void;
+        toggleViewMode: () => void;
     }
 
     let {
         modelValue,
         "onupdate:modelValue": onUpdateModelValue,
-        "ontoggle-search-mode": onToggleSearchMode
+        "ontoggle-search-mode": onToggleSearchMode,
+        viewMode,
+        setViewMode,
+        toggleViewMode
     }: Props = $props();
+
+    let isTransitioning = $state(false);
+
+    const handleViewModeChange = async (mode: "masonry" | "list") => {
+        if (isTransitioning) return;
+
+        isTransitioning = true;
+
+        const bookGrid = document.querySelector(".book-grid");
+        if (bookGrid) {
+            bookGrid.classList.add("transitioning");
+            bookGrid.classList.add(mode === "list" ? "entering-list" : "entering-grid");
+        }
+
+        setTimeout(() => {
+            setViewMode(mode);
+        }, 150);
+
+        setTimeout(() => {
+            if (bookGrid) {
+                bookGrid.classList.remove("transitioning", "entering-list", "entering-grid");
+            }
+            isTransitioning = false;
+        }, 600);
+    };
 
     const handleToggleSearchMode = () => {
         onToggleSearchMode?.();
@@ -38,6 +69,24 @@
             oninput={handleInput}
             onkeydown={handleKeydown}
         />
+        <div class="view-toggle" data-active={viewMode}>
+            <button
+                class="view-btn"
+                class:active={viewMode === "masonry"}
+                onclick={() => setViewMode("masonry")}
+            >
+                <span class="view-btn-icon">▦</span>
+                Grid
+            </button>
+            <button
+                class="view-btn"
+                class:active={viewMode === "list"}
+                onclick={() => setViewMode("list")}
+            >
+                <span class="view-btn-icon">☰</span>
+                List
+            </button>
+        </div>
         <button class="pill-filter-btn" onclick={handleToggleSearchMode}>
             <span class="icon">☰</span>
         </button>

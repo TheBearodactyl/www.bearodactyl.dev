@@ -16,7 +16,7 @@
 
 <div class="book-grid-container" class:fade-in={isContentVisible}>
     {#if books.length > 0}
-        <div class="book-grid">
+        <div class="book-grid" class:list-view={viewMode === "list"}>
             {#each books as book, index (book.id)}
                 <BookCard
                     {book}

@@ -56,6 +56,11 @@
         onClearAllFilters={filters.clearAllFilters}
         onToggleSearchMode={toggleSearchMode}
         onUpdateFilters={handleUpdateFilters}
+        setViewMode={display.setViewMode}
+        toggleViewMode={display.toggleViewMode}
+        getViewMode={() => {
+            return display.viewMode;
+        }}
     />
 
     {#if data.isLoading}
