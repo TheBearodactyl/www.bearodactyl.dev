@@ -397,3 +397,14 @@
     object-fit: cover;
     transition: transform var(--transition-speed) var(--transition-ease);
 }
+
+.explicit-icon-small {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.explicit-icon-small.visible {
+    opacity: 1;
+    visibility: visible;
+}

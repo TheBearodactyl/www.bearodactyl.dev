@@ -30,7 +30,7 @@
                 {/if}
             </div>
             <div class="expanded-basic-info">
-                <h3 class="expanded-title">{book.title}</h3>
+                <h1 class="expanded-title">{book.title}</h1>
                 <p class="expanded-author">{book.author}</p>
                 <div class="book-genres">
                     {#each book.genres as genre (genre)}
@@ -58,13 +58,13 @@
         </div>
 
         <div class="expanded-content">
+            <h4>{$_("gallery.expanded.description")}</h4>
             <div class="description-section">
-                <h4>{$_("gallery.expanded.description")}</h4>
                 <p>{book.description}</p>
             </div>
 
+            <h4>{$_("gallery.expanded.my-thoughts")}</h4>
             <div class="thoughts-section">
-                <h4>{$_("gallery.expanded.my-thoughts")}</h4>
                 <p>{book.myThoughts}</p>
             </div>
 
