@@ -109,7 +109,7 @@
     <pre>
         All icons made by me in Inkscape
         All code on this website is within the public domain
-        See <code><a href="/license">/license</a></code>
+        See <code><a href="/license" class="license-hyper">/license</a></code>
         Rabies before babies
       </pre>
 </div>
@@ -150,5 +150,9 @@
         height: 168px;
         margin-bottom: -3.9rem;
         filter: contrast(95);
+    }
+
+    .license-hyper {
+        color: aqua;
     }
 </style>
