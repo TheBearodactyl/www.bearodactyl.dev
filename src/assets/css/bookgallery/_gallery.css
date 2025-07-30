@@ -92,7 +92,7 @@
     background-position: center;
     background-repeat: no-repeat;
     transition: background-image 1s ease-in-out;
-    z-index: 500000; /* Extremely high z-index, ensure this is intended */
+    z-index: 1; /* Extremely high z-index, ensure this is intended */
 }
 
 /* List View Styles */
@@ -163,7 +163,7 @@
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
-    min-width: 0; /* Prevents flex item from overflowing */
+    min-width: 0;
 }
 
 .book-primary-info {
@@ -178,6 +178,12 @@
     margin: 0;
     color: var(--rp-text);
     line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.book-title-list, .book-author-list {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;

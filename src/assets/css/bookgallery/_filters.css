@@ -7,6 +7,7 @@
     border-radius: 50px;
     padding: 0.7rem 1.4rem;
     max-width: 600px;
+    width: calc(100% - 2rem);
     margin: 2.5rem auto 3rem auto;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     border: 2px solid var(--rp-highlight-low);
@@ -14,6 +15,14 @@
     animation: fadeInDown 0.8s var(--transition-ease) 0.3s forwards;
     opacity: 0;
     gap: 1rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+
+.filter-pill::-webkit-scrollbar {
+    display: none;
 }
 
 .filter-pill:focus-within {
@@ -33,7 +42,7 @@
     color: var(--rp-text);
     padding: 0;
     letter-spacing: 0.01em;
-    min-width: 200px;
+    min-width: 0;
 }
 
 .pill-search-input::placeholder {
@@ -124,7 +133,7 @@
 
 .filter-bar-header .collapse-btn:hover {
     background-color: transparent !important;
-    color: red; /* Is this intended to be red on hover? */
+    color: var(--rp-rose);
 }
 
 .filter-heading {

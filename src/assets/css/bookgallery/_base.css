@@ -12,7 +12,7 @@
 *::before,
 *::after {
 	box-sizing: border-box;
-	font-family: 'Cascadia Code Nerd Font' !important; /* Consider if !important is strictly necessary here. It can lead to specificity issues. */
+	font-family: 'Cascadia Code Nerd Font';
 }
 
 img {

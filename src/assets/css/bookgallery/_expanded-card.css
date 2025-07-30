@@ -17,6 +17,7 @@
   background-color: transparent;
   opacity: 0;
   animation: fadeOverlayIn 0.5s var(--transition-ease) forwards;
+  will-change: opacity;
 }
 
 .expanded-card-overlay.closing {
@@ -43,6 +44,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  will-change: transform, opacity;
 }
 
 .expanded-card-overlay.closing .book-expanded {
@@ -86,7 +88,8 @@
   transition:
     color 0.3s var(--transition-ease),
     transform 0.3s var(--transition-ease);
-  z-index: 1000; /* Ensure it's above other content */
+  z-index: 1000;
+  will-change: color, transform;
 }
 
 .close-btn:hover {
