@@ -142,7 +142,7 @@
         margin-top: 1rem;
         margin-bottom: 1rem;
         text-align: center;
-        color: var(--rp-highlight-high);
+        color: var(--rp-text);
     }
 
     .buggy {
