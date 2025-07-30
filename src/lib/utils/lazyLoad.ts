@@ -1,18 +1,40 @@
-export function lazyLoad(el: HTMLElement) {
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target as HTMLImageElement;
-                img.src = img.dataset.src || "";
-                observer.unobserve(img);
-            }
-        });
-    });
+// src/lib/actions/useLazyImage.ts
+export function lazyLoad(
+    node: HTMLImageElement,
+    options: IntersectionObserverInit = { rootMargin: "200px", threshold: 0.01 }
+): { destroy(): void } {
+    if (!node.dataset.src) return { destroy: () => {} }; // Fallback safety
 
-    observer.observe(el);
+    let observer: IntersectionObserver;
+
+    const loadImage = () => {
+        if (node.dataset.src) {
+            node.src = node.dataset.src;
+            node.removeAttribute("data-src");
+        }
+        if (node.dataset.srcset) {
+            node.srcset = node.dataset.srcset;
+            node.removeAttribute("data-srcset");
+        }
+        observer?.disconnect();
+    };
+
+    if ("IntersectionObserver" in window) {
+        observer = new IntersectionObserver((entries) => {
+            for (const entry of entries) {
+                if (entry.isIntersecting) loadImage();
+            }
+        }, options);
+
+        observer.observe(node);
+    } else {
+        // Fallback for very old browsers
+        loadImage();
+    }
+
     return {
         destroy() {
-            observer.unobserve(el);
+            observer?.disconnect();
         }
-    }
+    };
 }

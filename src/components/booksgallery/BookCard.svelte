@@ -1,20 +1,20 @@
 <script lang="ts">
     import type { Book } from "$lib/types";
-    import { lazyLoad } from "$lib/utils/lazyLoad";
-    import { isPeakFiction } from "$lib/utils/misc";
-    import BaseCard from "../gallery/BaseCard.svelte";
-    import WarningIcon from "../icons/WarningIcon.svelte";
-    import { _ } from "svelte-i18n";
+    import { lazyLoad } from "$lib/utils/lazyLoad"; //
+    import { isPeakFiction } from "$lib/utils/misc"; // [cite: 34]
+    import BaseCard from "../gallery/BaseCard.svelte"; // [cite: 34]
+    import WarningIcon from "../icons/WarningIcon.svelte"; // [cite: 34]
+    import { _ } from "svelte-i18n"; // [cite: 34]
 
     interface Props {
-        book: Book;
-        index: number;
-        isExpanded: boolean;
-        viewMode: string;
-        onToggleCard: () => void;
+        book: Book; // [cite: 35]
+        index: number; // [cite: 35]
+        isExpanded: boolean; // [cite: 35]
+        viewMode: string; // [cite: 35]
+        onToggleCard: () => void; // [cite: 36]
     }
 
-    let { book, index, isExpanded, viewMode, onToggleCard }: Props = $props();
+    let { book, index, isExpanded, viewMode, onToggleCard }: Props = $props(); // [cite: 36]
 </script>
 
 <div style="--hover-border-color: {!isExpanded && book.color ? book.color : 'var(--rp-love)'};">
@@ -30,7 +30,13 @@
             {#if viewMode === "list"}
                 <div class="book-list-item">
                     <div class="book-cover-small">
-                        <img use:lazyLoad data-src={book.coverImage} alt={book.title} class="cover-image-small" />
+                        <img
+                            use:lazyLoad
+                            data-src={book.coverImage}
+                            alt={book.title}
+                            class="cover-image-small"
+                            loading="lazy"
+                        />
                         {#if book.explicit}
                             <div class="explicit-icon-small">
                                 <span class="icon-warning-small">⚠️</span>
@@ -67,9 +73,11 @@
                 <div class="book-compact">
                     <div class="book-cover">
                         <img
-                            src={book.coverImage}
+                            use:lazyLoad
+                            data-src={book.coverImage}
                             alt={$_("gallery.book.cover-alt", { values: { title: book.title } })}
                             class="cover-image"
+                            loading="lazy"
                         />
                         {#if book.explicit}
                             <div class="explicit-icon">
