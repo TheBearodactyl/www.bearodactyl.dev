@@ -1,151 +1,119 @@
-/* _responsive.css */
-
 @media (max-width: 560px) {
     .book-grid {
         column-count: 1;
         padding: 2rem 1rem;
     }
-
     .filter-pill {
         padding: 0.5rem 1rem;
         gap: 0.5rem;
     }
-
     .pill-search-input {
         font-size: 1rem;
     }
-
     .pill-filter-btn {
         width: 2rem;
         height: 2rem;
         font-size: 1.2rem;
     }
 }
-
 @media (min-width: 768px) {
     .book-gallery {
         padding: 2rem 1.5rem;
     }
-
     .gallery-title {
         font-size: 2.6rem;
         margin-bottom: 3rem;
     }
-
     .book-grid {
         column-count: 2;
     }
-
     .filter-bar {
         padding: 1.5rem;
         gap: 1rem;
         border-radius: 16px;
     }
-
     .expanded-header {
         flex-direction: row;
         align-items: flex-start;
         text-align: left;
         padding: 2rem;
     }
-
     .expanded-cover {
         width: 230px;
         height: auto;
     }
-
     .expanded-content {
         padding: 1.8rem 2rem;
     }
 }
-
 @media (min-width: 992px) {
     .book-gallery {
         padding: 2.5rem 2rem;
     }
-
     .gallery-title {
         font-size: 3rem;
     }
-
     .book-grid {
         column-count: 3;
     }
-
     .filter-bar {
         max-width: 850px;
     }
-
     .expanded-card-overlay {
         padding: 2rem;
     }
-
     .expanded-card-overlay .book-expanded {
         max-width: 800px;
     }
-
     .expanded-header {
         padding: 2.5rem;
         gap: 2rem;
     }
-
     .expanded-cover {
         width: 300px;
         height: auto;
     }
-
     .expanded-title {
         font-size: 2.4rem;
     }
-
     .expanded-author {
         font-size: 1.3rem;
     }
-
     .expanded-content {
         padding: 2rem 2.5rem;
     }
 }
-
 @media (min-width: 1200px) {
     .book-gallery {
         padding: 3rem 2.5rem;
     }
-
     .book-grid {
         column-count: 4;
     }
-
     .expanded-card-overlay .book-expanded {
         max-width: 900px;
     }
-
     .expanded-header {
         padding: 3rem;
         gap: 2.5rem;
     }
-
     .expanded-cover {
         width: 250px;
         height: auto;
     }
-
     .expanded-title {
         font-size: 2.6rem;
     }
 }
-
 @media (max-width: 767px) {
     .expanded-card-overlay {
         padding: 0.8rem;
     }
-
     .expanded-card-overlay .book-expanded {
         max-width: 98%;
         border-radius: 10px;
         text-align: center;
     }
-
     .expanded-header {
         flex-direction: column;
         align-items: center;
@@ -153,27 +121,22 @@
         padding: 1.2rem;
         gap: 0.8rem;
     }
-
     .expanded-cover {
         width: 200px;
         height: auto;
     }
-
     .expanded-basic-info {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
-
     .expanded-title {
         font-size: 1.8rem;
         margin-bottom: 0.3rem;
     }
-
     .expanded-author {
         font-size: 0.9rem;
     }
-
     .expanded-rating {
         flex-direction: row;
         display: flex;
@@ -182,150 +145,118 @@
         margin-right: 0;
         padding-left: 0;
     }
-
     .expanded-rating .star {
         display: inline-block;
     }
-
     .expanded-content {
         padding: 1.2rem;
     }
-
     .expanded-content h4 {
         font-size: 1.6rem;
         margin-bottom: 0.8rem;
         padding-bottom: 0.5rem;
     }
-
     .expanded-content p {
         font-size: 1rem;
         line-height: 1.6;
         margin-bottom: 1rem;
     }
-
     .links-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
         margin-top: 1.5rem;
     }
-
     .book-link {
         justify-content: center;
     }
-
     .book-expanded .book-genres,
     .book-expanded .book-tags {
         flex-direction: column;
     }
-
     .expanded-cover-image {
         width: 180px;
         margin: 1.5rem;
     }
 }
-
 @media (max-width: 768px) {
+    .view-btn,
+    .view-toggle-single {
+        padding: 0.6rem 1rem;
+        font-size: 0.85rem;
+    }
     .view-toggle {
         margin-bottom: 1.5rem;
         width: 100%;
         max-width: 280px;
     }
-
     .view-btn {
-        padding: 0.6rem 1rem;
-        font-size: 0.85rem;
         min-width: 80px;
     }
-
-    .view-toggle-single {
-        padding: 0.6rem 1rem;
-        font-size: 0.85rem;
-    }
 }
-
 @media (max-width: 480px) {
     .view-toggle {
         padding: 4px;
     }
-
     .view-btn {
         padding: 0.5rem 0.75rem;
         font-size: 0.8rem;
         min-width: 70px;
     }
-
     .view-btn-icon {
         font-size: 1rem;
     }
 }
-
 @media (max-width: 768px) {
     .filter-pill {
         max-width: 95%;
         flex-wrap: wrap;
         gap: 0.8rem;
     }
-
     .pill-search-input {
         min-width: 150px;
     }
-
     .view-btn {
         font-size: 0.7rem;
         padding: 0.4rem 0.6rem;
         min-width: 50px;
     }
-
+    .book-title-list,
     .view-btn-icon {
         font-size: 1rem;
     }
-}
-
-@media (max-width: 768px) {
     .book-list-item {
         gap: 1rem;
         padding: 1rem;
     }
-
     .book-cover-small {
         width: 60px;
         height: 90px;
     }
-
-    .book-title-list {
-        font-size: 1rem;
-    }
-
     .book-author-list {
         font-size: 0.85rem;
     }
-
     .book-meta {
         gap: 0.5rem;
     }
 }
-
 @media (max-width: 480px) {
     .book-list-item {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
     }
-
     .book-cover-small {
         width: 80px;
         height: 120px;
         align-self: center;
     }
-
     .book-details {
         width: 100%;
         align-items: center;
         text-align: center;
     }
-
-    .book-title-list,
-    .book-author-list {
+    .book-author-list,
+    .book-title-list {
         white-space: normal;
         text-align: center;
     }

@@ -1,27 +1,22 @@
-/* _animations.css */
 .fade-enter-active,
 .fade-leave-active {
     transition: opacity var(--transition-speed) var(--transition-ease);
 }
-
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;
 }
-
 .fade-slide-enter-active,
 .fade-slide-leave-active {
     transition:
         opacity var(--transition-speed) var(--transition-ease),
         transform var(--transition-speed) var(--transition-ease);
 }
-
 .fade-slide-enter-from,
 .fade-slide-leave-to {
     opacity: 0;
     transform: translateY(20px);
 }
-
 @keyframes fadeOverlayIn {
     from {
         opacity: 0;
@@ -30,7 +25,6 @@
         opacity: 1;
     }
 }
-
 @keyframes fadeOverlayOut {
     from {
         opacity: 1;
@@ -39,7 +33,6 @@
         opacity: 0;
     }
 }
-
 @keyframes expandIn {
     from {
         opacity: 0;
@@ -50,7 +43,6 @@
         transform: scale(1) translateY(0);
     }
 }
-
 @keyframes contractOut {
     from {
         opacity: 1;
@@ -61,7 +53,6 @@
         transform: scale(0.7) translateY(-40px);
     }
 }
-
 @keyframes fadeBackdropIn {
     from {
         opacity: 0;
@@ -70,7 +61,6 @@
         opacity: 1;
     }
 }
-
 @keyframes fadeBackdropOut {
     from {
         opacity: 1;
@@ -79,7 +69,6 @@
         opacity: 0;
     }
 }
-
 @keyframes fadeInDown {
     from {
         opacity: 0;
@@ -90,7 +79,6 @@
         transform: translateY(0);
     }
 }
-
 @keyframes fadeInScale {
     from {
         opacity: 0;
@@ -101,7 +89,6 @@
         transform: scale(1);
     }
 }
-
 @keyframes slideInFromTop {
     from {
         opacity: 0;
@@ -112,7 +99,6 @@
         transform: translateY(0) scaleY(1);
     }
 }
-
 @keyframes slideOutToTop {
     from {
         opacity: 1;
@@ -123,7 +109,6 @@
         transform: translateY(-10px) scaleY(0.8);
     }
 }
-
 @keyframes bounceIn {
     0% {
         transform: scale(0.8);
@@ -137,7 +122,6 @@
         transform: scale(1);
     }
 }
-
 @keyframes popIn {
     0% {
         transform: scale(0);
@@ -149,15 +133,12 @@
         transform: scale(1);
     }
 }
-
 .staggered-item-enter-active {
     animation: fadeInScale 0.6s var(--transition-ease);
 }
-
 .staggered-item-leave-active {
     animation: fadeOutScale 0.4s var(--transition-ease);
 }
-
 @keyframes fadeOutScale {
     from {
         opacity: 1;
@@ -168,7 +149,6 @@
         transform: scale(0.9);
     }
 }
-
 @keyframes pulse {
     0%,
     100% {
@@ -178,8 +158,6 @@
         transform: scale(1.05);
     }
 }
-
-/* View mode transition animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -188,7 +166,6 @@
         opacity: 1;
     }
 }
-
 @keyframes morphToList {
     from {
         opacity: 1;
@@ -205,7 +182,6 @@
         column-count: 1;
     }
 }
-
 @keyframes morphToGrid {
     from {
         opacity: 1;
@@ -222,7 +198,6 @@
         column-count: 3;
     }
 }
-
 @keyframes slideInFromLeft {
     from {
         opacity: 0;
@@ -233,7 +208,6 @@
         transform: translateX(0);
     }
 }
-
 @keyframes slideInFromRight {
     from {
         opacity: 0;
@@ -244,7 +218,6 @@
         transform: translateX(0);
     }
 }
-
 @keyframes cardMorphToList {
     from {
         flex-direction: column;
@@ -255,7 +228,6 @@
         transform: scale(1);
     }
 }
-
 @keyframes cardMorphToGrid {
     from {
         flex-direction: row;
@@ -266,72 +238,67 @@
         transform: scale(1);
     }
 }
-
-/* Stagger the card animations */
-.book-grid.list-view > *:nth-child(1) {
+.book-grid.list-view > :first-child {
     animation-delay: 0.1s;
 }
-.book-grid.list-view > *:nth-child(2) {
+.book-grid.list-view > :nth-child(2) {
     animation-delay: 0.15s;
 }
-.book-grid.list-view > *:nth-child(3) {
+.book-grid.list-view > :nth-child(3) {
     animation-delay: 0.2s;
 }
-.book-grid.list-view > *:nth-child(4) {
+.book-grid.list-view > :nth-child(4) {
     animation-delay: 0.25s;
 }
-.book-grid.list-view > *:nth-child(5) {
+.book-grid.list-view > :nth-child(5) {
     animation-delay: 0.3s;
 }
-.book-grid.list-view > *:nth-child(6) {
+.book-grid.list-view > :nth-child(6) {
     animation-delay: 0.35s;
 }
-.book-grid.list-view > *:nth-child(7) {
+.book-grid.list-view > :nth-child(7) {
     animation-delay: 0.4s;
 }
-.book-grid.list-view > *:nth-child(8) {
+.book-grid.list-view > :nth-child(8) {
     animation-delay: 0.45s;
 }
-.book-grid.list-view > *:nth-child(9) {
+.book-grid.list-view > :nth-child(9) {
     animation-delay: 0.5s;
 }
-.book-grid.list-view > *:nth-child(n + 10) {
+.book-grid.list-view > :nth-child(n + 10) {
     animation-delay: 0.55s;
 }
-
-/* Grid view transition */
 .book-grid:not(.list-view) > * {
     animation: fadeInScale 0.5s var(--transition-ease) forwards;
     opacity: 0;
 }
-
-.book-grid:not(.list-view) > *:nth-child(1) {
+.book-grid:not(.list-view) > :first-child {
     animation-delay: 0.1s;
 }
-.book-grid:not(.list-view) > *:nth-child(2) {
+.book-grid:not(.list-view) > :nth-child(2) {
     animation-delay: 0.15s;
 }
-.book-grid:not(.list-view) > *:nth-child(3) {
+.book-grid:not(.list-view) > :nth-child(3) {
     animation-delay: 0.2s;
 }
-.book-grid:not(.list-view) > *:nth-child(4) {
+.book-grid:not(.list-view) > :nth-child(4) {
     animation-delay: 0.25s;
 }
-.book-grid:not(.list-view) > *:nth-child(5) {
+.book-grid:not(.list-view) > :nth-child(5) {
     animation-delay: 0.3s;
 }
-.book-grid:not(.list-view) > *:nth-child(6) {
+.book-grid:not(.list-view) > :nth-child(6) {
     animation-delay: 0.35s;
 }
-.book-grid:not(.list-view) > *:nth-child(7) {
+.book-grid:not(.list-view) > :nth-child(7) {
     animation-delay: 0.4s;
 }
-.book-grid:not(.list-view) > *:nth-child(8) {
+.book-grid:not(.list-view) > :nth-child(8) {
     animation-delay: 0.45s;
 }
-.book-grid:not(.list-view) > *:nth-child(9) {
+.book-grid:not(.list-view) > :nth-child(9) {
     animation-delay: 0.5s;
 }
-.book-grid:not(.list-view) > *:nth-child(n + 10) {
+.book-grid:not(.list-view) > :nth-child(n + 10) {
     animation-delay: 0.55s;
 }

@@ -27,7 +27,6 @@
     >
         {#if !isExpanded}
             {#if viewMode === "list"}
-                <!-- List View Layout -->
                 <div class="book-list-item">
                     <div class="book-cover-small">
                         <img src={book.coverImage} alt={book.title} class="cover-image-small" />
@@ -64,7 +63,6 @@
                     </div>
                 </div>
             {:else}
-                <!-- Masonry View Layout (existing) -->
                 <div class="book-compact">
                     <div class="book-cover">
                         <img
