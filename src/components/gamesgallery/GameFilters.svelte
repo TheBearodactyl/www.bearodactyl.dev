@@ -28,6 +28,9 @@
         onClearAllFilters: () => void;
         onToggleSearchMode: () => void;
         onUpdateFilters: (filters: Filters) => void;
+        setViewMode: (mode: "masonry" | "list") => void;
+        toggleViewMode: () => void;
+        getViewMode: () => "masonry" | "list";
     }
 
     let {
@@ -44,7 +47,10 @@
         onToggleFilterItem,
         onClearAllFilters,
         onToggleSearchMode,
-        onUpdateFilters
+        onUpdateFilters,
+        setViewMode,
+        toggleViewMode,
+        getViewMode
     }: Props = $props();
 
     function handleKeydown(event: KeyboardEvent) {
@@ -77,6 +83,9 @@
             modelValue={searchFilters.title}
             onupdate:modelValue={updateTitle}
             ontoggle-search-mode={onToggleSearchMode}
+            setViewMode={setViewMode}
+            toggleViewMode={toggleViewMode}
+            viewMode={getViewMode()}
         />
     </div>
 {:else}
