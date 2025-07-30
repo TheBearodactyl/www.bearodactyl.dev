@@ -1,11 +1,3 @@
-@font-face {
-    font-family: "Cascadia Code Nerd Font";
-    font-style: normal;
-    font-weight: 200;
-    font-display: swap;
-    src: url("/fonts/CaskaydiaCove/CaskaydiaCoveNerdFont-Light.ttf") format("truetype");
-    font-variant-ligatures: none;
-}
 *,
 ::after,
 ::before {

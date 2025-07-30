@@ -1,9 +1,8 @@
-// src/lib/actions/useLazyImage.ts
 export function lazyLoad(
     node: HTMLImageElement,
     options: IntersectionObserverInit = { rootMargin: "200px", threshold: 0.01 }
 ): { destroy(): void } {
-    if (!node.dataset.src) return { destroy: () => {} }; // Fallback safety
+    if (!node.dataset.src) return { destroy: () => {} };
 
     let observer: IntersectionObserver;
 
@@ -28,7 +27,6 @@ export function lazyLoad(
 
         observer.observe(node);
     } else {
-        // Fallback for very old browsers
         loadImage();
     }
 
