@@ -146,7 +146,8 @@
     }
 
     .buggy {
-        width: 30%;
+        width: 300px;
+        height: 168px;
         margin-bottom: -3.9rem;
         filter: contrast(95);
     }
