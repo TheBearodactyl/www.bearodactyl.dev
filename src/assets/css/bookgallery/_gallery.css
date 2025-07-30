@@ -365,7 +365,7 @@
 }
 
 .book-cover-small {
-    width: 80px;
+    width: fit-content;
     height: 120px;
     flex-shrink: 0;
     overflow: hidden;
