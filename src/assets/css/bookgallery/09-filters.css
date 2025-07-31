@@ -120,7 +120,7 @@
     color: var(--rp-love);
     font-size: var(--spacing-xl);
     cursor: pointer;
-    height: 2.75rem;
+    /* height: 2.75rem; */
     transition:
         transform 0.3s var(--transition-ease),
         color 0.3s var(--transition-ease);
@@ -128,7 +128,7 @@
 
 .collapse-btn:hover {
     transform: rotate(180deg) scale(1.15);
-    color: var(--rp-rose);
+    color: var(--rp-love);
 }
 
 .filter-bar-header .collapse-btn {
@@ -142,7 +142,7 @@
 
 .filter-bar-header .collapse-btn:hover {
     background-color: transparent !important;
-    color: var(--rp-rose);
+    color: var(--rp-love);
 }
 
 /* Filter Inputs */
@@ -317,6 +317,33 @@
     background-color: var(--rp-highlight-med);
     color: var(--rp-text);
     font-weight: 700;
+}
+
+.selected-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; /* Adjust as needed for spacing between pills */
+}
+
+.pill {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--rp-base); /* Example background color */
+    border-radius: 999px;
+    padding-left: 10px;
+    padding-right: 12px;
+    font-size: 0.8em;
+}
+
+.pill-deselect-btn {
+    background: none;
+    border: none;
+    color: var(--rp-love);
+    cursor: pointer;
+    margin-left: 5px;
+    font-size: 1.5em;
+    padding: 0;
+    margin-left: 12px;
 }
 
 /* ========================================================================

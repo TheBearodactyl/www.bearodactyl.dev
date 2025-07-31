@@ -82,6 +82,7 @@
     transition:
         background 0.3s,
         box-shadow 0.3s;
+    flex-wrap: wrap;
 }
 
 /* Close Button */

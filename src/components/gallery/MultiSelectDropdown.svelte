@@ -14,6 +14,7 @@
         ontoggle?: () => void;
         onclose?: () => void;
         "ontoggle-item"?: (itemValue: string) => void;
+        "on-deselect-item"?: (itemValue: string) => void;
     }
 
     let {
@@ -25,7 +26,8 @@
         isOpen,
         ontoggle,
         onclose,
-        "ontoggle-item": onToggleItem
+        "ontoggle-item": onToggleItem,
+        "on-deselect-item": onDeselectItem
     }: Props = $props();
 
     let dropdownRef: HTMLDivElement;
@@ -51,11 +53,15 @@
         event.stopPropagation();
         handleItemToggle(itemValue);
     };
+
+    const handleDeselectPill = (event: MouseEvent, itemValue: string) => {
+        event.stopPropagation();
+        onDeselectItem?.(itemValue);
+    };
 </script>
 
 <div bind:this={dropdownRef} class="multi-select">
-    <!-- svelte-ignore a11y_label_has_associated_control -->
-    <label>{label}</label>
+    <p>{label}</p>
     <div
         class="dropdown"
         class:open={isOpen}
@@ -68,7 +74,19 @@
             {#if selectedItems.length === 0}
                 <span class="placeholder">{placeholder}</span>
             {:else}
-                <span class="selected-items">{selectedItems.join(", ")}</span>
+                <div class="selected-pills">
+                    {#each selectedItems as itemValue}
+                        <span class="pill">
+                            {itemValue}
+                            <button
+                                class="pill-deselect-btn"
+                                onmousedown={(event) => handleDeselectPill(event, itemValue)}
+                            >
+                                ⨯
+                            </button>
+                        </span>
+                    {/each}
+                </div>
             {/if}
             <span class="dropdown-arrow">▾</span>
         </div>

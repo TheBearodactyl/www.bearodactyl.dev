@@ -2,6 +2,7 @@
    Variables & CSS Custom Properties
    ======================================================================== */
 :root {
+    /* Colors */
     --rp-base: #191724;
     --rp-surface: #1f1d2e;
     --rp-overlay: #26233a;
@@ -19,29 +20,55 @@
     --rp-highlight-med: #403d52;
     --rp-highlight-high: #524f67;
 
-    --transition-speed: 0.4s;
-    --transition-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --hover-scale: 1.02;
-
-    --border-radius-sm: 8px;
-    --border-radius-md: 12px;
-    --border-radius-lg: 18px;
-    --border-radius-xl: 20px;
-    --border-radius-pill: 50px;
-
+    /* Spacing */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem; /* Added for gallery-title margin-bottom */
 
-    --font-size-xs: 0.7rem;
-    --font-size-sm: 0.85rem;
-    --font-size-base: 1rem;
-    --font-size-lg: 1.1rem;
-    --font-size-xl: 1.2rem;
-    --font-size-2xl: 1.4rem;
-    --font-size-3xl: 1.8rem;
-    --font-size-4xl: 2.4rem;
+    /* Typography */
+    --font-family-base: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-family-code: "Cascadia Code Nerd Font";
+    --font-size-base: 1rem; /* 16px */
+    --font-size-sm: 0.875rem; /* 14px */
+    --font-size-md: 1.05rem; /* for filter inputs */
+    --font-size-lg: 1.2rem; /* for pill-search-input, multi-select label, book-title-list */
+    --font-size-xl: 1.5rem; /* for pill-filter-btn, close-btn */
+    --font-size-2xl: clamp(2rem, 5vw, 3.5rem); /* for gallery-title */
+    --font-size-3xl: clamp(2rem, 4vw, 2.6rem); /* for expanded-title */
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    --font-weight-extrabold: 800;
+    --line-height-base: 1.7;
+    --line-height-heading: 1.1;
+    --line-height-title: 1.2;
+
+    /* Border Radius */
+    --border-radius-sm: 6px;
+    --border-radius-md: 10px;
+    --border-radius-lg: 15px;
+    --border-radius-xl: 20px;
+    --border-radius-pill: 99px;
+
+    /* Transitions & Animations */
+    --transition-speed: 0.3s;
+    --transition-ease: cubic-bezier(0.645, 0.045, 0.355, 1);
+    --transition-fast: 0.2s; /* For input/select focus, clear-filters-btn background */
+
+    /* Box Shadows */
+    --box-shadow-sm: 0 3px 8px rgba(0, 0, 0, 0.3); /* For pill-filter-btn */
+    --box-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.4); /* For filter-pill */
+    --box-shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.45); /* For book-card */
+    --box-shadow-xl: 0 10px 30px rgba(0, 0, 0, 0.4); /* For filter-bar */
+    --box-shadow-2xl: 0 16px 40px rgba(0, 0, 0, 0.6); /* For book-card:hover */
+    --box-shadow-3xl: 0 35px 70px rgba(0, 0, 0, 0.7); /* For book-expanded */
+
+    /* Other */
+    --hover-scale: 1.04;
+    --hover-border-color: var(--rp-love);
 }

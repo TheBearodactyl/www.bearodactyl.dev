@@ -15,27 +15,22 @@
     const filters = useFilters(() => data.books);
 
     let isFilterCollapsed = $state(true);
-
     function toggleSearchMode() {
         isFilterCollapsed = !isFilterCollapsed;
     }
 
     const persistedViewMode = new PersistedState<"masonry" | "list">("viewMode", "masonry");
-
     $effect(() => {
         display.setViewMode(persistedViewMode.current);
     });
-
     $effect(() => {
         persistedViewMode.current = display.viewMode;
     });
-
     const expandedBook = $derived(() => {
         if (display.expandedCard !== null) {
             return filters.filteredBooks.find((b) => b.id === display.expandedCard);
         }
     });
-
     function handleToggleCard(bookId: string | number) {
         display.toggleCard(bookId);
     }
@@ -46,6 +41,14 @@
 
     function handleUpdateFilters(newFilters: typeof filters.searchFilters) {
         filters.searchFilters = newFilters;
+    }
+
+    function handleAddGenreToFilters(genre: string) {
+        filters.addGenre(genre);
+    }
+
+    function handleAddTagToFilters(tag: string) {
+        filters.addTag(tag);
     }
 </script>
 
@@ -96,11 +99,18 @@
             viewMode={display.viewMode}
             expandedCard={display.expandedCard}
             onToggleCard={handleToggleCard}
+            onAddGenreToFilters={handleAddGenreToFilters}
+            onAddTagToFilters={handleAddTagToFilters}
         />
     {/if}
 
     {#if display.expandedCard !== null && !data.isLoading && !data.fetchError && expandedBook}
-        <ExpandedCard book={expandedBook()!} onCloseCard={handleCloseCard} />
+        <ExpandedCard
+            book={expandedBook()!}
+            onCloseCard={handleCloseCard}
+            onAddGenreToFilters={handleAddGenreToFilters}
+            onAddTagToFilters={handleAddTagToFilters}
+        />
     {/if}
 
     <GalleryBackdrop show={display.expandedCard !== null} onClick={handleCloseCard} />

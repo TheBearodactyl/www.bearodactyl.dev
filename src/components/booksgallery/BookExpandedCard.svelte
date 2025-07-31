@@ -6,9 +6,11 @@
     interface Props {
         book: Book;
         onCloseCard: () => void;
+        onAddGenreToFilters: (genre: string) => void;
+        onAddTagToFilters: (tag: string) => void;
     }
 
-    let { book, onCloseCard }: Props = $props();
+    let { book, onCloseCard, onAddGenreToFilters, onAddTagToFilters }: Props = $props();
 </script>
 
 <div class="expanded-card-overlay">
@@ -33,14 +35,22 @@
                 <h1 class="expanded-title">{book.title}</h1>
                 <p class="expanded-author">{book.author}</p>
                 <div class="book-genres">
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
                     {#each book.genres as genre (genre)}
-                        <span class="book-genre">{genre}</span>
+                        <!-- svelte-ignore a11y_click_events_have_key_events -->
+                        <span class="book-genre" onclick={() => onAddGenreToFilters(genre)}
+                            >{genre}</span
+                        >
                     {/each}
                 </div>
                 {#if book.tags}
                     <div class="book-tags">
                         {#each book.tags as tag (tag)}
-                            <span class="book-tag">{tag}</span>
+                            <!-- svelte-ignore a11y_click_events_have_key_events -->
+                            <!-- svelte-ignore a11y_no_static_element_interactions -->
+                            <span class="book-tag" onclick={() => onAddTagToFilters(tag)}
+                                >{tag}</span
+                            >
                         {/each}
                     </div>
                 {/if}

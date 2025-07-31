@@ -78,13 +78,12 @@
 
 {#if isFilterCollapsed}
     <div in:fade={{ duration: 200 }} out:fade={{ duration: 200 }}>
-        <!-- svelte-ignore attribute_illegal_colon -->
         <FilterPill
             modelValue={searchFilters.title}
             onupdate:modelValue={updateTitle}
             ontoggle-search-mode={onToggleSearchMode}
-            setViewMode={setViewMode}
-            toggleViewMode={toggleViewMode}
+            {setViewMode}
+            {toggleViewMode}
             viewMode={getViewMode()}
         />
     </div>
@@ -141,6 +140,7 @@
             ontoggle={() => onToggleDropdown("genres")}
             onclose={() => onCloseDropdown("genres")}
             ontoggle-item={(genre) => onToggleFilterItem("genres", genre)}
+            on-deselect-item={(genre) => onToggleFilterItem("genres", genre)}
         />
 
         <MultiSelectDropdown
@@ -153,6 +153,7 @@
             ontoggle={() => onToggleDropdown("tags")}
             onclose={() => onCloseDropdown("tags")}
             ontoggle-item={(tag) => onToggleFilterItem("tags", tag)}
+            on-deselect-item={(tag) => onToggleFilterItem("tags", tag)}
         />
 
         <button class="clear-filters-btn" onclick={onClearAllFilters}>

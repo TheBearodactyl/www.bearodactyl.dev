@@ -318,7 +318,7 @@
     }
 
     .book-grid {
-        column-count: 4;
+        column-count: 3;
     }
 
     .expanded-card-overlay .book-expanded {
@@ -343,13 +343,11 @@
 /* Ultra-wide screens (1400px and up) */
 @media (min-width: 1400px) {
     .book-grid {
-        column-count: 5;
-        max-width: 1600px;
+        column-count: 4;
         margin: 0 auto;
     }
 
     .book-gallery {
-        max-width: 1800px;
         margin: 0 auto;
     }
 }

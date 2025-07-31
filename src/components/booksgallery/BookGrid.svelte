@@ -9,9 +9,19 @@
         viewMode: string;
         expandedCard: string | number | null;
         onToggleCard: (bookId: string | number) => void;
+        onAddGenreToFilters: (genre: string) => void;
+        onAddTagToFilters: (tag: string) => void;
     }
 
-    let { books, isContentVisible, viewMode, expandedCard, onToggleCard }: Props = $props();
+    let {
+        books,
+        isContentVisible,
+        viewMode,
+        expandedCard,
+        onToggleCard,
+        onAddGenreToFilters,
+        onAddTagToFilters
+    }: Props = $props();
 </script>
 
 <div class="book-grid-container" class:fade-in={isContentVisible}>
@@ -24,6 +34,8 @@
                     {viewMode}
                     isExpanded={expandedCard === book.id}
                     onToggleCard={() => onToggleCard(book.id)}
+                    {onAddGenreToFilters}
+                    {onAddTagToFilters}
                 />
             {/each}
         </div>

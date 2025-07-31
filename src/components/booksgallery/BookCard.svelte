@@ -5,16 +5,25 @@
     import BaseCard from "../gallery/BaseCard.svelte";
     import WarningIcon from "../icons/WarningIcon.svelte";
     import { _ } from "svelte-i18n";
-
     interface Props {
         book: Book;
         index: number;
         isExpanded: boolean;
         viewMode: string;
         onToggleCard: () => void;
+        onAddGenreToFilters: (genre: string) => void;
+        onAddTagToFilters: (tag: string) => void;
     }
 
-    let { book, index, isExpanded, viewMode, onToggleCard }: Props = $props();
+    let {
+        book,
+        index,
+        isExpanded,
+        viewMode,
+        onToggleCard,
+        onAddGenreToFilters,
+        onAddTagToFilters
+    }: Props = $props();
 </script>
 
 <div style="--hover-border-color: {!isExpanded && book.color ? book.color : 'var(--rp-love)'};">
@@ -64,7 +73,11 @@
                         </div>
                         <div class="book-genres-list">
                             {#each book.genres.slice(0, 3) as genre (genre)}
-                                <span class="book-genre-small">{genre}</span>
+                                <span class="book-genre-small">
+                                    <button onclick={() => onAddGenreToFilters(genre)}
+                                        >{genre}</button
+                                    >
+                                </span>
                             {/each}
                         </div>
                     </div>
@@ -94,13 +107,20 @@
                         <div class="read-status">{book.status}</div>
                         <div class="book-genres">
                             {#each book.genres.slice(0, 5) as genre (genre)}
-                                <span class="book-genre">{genre}</span>
+                                <span class="book-genre">
+                                    <button onclick={() => onAddGenreToFilters(genre)}
+                                        >{genre}</button
+                                    >
+                                </span>
                             {/each}
                         </div>
                         {#if book.tags}
                             <div class="book-tags">
                                 {#each book.tags.slice(0, 5) as tag (tag)}
-                                    <span class="book-tag">{tag}</span>
+                                    <span class="book-tag">
+                                        <button onclick={() => onAddTagToFilters(tag)}>{tag}</button
+                                        >
+                                    </span>
                                 {/each}
                             </div>
                         {/if}
