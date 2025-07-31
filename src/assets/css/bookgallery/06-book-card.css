@@ -34,11 +34,11 @@
 }
 
 .book-card:hover:not(.expanded) .cover-image {
-    transform: scale(1.1);
+    transform: scale(var(--hover-scale));
 }
 
 .book-card:hover:not(.expanded) .cover-image-small {
-    transform: scale(1.05);
+    transform: scale(var(--hover-scale));
     will-change: transform;
 }
 
