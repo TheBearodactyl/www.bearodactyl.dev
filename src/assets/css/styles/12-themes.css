@@ -1,18 +1,6 @@
 :global {
     /* My Fingers Hurt :'D */
     :root[data-theme="kanagawa"] {
-        --rose-pine-bg: #1f1f28;
-        --rose-pine-wood: #16161d;
-        --rose-pine-sky: #727169;
-        --rose-pine-pine: #7e9cd8;
-        --rose-pine-foam: #7aa89f;
-        --rose-pine-love: #c34043;
-        --rose-pine-gold: #c0a36e;
-        --rose-pine-crust: #0d0c0c;
-        --rose-pine-highlight: #7aa89f;
-        --rose-pine-muted: #727169;
-        --rose-pine-text: #dcd7ba;
-        --rose-pine-iris: #957fb8;
         --rp-base: #1f1f28;
         --rp-surface: #16161d;
         --rp-overlay: #223249;
@@ -31,18 +19,6 @@
     }
 
     html[data-theme="rose-pine"] {
-        --rose-pine-bg: #191724;
-        --rose-pine-wood: #26233a;
-        --rose-pine-sky: #6e6a86;
-        --rose-pine-pine: #31748f;
-        --rose-pine-foam: #9ccfd8;
-        --rose-pine-love: #eb6f92;
-        --rose-pine-gold: #f6c177;
-        --rose-pine-crust: #232136;
-        --rose-pine-highlight: #9ccfd8;
-        --rose-pine-muted: #6e6a86;
-        --rose-pine-text: #e0def4;
-        --rose-pine-iris: #c4a7e7;
         --rp-base: #191724;
         --rp-surface: #1f1d2e;
         --rp-overlay: #26233a;
@@ -64,18 +40,6 @@
     }
 
     html[data-theme="rose-pine-moon"] {
-        --rose-pine-bg: #232136;
-        --rose-pine-wood: #2a273a;
-        --rose-pine-sky: #6e6a86;
-        --rose-pine-pine: #3e81a3;
-        --rose-pine-foam: #9ccfd8;
-        --rose-pine-love: #eb6f92;
-        --rose-pine-gold: #f6c177;
-        --rose-pine-crust: #1a1826;
-        --rose-pine-highlight: #9ccfd8;
-        --rose-pine-muted: #6e6a86;
-        --rose-pine-text: #e0def4;
-        --rose-pine-iris: #c4a7e7;
         --rp-base: #232136;
         --rp-surface: #2a273a;
         --rp-overlay: #312e43;
@@ -94,18 +58,6 @@
     }
 
     html[data-theme="rose-pine-dawn"] {
-        --rose-pine-bg: #faf4ed;
-        --rose-pine-wood: #fffaf3;
-        --rose-pine-sky: #9893a5;
-        --rose-pine-pine: #56949f;
-        --rose-pine-foam: #56949f;
-        --rose-pine-love: #b4637a;
-        --rose-pine-gold: #ea9d34;
-        --rose-pine-crust: #f2e9e1;
-        --rose-pine-highlight: #56949f;
-        --rose-pine-muted: #9893a5;
-        --rose-pine-text: #575279;
-        --rose-pine-iris: #907aa9;
         --rp-base: #faf4ed;
         --rp-surface: #fffaf3;
         --rp-overlay: #f2e9e1;
@@ -124,18 +76,6 @@
     }
 
     html[data-theme="catppuccin-mocha"] {
-        --rose-pine-bg: #1e1e2e;
-        --rose-pine-wood: #313244;
-        --rose-pine-sky: #6c7086;
-        --rose-pine-pine: #74c7ec;
-        --rose-pine-foam: #94e2d5;
-        --rose-pine-love: #f38ba8;
-        --rose-pine-gold: #f9e2af;
-        --rose-pine-crust: #11111b;
-        --rose-pine-highlight: #94e2d5;
-        --rose-pine-muted: #6c7086;
-        --rose-pine-text: #cdd6f4;
-        --rose-pine-iris: #cba6f7;
         --rp-base: #1e1e2e;
         --rp-surface: #313244;
         --rp-overlay: #45475a;
@@ -154,18 +94,6 @@
     }
 
     html[data-theme="catppuccin-macchiato"] {
-        --rose-pine-bg: #24273a;
-        --rose-pine-wood: #363a4f;
-        --rose-pine-sky: #6e738d;
-        --rose-pine-pine: #7dc4e4;
-        --rose-pine-foam: #8bd5ca;
-        --rose-pine-love: #f5bde6;
-        --rose-pine-gold: #eed49f;
-        --rose-pine-crust: #181926;
-        --rose-pine-highlight: #8bd5ca;
-        --rose-pine-muted: #6e738d;
-        --rose-pine-text: #cad3f5;
-        --rose-pine-iris: #c6a0f6;
         --rp-base: #24273a;
         --rp-surface: #363a4f;
         --rp-overlay: #494d64;
@@ -184,18 +112,6 @@
     }
 
     html[data-theme="catppuccin-frappe"] {
-        --rose-pine-bg: #303446;
-        --rose-pine-wood: #414559;
-        --rose-pine-sky: #737994;
-        --rose-pine-pine: #81c8be;
-        --rose-pine-foam: #85c1dc;
-        --rose-pine-love: #f4b8e4;
-        --rose-pine-gold: #e5c890;
-        --rose-pine-crust: #232634;
-        --rose-pine-highlight: #85c1dc;
-        --rose-pine-muted: #737994;
-        --rose-pine-text: #c6d0f5;
-        --rose-pine-iris: #ca9ee6;
         --rp-base: #303446;
         --rp-surface: #414559;
         --rp-overlay: #51576d;
@@ -214,18 +130,6 @@
     }
 
     html[data-theme="catppuccin-latte"] {
-        --rose-pine-bg: #eff1f5;
-        --rose-pine-wood: #e6e9ef;
-        --rose-pine-sky: #9ca0b0;
-        --rose-pine-pine: #179299;
-        --rose-pine-foam: #04a5e5;
-        --rose-pine-love: #e64553;
-        --rose-pine-gold: #df8e1d;
-        --rose-pine-crust: #dce0e8;
-        --rose-pine-highlight: #04a5e5;
-        --rose-pine-muted: #9ca0b0;
-        --rose-pine-text: #4c4f69;
-        --rose-pine-iris: #8839ef;
         --rp-base: #eff1f5;
         --rp-surface: #e6e9ef;
         --rp-overlay: #dce0e8;
@@ -244,18 +148,6 @@
     }
 
     html[data-theme="nord"] {
-        --rose-pine-bg: #2e3440;
-        --rose-pine-wood: #3b4252;
-        --rose-pine-sky: #616e88;
-        --rose-pine-pine: #88c0d0;
-        --rose-pine-foam: #8fbcbb;
-        --rose-pine-love: #bf616a;
-        --rose-pine-gold: #ebcb8b;
-        --rose-pine-crust: #2e3440;
-        --rose-pine-highlight: #88c0d0;
-        --rose-pine-muted: #616e88;
-        --rose-pine-text: #eceff4;
-        --rose-pine-iris: #b48ead;
         --rp-base: #2e3440;
         --rp-surface: #3b4252;
         --rp-overlay: #434c5e;
@@ -274,18 +166,6 @@
     }
 
     html[data-theme="gruvbox-dark"] {
-        --rose-pine-bg: #282828;
-        --rose-pine-wood: #3c3836;
-        --rose-pine-sky: #7c6f64;
-        --rose-pine-pine: #458588;
-        --rose-pine-foam: #689d6a;
-        --rose-pine-love: #cc241d;
-        --rose-pine-gold: #d79921;
-        --rose-pine-crust: #1d2021;
-        --rose-pine-highlight: #689d6a;
-        --rose-pine-muted: #7c6f64;
-        --rose-pine-text: #ebdbb2;
-        --rose-pine-iris: #b16286;
         --rp-base: #282828;
         --rp-surface: #3c3836;
         --rp-overlay: #504945;
@@ -304,18 +184,6 @@
     }
 
     html[data-theme="gruvbox-light"] {
-        --rose-pine-bg: #fbf1c7;
-        --rose-pine-wood: #f2e5bc;
-        --rose-pine-sky: #7c6f64;
-        --rose-pine-pine: #076678;
-        --rose-pine-foam: #427b58;
-        --rose-pine-love: #9d0006;
-        --rose-pine-gold: #b57614;
-        --rose-pine-crust: #f9f5d7;
-        --rose-pine-highlight: #427b58;
-        --rose-pine-muted: #7c6f64;
-        --rose-pine-text: #3c3836;
-        --rose-pine-iris: #8f3f71;
         --rp-base: #fbf1c7;
         --rp-surface: #f2e5bc;
         --rp-overlay: #ebdbb2;

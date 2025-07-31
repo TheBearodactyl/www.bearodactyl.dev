@@ -10,7 +10,7 @@
 ::-webkit-scrollbar-thumb {
     background-color: var(--rp-foam);
     border-radius: 8px;
-    border: 2px solid var(--rose-pine-wood);
+    border: 2px solid var(--rp-gold);
 }
 
 ::-webkit-scrollbar-button {
@@ -25,7 +25,7 @@
 
 * {
     scrollbar-width: none;
-    scrollbar-color: var(--rose-pine-foam) var(--rose-pine-crust);
+    scrollbar-color: var(--rp-foam) var(--rp-overlay);
 }
 
 *,
