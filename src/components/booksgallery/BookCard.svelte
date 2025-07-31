@@ -46,7 +46,7 @@
                     </div>
                     <div class="book-details">
                         <div class="book-primary-info">
-                            <h3 class="book-title-list">{book.title}</h3>
+                            <h class="book-title-list">{book.title}</h>
                             <p class="book-author-list">{book.author}</p>
                         </div>
                         <div class="book-meta">
@@ -89,7 +89,7 @@
                         {/if}
                     </div>
                     <div class="book-info">
-                        <h3 class="book-title">{book.title}</h3>
+                        <h class="book-title">{book.title}</h>
                         <p class="book-author">{book.author}</p>
                         <div class="read-status">{book.status}</div>
                         <div class="book-genres">
