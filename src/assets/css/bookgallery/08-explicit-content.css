@@ -114,7 +114,7 @@
     color: var(--rp-love);
     text-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
     position: relative;
-    z-index: 16;
+    z-index: 200;
 }
 
 .explicit-label-small {
@@ -147,7 +147,7 @@
 
 .book-card.list-view.expanded.explicit-content .book-cover-small::before,
 .book-card.list-view:hover.explicit-content .book-cover-small::before {
-    opacity: 0;
+    opacity: 1;
     backdrop-filter: blur(0);
     -webkit-backdrop-filter: blur(0);
 }
@@ -155,5 +155,5 @@
 .book-card.expanded .explicit-icon-small,
 .book-card.list-view:hover .explicit-icon-small,
 .book-card:hover .explicit-icon-small {
-    opacity: 0;
+    opacity: 1;
 }

@@ -1,7 +1,7 @@
 <script lang="ts">
     interface Props {
         modelValue: string;
-        "onupdate:modelValue"?: (value: string) => void;
+        "onupdate-modelValue"?: (value: string) => void;
         "ontoggle-search-mode"?: () => void;
         viewMode: "masonry" | "list";
         setViewMode: (mode: "masonry" | "list") => void;
@@ -10,7 +10,7 @@
 
     let {
         modelValue,
-        "onupdate:modelValue": onUpdateModelValue,
+        "onupdate-modelValue": onUpdateModelValue,
         "ontoggle-search-mode": onToggleSearchMode,
         viewMode,
         setViewMode,

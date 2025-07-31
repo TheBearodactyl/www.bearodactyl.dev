@@ -80,7 +80,7 @@
     <div in:fade={{ duration: 200 }} out:fade={{ duration: 200 }}>
         <FilterPill
             modelValue={searchFilters.title}
-            onupdate:modelValue={updateTitle}
+            onupdate-modelValue={updateTitle}
             ontoggle-search-mode={onToggleSearchMode}
             {setViewMode}
             {toggleViewMode}
