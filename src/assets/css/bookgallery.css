@@ -1,7 +1,6 @@
 /* ========================================================================
    Main Stylesheet
    ======================================================================== */
-
 /* 1. Variables and foundations */
 @import url("/src/assets/css/bookgallery/01-variables.css");
 @import url("/src/assets/css/bookgallery/02-base.css");
