@@ -6,6 +6,7 @@
     import LangSwitcher from "../components/LangSwitcher.svelte";
     import HomeIcon from "../components/icons/HomeIcon.svelte";
     import MenuIcon from "../components/icons/MenuIcon.svelte";
+    import type { RouteItem } from "$lib/types";
 
     const themes = [
         "kanagawa",
@@ -33,7 +34,7 @@
         "tokyo-night"
     ];
 
-    const routes = [
+    const routes: RouteItem[] = [
         { path: "/", name: "Home" },
         {
             path: "/lists",
@@ -167,7 +168,11 @@
                             class:current={isCurrentRoute(route.path)}
                             class:has-children={route.children}
                             style="animation-delay: {index * 0.05}s"
-                            onclick={() => navigateToRoute(route.path)}
+                            onclick={() => {
+                                if (route.children?.length === 0) {
+                                    navigateToRoute(route.path);
+                                }
+                            }}
                             onmouseenter={() => route.children && handleRouteHover(route.path)}
                             onmouseleave={() => route.children && handleRouteLeave(route.path)}
                         >
@@ -189,7 +194,9 @@
                                         class="nested-route-item"
                                         class:current={isCurrentRoute(childRoute.path)}
                                         style="animation-delay: {childIndex * 0.03}s"
-                                        onclick={() => navigateToRoute(childRoute.path)}
+                                        onclick={() => {
+                                            navigateToRoute(childRoute.path);
+                                        }}
                                     >
                                         {childRoute.name}
                                     </button>
