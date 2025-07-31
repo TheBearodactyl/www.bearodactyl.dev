@@ -3,7 +3,6 @@
     import NavigationGallery from "../components/NavigationGallery.svelte";
     import { _ } from "svelte-i18n";
     import { onMount } from "svelte";
-    import { error } from "@sveltejs/kit";
     import Seo from "../components/SEO.svelte";
 
     let isMobile = false;
