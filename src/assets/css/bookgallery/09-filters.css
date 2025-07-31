@@ -1,31 +1,33 @@
-.dropdown,
-.dropdown-arrow {
-    position: relative;
-    user-select: none;
-}
+/* ========================================================================
+   Filter System
+   ======================================================================== */
+
+/* Filter Pill (Main Search Bar) */
 .filter-pill {
     display: flex;
     align-items: center;
     background-color: var(--rp-overlay);
-    border-radius: 50px;
+    border-radius: var(--border-radius-pill);
+    border: 2px solid var(--rp-highlight-low);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
     padding: 0.7rem 1.4rem;
     max-width: 600px;
     width: calc(100% - 2rem);
     margin: 2.5rem auto 3rem;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
-    border: 2px solid var(--rp-highlight-low);
-    transition: all var(--transition-speed) var(--transition-ease);
-    animation: fadeInDown 0.8s var(--transition-ease) 0.3s forwards;
-    opacity: 0;
-    gap: 1rem;
+    gap: var(--spacing-md);
     flex-wrap: nowrap;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
+    transition: all var(--transition-speed) var(--transition-ease);
+    animation: fadeInDown 0.8s var(--transition-ease) 0.3s forwards;
+    opacity: 0;
 }
+
 .filter-pill::-webkit-scrollbar {
     display: none;
 }
+
 .filter-pill:focus-within {
     box-shadow:
         0 0 0 4px var(--rp-pine),
@@ -33,61 +35,118 @@
     border-color: var(--rp-pine);
     transform: translateY(-2px);
 }
+
+/* Search Input */
 .pill-search-input {
     flex: 1;
-    background: 0 0;
+    background: none;
     border: none;
-    outline: 0;
+    outline: none;
     font-size: 1.2rem;
     color: var(--rp-text);
     padding: 0;
     letter-spacing: 0.01em;
     min-width: 0;
 }
-.filter-bar,
-.pill-filter-btn {
-    background-color: var(--rp-surface);
-    display: flex;
-}
+
 .pill-search-input::placeholder {
     color: var(--rp-muted);
     opacity: 0.9;
 }
+
+/* Filter Toggle Button */
 .pill-filter-btn {
+    background-color: var(--rp-surface);
     border: none;
     border-radius: 50%;
     width: 2.5rem;
     height: 2.5rem;
     margin: 0;
+    display: flex;
     justify-content: center;
     align-items: center;
     color: var(--rp-iris);
     font-weight: 700;
     font-size: 1.5rem;
-    transition: all 0.25s var(--transition-ease);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
     flex-shrink: 0;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.25s var(--transition-ease);
 }
+
 .pill-filter-btn:hover {
     background-color: var(--rp-highlight-med);
     color: var(--rp-foam);
     transform: rotate(15deg) scale(1.1);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
 }
+
+/* ========================================================================
+   Advanced Filter Bar
+   ======================================================================== */
+
 .filter-bar {
+    display: flex;
     flex-direction: column;
     gap: 1.2rem;
-    padding: 2rem;
-    border-radius: 20px;
-    margin: 1.5rem auto;
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius-xl);
+    margin: var(--spacing-lg) auto;
+    max-width: 850px;
+    background-color: var(--rp-surface);
     color: var(--rp-text);
     border: 2px solid var(--rp-highlight-low);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    max-width: 850px;
 }
+
+.filter-bar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.8rem;
+}
+
+.filter-heading {
+    color: var(--rp-iris);
+    margin: 0;
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+}
+
+.collapse-btn {
+    background: none;
+    border: none;
+    color: var(--rp-love);
+    font-size: var(--spacing-xl);
+    cursor: pointer;
+    transition:
+        transform 0.3s var(--transition-ease),
+        color 0.3s var(--transition-ease);
+}
+
+.collapse-btn:hover {
+    transform: rotate(180deg) scale(1.15);
+    color: var(--rp-rose);
+}
+
+.filter-bar-header .collapse-btn {
+    background-color: transparent;
+    border: none;
+    font-size: var(--spacing-xl);
+    cursor: pointer;
+    color: var(--rp-text);
+    padding: 0 10px;
+}
+
+.filter-bar-header .collapse-btn:hover {
+    background-color: transparent !important;
+    color: var(--rp-rose);
+}
+
+/* Filter Inputs */
 .filter-bar input,
 .filter-bar select {
-    padding: 0.8rem 1rem;
+    padding: 0.8rem var(--spacing-md);
     background-color: var(--rp-base);
     border: 1px solid var(--rp-highlight-med);
     border-radius: 10px;
@@ -97,86 +156,51 @@
         border-color 0.2s,
         box-shadow 0.2s;
 }
+
 .filter-bar input::placeholder {
     color: var(--rp-muted);
 }
+
 .filter-bar input:focus,
 .filter-bar select:focus {
     border-color: var(--rp-iris);
     box-shadow:
         0 0 0 4px var(--rp-iris),
         0 0 0 6px rgba(196, 167, 231, 0.4);
-    outline: 0;
+    outline: none;
 }
-.filter-bar-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.8rem;
-}
-.filter-bar-header .collapse-btn {
-    background-color: transparent;
-    border: none;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--rp-text);
-    padding: 0 10px;
-}
-.filter-bar-header .collapse-btn:hover {
-    background-color: transparent !important;
-    color: var(--rp-rose);
-}
-.filter-heading {
-    color: var(--rp-iris);
-    margin: 0;
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: -0.02em;
-}
-.collapse-btn {
-    background: 0 0;
-    border: none;
-    color: var(--rp-love);
-    font-size: 2rem;
-    cursor: pointer;
-    transition:
-        transform 0.3s var(--transition-ease),
-        color 0.3s var(--transition-ease);
-}
-.clear-filters-btn,
-.dropdown {
-    color: var(--rp-text);
-    cursor: pointer;
-}
-.collapse-btn:hover {
-    transform: rotate(180deg) scale(1.15);
-    color: var(--rp-rose);
-}
+
+/* Clear Filters Button */
 .clear-filters-btn {
     align-self: flex-end;
     background-color: var(--rp-love);
     border: none;
     padding: 0.8rem 1.4rem;
-    border-radius: 12px;
+    border-radius: var(--border-radius-md);
+    color: var(--rp-text);
     font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
     transition:
         background 0.25s var(--transition-ease),
         transform 0.25s var(--transition-ease),
         box-shadow 0.25s var(--transition-ease);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
-.dropdown,
-.dropdown-list {
-    background-color: var(--rp-overlay);
-}
+
 .clear-filters-btn:hover {
     background-color: var(--rp-gold);
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
 }
+
+/* ========================================================================
+   Multi-Select Dropdowns
+   ======================================================================== */
+
 .multi-select {
     margin: 1.2rem 0;
 }
+
 .multi-select label {
     display: block;
     margin-bottom: 0.6rem;
@@ -185,27 +209,36 @@
     font-size: 1.2rem;
     letter-spacing: 0.02em;
 }
+
 .dropdown {
+    position: relative;
+    background-color: var(--rp-overlay);
     border: 1px solid var(--rp-highlight-med);
-    border-radius: 12px;
+    border-radius: var(--border-radius-md);
     padding: 0.7rem 1.2rem;
-    outline: 0;
+    color: var(--rp-text);
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     transition:
         background-color 0.25s var(--transition-ease),
         border-color 0.25s var(--transition-ease),
         box-shadow 0.25s var(--transition-ease);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
+
 .dropdown:hover {
     background-color: var(--rp-highlight-med);
     border-color: var(--rp-iris);
 }
+
 .dropdown:focus {
     border-color: var(--rp-pine);
     box-shadow:
         0 0 0 4px var(--rp-pine),
         0 0 0 6px rgba(49, 116, 143, 0.4);
 }
+
 .dropdown-selected {
     display: flex;
     justify-content: space-between;
@@ -214,23 +247,30 @@
     font-weight: 600;
     font-size: 1.1rem;
 }
+
 .placeholder {
     color: var(--rp-muted);
     font-style: italic;
 }
+
 .selected-items {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 90%;
 }
+
 .dropdown-arrow {
+    position: relative;
     font-size: 1.2rem;
     margin-left: 0.8rem;
     color: var(--rp-foam);
     transition: transform 0.2s;
     z-index: 1;
+    user-select: none;
 }
+
+/* Dropdown List */
 .dropdown-list {
     position: absolute;
     top: calc(100% + 0.6rem);
@@ -238,25 +278,23 @@
     right: 0;
     max-height: 300px;
     overflow-y: auto;
+    background-color: var(--rp-overlay);
     border: 1px solid var(--rp-highlight-med);
-    border-radius: 12px;
+    border-radius: var(--border-radius-md);
     z-index: 101;
     box-shadow: 0 8px 25px rgba(25, 23, 36, 0.8);
-    padding: 0.5rem 0;
+    padding: var(--spacing-sm) 0;
     list-style: none;
     margin: 0;
     animation: slideInFromTop 0.3s var(--transition-ease) forwards;
     transform-origin: top;
     opacity: 0;
 }
-.view-btn,
-.view-toggle {
-    position: relative;
-    display: flex;
-}
+
 .dropdown-list.closing {
     animation: slideOutToTop 0.3s var(--transition-ease) forwards;
 }
+
 .dropdown-list li {
     padding: 0.7rem 1.4rem;
     cursor: pointer;
@@ -268,14 +306,21 @@
     user-select: none;
     transition: background-color 0.2s;
 }
+
 .dropdown-list li:hover {
     background-color: var(--rp-highlight-low);
 }
+
 .dropdown-list li.selected {
     background-color: var(--rp-highlight-med);
     color: var(--rp-text);
     font-weight: 700;
 }
+
+/* ========================================================================
+   Custom Checkboxes
+   ======================================================================== */
+
 input[type="checkbox"] {
     -webkit-appearance: none;
     appearance: none;
@@ -291,6 +336,7 @@ input[type="checkbox"] {
         background-color 0.25s var(--transition-ease),
         border-color 0.25s var(--transition-ease);
 }
+
 input[type="checkbox"]::before {
     content: "";
     width: 0.8em;
@@ -301,15 +347,24 @@ input[type="checkbox"]::before {
     clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
     background-color: var(--rp-rose);
 }
+
 input[type="checkbox"]:checked {
     background-color: var(--rp-pine);
     border-color: var(--rp-pine);
     animation: popIn 0.3s var(--transition-ease);
 }
+
 input[type="checkbox"]:checked::before {
     transform: scale(1);
 }
+
+/* ========================================================================
+   View Toggle
+   ======================================================================== */
+
 .view-toggle {
+    position: relative;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 0;
@@ -324,6 +379,7 @@ input[type="checkbox"]:checked::before {
     margin: 0;
     height: 2.75rem;
 }
+
 .view-toggle::before {
     content: "";
     position: absolute;
@@ -331,44 +387,52 @@ input[type="checkbox"]:checked::before {
     left: 6px;
     bottom: 6px;
     width: calc(50% - 6px);
-    background: linear-gradient(135deg, var(--rp-iris) 0, var(--rp-foam) 100%);
+    background: linear-gradient(135deg, var(--rp-iris) 0%, var(--rp-foam) 100%);
     border-radius: 99px;
     transition: transform 0.4s var(--transition-ease);
     z-index: 1;
     box-shadow: 0 2px 8px rgba(196, 167, 231, 0.3);
 }
+
 .view-toggle[data-active="list"]::before {
     transform: translateX(100%);
 }
+
 .view-btn {
+    position: relative;
     z-index: 2;
     padding: 0.3rem 0.6rem;
     border: none;
-    background: 0 0;
+    background: none;
     color: var(--rp-text);
-    border-radius: 8px;
+    border-radius: var(--border-radius-sm);
     font-weight: 600;
     font-size: 0.9rem;
-    transition: all 0.3s var(--transition-ease);
     cursor: pointer;
+    display: flex;
     align-items: center;
     gap: 0.4rem;
     min-width: 60px;
     justify-content: center;
     letter-spacing: 0.02em;
+    transition: all 0.3s var(--transition-ease);
 }
+
 .view-btn:hover {
     color: var(--rp-text);
     transform: translateY(-1px);
 }
+
 .view-btn.active {
     color: var(--rp-base);
     text-shadow: none;
 }
+
 .view-btn-icon {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     transition: transform 0.3s;
 }
+
 .view-btn:hover .view-btn-icon {
     transform: scale(1.1);
 }

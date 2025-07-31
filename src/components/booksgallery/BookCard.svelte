@@ -29,7 +29,7 @@
         {#if !isExpanded}
             {#if viewMode === "list"}
                 <div class="book-list-item">
-                    <div class="book-cover-small">
+                    <div class="book-cover-small" class:explicit-content={book.explicit}>
                         <img
                             use:lazyLoad
                             data-src={book.coverImage}

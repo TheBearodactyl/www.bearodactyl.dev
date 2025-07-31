@@ -96,5 +96,7 @@
 </div>
 
 <style>
-    @import url("/src/assets/css/bookgallery.css");
+    :global {
+        @import url("/src/assets/css/bookgallery.css");
+    }
 </style>
