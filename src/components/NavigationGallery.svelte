@@ -80,7 +80,7 @@
 
 <style lang="scss">
     :global {
-        @import "/src/assets/css/bookgallery.css";
+        @import "/src/assets/css/main.css";
 
         .navigation-gallery-wrapper {
             padding: 2rem;

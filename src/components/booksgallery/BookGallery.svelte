@@ -118,6 +118,6 @@
 
 <style>
     :global {
-        @import url("/src/assets/css/bookgallery.css");
+        @import url("/src/assets/css/main.css");
     }
 </style>

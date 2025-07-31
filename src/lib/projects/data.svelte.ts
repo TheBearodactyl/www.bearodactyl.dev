@@ -1,29 +1,9 @@
 import { browser } from '$app/environment';
 import type { Project } from '$lib/types';
+import { cacheCoverImage } from '$lib/utils/cacheCoverImage';
 import { getGithubRelease } from '$lib/utils/getGitHubRelease';
 
-const IMAGE_CACHE = 'project-cover-cache';
-
-async function cacheCoverImage(url: string) {
-	try {
-		const cache = await caches.open(IMAGE_CACHE);
-		const res = await cache.match(url);
-		if (res) {
-			const blob = await res.blob();
-			return URL.createObjectURL(blob);
-		}
-		const resp = await fetch(url, { mode: 'cors' });
-		if (resp.ok) {
-			await cache.put(url, resp.clone());
-			const blob = await resp.blob();
-			return URL.createObjectURL(blob);
-		}
-		console.warn(`Failed to fetch cover image: ${url}`);
-		return url;
-	} catch {
-		return url;
-	}
-}
+const IMAGE_CACHE_NAME = 'project-cover-cache';
 
 export function useData() {
 	let projects = $state<Project[]>([]);
@@ -46,7 +26,7 @@ export function useData() {
 			let loaded = 0;
 			for (const p of data) {
 				if (p.coverImage) {
-					p.coverImage = await cacheCoverImage(p.coverImage);
+					p.coverImage = await cacheCoverImage(IMAGE_CACHE_NAME, p.coverImage);
 					loaded++;
 					downloadProgress = 50 + Math.round((loaded / withImages.length) * 50);
 				}

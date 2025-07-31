@@ -194,8 +194,9 @@
     {/if}
 </div>
 
+<!-- svelte-ignore css_unused_selector -->
 <style>
-    @import url("/src/assets/css/bookgallery.css");
+    @import url("/src/assets/css/main.css");
 
     .gallery-wrapper {
         background-color: var(--rp-base);

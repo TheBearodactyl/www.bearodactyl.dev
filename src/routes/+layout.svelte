@@ -169,7 +169,7 @@
                             class:has-children={route.children}
                             style="animation-delay: {index * 0.05}s"
                             onclick={() => {
-                                if (route.children?.length === 0) {
+                                if (route.children?.length === 0 || route.path === "/") {
                                     navigateToRoute(route.path);
                                 }
                             }}
@@ -234,5 +234,6 @@
 
 <!-- svelte-ignore css_unused_selector -->
 <style>
-    @import url("/src/assets/css/layout.css");
+    @import url("/src/assets/css/styles/12-themes.css");
+    @import url("/src/assets/css/styles/13-quick-menu.css");
 </style>
