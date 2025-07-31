@@ -380,7 +380,6 @@ input[type="checkbox"]:checked::before {
     overflow: hidden;
     flex-shrink: 0;
     height: 2.75rem;
-    margin-top: 1.4rem;
 }
 
 .view-toggle::before {

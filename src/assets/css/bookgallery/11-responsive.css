@@ -237,21 +237,6 @@
         padding: 1.8rem var(--spacing-xl);
     }
 
-    .view-btn {
-        padding: 0.6rem var(--spacing-md);
-        font-size: var(--font-size-sm);
-    }
-
-    .view-toggle {
-        margin-bottom: var(--spacing-lg);
-        width: 100%;
-        max-width: 280px;
-    }
-
-    .view-btn {
-        min-width: 80px;
-    }
-
     /* List view adjustments */
     .book-title-list,
     .view-btn-icon {
