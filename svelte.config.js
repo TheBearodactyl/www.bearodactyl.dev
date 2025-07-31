@@ -6,6 +6,13 @@ const config = {
   // Consult https://svelte.dev/docs/kit/integrations
   // for more information about preprocessors
   preprocess: vitePreprocess(),
+  onwarn: (warning, handler) => {
+    if (warning.code.startsWith("css_unused")) {
+      return;
+    }
+
+    handler(warning);
+  },
   kit: {
     adapter: adapter({
       fallback: "404.html"
