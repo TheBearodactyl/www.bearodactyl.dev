@@ -59,7 +59,7 @@ select:focus {
     box-shadow: 0 0 0 2px var(--rp-gold);
 }
 
-:global(body) {
+body {
     margin: 0;
     font-family: "Inter", sans-serif;
     background-color: var(--rp-base);
@@ -73,14 +73,12 @@ select:focus {
     -moz-osx-font-smoothing: grayscale;
 }
 
-:global(
-    .quick-buttons button,
-    .theme-switcher select,
-    .theme-switcher button,
-    .lang-switcher-aligned select,
-    .lang-switcher-aligned button,
-    .routes-menu-button
-) {
+.quick-buttons button,
+.theme-switcher select,
+.theme-switcher button,
+.lang-switcher-aligned select,
+.lang-switcher-aligned button,
+.routes-menu-button {
     background-color: var(--rp-surface);
     color: var(--rp-text);
     border: 2px solid var(--rp-highlight-low);
@@ -116,12 +114,10 @@ select:focus {
     display: none;
 }
 
-:global(
-		.quick-buttons button:hover,
-		.theme-switcher select:hover,
-		.lang-switcher-aligned select:hover,
-		.routes-menu-button:hover /* Combined hover state */
-	) {
+.quick-buttons button:hover,
+.theme-switcher select:hover,
+.lang-switcher-aligned select:hover,
+.routes-menu-button:hover {
     background-color: var(--rp-overlay);
     border-color: var(--rp-iris);
     color: var(--rp-iris); /* Added color change on hover */
@@ -135,14 +131,14 @@ select:focus {
     scale: 100%;
 }
 
-:global(.home_button svg) {
+.home_button svg {
     width: 1.25em;
     height: 1.25em;
     stroke: var(--rp-text);
     transition: stroke 0.3s ease; /* Transition for SVG stroke */
 }
 
-:global(.home_button:hover svg) {
+.home_button:hover svg {
     stroke: var(--rp-gold); /* Changed to gold for more contrast */
 }
 
@@ -201,7 +197,7 @@ select:focus {
     width: auto;
 }
 
-:global(.menu-toggle .menu-icon) {
+.menu-toggle .menu-icon {
     width: 16px;
     height: 16px;
     stroke: var(--rp-text); /* Ensure icon color matches text */
@@ -215,7 +211,7 @@ select:focus {
     transform: translateY(-2px) scale(1.05); /* Increased scale on hover */
 }
 
-.menu-toggle:hover :global(.menu-icon) {
+.menu-toggle:hover .menu-icon {
     stroke: var(--rp-base); /* Icon color changes on hover for contrast */
 }
 
@@ -404,14 +400,12 @@ select:focus {
 
 /* --- Consolidated Media Queries --- */
 @media (max-width: 920px) {
-    :global(
-        .quick-buttons button,
-        .theme-switcher select,
-        .theme-switcher button,
-        .lang-switcher-aligned select,
-        .lang-switcher-aligned button,
-        .routes-menu-button
-    ) {
+    .quick-buttons button,
+    .theme-switcher select,
+    .theme-switcher button,
+    .lang-switcher-aligned select,
+    .lang-switcher-aligned button,
+    .routes-menu-button {
         align-items: center;
     }
 }
@@ -471,7 +465,7 @@ select:focus {
         padding: 0.6rem 0.8rem;
     }
 
-    :global(.home_button svg) {
+    .home_button svg {
         width: 1em;
         height: 1em;
     }
@@ -480,7 +474,7 @@ select:focus {
         padding: 0.4rem;
     }
 
-    :global(.menu-toggle .menu-icon) {
+    .menu-toggle .menu-icon {
         width: 14px;
         height: 14px;
     }
