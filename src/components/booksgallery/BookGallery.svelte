@@ -8,6 +8,7 @@
     import { useDisplay } from "$lib/books/display.svelte";
     import { useFilters } from "$lib/books/filters.svelte";
     import BookGrid from "./BookGrid.svelte";
+    import { PersistedState } from "runed";
 
     const data = useData();
     const display = useDisplay();
@@ -18,6 +19,16 @@
     function toggleSearchMode() {
         isFilterCollapsed = !isFilterCollapsed;
     }
+
+    const persistedViewMode = new PersistedState<"masonry" | "list">("viewMode", "masonry");
+
+    $effect(() => {
+        display.setViewMode(persistedViewMode.current);
+    });
+
+    $effect(() => {
+        persistedViewMode.current = display.viewMode;
+    });
 
     const expandedBook = $derived(() => {
         if (display.expandedCard !== null) {
