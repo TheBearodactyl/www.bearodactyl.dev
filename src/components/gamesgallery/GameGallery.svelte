@@ -39,7 +39,7 @@
 </script>
 
 <div class="book-gallery" class:idle-background={display.isIdle}>
-    <h1 class="gallery-title">{$_("games-list")}</h1>
+    <h1 class="gallery-title">{$_("titles.games")}</h1>
 
     <GameFilters
         searchFilters={filters.searchFilters}
@@ -74,7 +74,7 @@
 
     {#if data.fetchError}
         <div class="error-message">
-            {$_("error-loading-list-fetcherror", { values: { err: data.fetchError } })}
+            {$_("indicators.list-load-error", { values: { err: data.fetchError } })}
         </div>
     {/if}
 

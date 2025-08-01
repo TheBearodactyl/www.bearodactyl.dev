@@ -57,7 +57,7 @@
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
 <img
     src={imageSrc}
-    alt={$_("click-to-play-audio")}
+    alt={$_("indicators.click-to-play")}
     class="clickable"
     on:click={handleClick}
 />

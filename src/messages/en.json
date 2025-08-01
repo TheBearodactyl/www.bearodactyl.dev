@@ -1,48 +1,95 @@
 {
-	"index": {
-		"title": "The Motherfucking Bearodactyl",
-		"desc": "this is my website, check out some stuff i made (it's a bit buggy)"
-	},
-	"gallery": {
-		"explicit": "Contains Explicit Content",
-		"expanded": {
-			"description": "Description",
-			"my-thoughts": "My Thoughts",
-			"links": "Links"
-		},
-		"filters": {
-			"search": "Search...",
-			"any-rating": "Any Rating",
-			"any-status": "Any Status"
+    "index": {
+        "title": "The Motherfucking Bearodactyl",
+        "desc": "this is my website, check out some stuff i made (it's a bit buggy)",
+		"footer-lines": {
+			"line-one": "All icons made by me in Inkscape",
+			"line-two": "All code on this website is within the public domain",
+			"line-three": "See ",
+			"line-four": "Rabies before Babies"
 		}
-	},
-	"props-book-rating-5": "{rating}/5",
-	"rating": "{rating}+",
-	"genres": "Genres",
-	"select-genres": "Select Genres",
-	"tags": "Tags",
-	"select-tags": "Select Tags",
-	"clear-filters": "Clear Filters",
-	"title": "Title",
-	"search-title": "Search title...",
-	"search-author": "Search author...",
-	"read-watch-list": "Read/Watch List",
-	"loading-downloadprogress": "Loading... {progress}%",
-	"error-loading-list-fetcherror": "Error loading list: {err}",
-	"no-results": "No Results",
-	"label": "{label}:",
-	"item-count": "({count})",
-	"cover-of-props-game-title": "Cover of {title}",
-	"props-game-rating-5": "{rating}/5",
-	"cover-of-props-game-title-0": "Cover of {title}",
-	"contains-explicit-content": "Contains Explicit Content",
-	"props-game-rating-5-0": "{rating}/5",
-	"search-developer": "Search developer...",
-	"games-list": "Games List",
-	"loading-games-downloadprogress": "Loading Games: {progress}%",
-	"error-loading-games-fetcherror": "Error Loading Games: {err}",
-	"no-results-0": "No Results...",
-	"go-to-home": "Go to Home",
-	"click-to-play-audio": "Click to play audio",
-	"cover-for-item-title": "Cover for {title}"
+    },
+    "gallery": {
+        "explicit": "Contains Explicit Content",
+        "expanded": {
+            "description": "Description",
+            "my-thoughts": "My Thoughts",
+            "links": "Links",
+            "genres": "Genres",
+            "tags": "Tags"
+        },
+        "filters": {
+            "search": "Search...",
+            "any-rating": "Any Rating",
+            "any-status": "Any Status",
+            "title": "Title",
+            "search-title": "Search title...",
+            "search-author": "Search author...",
+            "search-developer": "Search developer...",
+            "genres": "Genres",
+            "tags": "Tags",
+            "status": {
+                "book": {
+                    "reading": "Reading",
+                    "finished": "Finished",
+                    "plan-to-read": "Plan to Read",
+                    "dropped": "Dropped"
+                },
+                "game": {
+                    "playing": "Playing",
+                    "finished": "Finished",
+                    "plan-to-play": "Plan to Play",
+                    "dropped": "Dropped"
+                }
+            },
+            "select-genres": "Select Genres",
+            "select-tags": "Select Tags",
+            "no-genres": "No genres available",
+            "no-tags": "No tags available",
+            "clear": "Clear Filters"
+        },
+        "book": {
+            "cover-alt": "Cover art of {title}",
+            "rating-out-of-five": "{rating}/5",
+            "rating": "{rating}+"
+        },
+        "review": {
+            "chapter-number": "Chapter {chapter}",
+            "rating": "Rating:",
+            "my-thoughts": "Thoughts:\n{thoughts}"
+        },
+        "project": {
+            "view-source": "View Source",
+            "install-command": "{mode} Install Command",
+            "no-install-command": "No install command available",
+            "modes": {
+                "hide": "Hide",
+                "show": "Show"
+            }
+        }
+    },
+    "titles": {
+        "read-watch": "Read/Watch List",
+        "games": "Games List",
+        "op-reviews": "My One Piece Chapter Reviews",
+        "projects": "My Projects"
+    },
+    "indicators": {
+        "loading": "Loading... {progress}%",
+        "list-load-error": "[ERROR] - Couldn't load list: {err}",
+        "no-results": "No Results",
+        "click-to-play": "Click to play audio"
+    },
+    "license-lines": {
+        "line-one": "all code using this license is released to the public domain",
+        "line-two": "you wanna use it to make money? go ahead",
+        "line-three": "you wanna plagiarize it? sure",
+        "line-four": "you wanna make a porno using my code? go for it bud i don't give a shit",
+        "footer": "(i love using unnecessary animations :3)"
+    },
+    "quick-menu": {
+        "routes": "routes",
+        "nav-to-page": "Navigate to page",
+        "toggle-menu": "Toggle menu"
+    }
 }

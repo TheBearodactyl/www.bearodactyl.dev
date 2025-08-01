@@ -4,9 +4,9 @@
     import { goto } from "$app/navigation";
     import { derived } from "svelte/store";
     import LangSwitcher from "../components/LangSwitcher.svelte";
-    import HomeIcon from "../components/icons/HomeIcon.svelte";
     import MenuIcon from "../components/icons/MenuIcon.svelte";
     import type { RouteItem } from "$lib/types";
+    import { _ } from "svelte-i18n";
 
     const themes = [
         "kanagawa",
@@ -153,11 +153,11 @@
         <div class="routes-menu-container">
             <button
                 class="routes-menu-button"
-                aria-label="Navigate to page"
-                title="Navigate to page"
+                aria-label={$_("quick-menu.nav-to-page")}
+                title={$_("quick-menu.nav-to-page")}
                 onclick={toggleRoutesMenu}
             >
-                routes
+                {$_("quick-menu.routes")}
             </button>
 
             <div class="routes-dropdown" class:open={isRoutesMenuOpen}>
@@ -223,7 +223,7 @@
     <button
         class="menu-toggle"
         class:active={isMenuOpen}
-        aria-label="Toggle menu"
+        aria-label={$_("quick-menu.toggle-menu")}
         onclick={toggleMenu}
     >
         <MenuIcon />

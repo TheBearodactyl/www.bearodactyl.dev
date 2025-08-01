@@ -3,6 +3,7 @@
     import gsap from "gsap";
 
     let contentContainer: HTMLElement;
+    let { children } = $props();
 
     async function applyAnimation() {
         const preElement = contentContainer?.querySelector("pre");
@@ -82,7 +83,7 @@
 
 <div class="sigma-text-wrapper">
     <div bind:this={contentContainer} class="sigma-text-content-host">
-        <slot></slot>
+        {@render children?.()}
     </div>
 </div>
 

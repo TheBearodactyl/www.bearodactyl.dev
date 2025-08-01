@@ -41,7 +41,7 @@
         </div>
     {:else}
         <div class="no-results">
-            {$_("no-results")}
+            {$_("indicators.no-results")}
         </div>
     {/if}
 </div>

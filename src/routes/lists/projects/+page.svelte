@@ -2,6 +2,7 @@
     import { useData } from "$lib/projects/data.svelte";
     import { useFilters } from "$lib/projects/filters.svelte";
     import { fade } from "svelte/transition";
+    import { _ } from "svelte-i18n";
     import Seo from "../../../components/SEO.svelte";
 
     const data = useData();
@@ -24,13 +25,9 @@
     const toggleInstallCmd = (name: string) => {
         expandedCards[name] = !expandedCards[name];
     };
-
-    $effect(() => {
-        document.title = "Projects List";
-    });
 </script>
 
-<Seo 
+<Seo
     title="The Motherfucking Projects List"
     desc="a list of projects i work on"
     image="https://images.genius.com/1ded894752c2c0429ccd9affdcffff8b.500x500x1.png"
@@ -39,21 +36,33 @@
 
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <div class="gallery-wrapper">
-    <h1 class="title">My Projects</h1>
+    <h1 class="title">{$_("titles.projects")}</h1>
 
     {#if data.isLoading()}
-        <div class="loading">Loading projects... {data.downloadProgress()}%</div>
+        <div class="loading">
+            {$_("indicators.loading", {
+                values: {
+                    progress: data.downloadProgress()
+                }
+            })}
+        </div>
     {/if}
 
     {#if data.fetchError()}
-        <div class="error">Error: {data.fetchError()}</div>
+        <div class="error">
+            {$_("indicators.list-load-error", {
+                values: {
+                    err: data.fetchError()
+                }
+            })}
+        </div>
     {/if}
 
     <div class="filters">
         <input
             bind:value={filters.searchFilters.name}
             type="text"
-            placeholder="Search projects..."
+            placeholder={$_("gallery.filters.search")}
             class="search-input"
         />
 
@@ -70,7 +79,7 @@
             >
                 <div class="dropdown-content">
                     {#if filters.searchFilters.tags.length === 0}
-                        <span class="placeholder">Select tags...</span>
+                        <span class="placeholder">{$_("gallery.filters.select-tags")}</span>
                     {:else}
                         <div class="selected-tags">
                             <div class="tags-wrapper">
@@ -108,7 +117,7 @@
                                 </li>
                             {/each}
                         {:else}
-                            <li class="no-tags">No tags available</li>
+                            <li class="no-tags">{$_("gallery.filters.no-tags")}</li>
                         {/if}
                     </ul>
                 {/if}
@@ -138,7 +147,7 @@
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            View Source
+                            {$_("gallery.project.view-source")}
                         </a>
 
                         <!-- svelte-ignore event_directive_deprecated -->
@@ -146,13 +155,19 @@
                             class="expand-button"
                             on:click={() => toggleInstallCmd(project.name)}
                         >
-                            {expandedCards[project.name] ? "Hide" : "Show"} Install Command
+                            {$_("gallery.project.install-command", {
+                                values: {
+                                    mode: expandedCards[project.name]
+                                        ? "Hide"
+                                        : "Show"
+                                }
+                            })}
                         </button>
 
                         {#if expandedCards[project.name]}
                             <div class="install-section" transition:fade>
                                 <code class="install-command">
-                                    {project.installCommand || "No install command provided."}
+                                    {project.installCommand || $_("gallery.project.no-install-command")}
                                 </code>
                                 <!-- svelte-ignore a11y_consider_explicit_label -->
                                 <!-- svelte-ignore event_directive_deprecated -->
@@ -187,7 +202,7 @@
 
             {#if filters.allTags.length !== 0}
                 {#if filters.filteredProjects.length === 0}
-                    <div class="no-results">No projects match your search.</div>
+                    <div class="no-results">{$_("indicators.no-results")}</div>
                 {/if}
             {/if}
         </div>

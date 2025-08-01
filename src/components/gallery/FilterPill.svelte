@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { _ } from "svelte-i18n";
+
     interface Props {
         modelValue: string;
         "onupdate-modelValue"?: (value: string) => void;
@@ -64,7 +66,7 @@
     <div class="filter-pill">
         <input
             class="pill-search-input"
-            placeholder="Search"
+            placeholder={$_("gallery.filters.search")}
             value={modelValue}
             oninput={handleInput}
             onkeydown={handleKeydown}

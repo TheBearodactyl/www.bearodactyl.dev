@@ -106,10 +106,12 @@
 
 <div class="index-footer">
     <pre>
-        All icons made by me in Inkscape
-        All code on this website is within the public domain
-        See <code><a href="/license" class="license-hyper">/license</a></code>
-        Rabies before babies
+{$_("index.footer-lines.line-one")}
+{$_("index.footer-lines.line-two")}
+{$_("index.footer-lines.line-three")}<code
+            ><a href="/license" class="license-hyper">/license</a></code
+        >
+{$_("index.footer-lines.line-four")}
     </pre>
 </div>
 

@@ -83,29 +83,29 @@
             modelValue={searchFilters.title}
             onupdate:modelValue={updateTitle}
             ontoggle-search-mode={onToggleSearchMode}
-            setViewMode={setViewMode}
-            toggleViewMode={toggleViewMode}
+            {setViewMode}
+            {toggleViewMode}
             viewMode={getViewMode()}
         />
     </div>
 {:else}
     <div class="filter-bar" in:slide={{ duration: 300 }} out:slide={{ duration: 300 }}>
         <div class="filter-bar-header">
-            <h2 class="filter-heading">{$_("title")}</h2>
+            <h2 class="filter-heading">{$_("gallery.filters.search")}</h2>
             <button class="collapse-btn" onclick={onToggleSearchMode}>⨯</button>
         </div>
 
         <input
             bind:this={expandedInputRef}
             bind:value={searchFilters.title}
-            placeholder={$_("search-title")}
+            placeholder={$_("gallery.filters.search-title")}
             onkeydown={handleKeydown}
             oninput={(e) => updateTitle(e.currentTarget.value)}
         />
 
         <input
             bind:value={searchFilters.developer}
-            placeholder={$_("search-developer")}
+            placeholder={$_("gallery.filters.search-developer")}
             oninput={(e) => updateAuthor(e.currentTarget.value)}
         />
 
@@ -113,11 +113,11 @@
             bind:value={searchFilters.status}
             onchange={(e) => updateStatus(e.currentTarget.value)}
         >
-            <option value="">{$_("gallery.filters.any-status")}</option>
-            <option value="Playing">Playing</option>
-            <option value="Finished">Finished</option>
-            <option value="Plan to Play">Plan to Play</option>
-            <option value="Dropped">Dropped</option>
+            <option value="Any Status">{$_("gallery.filters.any-status")}</option>
+            <option value="Playing">{$_("gallery.filters.status.game.playing")}</option>
+            <option value="Finished">{$_("gallery.filters.status.game.finished")}</option>
+            <option value="Plan to Play">{$_("gallery.filters.status.game.plan-to-play")}</option>
+            <option value="Dropped">{$_("gallery.filters.status.game.dropped")}</option>
         </select>
 
         <select
@@ -127,36 +127,36 @@
         >
             <option value="">{$_("gallery.filters.any-rating")}</option>
             {#each [1, 2, 3, 4, 5, 10, 20, 30, 40, 50] as r}
-                <option value={r}>{$_("rating", { values: { rating: r } })}</option>
+                <option value={r}>{$_("gallery.book.rating", { values: { rating: r } })}</option>
             {/each}
         </select>
 
         <MultiSelectDropdown
-            label={$_("genres")}
+            label={$_("gallery.expanded.genres")}
             items={filteredGenreCounts.map(([genre, count]) => ({ value: genre, count }))}
             selectedItems={searchFilters.genres}
             isOpen={dropdowns.genres}
-            placeholder={$_("select-genres")}
-            noItemsMessage="No genres available"
+            placeholder={$_("gallery.filters.select-genres")}
+            noItemsMessage={$_("gallery.filters.no-genres")}
             ontoggle={() => onToggleDropdown("genres")}
             onclose={() => onCloseDropdown("genres")}
             ontoggle-item={(genre) => onToggleFilterItem("genres", genre)}
         />
 
         <MultiSelectDropdown
-            label={$_("tags")}
+            label={$_("gallery.expanded.tags")}
             items={filteredTagCounts.map(([tag, count]) => ({ value: tag, count }))}
             selectedItems={searchFilters.tags}
             isOpen={dropdowns.tags}
-            placeholder={$_("select-tags")}
-            noItemsMessage="No tags available"
+            placeholder={$_("gallery.filters.select-tags")}
+            noItemsMessage={$_("gallery.filters.no-tags")}
             ontoggle={() => onToggleDropdown("tags")}
             onclose={() => onCloseDropdown("tags")}
             ontoggle-item={(tag) => onToggleFilterItem("tags", tag)}
         />
 
         <button class="clear-filters-btn" onclick={onClearAllFilters}>
-            {$_("clear-filters")}
+            {$_("gallery.filters.clear")}
         </button>
     </div>
 {/if}

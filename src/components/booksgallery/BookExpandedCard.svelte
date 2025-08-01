@@ -38,9 +38,9 @@
                     <!-- svelte-ignore a11y_no_static_element_interactions -->
                     {#each book.genres as genre (genre)}
                         <!-- svelte-ignore a11y_click_events_have_key_events -->
-                        <span class="book-genre" onclick={() => onAddGenreToFilters(genre)}
-                            >{genre}</span
-                        >
+                        <span class="book-genre" onclick={() => onAddGenreToFilters(genre)}>
+                            {genre}
+                        </span>
                     {/each}
                 </div>
                 {#if book.tags}
@@ -61,7 +61,7 @@
                         {/each}
                     </span>
                     <span class="rating-text">
-                        {$_("props-book-rating-5", { values: { rating: book.rating } })}
+                        {$_("gallery.book.rating-out-of-five", { values: { rating: book.rating } })}
                     </span>
                 </div>
             </div>

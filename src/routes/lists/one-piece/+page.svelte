@@ -2,6 +2,7 @@
     import { useFilters } from "$lib/reviews/filters.svelte";
     import { useData } from "$lib/reviews/data.svelte";
     import Seo from "../../../components/SEO.svelte";
+    import { _ } from "svelte-i18n";
 
     const data = useData();
     let filters = useFilters(data.reviews);
@@ -15,23 +16,33 @@
 />
 
 <div class="gallery-wrapper">
-    <h1 class="title">My Reviews</h1>
+    <h1 class="title">{$_("titles.op-reviews")}</h1>
 
     {#if data.isLoading()}
         <div class="loading">
-            Loading reviews... {data.downloadProgress()}%
+            {$_("indicators.loading", {
+                values: {
+                    progress: data.downloadProgress()
+                }
+            })}
         </div>
     {/if}
 
     {#if data.fetchError()}
-        <div class="error">Error: {data.fetchError()}</div>
+        <div class="error">
+            {$_("indicators.list-load-error", {
+                values: {
+                    err: data.fetchError()!
+                }
+            })}
+        </div>
     {/if}
 
     <div class="filters">
         <input
             type="text"
             bind:value={filters.searchFilters.search}
-            placeholder="Search reviews..."
+            placeholder={$_("gallery.filters.search")}
             class="search-input"
         />
     </div>
@@ -41,18 +52,30 @@
             {#each filters.filteredReviews() as review (review.chapter)}
                 <div class="card">
                     <div class="card-content">
-                        <h2 class="project-name">Chapter {review.chapter}</h2>
+                        <h1 class="project-name">
+                            {$_("gallery.review.chapter-number", {
+                                values: {
+                                    chapter: review.chapter
+                                }
+                            })}
+                        </h1>
                         <p class="project-description">{review.description}</p>
-                        <p><strong>Rating:</strong> {review.rating}/5</p>
+                        <p><strong>{$_("gallery.review.rating")}</strong> {review.rating}/5</p>
                         {#if review.thoughts}
-                            <p><strong>Thoughts:</strong> {review.thoughts}</p>
+                            <p>
+                                {$_("gallery.review.my-thoughts", {
+                                    values: {
+                                        thoughts: review.thoughts!
+                                    }
+                                })}
+                            </p>
                         {/if}
                     </div>
                 </div>
             {/each}
 
             {#if filters.filteredReviews().length === 0}
-                <div class="no-results">No reviews match your search.</div>
+                <div class="no-results">{$_("indicators.no-results")}</div>
             {/if}
         </div>
     {/if}

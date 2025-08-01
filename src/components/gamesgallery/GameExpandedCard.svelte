@@ -49,7 +49,7 @@
                         {/each}
                     </span>
                     <span class="rating-text">
-                        {$_("props-book-rating-5", { values: { rating: game.rating } })}
+                        {$_("gallery.book.rating-out-of-five", { values: { rating: game.rating } })}
                     </span>
                 </div>
             </div>

@@ -133,7 +133,9 @@
                                 {/each}
                             </span>
                             <span class="rating-text">
-                                {$_("props-book-rating-5", { values: { rating: book.rating } })}
+                                {$_("gallery.book.rating-out-of-five", {
+                                    values: { rating: book.rating }
+                                })}
                             </span>
                         </div>
                     </div>

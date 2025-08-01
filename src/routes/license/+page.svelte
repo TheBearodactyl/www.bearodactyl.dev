@@ -1,6 +1,7 @@
 <script>
     import Seo from "../../components/SEO.svelte";
     import SigmaPre from "../../components/SigmaPre.svelte";
+    import { _ } from "svelte-i18n";
 </script>
 
 <Seo
@@ -11,14 +12,13 @@
 />
 
 <SigmaPre>
-    <pre>
-all code using this license is released to the public domain
-you wanna use it to make money? go ahead
-you wanna plagiarize it? sure
-you wanna make a porno using my code? go for it bud i don't give a shit</pre>
+    <pre>{$_("license-lines.line-one")}
+{$_("license-lines.line-two")}
+{$_("license-lines.line-three")}
+{$_("license-lines.line-four")}</pre>
 </SigmaPre>
 
-<p class="footer">(i love unnecessary transitions :3)</p>
+<p class="footer">{$_("license-lines.footer")}</p>
 
 <style>
     .footer {

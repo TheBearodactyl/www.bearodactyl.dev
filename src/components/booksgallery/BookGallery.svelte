@@ -53,7 +53,7 @@
 </script>
 
 <div class="book-gallery" class:idle-background={display.isIdle}>
-    <h1 class="gallery-title">{$_("read-watch-list")}</h1>
+    <h1 class="gallery-title">{$_("titles.read-watch")}</h1>
 
     <Filters
         searchFilters={filters.searchFilters}
@@ -82,13 +82,13 @@
             <div class="progress-bar">
                 <div class="progress-fill" style="width: {data.downloadProgress}%"></div>
             </div>
-            <p>loading... {data.downloadProgress}</p>
+            <p>{$_("indicators.loading", { values: { progress: data.downloadProgress } })}</p>
         </div>
     {/if}
 
     {#if data.fetchError}
         <div class="error-message">
-            {$_("error-loading-list-fetcherror", { values: { err: data.fetchError } })}
+            {$_("indicators.list-load-error", { values: { err: data.fetchError } })}
         </div>
     {/if}
 
