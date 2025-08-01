@@ -81,7 +81,7 @@
         <!-- svelte-ignore attribute_illegal_colon -->
         <FilterPill
             modelValue={searchFilters.title}
-            onupdate:modelValue={updateTitle}
+            onupdate-modelValue={updateTitle}
             ontoggle-search-mode={onToggleSearchMode}
             {setViewMode}
             {toggleViewMode}
