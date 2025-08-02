@@ -1,3 +1,4 @@
+/* Scrollbar Styling */
 ::-webkit-scrollbar {
     width: 12px;
     height: 12px;
@@ -13,24 +14,16 @@
     border: 2px solid var(--rp-gold);
 }
 
-::-webkit-scrollbar-button {
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
     display: none;
     width: 0;
     height: 0;
 }
 
-::-webkit-scrollbar-corner {
-    display: none;
-}
-
 * {
     scrollbar-width: none;
     scrollbar-color: var(--rp-foam) var(--rp-overlay);
-}
-
-*,
-*::before,
-*::after {
     box-sizing: border-box;
 }
 
@@ -47,13 +40,11 @@ select {
     box-shadow: 0 0 0 1px var(--rp-highlight);
 }
 
-/* Option styling — note: limited styling possible across browsers */
 option {
     background-color: var(--rp-base);
     color: var(--rp-text);
 }
 
-/* Focus and hover state for the select */
 select:focus {
     border-color: var(--rp-gold);
     box-shadow: 0 0 0 2px var(--rp-gold);
@@ -73,6 +64,7 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* Buttons and Inputs */
 .quick-buttons button,
 .theme-switcher select,
 .theme-switcher button,
@@ -82,32 +74,38 @@ body {
     background-color: var(--rp-surface);
     color: var(--rp-text);
     border: 2px solid var(--rp-highlight-low);
-    border-radius: 9999px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8);
+    border-radius: 99px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
     padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
     cursor: pointer;
     width: fit-content;
     height: fit-content;
     outline: none;
-    transition:
-        all var(--transition-speed) var(--transition-ease),
-        background-color 0.3s ease,
-        color 0.3s ease,
-        border-color 0.3s ease; /* Added more specific transitions */
-    /* Consistent shadow */
+    transition: all var(--transition-speed) var(--transition-ease),
+                background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    -webkit-appearance: none;
-    -moz-appearance: none;
     appearance: none;
     white-space: nowrap;
 }
 
 .theme-switcher select {
     width: 13rem;
+    border-color: var(--rp-gold);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.25em;
+}
+
+.theme-switcher select option {
+    background-color: var(--rp-surface);
+    color: var(--rp-text);
+    padding: 0.5rem 1rem;
 }
 
 .theme-switcher select::-ms-expand {
@@ -120,11 +118,12 @@ body {
 .routes-menu-button:hover {
     background-color: var(--rp-overlay);
     border-color: var(--rp-iris);
-    color: var(--rp-iris); /* Added color change on hover */
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6); /* Slightly adjusted shadow on hover */
-    transform: translateY(-3px) scale(1.02); /* More pronounced lift and slight scale */
+    color: var(--rp-iris);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+    transform: translateY(-3px) scale(1.02);
 }
 
+/* Home Button */
 .home_button {
     width: auto;
     padding: 0.75rem 1rem;
@@ -135,36 +134,25 @@ body {
     width: 1.25em;
     height: 1.25em;
     stroke: var(--rp-text);
-    transition: stroke 0.3s ease; /* Transition for SVG stroke */
+    transition: stroke 0.3s ease;
 }
 
 .home_button:hover svg {
-    stroke: var(--rp-gold); /* Changed to gold for more contrast */
+    stroke: var(--rp-gold);
 }
 
 .home_button:active {
     transform: translateY(0);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Reduced shadow on active */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
 }
 
+/* Language Switcher */
 .lang-switcher-aligned {
     margin-left: auto;
     z-index: 1;
 }
 
-.theme-switcher select {
-    background-repeat: no-repeat;
-    background-position: right 0.75rem center;
-    background-size: 1.25em;
-    border-color: var(--rp-gold); /* Distinct border color for theme switcher */
-}
-
-.theme-switcher select option {
-    background-color: var(--rp-surface);
-    color: var(--rp-text);
-    padding: 0.5rem 1rem;
-}
-
+/* Quick Buttons Wrapper */
 .quick-buttons {
     position: fixed;
     top: 1rem;
@@ -174,47 +162,46 @@ body {
     align-items: center;
     gap: 0.75rem;
     z-index: 1000;
-    /* Animation for quick buttons to slide in */
     animation: fadeInSlideIn 0.5s ease-out forwards;
 }
 
+/* Menu Toggle */
 .menu-toggle {
     background-color: var(--rp-surface);
     color: var(--rp-text);
     border: 2px solid var(--rp-highlight-low);
     border-radius: 9999px;
-    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.8);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
     padding: 0.75rem;
     cursor: pointer;
     outline: none;
-    transition:
-        all var(--transition-speed) var(--transition-ease),
-        background-color 0.3s ease,
-        border-color 0.3s ease;
+    transition: all var(--transition-speed) var(--transition-ease),
+                background-color 0.3s ease,
+                border-color 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: auto;
 }
 
 .menu-toggle .menu-icon {
     width: 16px;
     height: 16px;
-    stroke: var(--rp-text); /* Ensure icon color matches text */
+    stroke: var(--rp-text);
     transition: stroke 0.3s ease;
 }
 
 .menu-toggle:hover {
-    background-color: var(--rp-iris); /* More distinct hover color */
-    border-color: var(--rp-foam); /* Contrasting border */
+    background-color: var(--rp-iris);
+    border-color: var(--rp-foam);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
-    transform: translateY(-2px) scale(1.05); /* Increased scale on hover */
+    transform: translateY(-2px) scale(1.05);
 }
 
 .menu-toggle:hover .menu-icon {
-    stroke: var(--rp-base); /* Icon color changes on hover for contrast */
+    stroke: var(--rp-base);
 }
 
+/* Menu Items */
 .menu-items {
     display: flex;
     flex-direction: row;
@@ -232,9 +219,9 @@ body {
     visibility: visible;
     transform: translateX(0);
     pointer-events: auto;
-    animation: menuItemsSlideIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* Bouncy animation */
 }
 
+/* Routes Menu */
 .routes-menu-container {
     position: relative;
 }
@@ -244,14 +231,14 @@ body {
     top: calc(100% + 0.5rem);
     right: 0;
     background-color: var(--rp-surface);
-    border: 2px solid var(--rp-iris); /* Changed border to iris for pop */
+    border: 2px solid var(--rp-iris);
     border-radius: 12px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6); /* Darker shadow */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
     min-width: 160px;
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px) scale(0.95);
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Bouncy transition */
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     pointer-events: none;
     z-index: 1001;
     overflow: visible;
@@ -262,10 +249,6 @@ body {
     visibility: visible;
     transform: translateY(0) scale(1);
     pointer-events: auto;
-}
-
-.route-wrapper {
-    position: relative;
 }
 
 .route-item {
@@ -279,50 +262,37 @@ body {
     color: var(--rp-text);
     text-align: left;
     cursor: pointer;
-    transition: all 0.2s ease-out; /* Smoother transition */
-    border-radius: 0;
     font-size: 0.875rem;
     opacity: 0;
     transform: translateX(-10px);
-    animation: none;
+    animation: slideInFade 0.3s ease forwards;
 }
 
 .route-item.has-children {
     padding-right: 2rem;
 }
 
-.arrow {
-    color: var(--rp-muted);
-    font-size: 1rem;
-    transition: all 0.15s ease;
-    margin-left: auto;
-}
-
-.routes-dropdown.open .route-item {
-    animation: slideInFade 0.3s ease forwards;
-}
-
 .route-item:hover {
     background-color: var(--rp-overlay);
-    color: var(--rp-foam); /* Changed hover color for more pop */
-    transform: translateX(6px); /* More pronounced slide on hover */
+    color: var(--rp-foam);
+    transform: translateX(6px);
 }
 
 .route-item:hover .arrow {
     color: var(--rp-foam);
-    transform: translateX(4px) rotate(5deg); /* Slight rotation on arrow hover */
+    transform: translateX(4px) rotate(5deg);
 }
 
 .route-item.current {
-    background-color: var(--rp-highlight-med); /* Slightly darker current background */
+    background-color: var(--rp-highlight-med);
     color: var(--rp-gold);
-    font-weight: 700; /* Bolder for current item */
-    border-left: 3px solid var(--rp-gold); /* Highlight border */
-    padding-left: 0.75rem; /* Adjust padding for border */
+    font-weight: 700;
+    border-left: 3px solid var(--rp-gold);
+    padding-left: 0.75rem;
 }
 
 .route-item.current:hover {
-    background-color: var(--rp-highlight-high); /* Even darker on hover for current */
+    background-color: var(--rp-highlight-high);
     color: var(--rp-gold);
 }
 
@@ -336,12 +306,20 @@ body {
     border-bottom-right-radius: 10px;
 }
 
+.arrow {
+    color: var(--rp-muted);
+    font-size: 1rem;
+    transition: all 0.15s ease;
+    margin-left: auto;
+}
+
+/* Nested Menus */
 .nested-menu {
     position: absolute;
     top: 0;
     left: calc(100% + 0.5rem);
     background-color: var(--rp-surface);
-    border: 2px solid var(--rp-foam); /* Distinct border for nested menu */
+    border: 2px solid var(--rp-foam);
     border-radius: 12px;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
     min-width: 180px;
@@ -349,7 +327,7 @@ body {
     overflow: hidden;
     opacity: 0;
     transform: translateX(-10px) scale(0.95);
-    animation: nestedMenuSlideIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; /* Bouncy animation for nested menu */
+    animation: nestedMenuSlideIn 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
 }
 
 .nested-route-item {
@@ -361,17 +339,15 @@ body {
     color: var(--rp-text);
     text-align: left;
     cursor: pointer;
-    transition: all 0.15s ease-out;
-    border-radius: 0;
     font-size: 0.875rem;
     opacity: 0;
     transform: translateX(-10px);
-    animation: slideInFade 0.25s ease forwards;
+    animation: slideInFade 0.75s ease forwards;
 }
 
 .nested-route-item:hover {
     background-color: var(--rp-overlay);
-    color: var(--rp-pine); /* Distinct hover color for nested items */
+    color: var(--rp-pine);
     transform: translateX(6px);
 }
 
@@ -379,7 +355,7 @@ body {
     background-color: var(--rp-highlight-med);
     color: var(--rp-gold);
     font-weight: 600;
-    border-left: 3px solid var(--rp-gold); /* Highlight border */
+    border-left: 3px solid var(--rp-gold);
     padding-left: 0.75rem;
 }
 
@@ -398,7 +374,7 @@ body {
     border-bottom-right-radius: 10px;
 }
 
-/* --- Consolidated Media Queries --- */
+/* Media Queries */
 @media (max-width: 920px) {
     .quick-buttons button,
     .theme-switcher select,

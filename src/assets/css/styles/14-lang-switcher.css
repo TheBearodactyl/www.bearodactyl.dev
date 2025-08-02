@@ -70,14 +70,12 @@
     outline: none;
 }
 
-/* Alternative styling for better browser support */
 .locale-switcher select option:disabled {
     background-color: var(--rp-highlight-low);
     color: var(--rp-muted);
     cursor: not-allowed;
 }
 
-/* Webkit specific styling for dropdown */
 .locale-switcher select::-webkit-scrollbar {
     width: 8px;
 }

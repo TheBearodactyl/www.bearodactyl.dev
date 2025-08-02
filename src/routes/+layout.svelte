@@ -234,6 +234,5 @@
 
 <!-- svelte-ignore css_unused_selector -->
 <style>
-    @import url("/src/assets/css/styles/12-themes.css");
-    @import url("/src/assets/css/styles/13-quick-menu.css");
+    @import url("/src/assets/css/main.css");
 </style>
