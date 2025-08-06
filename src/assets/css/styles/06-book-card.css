@@ -252,12 +252,16 @@
     filter: none;
 }
 
-.percent-text:not(.high-percent) {
-    color: var(--rp-iris);
-    filter: none;
-}
-
 .percent-text {
     position: relative;
     z-index: 1;
+}
+
+.percent-text.high-percent {
+    color: var(--rp-surface);
+}
+
+.percent-text:not(.high-percent) {
+    color: var(--rp-text);
+    filter: none;
 }
