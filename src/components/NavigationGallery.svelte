@@ -21,17 +21,7 @@
     }
 
     async function play_discouragement() {
-        const discouragement_songs = [
-            "/audio/hell.mp3",
-            // "/audio/turnitoff.mp3",
-            "/audio/aids.mp3"
-        ]
-
-        const audio = new Audio(chooseRandom(discouragement_songs));
         show_discouragement.set(true);
-        setTimeout(async () => {
-            await audio.play();
-        }, 1750);
     }
 
     function handle_card_click(item: NavItem) {

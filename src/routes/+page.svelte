@@ -6,6 +6,7 @@
     import Seo from "../components/SEO.svelte";
     import { show_discouragement } from "$lib/stores/discouragement";
     import Discouragement from "../components/Discouragement.svelte";
+    import { chooseRandom } from "$lib/utils/misc";
 
     let isMobile = false;
 
@@ -84,12 +85,7 @@
     ];
 </script>
 
-<Seo
-    title="The Motherfucking Home Page"
-    desc="the main page of `bearodactyl.dev`"
-    image="https://s3.amazonaws.com/theoatmeal-img/comics/ptero/bearodactyl.png"
-    url="https://bearodactyl.dev"
-/>
+<Seo title="The Motherfucking Home Page" desc="the main page of `bearodactyl.dev`" image="https://s3.amazonaws.com/theoatmeal-img/comics/ptero/bearodactyl.png" url="https://bearodactyl.dev" />
 
 {#if !$show_discouragement}
     <div>
@@ -106,9 +102,7 @@
         <pre>
 {$_("index.footer-lines.line-one")}
 {$_("index.footer-lines.line-two")}
-{$_("index.footer-lines.line-three")}<code
-                ><a href="/license" class="license-hyper">/license</a></code
-            >
+{$_("index.footer-lines.line-three")}<code><a href="/license" class="license-hyper">/license</a></code>
 {$_("index.footer-lines.line-four")}
     </pre>
     </div>
@@ -119,6 +113,18 @@
         chromaticGlitchAmount={0.2}
         stretchToWindow={true}
         playbackSpeed={0.75}
+        onLoaded={async () => {
+            const discouragement_songs = [
+                "/audio/hell.mp3",
+                // "/audio/turnitoff.mp3",
+                "/audio/aids.mp3"
+            ];
+
+            let audio = new Audio(chooseRandom(discouragement_songs));
+            show_discouragement.set(true);
+            audio.loop = true;
+            await audio.play();
+        }}
     />
 {/if}
 

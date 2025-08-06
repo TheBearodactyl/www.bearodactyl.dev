@@ -32,6 +32,8 @@
         stretchToWindow?: boolean;
         playbackSpeed?: number;
 
+        onLoaded?: () => void;
+
         vhsPreset?: boolean;
     }
 
@@ -74,6 +76,7 @@
 
         stretchToWindow = true,
         playbackSpeed = 1.0,
+        onLoaded = undefined,
 
         vhsPreset = false
     }: Props = $props();
@@ -409,6 +412,9 @@
         }
 
         startPlayback();
+        if (onLoaded) {
+            onLoaded();
+        }
     }
 
     function createBitmapFromImageData(imageData: ImageData): HTMLCanvasElement {
