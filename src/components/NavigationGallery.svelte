@@ -1,7 +1,7 @@
 <script lang="ts">
     import type { NavItem } from "$lib/types";
     import { show_discouragement } from "$lib/stores/discouragement";
-    import { randBool } from "$lib/utils/misc";
+    import { chooseRandom, randBool } from "$lib/utils/misc";
 
     const {
         navItems
@@ -21,11 +21,17 @@
     }
 
     async function play_discouragement() {
-        const audio = new Audio(randBool() ? "/audio/hell.mp3" : "/audio/turnitoff.mp3");
+        const discouragement_songs = [
+            "/audio/hell.mp3",
+            "/audio/turnitoff.mp3",
+            "/audio/aids.mp3"
+        ]
+
+        const audio = new Audio(chooseRandom(discouragement_songs));
         show_discouragement.set(true);
         setTimeout(async () => {
             await audio.play();
-        }, 2000);
+        }, 1750);
     }
 
     function handle_card_click(item: NavItem) {

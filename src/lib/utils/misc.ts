@@ -70,3 +70,8 @@ export function createPersistedStore<T>(key: string, initial: T): Writable<T> {
 export function randBool(): boolean {
 	return Math.random() < 0.5;
 }
+
+export function chooseRandom<T>(arr: T[]): T {
+	const rand_idx = Math.floor(Math.random() * arr.length);
+	return arr[rand_idx];
+}
