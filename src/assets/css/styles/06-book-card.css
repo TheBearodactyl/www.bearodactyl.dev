@@ -240,7 +240,9 @@
     z-index: 2;
     color: var(--rp-text);
     mix-blend-mode: difference;
-    font-weight: 500;
+    font-family: var(--font-family-base) !important;
+    font-weight: 400;
+    letter-spacing: 1px;
     font-size: var(--font-size-sm);
     white-space: nowrap;
 }
