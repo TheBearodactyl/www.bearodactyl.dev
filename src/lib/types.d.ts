@@ -43,6 +43,7 @@ export interface Game {
     links?: { title: string; url: string }[];
     coverImage?: string;
     explicit: boolean;
+    percent: number;
 }
 
 export interface NavItem {

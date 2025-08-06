@@ -54,7 +54,10 @@
                                 {/each}
                             </span>
                         </div>
-                        <div class="read-status-list">{game.status}</div>
+                        <div class="read-status-list percent-progress-bar-container">
+                            <div class="percent-progress-bar" style="width: {Math.max(1, Math.min(100, game.percent))}%"></div>
+                            <span class="read-status-text">{game.status}</span>
+                        </div>
                     </div>
                     <div class="book-genres-list">
                         {#each game.genres.slice(0, 3) as genre (genre)}
@@ -83,7 +86,10 @@
                 <div class="book-info">
                     <h3 class="book-title">{game.title}</h3>
                     <p class="book-author">{game.developer}</p>
-                    <div class="read-status">{game.status}</div>
+                    <div class="read-status percent-progress-bar-container">
+                        <div class="percent-progress-bar" style="width: {Math.max(1, Math.min(100, game.percent))}%"></div>
+                        <span class="read-status-text">{game.status} ({game.percent}%)</span>
+                    </div>
                     <div class="book-genres">
                         {#each game.genres.slice(0, 5) as genre (genre)}
                             <span class="book-genre">{genre}</span>

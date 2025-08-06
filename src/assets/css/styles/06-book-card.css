@@ -217,3 +217,30 @@
         0 0 15px rgba(246, 193, 119, 0.2);
     animation: bounceIn 0.5s var(--transition-ease);
 }
+
+.percent-progress-bar-container {
+    position: relative;
+    background-color: var(--rp-muted);
+    border-radius: 99px;
+    padding-left: 10px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+.percent-progress-bar {
+    background-color: var(--rp-overlay);
+    height: 100%;
+    position: absolute;
+    border-radius: 50px;
+    top: 0;
+    left: 0;
+    transition: width var(--transition-speed) var(--transition-ease);
+}
+
+.read-status-text {
+    position: relative;
+    z-index: 1;
+    padding: 0 8px;
+    color: var(--rp-text);
+}
