@@ -328,6 +328,7 @@ body {
     border: none;
     padding: 0.75rem 1rem;
     color: var(--rp-text);
+    border-radius: 5px !important;
     text-align: left;
     cursor: pointer;
     font-size: 0.875rem;
@@ -353,16 +354,6 @@ body {
 .nested-route-item.current:hover {
     background-color: var(--rp-highlight-high);
     color: var(--rp-gold);
-}
-
-.nested-route-item:first-child {
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.nested-route-item:last-child {
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
 }
 
 /* Media Queries */
