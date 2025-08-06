@@ -23,7 +23,7 @@
     async function play_discouragement() {
         const discouragement_songs = [
             "/audio/hell.mp3",
-            "/audio/turnitoff.mp3",
+            // "/audio/turnitoff.mp3",
             "/audio/aids.mp3"
         ]
 
