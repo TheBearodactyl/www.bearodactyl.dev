@@ -88,16 +88,7 @@
 <div>
     <div class="index-header">
         <h1>{$_("index.title")}</h1>
-        {#if isMobile}
-            <p class="index-desc">
-                {desc.substring(0, desc.length / 2 + 1)}
-            </p>
-            <p>
-                {desc.substring((desc.length + 2) / 2)}
-            </p>
-        {:else}
-            <p class="index-desc">{desc}</p>
-        {/if}
+            <p class="index-desc">{$_("index.desc")}</p>
         <img class="buggy" src="/images/buggy.webp" alt="get it? 'buggy'?" />
     </div>
 </div>
