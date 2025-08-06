@@ -73,7 +73,7 @@
 .locale-switcher select option:disabled {
     background-color: var(--rp-highlight-low);
     color: var(--rp-muted);
-    cursor: not-allowed;
+    cursor: auto;
 }
 
 .locale-switcher select::-webkit-scrollbar {
