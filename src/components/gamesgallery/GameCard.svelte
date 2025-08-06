@@ -94,7 +94,9 @@
                             class="percent-progress-bar"
                             style="width: {Math.max(1, Math.min(100, game.percent))}%"
                         ></div>
-                        <span class="progress-bar-text"> {game.status} ({game.percent}%) </span>
+                        <span class="progress-bar-text">
+                            {game.status} <span class="percocet">({game.percent}%)</span>
+                        </span>
                     </div>
                     <div class="book-genres">
                         {#each game.genres.slice(0, 5) as genre (genre)}

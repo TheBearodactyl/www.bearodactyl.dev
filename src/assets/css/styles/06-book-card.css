@@ -246,3 +246,7 @@
     font-size: var(--font-size-sm);
     white-space: nowrap;
 }
+
+.percocet {
+    font-family: var(--font-family-code) !important;
+}

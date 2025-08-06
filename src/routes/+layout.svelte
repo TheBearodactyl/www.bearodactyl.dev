@@ -7,6 +7,7 @@
     import MenuIcon from "../components/icons/MenuIcon.svelte";
     import type { RouteItem } from "$lib/types";
     import { _ } from "svelte-i18n";
+    import { show_discouragement } from "$lib/stores/discouragement";
 
     const themes = [
         "kanagawa",
@@ -148,87 +149,89 @@
     });
 </script>
 
-<div class="quick-buttons">
-    <div class="menu-items" class:open={isMenuOpen}>
-        <div class="routes-menu-container">
-            <button
-                class="routes-menu-button"
-                aria-label={$_("quick-menu.nav-to-page")}
-                title={$_("quick-menu.nav-to-page")}
-                onclick={toggleRoutesMenu}
-            >
-                {$_("quick-menu.routes")}
-            </button>
+{#if !$show_discouragement}
+    <div class="quick-buttons">
+        <div class="menu-items" class:open={isMenuOpen}>
+            <div class="routes-menu-container">
+                <button
+                    class="routes-menu-button"
+                    aria-label={$_("quick-menu.nav-to-page")}
+                    title={$_("quick-menu.nav-to-page")}
+                    onclick={toggleRoutesMenu}
+                >
+                    {$_("quick-menu.routes")}
+                </button>
 
-            <div class="routes-dropdown" class:open={isRoutesMenuOpen}>
-                {#each routes as route, index}
-                    <div class="route-wrapper">
-                        <button
-                            class="route-item"
-                            class:current={isCurrentRoute(route.path)}
-                            class:has-children={route.children}
-                            style="animation-delay: {index * 0.05}s"
-                            onclick={() => {
-                                if (route.children?.length === 0 || route.path === "/") {
-                                    navigateToRoute(route.path);
-                                }
-                            }}
-                            onmouseenter={() => route.children && handleRouteHover(route.path)}
-                            onmouseleave={() => route.children && handleRouteLeave(route.path)}
-                        >
-                            {route.name}
-                            {#if route.children}
-                                <span class="arrow">›</span>
-                            {/if}
-                        </button>
-
-                        {#if route.children && hoveredRoute === route.path}
-                            <!-- svelte-ignore a11y_no_static_element_interactions -->
-                            <div
-                                class="nested-menu"
-                                onmouseenter={() => handleNestedMenuHover(route.path)}
-                                onmouseleave={() => handleRouteLeave(route.path)}
+                <div class="routes-dropdown" class:open={isRoutesMenuOpen}>
+                    {#each routes as route, index}
+                        <div class="route-wrapper">
+                            <button
+                                class="route-item"
+                                class:current={isCurrentRoute(route.path)}
+                                class:has-children={route.children}
+                                style="animation-delay: {index * 0.05}s"
+                                onclick={() => {
+                                    if (route.children?.length === 0 || route.path === "/") {
+                                        navigateToRoute(route.path);
+                                    }
+                                }}
+                                onmouseenter={() => route.children && handleRouteHover(route.path)}
+                                onmouseleave={() => route.children && handleRouteLeave(route.path)}
                             >
-                                {#each route.children as childRoute, childIndex}
-                                    <button
-                                        class="nested-route-item"
-                                        class:current={isCurrentRoute(childRoute.path)}
-                                        style="animation-delay: {childIndex * 0.03}s"
-                                        onclick={() => {
-                                            navigateToRoute(childRoute.path);
-                                        }}
-                                    >
-                                        {childRoute.name}
-                                    </button>
-                                {/each}
-                            </div>
-                        {/if}
-                    </div>
-                {/each}
+                                {route.name}
+                                {#if route.children}
+                                    <span class="arrow">›</span>
+                                {/if}
+                            </button>
+
+                            {#if route.children && hoveredRoute === route.path}
+                                <!-- svelte-ignore a11y_no_static_element_interactions -->
+                                <div
+                                    class="nested-menu"
+                                    onmouseenter={() => handleNestedMenuHover(route.path)}
+                                    onmouseleave={() => handleRouteLeave(route.path)}
+                                >
+                                    {#each route.children as childRoute, childIndex}
+                                        <button
+                                            class="nested-route-item"
+                                            class:current={isCurrentRoute(childRoute.path)}
+                                            style="animation-delay: {childIndex * 0.03}s"
+                                            onclick={() => {
+                                                navigateToRoute(childRoute.path);
+                                            }}
+                                        >
+                                            {childRoute.name}
+                                        </button>
+                                    {/each}
+                                </div>
+                            {/if}
+                        </div>
+                    {/each}
+                </div>
+            </div>
+            <div class="theme-switcher">
+                <select id="theme-select" bind:value={selectedTheme} onchange={changeTheme}>
+                    {#each themes as theme}
+                        <option value={theme}>{theme.replace(/-/g, " ")}</option>
+                    {/each}
+                </select>
+            </div>
+
+            <div class="lang-switcher-aligned">
+                <LangSwitcher />
             </div>
         </div>
-        <div class="theme-switcher">
-            <select id="theme-select" bind:value={selectedTheme} onchange={changeTheme}>
-                {#each themes as theme}
-                    <option value={theme}>{theme.replace(/-/g, " ")}</option>
-                {/each}
-            </select>
-        </div>
 
-        <div class="lang-switcher-aligned">
-            <LangSwitcher />
-        </div>
+        <button
+            class="menu-toggle"
+            class:active={isMenuOpen}
+            aria-label={$_("quick-menu.toggle-menu")}
+            onclick={toggleMenu}
+        >
+            <MenuIcon />
+        </button>
     </div>
-
-    <button
-        class="menu-toggle"
-        class:active={isMenuOpen}
-        aria-label={$_("quick-menu.toggle-menu")}
-        onclick={toggleMenu}
-    >
-        <MenuIcon />
-    </button>
-</div>
+{/if}
 
 {@render children?.()}
 

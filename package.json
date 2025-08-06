@@ -47,6 +47,7 @@
 		"@sveltejs/adapter-static": "^3.0.8",
 		"fuse.js": "^7.1.0",
 		"gsap": "^3.13.0",
+		"octokit": "^5.0.3",
 		"omggif": "^1.0.10",
 		"runed": "^0.31.1",
 		"svelte-adapter": "^0.5.0",

@@ -4,6 +4,8 @@
     import { _ } from "svelte-i18n";
     import { onMount } from "svelte";
     import Seo from "../components/SEO.svelte";
+    import { show_discouragement } from "$lib/stores/discouragement";
+    import Discouragement from "../components/Discouragement.svelte";
 
     let isMobile = false;
 
@@ -49,6 +51,12 @@
             coverImage: "/images/bearodactyl_painting.webp",
             route: "/jokes/bearo"
         },
+        {
+            title: "",
+            description: "",
+            coverImage: "",
+            route: ""
+        },
         // {
         //   title: "Emergency frog!",
         //   description: "Emergency Frog Situation!!!!",
@@ -74,8 +82,6 @@
             route: "/license"
         }
     ];
-
-    const desc = $_("index.desc");
 </script>
 
 <Seo
@@ -85,26 +91,36 @@
     url="https://bearodactyl.dev"
 />
 
-<div>
-    <div class="index-header">
-        <h1>{$_("index.title")}</h1>
-        <p class="index-desc">{$_("index.desc")}</p>
-        <img class="buggy" src="/images/buggy.webp" alt="get it? 'buggy'?" />
+{#if !$show_discouragement}
+    <div>
+        <div class="index-header">
+            <h1>{$_("index.title")}</h1>
+            <p class="index-desc">{$_("index.desc")}</p>
+            <img class="buggy" src="/images/buggy.webp" alt="get it? 'buggy'?" />
+        </div>
     </div>
-</div>
 
-<NavigationGallery navItems={navigationItems} />
+    <NavigationGallery navItems={navigationItems} />
 
-<div class="index-footer">
-    <pre>
+    <div class="index-footer">
+        <pre>
 {$_("index.footer-lines.line-one")}
 {$_("index.footer-lines.line-two")}
 {$_("index.footer-lines.line-three")}<code
-            ><a href="/license" class="license-hyper">/license</a></code
-        >
+                ><a href="/license" class="license-hyper">/license</a></code
+            >
 {$_("index.footer-lines.line-four")}
     </pre>
-</div>
+    </div>
+{:else}
+    <Discouragement
+        path="/images/morshu.gif"
+        vhsPreset={true}
+        chromaticGlitchAmount={0.2}
+        stretchToWindow={true}
+        playbackSpeed={0.75}
+    />
+{/if}
 
 <!-- svelte-ignore css_unused_selector -->
 <style>

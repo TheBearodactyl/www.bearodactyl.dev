@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { NavItem } from "$lib/types";
+    import { show_discouragement } from "$lib/stores/discouragement";
 
     const {
         navItems
@@ -7,75 +8,115 @@
         navItems: NavItem[];
     } = $props();
 
-    let showEmergency = $state(false);
+    let show_emergency = $state(false);
 
-    async function playEmergency() {
+    async function play_emergency() {
         const audio = new Audio(
             "https://www.myinstants.com/media/sounds/emergency-frog-situation.mp3"
         );
         await audio.play();
-        showEmergency = true;
-        setTimeout(() => (showEmergency = false), 3500);
+        show_emergency = true;
+        setTimeout(() => (show_emergency = false), 3500);
     }
 
-    function handleCardClick(item: NavItem) {
-        if (item.title === "Emergency frog!") playEmergency();
+    async function play_discouragement() {
+        const audio = new Audio("/audio/hell.mp3");
+        show_discouragement.set(true);
+        setTimeout(async () => {
+            await audio.play();
+        }, 2000);
+    }
+
+    function handle_card_click(item: NavItem) {
+        if (item.title === "Emergency frog!") play_emergency();
+        if (item.title === "") play_discouragement();
     }
 </script>
 
-<div class="navigation-gallery-wrapper">
-    <div class="navigation-gallery">
-        {#each navItems as item}
-            {#if item.title === "Emergency frog!"}
-                <!-- svelte-ignore a11y_click_events_have_key_events -->
-                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                <div class="nav-card clickable" onclick={() => handleCardClick(item)}>
-                    <div class="card-image-container">
-                        {#if item.coverImage}
-                            <img
-                                src={item.coverImage}
-                                alt={`Cover for ${item.title}`}
-                                class="card-image"
-                            />
-                        {:else}
-                            <div class="placeholder-image">?</div>
-                        {/if}
+{#if $show_discouragement}
+    <div></div>
+{:else}
+    <div class="navigation-gallery-wrapper">
+        <div class="navigation-gallery">
+            {#each navItems as item}
+                {#if item.title === "Emergency frog!"}
+                    <!-- svelte-ignore a11y_click_events_have_key_events -->
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="nav-card clickable" onclick={() => handle_card_click(item)}>
+                        <div class="card-image-container">
+                            {#if item.coverImage}
+                                <img
+                                    src={item.coverImage}
+                                    alt={`Cover for ${item.title}`}
+                                    class="card-image"
+                                />
+                            {:else}
+                                <div class="placeholder-image">?</div>
+                            {/if}
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">{item.title}</h2>
+                            <p class="card-description">{item.description}</p>
+                        </div>
                     </div>
-                    <div class="card-content">
-                        <h2 class="card-title">{item.title}</h2>
-                        <p class="card-description">{item.description}</p>
+                {:else if item.title === ""}
+                    <!-- svelte-ignore a11y_click_events_have_key_events -->
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="nav-card clickable" onclick={() => handle_card_click(item)}>
+                        <div class="card-image-container">
+                            {#if item.coverImage}
+                                <img
+                                    src={item.coverImage}
+                                    alt={`Cover for ${item.title}`}
+                                    class="card-image"
+                                />
+                            {:else}
+                                <div></div>
+                            {/if}
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">{item.title}</h2>
+                            <p class="card-description">{item.description}</p>
+                        </div>
                     </div>
-                </div>
-            {:else}
-                <a href={item.route} class="nav-card">
-                    <div class="card-image-container">
-                        {#if item.coverImage && !item.coverImage.endsWith("webm")}
-                            <img
-                                src={item.coverImage}
-                                alt={`Cover for ${item.title}`}
-                                class="card-image"
-                            />
-                        {:else if item.coverImage && item.coverImage.endsWith("webm")}
-                            <video disablepictureinpicture autoplay loop muted playsinline class="card-image">
-                                <source src={item.coverImage} type="video/webm" />
-                            </video>
-                        {:else}
-                            <div class="placeholder-image">?</div>
-                        {/if}
-                    </div>
-                    <div class="card-content">
-                        <h2 class="card-title">{item.title}</h2>
-                        <p class="card-description">{item.description}</p>
-                    </div>
-                </a>
-            {/if}
-        {/each}
+                {:else}
+                    <a href={item.route} class="nav-card">
+                        <div class="card-image-container">
+                            {#if item.coverImage && !item.coverImage.endsWith("webm")}
+                                <img
+                                    src={item.coverImage}
+                                    alt={`Cover for ${item.title}`}
+                                    class="card-image"
+                                />
+                            {:else if item.coverImage && item.coverImage.endsWith("webm")}
+                                <video
+                                    disablepictureinpicture
+                                    autoplay
+                                    loop
+                                    muted
+                                    playsinline
+                                    class="card-image"
+                                >
+                                    <source src={item.coverImage} type="video/webm" />
+                                </video>
+                            {:else}
+                                <div class="placeholder-image">?</div>
+                            {/if}
+                        </div>
+                        <div class="card-content">
+                            <h2 class="card-title">{item.title}</h2>
+                            <p class="card-description">{item.description}</p>
+                        </div>
+                    </a>
+                {/if}
+            {/each}
+        </div>
     </div>
-</div>
 
-{#if showEmergency}
-    <div class="emergency-backdrop"></div>
-    <div class="emergency-overlay">EMERGENCY FROG!</div>
+    {#if show_emergency}
+        <div class="emergency-backdrop"></div>
+        <div class="emergency-overlay">EMERGENCY FROG!</div>
+    {/if}
 {/if}
 
 <style lang="scss">
