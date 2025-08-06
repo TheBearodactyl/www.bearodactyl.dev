@@ -27,18 +27,18 @@
     --spacing-lg: 1.5rem;
     --spacing-xl: 2rem;
     --spacing-2xl: 3rem;
-    --spacing-3xl: 4rem; /* Added for gallery-title margin-bottom */
+    --spacing-3xl: 4rem;
 
     /* Typography */
     --font-family-base: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     --font-family-code: "Cascadia Code Nerd Font";
-    --font-size-base: 1rem; /* 16px */
-    --font-size-sm: 0.875rem; /* 14px */
-    --font-size-md: 1.05rem; /* for filter inputs */
-    --font-size-lg: 1.2rem; /* for pill-search-input, multi-select label, book-title-list */
-    --font-size-xl: 1.5rem; /* for pill-filter-btn, close-btn */
-    --font-size-2xl: clamp(2rem, 5vw, 3.5rem); /* for gallery-title */
-    --font-size-3xl: clamp(2rem, 4vw, 2.6rem); /* for expanded-title */
+    --font-size-base: 1rem;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1.05rem;
+    --font-size-lg: 1.2rem;
+    --font-size-xl: 1.5rem;
+    --font-size-2xl: clamp(2rem, 5vw, 3.5rem);
+    --font-size-3xl: clamp(2rem, 4vw, 2.6rem);
     --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
@@ -58,15 +58,16 @@
     /* Transitions & Animations */
     --transition-speed: 0.3s;
     --transition-ease: cubic-bezier(0.645, 0.045, 0.355, 1);
-    --transition-fast: 0.2s; /* For input/select focus, clear-filters-btn background */
+    --transition-cubic-in-out: cubic-bezier(0.66, 0, 0.34, 1);
+    --transition-fast: 0.2s;
 
     /* Box Shadows */
-    --box-shadow-sm: 0 3px 8px rgba(0, 0, 0, 0.3); /* For pill-filter-btn */
-    --box-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.4); /* For filter-pill */
-    --box-shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.45); /* For book-card */
-    --box-shadow-xl: 0 10px 30px rgba(0, 0, 0, 0.4); /* For filter-bar */
-    --box-shadow-2xl: 0 16px 40px rgba(0, 0, 0, 0.6); /* For book-card:hover */
-    --box-shadow-3xl: 0 35px 70px rgba(0, 0, 0, 0.7); /* For book-expanded */
+    --box-shadow-sm: 0 3px 8px rgba(0, 0, 0, 0.3);
+    --box-shadow-md: 0 6px 20px rgba(0, 0, 0, 0.4);
+    --box-shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.45);
+    --box-shadow-xl: 0 10px 30px rgba(0, 0, 0, 0.4);
+    --box-shadow-2xl: 0 16px 40px rgba(0, 0, 0, 0.6);
+    --box-shadow-3xl: 0 35px 70px rgba(0, 0, 0, 0.7);
 
     /* Other */
     --hover-scale: 1.04;

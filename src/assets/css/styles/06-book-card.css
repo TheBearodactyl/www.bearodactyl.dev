@@ -221,6 +221,7 @@
 .percent-progress-bar-container {
     position: relative;
     background-color: var(--rp-muted);
+    border: none;
     border-radius: 99px;
     padding-left: 10px;
     overflow: hidden;
@@ -229,13 +230,14 @@
 }
 
 .percent-progress-bar {
-    background-color: var(--rp-overlay);
+    background-color: var(--rp-love);
     height: 100%;
     position: absolute;
     border-radius: 50px;
     top: 0;
     left: 0;
     transition: width var(--transition-speed) var(--transition-ease);
+    filter: brightness(90%);
 }
 
 .read-status-text {

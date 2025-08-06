@@ -29,6 +29,9 @@
 @import url("/src/assets/css/styles/13-quick-menu.css");
 @import url("/src/assets/css/styles/14-lang-switcher.css");
 
+/* 8. Page specific styles */
+@import url("/src/assets/css/styles/15-home-page.css");
+
 .hidden {
     display: none !important;
 }

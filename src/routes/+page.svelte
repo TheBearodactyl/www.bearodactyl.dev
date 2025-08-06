@@ -88,7 +88,7 @@
 <div>
     <div class="index-header">
         <h1>{$_("index.title")}</h1>
-            <p class="index-desc">{$_("index.desc")}</p>
+        <p class="index-desc">{$_("index.desc")}</p>
         <img class="buggy" src="/images/buggy.webp" alt="get it? 'buggy'?" />
     </div>
 </div>
@@ -127,8 +127,12 @@
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
-        animation: fadeInDown 1s var(--transition-ease) forwards;
+        animation: fadeInDown 2s var(--transition-cubic-in-out) forwards;
         opacity: 1;
+    }
+
+    .index-desc {
+        text-wrap-mode: wrap;
     }
 
     .index-footer {
