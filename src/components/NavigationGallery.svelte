@@ -1,6 +1,7 @@
 <script lang="ts">
     import type { NavItem } from "$lib/types";
     import { show_discouragement } from "$lib/stores/discouragement";
+    import { randBool } from "$lib/utils/misc";
 
     const {
         navItems
@@ -20,7 +21,7 @@
     }
 
     async function play_discouragement() {
-        const audio = new Audio("/audio/hell.mp3");
+        const audio = new Audio(randBool() ? "/audio/hell.mp3" : "/audio/turnitoff.mp3");
         show_discouragement.set(true);
         setTimeout(async () => {
             await audio.play();

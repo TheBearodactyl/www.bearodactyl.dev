@@ -66,3 +66,7 @@ export function createPersistedStore<T>(key: string, initial: T): Writable<T> {
 
 	return store;
 }
+
+export function randBool(): boolean {
+	return Math.random() < 0.5;
+}
