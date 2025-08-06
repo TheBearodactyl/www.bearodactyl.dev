@@ -1,0 +1,42 @@
+.index-header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    margin-top: 3.5rem;
+    font-size: 1.5rem;
+    color: var(--rp-iris);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    word-spacing: -0.1em;
+    text-shadow:
+        0 0 20px rgba(196, 167, 231, 0.3),
+        0 0 40px rgba(196, 167, 231, 0.1);
+    line-height: 1.1;
+    background: linear-gradient(90deg, var(--rp-iris) 0%, var(--rp-foam) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: fadeInDown 1s var(--transition-ease) forwards;
+    opacity: 1;
+}
+
+.index-desc {
+    text-wrap-mode: wrap;
+}
+
+.index-footer {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: var(--rp-text);
+}
+
+.buggy {
+    width: 300px;
+    height: 168px;
+    margin-bottom: -3.9rem;
+    filter: contrast(95);
+}
+
+.license-hyper {
+    color: aqua;
+}

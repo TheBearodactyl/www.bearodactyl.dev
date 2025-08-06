@@ -6,7 +6,7 @@ export default defineConfig({
 		sveltekit()
 	],
 	build: {
-		cssMinify: "lightningcss"
+		cssMinify: "esbuild"
 	},
 	test: {
 		projects: [

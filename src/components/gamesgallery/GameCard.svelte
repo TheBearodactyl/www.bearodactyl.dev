@@ -4,7 +4,6 @@
     import BaseCard from "../gallery/BaseCard.svelte";
     import WarningIcon from "../icons/WarningIcon.svelte";
     import { _ } from "svelte-i18n";
-
     interface Props {
         game: Game;
         index: number;
@@ -55,7 +54,10 @@
                             </span>
                         </div>
                         <div class="read-status-list percent-progress-bar-container">
-                            <div class="percent-progress-bar" style="width: {Math.max(1, Math.min(100, game.percent))}%"></div>
+                            <div
+                                class="percent-progress-bar"
+                                style="width: {Math.max(1, Math.min(100, game.percent))}%"
+                            ></div>
                             <span class="read-status-text">{game.status}</span>
                         </div>
                     </div>
@@ -87,8 +89,16 @@
                     <h3 class="book-title">{game.title}</h3>
                     <p class="book-author">{game.developer}</p>
                     <div class="read-status percent-progress-bar-container">
-                        <div class="percent-progress-bar" style="width: {Math.max(1, Math.min(100, game.percent))}%"></div>
-                        <span class="read-status-text">{game.status} ({game.percent}%)</span>
+                        <div
+                            class="percent-progress-bar"
+                            style="width: {Math.max(1, Math.min(100, game.percent))}%"
+                        ></div>
+                        <span class="read-status-text" class:high-percent={game.percent > 20}>
+                            {game.status}
+                        </span>
+                        <span class="percent-text" class:high-percent={game.percent > 90}>
+                            ({game.percent}%)
+                        </span>
                     </div>
                     <div class="book-genres">
                         {#each game.genres.slice(0, 5) as genre (genre)}
@@ -109,7 +119,9 @@
                             {/each}
                         </span>
                         <span class="rating-text">
-                            {$_("gallery.book.rating-out-of-five", { values: { rating: game.rating } })}
+                            {$_("gallery.book.rating-out-of-five", {
+                                values: { rating: game.rating }
+                            })}
                         </span>
                     </div>
                 </div>

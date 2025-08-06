@@ -14,9 +14,7 @@ const config = {
     handler(warning);
   },
   kit: {
-    adapter: adapter({
-      fallback: "404.html"
-    }),
+    adapter: adapter(),
     prerender: {
       entries: ["*"]
     }
