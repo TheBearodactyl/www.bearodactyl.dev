@@ -23,7 +23,7 @@ export function createDataStore() {
             const fileContents = await getGithubRelease(
                 "thebearodactyl",
                 "www.bearodactyl.dev",
-                "games.json"
+                "games.json",
             );
             const data = JSON.parse(await fileContents.text());
 
@@ -69,7 +69,7 @@ export function createDataStore() {
         set isContentVisible(value: boolean) {
             isContentVisible = value;
         },
-        loadBooksWithProgress: loadGamesWithProgress
+        loadBooksWithProgress: loadGamesWithProgress,
     };
 }
 

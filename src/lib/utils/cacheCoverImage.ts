@@ -1,7 +1,7 @@
 export async function cacheCoverImage(
     cacheName: string,
     url: string,
-    onProgress?: (progress: number) => void
+    onProgress?: (progress: number) => void,
 ): Promise<string> {
     try {
         const cache = await caches.open(cacheName);

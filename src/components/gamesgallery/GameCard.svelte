@@ -30,7 +30,7 @@
                 <div class="book-cover-small">
                     <img
                         src={game.coverImage}
-                        alt={$_("gallery.book.cover-alt", { values: { title: game.title } })}
+                        alt={$_("gallery.generic.cover-alt", { values: { title: game.title } })}
                         class="cover-image-small"
                     />
                     {#if game.explicit}
@@ -74,7 +74,7 @@
                 <div class="book-cover">
                     <img
                         src={game.coverImage}
-                        alt={$_("gallery.book.cover-alt", { values: { title: game.title } })}
+                        alt={$_("gallery.generic.cover-alt", { values: { title: game.title } })}
                         class="cover-image"
                     />
                     {#if game.explicit}
@@ -82,7 +82,7 @@
                             <span class="icon-warning">
                                 <WarningIcon />
                             </span>
-                            <span class="explicit-label">{$_("gallery.explicit")}</span>
+                            <span class="explicit-label">{$_("indicators.explicit")}</span>
                         </div>
                     {/if}
                 </div>
@@ -117,8 +117,8 @@
                             {/each}
                         </span>
                         <span class="rating-text">
-                            {$_("gallery.book.rating-out-of-five", {
-                                values: { rating: game.rating }
+                            {$_("gallery.generic.rating-of-five", {
+                                values: { rating: game.rating },
                             })}
                         </span>
                     </div>

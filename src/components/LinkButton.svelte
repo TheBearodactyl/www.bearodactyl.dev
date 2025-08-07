@@ -1,11 +1,13 @@
 <script lang="ts">
     interface Props {
-        url: string,
-        text: string
+        url: string;
+        text: string;
     }
 
     let { url, text }: Props = $props();
 </script>
+
+<button onclick={() => window.open(url, "_blank")}>{text}</button>
 
 <style>
     button {
@@ -30,5 +32,3 @@
         background-color: var(--rp-highlight-med);
     }
 </style>
-
-<button onclick={() => window.open(url, "_blank")}>{text}</button>

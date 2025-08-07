@@ -27,7 +27,7 @@
         ontoggle,
         onclose,
         "ontoggle-item": onToggleItem,
-        "on-deselect-item": onDeselectItem
+        "on-deselect-item": onDeselectItem,
     }: Props = $props();
 
     let dropdownRef: HTMLDivElement;

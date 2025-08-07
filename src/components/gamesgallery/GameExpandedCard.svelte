@@ -17,13 +17,13 @@
             <div class="expanded-cover">
                 <img
                     src={game.coverImage}
-                    alt={$_("gallery.book.cover-alt", { values: { title: game.title } })}
+                    alt={$_("gallery.generic.cover-alt", { values: { title: game.title } })}
                     class="expanded-cover-image"
                 />
                 {#if game.explicit}
                     <div class="explicit-icon">
                         <span class="icon-warning">⚠️</span>
-                        <span class="explicit-label">{$_("gallery.explicit")}</span>
+                        <span class="explicit-label">{$_("indicators.explicit")}</span>
                     </div>
                 {/if}
             </div>
@@ -49,7 +49,7 @@
                         {/each}
                     </span>
                     <span class="rating-text">
-                        {$_("gallery.book.rating-out-of-five", { values: { rating: game.rating } })}
+                        {$_("gallery.generic.rating-of-five", { values: { rating: game.rating } })}
                     </span>
                 </div>
             </div>
@@ -57,18 +57,18 @@
 
         <div class="expanded-content">
             <div class="description-section">
-                <h4>{$_("gallery.expanded.description")}</h4>
+                <h4>{$_("gallery.generic.headers.description")}</h4>
                 <p>{game.description}</p>
             </div>
 
             <div class="thoughts-section">
-                <h4>{$_("gallery.expanded.my-thoughts")}</h4>
+                <h4>{$_("gallery.generic.headers.my-thoughts")}</h4>
                 <p>{game.myThoughts}</p>
             </div>
 
             {#if game.links && game.links.length > 0}
                 <div class="links-section">
-                    <h4>{$_("gallery.expanded.links")}</h4>
+                    <h4>{$_("gallery.generic.headers.links")}</h4>
                     <div class="links-grid">
                         {#each game.links as link (link.title)}
                             <a

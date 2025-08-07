@@ -50,7 +50,7 @@
         onUpdateFilters,
         setViewMode,
         toggleViewMode,
-        getViewMode
+        getViewMode,
     }: Props = $props();
 
     function handleKeydown(event: KeyboardEvent) {
@@ -114,10 +114,10 @@
             onchange={(e) => updateStatus(e.currentTarget.value)}
         >
             <option value="Any Status">{$_("gallery.filters.any-status")}</option>
-            <option value="Playing">{$_("gallery.filters.status.game.playing")}</option>
-            <option value="Finished">{$_("gallery.filters.status.game.finished")}</option>
-            <option value="Plan to Play">{$_("gallery.filters.status.game.plan-to-play")}</option>
-            <option value="Dropped">{$_("gallery.filters.status.game.dropped")}</option>
+            <option value="Playing">{$_("gallery.game.status.playing")}</option>
+            <option value="Finished">{$_("gallery.generic.status.finished")}</option>
+            <option value="Plan to Play">{$_("gallery.game.status.plan-to-play")}</option>
+            <option value="Dropped">{$_("gallery.generic.status.dropped")}</option>
         </select>
 
         <select
@@ -127,29 +127,29 @@
         >
             <option value="">{$_("gallery.filters.any-rating")}</option>
             {#each [1, 2, 3, 4, 5, 10, 20, 30, 40, 50] as r}
-                <option value={r}>{$_("gallery.book.rating", { values: { rating: r } })}</option>
+                <option value={r}>{$_("gallery.generic.rating", { values: { rating: r } })}</option>
             {/each}
         </select>
 
         <MultiSelectDropdown
-            label={$_("gallery.expanded.genres")}
+            label={$_("gallery.generic.headers.genres")}
             items={filteredGenreCounts.map(([genre, count]) => ({ value: genre, count }))}
             selectedItems={searchFilters.genres}
             isOpen={dropdowns.genres}
             placeholder={$_("gallery.filters.select-genres")}
-            noItemsMessage={$_("gallery.filters.no-genres")}
+            noItemsMessage={$_("indicators.no-genres")}
             ontoggle={() => onToggleDropdown("genres")}
             onclose={() => onCloseDropdown("genres")}
             ontoggle-item={(genre) => onToggleFilterItem("genres", genre)}
         />
 
         <MultiSelectDropdown
-            label={$_("gallery.expanded.tags")}
+            label={$_("gallery.generic.headers.tags")}
             items={filteredTagCounts.map(([tag, count]) => ({ value: tag, count }))}
             selectedItems={searchFilters.tags}
             isOpen={dropdowns.tags}
             placeholder={$_("gallery.filters.select-tags")}
-            noItemsMessage={$_("gallery.filters.no-tags")}
+            noItemsMessage={$_("indicators.no-tags")}
             ontoggle={() => onToggleDropdown("tags")}
             onclose={() => onCloseDropdown("tags")}
             ontoggle-item={(tag) => onToggleFilterItem("tags", tag)}

@@ -124,7 +124,7 @@
                             class="cover-image-small"
                             loading="lazy"
                         />
-                        {#if (!showExplicit ? book.explicit : false)}
+                        {#if !showExplicit ? book.explicit : false}
                             <div class="explicit-icon-small">
                                 <span class="icon-warning-small">⚠️</span>
                                 <span class="explicit-label-small">18+</span>
@@ -170,7 +170,7 @@
                             class="cover-image"
                             loading="lazy"
                         />
-                        {#if (!showExplicit ? book.explicit : false)}
+                        {#if !showExplicit ? book.explicit : false}
                             <div class="explicit-icon">
                                 <span class="icon-warning">
                                     <WarningIcon />

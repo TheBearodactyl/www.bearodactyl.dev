@@ -39,7 +39,7 @@
             filter: "blur(2px)",
             transformOrigin: "center center",
             color: "var(--rp-text)",
-            backgroundColor: "#ffffff"
+            backgroundColor: "#ffffff",
         });
 
         gsap.to(charsToAnimate, {
@@ -60,17 +60,17 @@
                     {
                         color: "var(--rp-text)",
                         textShadow:
-                            "0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5)"
+                            "0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5)",
                     },
                     {
                         color: "var(--rp-text)",
                         textShadow: "none",
                         duration: 0.3,
                         ease: "power2.out",
-                        delay: 0
-                    }
+                        delay: 0,
+                    },
                 );
-            }
+            },
         });
     }
 

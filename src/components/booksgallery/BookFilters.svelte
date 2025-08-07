@@ -50,7 +50,7 @@
         onUpdateFilters,
         setViewMode,
         toggleViewMode,
-        getViewMode
+        getViewMode,
     }: Props = $props();
 
     function handleKeydown(event: KeyboardEvent) {

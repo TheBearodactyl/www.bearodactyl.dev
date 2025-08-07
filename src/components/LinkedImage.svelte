@@ -55,12 +55,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- svelte-ignore event_directive_deprecated -->
 <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-<img
-    src={imageSrc}
-    alt={$_("indicators.click-to-play")}
-    class="clickable"
-    on:click={handleClick}
-/>
+<img src={imageSrc} alt={$_("indicators.click-to-play")} class="clickable" on:click={handleClick} />
 
 <style>
     .clickable {

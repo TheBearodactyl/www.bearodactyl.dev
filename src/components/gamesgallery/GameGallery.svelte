@@ -39,7 +39,7 @@
 </script>
 
 <div class="book-gallery" class:idle-background={display.isIdle}>
-    <h1 class="gallery-title">{$_("titles.games")}</h1>
+    <h1 class="gallery-title">{$_("titles.routes.games")}</h1>
 
     <GameFilters
         searchFilters={filters.searchFilters}

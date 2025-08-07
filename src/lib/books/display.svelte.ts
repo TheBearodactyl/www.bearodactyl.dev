@@ -16,7 +16,7 @@ function createPersistentState<T>(key: string, defaultValue: T) {
 
         localStorage.setItem(
             key,
-            JSON.stringify(() => value)
+            JSON.stringify(() => value),
         );
     }
 
@@ -26,7 +26,7 @@ function createPersistentState<T>(key: string, defaultValue: T) {
         },
         set value(newValue: T) {
             value = newValue;
-        }
+        },
     };
 }
 
@@ -35,7 +35,7 @@ export function createDisplayStore() {
     let expandedInputRef = $state<HTMLElement | null>(null);
     const viewModeStorage: { value: "masonry" | "list" } = createPersistentState(
         "book-gallery-view-mode",
-        "masonry"
+        "masonry",
     );
     let expandedCard = $state<string | number | null>(null);
     let idleTimeout = $state<ReturnType<typeof setTimeout>>();
@@ -125,7 +125,7 @@ export function createDisplayStore() {
         resetIdleTimer,
         cleanup,
         setViewMode,
-        toggleViewMode
+        toggleViewMode,
     };
 }
 

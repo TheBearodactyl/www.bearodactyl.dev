@@ -1,6 +1,6 @@
 export function lazyLoad(
     node: HTMLImageElement,
-    options: IntersectionObserverInit = { rootMargin: "200px", threshold: 0.01 }
+    options: IntersectionObserverInit = { rootMargin: "200px", threshold: 0.01 },
 ): { destroy(): void } {
     if (!node.dataset.src) return { destroy: () => {} };
 
@@ -33,6 +33,6 @@ export function lazyLoad(
     return {
         destroy() {
             observer?.disconnect();
-        }
+        },
     };
 }

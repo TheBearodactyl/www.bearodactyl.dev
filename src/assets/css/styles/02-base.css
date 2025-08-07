@@ -18,7 +18,7 @@ body {
     background-color: var(--rp-base);
     color: var(--rp-text);
     font-family: var(--font-family-base);
-    line-height: var(--line-height-base); 
+    line-height: var(--line-height-base);
     scroll-behavior: smooth;
     min-height: 100vh;
     display: flex;

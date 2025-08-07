@@ -33,7 +33,7 @@
     };
 
     let sellocale = $derived(locale);
-    selectedLocale = $sellocale
+    selectedLocale = $sellocale;
 </script>
 
 <div class="locale-switcher">

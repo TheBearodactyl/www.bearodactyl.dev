@@ -9,7 +9,6 @@
     import { chooseRandom } from "$lib/utils/misc";
     import { debugMessages } from "$lib/i18n";
 
-
     let isMobile = false;
 
     onMount(() => {

@@ -1,5 +1,9 @@
 {
     "subdomain": "{subdomain}.bearodactyl.dev",
+    "view-mode": {
+        "grid": "Grid",
+        "list": "List"
+    },
     "quick-menu": {
         "routes": "ルート",
         "nav-to-page": "ページに移動",

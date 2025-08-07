@@ -84,7 +84,7 @@
                     await handleViewModeChange(viewMode === "masonry" ? "list" : "masonry");
                 }}
             >
-                {viewMode === "masonry" ? "Grid" : "List"}
+                {viewMode === "masonry" ? $_("misc.view-mode.grid") : $_("misc.view-mode.list")}
                 <span class="view-btn-icon">{viewMode === "masonry" ? "▦" : "☰"}</span>
             </button>
         </div>

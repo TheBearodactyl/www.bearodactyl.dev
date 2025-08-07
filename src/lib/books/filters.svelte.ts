@@ -19,7 +19,7 @@ function createFiltersStore() {
         genres: [],
         tags: [],
         rating: null,
-        status: ""
+        status: "",
     };
 
     let filters = $state<Filters>({ ...defaultFilters });
@@ -50,7 +50,7 @@ function createFiltersStore() {
         },
         updateFilter<K extends keyof Filters>(key: K, value: Filters[K]) {
             filters[key] = value;
-        }
+        },
     };
 }
 
@@ -66,7 +66,7 @@ export function useFilters(allBooks: () => Book[]) {
         if (!hasSearch()) return null;
         return new Fuse(allBooks(), {
             keys: ["title", "author", "genres", "tags"],
-            threshold: 0.3
+            threshold: 0.3,
         });
     });
 
@@ -210,7 +210,7 @@ export function useFilters(allBooks: () => Book[]) {
             genres: [],
             tags: [],
             rating: null,
-            status: ""
+            status: "",
         };
     }
 
@@ -257,6 +257,6 @@ export function useFilters(allBooks: () => Book[]) {
         clearAllFilters,
         updateFilter: storage.updateFilter,
         addGenre,
-        addTag
+        addTag,
     };
 }
