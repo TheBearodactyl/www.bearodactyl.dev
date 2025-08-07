@@ -1,11 +1,8 @@
 {
-  "install-command": "{mode} Install Command",
+  "install-command": "{mode} インストールの命令",
   "modes": {
-    "hide": "Hide",
-    "show": "Show"
+    "hide": "非表示",
+    "show": "表示"
   },
-  "routes": {
-    "one-piece": ""
-  },
-  "view-source": "View Source"
+  "view-source": "ソースコードを表示"
 }

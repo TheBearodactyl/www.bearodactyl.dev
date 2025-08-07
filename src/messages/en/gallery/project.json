@@ -4,8 +4,5 @@
     "hide": "Hide",
     "show": "Show"
   },
-  "routes": {
-    "one-piece": ""
-  },
   "view-source": "View Source"
 }

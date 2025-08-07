@@ -1,8 +1,8 @@
 {
     "subdomain": "{subdomain}.bearodactyl.dev",
     "quick-menu": {
-        "routes": "routes",
-        "nav-to-page": "navigate to page",
-        "toggle-menu": "toggle menu"
+        "routes": "ルート",
+        "nav-to-page": "ページに移動",
+        "toggle-menu": "メニューを切り替え"
     }
 }

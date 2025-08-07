@@ -36,33 +36,33 @@
     ];
 
     const routes: RouteItem[] = [
-        { path: "/", name: $_("titles.routes.home") },
+        { path: "/", nameKey: "titles.routes.home" },
         {
             path: "/lists",
-            name: $_("titles.lists"),
+            nameKey: "titles.lists",
             children: [
-                { path: "/lists/games", name: $_("titles.routes.games") },
-                { path: "/lists/read-watch", name: $_("titles.routes.read-watch") },
-                { path: "/lists/projects", name: $_("titles.routes.projects") },
-                { path: "/lists/one-piece", name: $_("titles.routes.one-piece") },
-                { path: "/lists/domains", name: $_("titles.routes.domains") },
+                { path: "/lists/games", nameKey: "titles.routes.games" },
+                { path: "/lists/read-watch", nameKey: "titles.routes.read-watch" },
+                { path: "/lists/projects", nameKey: "titles.routes.projects" },
+                { path: "/lists/one-piece", nameKey: "titles.routes.one-piece" },
+                { path: "/lists/domains", nameKey: "titles.routes.domains" },
             ],
         },
         {
             path: "/jokes",
-            name: $_("titles.jokes"),
+            nameKey: "titles.jokes",
             children: [
-                { path: "/jokes/bearo", name: $_("titles.routes.bearodactyl") },
-                { path: "/jokes/woah", name: $_("titles.routes.woah") },
+                { path: "/jokes/bearo", nameKey: "titles.routes.bearodactyl" },
+                { path: "/jokes/woah", nameKey: "titles.routes.woah" },
             ],
         },
         {
             path: "/license",
-            name: $_("titles.routes.license"),
+            nameKey: "titles.routes.license",
         },
         {
             path: "https://github.com/thebearodactyl/www.bearodactyl.dev",
-            name: $_("titles.routes.website-src"),
+            nameKey: "titles.routes.website-src",
         },
     ];
 
@@ -190,7 +190,7 @@
                                 onmouseenter={() => route.children && handleRouteHover(route.path)}
                                 onmouseleave={() => route.children && handleRouteLeave(route.path)}
                             >
-                                {route.name}
+                                {$_(route.nameKey)}
                                 {#if route.children}
                                     <span class="arrow">›</span>
                                 {/if}
@@ -212,7 +212,7 @@
                                                 navigateToRoute(childRoute.path);
                                             }}
                                         >
-                                            {childRoute.name}
+                                            {$_(childRoute.nameKey)}
                                         </button>
                                     {/each}
                                 </div>

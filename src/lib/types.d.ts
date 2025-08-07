@@ -56,6 +56,6 @@ export interface NavItem {
 
 export interface RouteItem {
     path: string;
-    name: string;
+    nameKey: string;
     children?: RouteItem[];
 }

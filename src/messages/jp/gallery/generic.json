@@ -1,16 +1,16 @@
 {
-  "cover-alt": "Cover art of {title}",
+  "cover-alt": "{title}の表紙絵画",
   "headers": {
-    "description": "Description",
-    "genres": "Genres",
-    "links": "Links",
-    "my-thoughts": "My Thoughts",
-    "tags": "Tags"
+    "description": "説明",
+    "genres": "ジャンル",
+    "links": "リンク",
+    "my-thoughts": "個人的意見",
+    "tags": "タグ"
   },
   "rating": "{rating}+",
   "rating-of-five": "{rating}/5",
   "status": {
-    "dropped": "Dropped",
-    "finished": "Finished"
+    "dropped": "読むのはやめた",
+    "finished": "読み終わった"
   }
 }

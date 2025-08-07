@@ -1,5 +1,5 @@
 {
-    "chapter-number": "Chapter {chapter}",
-    "rating": "Rating:",
-    "my-thoughts": "Thoughts:\n{thoughts}"
+  "chapter-number": "第{chapter}章",
+  "my-thoughts": "個人的意見:\n{thoughts}",
+  "rating": "評価:"
 }

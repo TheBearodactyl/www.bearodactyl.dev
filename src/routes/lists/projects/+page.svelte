@@ -42,8 +42,8 @@
         <div class="loading">
             {$_("indicators.loading", {
                 values: {
-                    progress: data.downloadProgress()
-                }
+                    progress: data.downloadProgress(),
+                },
             })}
         </div>
     {/if}
@@ -52,8 +52,8 @@
         <div class="error">
             {$_("indicators.list-load-error", {
                 values: {
-                    err: data.fetchError()
-                }
+                    err: data.fetchError(),
+                },
             })}
         </div>
     {/if}
@@ -157,17 +157,15 @@
                         >
                             {$_("gallery.project.install-command", {
                                 values: {
-                                    mode: expandedCards[project.name]
-                                        ? "Hide"
-                                        : "Show"
-                                }
+                                    mode: expandedCards[project.name] ? "Hide" : "Show",
+                                },
                             })}
                         </button>
 
                         {#if expandedCards[project.name]}
                             <div class="install-section" transition:fade>
                                 <code class="install-command">
-                                    {project.installCommand || $_("gallery.project.no-install-command")}
+                                    {project.installCommand || $_("indicators.no-install-command")}
                                 </code>
                                 <!-- svelte-ignore a11y_consider_explicit_label -->
                                 <!-- svelte-ignore event_directive_deprecated -->
@@ -211,7 +209,9 @@
 
 <!-- svelte-ignore css_unused_selector -->
 <style>
-    @import url("/src/assets/css/main.css");
+    :global {
+        @import url("/src/assets/css/main.css");
+    }
 
     .gallery-wrapper {
         background-color: var(--rp-base);

@@ -1,6 +1,6 @@
 {
     "status": {
-        "reading": "Reading",
-        "plan-to-read": "Plan to Read"
+        "reading": "読みかけ",
+        "plan-to-read": "読む予定"
     }
 }
