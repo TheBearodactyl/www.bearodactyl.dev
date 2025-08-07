@@ -1,4 +1,5 @@
 <script lang="ts">
+    // @ts-nocheck
     import { onMount } from "svelte";
     import { GifReader } from "omggif";
 
@@ -51,7 +52,8 @@
         const raw = new Uint8ClampedArray(width * height * 4);
         for (let i = 0; i < reader.numFrames(); i++) {
             reader.decodeAndBlitFrameRGBA(i, raw);
-            frames.push(new ImageData(raw, width, height));
+            const cleaned = chromaKey(raw.slice());
+            frames.push(new ImageData(cleaned, width, height));
             const { delay } = reader.frameInfo(i);
             delayTimes.push((delay > 0 ? delay : 10) * 10);
         }

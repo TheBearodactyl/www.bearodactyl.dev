@@ -23,32 +23,32 @@
 
     const navigationItems: NavItem[] = [
         {
-            title: "Read/Watch List",
-            description: "shit i've read/watched",
+            title: "routes-data.lists.read-watch.title",
+            description: "routes-data.lists.read-watch.desc",
             coverImage: "/images/hobo.gif",
             route: "/lists/read-watch"
         },
         {
-            title: "Projects",
-            description: "stuff i've made/am making",
+            title: "routes-data.lists.projects.title",
+            description: "routes-data.lists.projects.desc",
             coverImage: "/images/family-guy-css.gif",
             route: "/lists/projects"
         },
         {
-            title: "Website Source Code",
-            description: "a lot of code. waow (6,740 lines to be exact)",
+            title: "routes-data.misc.website-src.title",
+            description: "routes-data.misc.website-src.desc",
             coverImage: "/videos/hackermans.webm",
             route: "https://github.com/thebearodactyl/www.bearodactyl.dev"
         },
         {
-            title: "Game list",
-            description: "Games i play",
+            title: "routes-data.lists.games.title",
+            description: "routes-data.lists.games.desc",
             coverImage: "/videos/gamer.webm",
             route: "/lists/games"
         },
         {
-            title: "Bearodactyl",
-            description: "Bearodactyl",
+            title: "routes-data.misc.bearodactyl.title",
+            description: "routes-data.misc.bearodactyl.desc",
             coverImage: "/images/bearo.gif",
             route: "/jokes/bearo"
         },
@@ -59,26 +59,26 @@
         //   route: "/jokes/aaaaa",
         // },
         {
-            title: "Woah",
-            description: "Woah, it's Wulzy",
+            title: "routes-data.misc.woah.title",
+            description: "routes-data.misc.woah.desc",
             coverImage: "/images/wulzy.gif",
             route: "/jokes/woah"
         },
         {
-            title: "One Piece",
-            description: "my reviews of OP chapters (HIGHLY WIP)",
+            title: "routes-data.lists.one-piece.title",
+            description: "routes-data.lists.one-piece.desc",
             coverImage: "/images/op.gif",
             route: "/lists/one-piece"
         },
         {
-            title: "My License",
-            description: "My custom license that I use for all my code",
+            title: "routes-data.misc.license.title",
+            description: "routes-data.misc.license.desc",
             coverImage: "/images/morshu.gif",
             route: "/license"
         },
         {
-            title: "Domains",
-            description: "A list of subdomains i have for this domain",
+            title: "routes-data.lists.domains.title",
+            description: "routes-data.lists.domains.desc",
             coverImage: "/images/domain-expansion.gif",
             route: "/lists/domains"
         },
@@ -118,8 +118,6 @@
             const discouragement_songs = [
                 "/audio/hell.mp3",
                 "/audio/eek.mp3"
-                // "/audio/turnitoff.mp3",
-                // "/audio/aids.mp3"
             ];
 
             let audio = new Audio(chooseRandom(discouragement_songs));

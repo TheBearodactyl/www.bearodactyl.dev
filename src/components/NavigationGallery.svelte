@@ -1,7 +1,7 @@
 <script lang="ts">
+    import { _ } from "svelte-i18n";
     import type { NavItem } from "$lib/types";
     import { show_discouragement } from "$lib/stores/discouragement";
-    import { chooseRandom, randBool } from "$lib/utils/misc";
 
     const {
         navItems,
@@ -39,7 +39,11 @@
                 {#if item.title === "Emergency frog!"}
                     <!-- svelte-ignore a11y_click_events_have_key_events -->
                     <!-- svelte-ignore a11y_no_static_element_interactions -->
-                    <div class="nav-card clickable" onclick={() => handle_card_click(item)}>
+                    <div
+                        title={item.title === undefined ? "don't" : $_(item.title)}
+                        class="nav-card clickable"
+                        onclick={() => handle_card_click(item)}
+                    >
                         <div class="card-image-container">
                             {#if item.coverImage}
                                 <img
@@ -52,14 +56,22 @@
                             {/if}
                         </div>
                         <div class="card-content">
-                            <h2 class="card-title">{item.title}</h2>
-                            <p class="card-description">{item.description}</p>
+                            {#if item.title !== undefined}
+                                <h2 class="card-title">{$_(item.title)}</h2>
+                            {/if}
+                            {#if item.description !== undefined}
+                                <p class="card-description">{$_(item.description)}</p>
+                            {/if}
                         </div>
                     </div>
                 {:else if !item.title}
                     <!-- svelte-ignore a11y_click_events_have_key_events -->
                     <!-- svelte-ignore a11y_no_static_element_interactions -->
-                    <div class="nav-card clickable" onclick={() => handle_card_click(item)}>
+                    <div
+                        title={item.title === undefined ? "don't" : $_(item.title)}
+                        class="nav-card clickable"
+                        onclick={() => handle_card_click(item)}
+                    >
                         <div class="card-image-container">
                             {#if item.coverImage}
                                 <img
@@ -73,16 +85,21 @@
                         </div>
                         {#if !item.title === undefined && !item.description === undefined}
                             <div class="card-content">
-                                {#if !item.title === undefined}
-                                    <h2 class="card-title">{item.title}</h2>
+                                {#if item.title !== undefined}
+                                    <h2 class="card-title">{$_(item.title)}</h2>
                                 {/if}
-                                <p class="card-description">{item.description}</p>
+                                {#if item.description !== undefined}
+                                    <p class="card-description">{$_(item.description)}</p>
+                                {/if}
                             </div>
                         {/if}
                     </div>
                 {:else}
                     <a href={item.route} class="nav-card">
-                        <div class="card-image-container">
+                        <div
+                            title={item.title === undefined ? "don't" : $_(item.title)}
+                            class="card-image-container"
+                        >
                             {#if item.coverImage && !item.coverImage.endsWith("webm")}
                                 <img
                                     src={item.coverImage}
@@ -105,8 +122,12 @@
                             {/if}
                         </div>
                         <div class="card-content">
-                            <h2 class="card-title">{item.title}</h2>
-                            <p class="card-description">{item.description}</p>
+                            {#if item.title !== undefined}
+                                <h2 class="card-title">{$_(item.title)}</h2>
+                            {/if}
+                            {#if item.description !== undefined}
+                                <p class="card-description">{$_(item.description)}</p>
+                            {/if}
                         </div>
                     </a>
                 {/if}

@@ -1,4 +1,5 @@
 <script lang="ts">
+    // @ts-nocheck
     import { onMount } from "svelte";
     import { GifReader } from "omggif";
 
@@ -78,7 +79,7 @@
         playbackSpeed = 1.0,
         onLoaded = undefined,
 
-        vhsPreset = false
+        vhsPreset = false,
     }: Props = $props();
 
     let canvas: HTMLCanvasElement;
@@ -93,20 +94,25 @@
 
     const clamp = (v: number) => Math.min(255, Math.max(0, v));
 
-    function chromaticGlitch(pixels: Uint8ClampedArray, w: number, h: number, amount: number): Uint8ClampedArray {
+    function chromaticGlitch(
+        pixels: Uint8ClampedArray,
+        w: number,
+        h: number,
+        amount: number,
+    ): Uint8ClampedArray {
         const output = new Uint8ClampedArray(pixels.length);
 
         const shiftR = {
             x: Math.floor((Math.random() - 0.5) * 2 * amount),
-            y: Math.floor((Math.random() - 0.5) * 2 * amount)
+            y: Math.floor((Math.random() - 0.5) * 2 * amount),
         };
         const shiftG = {
             x: Math.floor((Math.random() - 0.5) * 2 * amount),
-            y: Math.floor((Math.random() - 0.5) * 2 * amount)
+            y: Math.floor((Math.random() - 0.5) * 2 * amount),
         };
         const shiftB = {
             x: Math.floor((Math.random() - 0.5) * 2 * amount),
-            y: Math.floor((Math.random() - 0.5) * 2 * amount)
+            y: Math.floor((Math.random() - 0.5) * 2 * amount),
         };
 
         for (let y = 0; y < h; y++) {
@@ -129,7 +135,11 @@
         return output;
     }
 
-    function channelBoost(pixels: Uint8ClampedArray, channel: "r" | "g" | "b", amount: number): Uint8ClampedArray {
+    function channelBoost(
+        pixels: Uint8ClampedArray,
+        channel: "r" | "g" | "b",
+        amount: number,
+    ): Uint8ClampedArray {
         const channelOffset = { r: 0, g: 1, b: 2 }[channel];
 
         for (let i = 0; i < pixels.length; i += 4) {
@@ -139,7 +149,12 @@
         return pixels;
     }
 
-    function pixelate(pixels: Uint8ClampedArray, w: number, h: number, pixelSize: number): Uint8ClampedArray {
+    function pixelate(
+        pixels: Uint8ClampedArray,
+        w: number,
+        h: number,
+        pixelSize: number,
+    ): Uint8ClampedArray {
         const output = new Uint8ClampedArray(pixels.length);
         for (let y = 0; y < h; y += pixelSize) {
             for (let x = 0; x < w; x += pixelSize) {
@@ -191,7 +206,12 @@
         return pixels;
     }
 
-    function applyVignette(pixels: Uint8ClampedArray, w: number, h: number, strength: number): Uint8ClampedArray {
+    function applyVignette(
+        pixels: Uint8ClampedArray,
+        w: number,
+        h: number,
+        strength: number,
+    ): Uint8ClampedArray {
         const cx = w / 2;
         const cy = h / 2;
         const maxDist = Math.sqrt(cx * cx + cy * cy);
@@ -212,7 +232,12 @@
         return pixels;
     }
 
-    function fisheye(pixels: Uint8ClampedArray, w: number, h: number, strength: number): Uint8ClampedArray {
+    function fisheye(
+        pixels: Uint8ClampedArray,
+        w: number,
+        h: number,
+        strength: number,
+    ): Uint8ClampedArray {
         const output = new Uint8ClampedArray(pixels.length);
         const cx = w / 2;
         const cy = h / 2;
@@ -261,7 +286,12 @@
         return pixels;
     }
 
-    function glitch(pixels: Uint8ClampedArray, w: number, h: number, amount: number): Uint8ClampedArray {
+    function glitch(
+        pixels: Uint8ClampedArray,
+        w: number,
+        h: number,
+        amount: number,
+    ): Uint8ClampedArray {
         const output = new Uint8ClampedArray(pixels.length);
         for (let i = 0; i < pixels.length; i++) output[i] = pixels[i];
 
@@ -297,7 +327,12 @@
         return pixels;
     }
 
-    function swirl(pixels: Uint8ClampedArray, w: number, h: number, strength: number): Uint8ClampedArray {
+    function swirl(
+        pixels: Uint8ClampedArray,
+        w: number,
+        h: number,
+        strength: number,
+    ): Uint8ClampedArray {
         const output = new Uint8ClampedArray(pixels.length);
         const cx = w / 2;
         const cy = h / 2;
@@ -348,7 +383,12 @@
         return pixels;
     }
 
-    function scanlines(pixels: Uint8ClampedArray, w: number, h: number, intensity: number): Uint8ClampedArray {
+    function scanlines(
+        pixels: Uint8ClampedArray,
+        w: number,
+        h: number,
+        intensity: number,
+    ): Uint8ClampedArray {
         for (let y = 0; y < h; y++) {
             if (y % 2 === 0) {
                 for (let x = 0; x < w; x++) {
@@ -390,7 +430,8 @@
         if (scanlinesEnabled) pixels = scanlines(pixels, width, height, scanlinesIntensity);
         if (vignetteEnabled) pixels = applyVignette(pixels, width, height, vignetteStrength);
         if (channelBoostEnabled) pixels = channelBoost(pixels, channelToBoost, channelBoostAmount);
-        if (chromaticGlitchEnabled) pixels = chromaticGlitch(pixels, width, height, chromaticGlitchAmount);
+        if (chromaticGlitchEnabled)
+            pixels = chromaticGlitch(pixels, width, height, chromaticGlitchAmount);
         return pixels;
     }
 
@@ -432,7 +473,13 @@
             ctx.clearRect(0, 0, width, height);
             if (stretchToWindow) {
                 ctx.clearRect(0, 0, displayWidth, displayHeight);
-                ctx.drawImage(createBitmapFromImageData(frames[idx]), 0, 0, displayWidth, displayHeight);
+                ctx.drawImage(
+                    createBitmapFromImageData(frames[idx]),
+                    0,
+                    0,
+                    displayWidth,
+                    displayHeight,
+                );
             } else {
                 ctx.clearRect(0, 0, width, height);
                 ctx.putImageData(frames[idx], 0, 0);

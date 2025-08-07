@@ -2,12 +2,12 @@
     "index": {
         "title": "The Motherfucking Bearodactyl",
         "desc": "this is my website, check out some stuff i made (it's a bit buggy)",
-		"footer-lines": {
-			"line-one": "All icons made by me in Inkscape",
-			"line-two": "All code on this website is within the public domain",
-			"line-three": "See ",
-			"line-four": "Rabies before Babies"
-		}
+        "footer-lines": {
+            "line-one": "All icons made by me in Inkscape",
+            "line-two": "All code on this website is within the public domain",
+            "line-three": "See ",
+            "line-four": "Rabies before Babies"
+        }
     },
     "gallery": {
         "explicit": "Contains Explicit Content",
@@ -91,5 +91,57 @@
         "routes": "routes",
         "nav-to-page": "Navigate to page",
         "toggle-menu": "Toggle menu"
+    },
+    "subdomains": {
+        "title": "{subdomain}.bearodactyl.dev",
+        "petah": "Peter, meet Petah",
+        "bearodev": "the site you're on right now :O"
+    },
+    "routes-data": {
+        "home-title": "Home",
+        "joke-pages-title": "Joke Pages",
+        "lists-title": "Lists",
+        "lists": {
+            "read-watch": {
+                "title": "Read/Watch List",
+                "desc": "shit i've read/watched"
+            },
+            "games": {
+                "title": "Games List",
+                "desc": "games i play"
+            },
+            "one-piece": {
+                "title": "OP Reviews",
+                "title-short": "OP Reviews",
+                "desc": "my reviews of OP chapters (HIGHLY WIP)"
+            },
+            "projects": {
+                "title": "Projects",
+                "desc": "stuff i've made/am making"
+            },
+            "domains": {
+                "title": "Domains",
+                "desc": "a list of subdomains for this domain"
+            }
+        },
+        "misc": {
+            "bearodactyl": {
+                "title": "Bearodactyl",
+                "desc": "Bearodactyl"
+            },
+            "license": {
+                "title": "My License",
+                "desc": "my custom license that I use for all my code"
+            },
+            "website-src": {
+                "title": "Website Source Code",
+                "title-short": "Website SRC",
+                "desc": "a lot of code. waow. (6,740 lines to be exact)"
+            },
+            "woah": {
+                "title": "Woah",
+                "desc": "Woah, it's Wulzy"
+            }
+        }
     }
 }

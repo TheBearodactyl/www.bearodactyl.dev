@@ -9,7 +9,7 @@
         const preElement = contentContainer?.querySelector("pre");
 
         if (!preElement) {
-            console.warn("SigmaText component expects a <pre> element in its slot to animate.");
+            console.warn("SigmaPre component expects a <pre> element in its slot to animate.");
             return;
         }
 

@@ -32,33 +32,38 @@
         "materialbox",
         "onedark",
         "pink-moon",
-        "tokyo-night"
+        "tokyo-night",
     ];
 
     const routes: RouteItem[] = [
-        { path: "/", name: "Home" },
+        { path: "/", name: $_("routes-data.home-title") },
         {
             path: "/lists",
-            name: "Lists",
+            name: $_("routes-data.lists-title"),
             children: [
-                { path: "/lists/games", name: "Games" },
-                { path: "/lists/read-watch", name: "Read/Watch List" },
-                { path: "/lists/projects", name: "Projects" },
-                { path: "/lists/one-piece", name: "OP Reviews" }
-            ]
+                { path: "/lists/games", name: $_("routes-data.lists.games.title") },
+                { path: "/lists/read-watch", name: $_("routes-data.lists.read-watch.title") },
+                { path: "/lists/projects", name: $_("routes-data.lists.projects.title") },
+                { path: "/lists/one-piece", name: $_("routes-data.lists.one-piece.title-short") },
+                { path: "/lists/domains", name: $_("routes-data.lists.domains.title") },
+            ],
         },
         {
             path: "/jokes",
-            name: "Joke Pages",
+            name: $_("routes-data.joke-pages-title"),
             children: [
-                { path: "/jokes/bearo", name: "The MF Bearodactyl" },
-                { path: "/jokes/woah", name: "Woah" }
-            ]
+                { path: "/jokes/bearo", name: $_("routes-data.misc.bearodactyl.title") },
+                { path: "/jokes/woah", name: $_("routes-data.misc.woah.title") },
+            ],
         },
         {
             path: "/license",
-            name: "My License"
-        }
+            name: $_("routes-data.misc.license.title"),
+        },
+        {
+            path: "https://github.com/thebearodactyl/www.bearodactyl.dev",
+            name: $_("routes-data.misc.website-src.title-short"),
+        },
     ];
 
     const { children } = $props();
@@ -91,7 +96,12 @@
         isRoutesMenuOpen = false;
         isMenuOpen = false;
         hoveredRoute = null;
-        await goto(path);
+
+        if (path.includes("http")) {
+            window.open(path, "_blank");
+        } else {
+            await goto(path);
+        }
     }
 
     function handleRouteHover(routePath: string) {
@@ -173,6 +183,8 @@
                                 onclick={() => {
                                     if (route.children?.length === 0 || route.path === "/") {
                                         navigateToRoute(route.path);
+                                    } else if (route.path.includes("github")) {
+                                        window.open(route.path, "_blank");
                                     }
                                 }}
                                 onmouseenter={() => route.children && handleRouteHover(route.path)}

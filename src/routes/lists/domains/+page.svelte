@@ -1,15 +1,24 @@
 <script lang="ts">
     import LinkButton from "../../../components/LinkButton.svelte";
+    import { _ } from "svelte-i18n";
 
     const domains = [
         {
-            title: "this site",
-            desc: "the one you're on right now!",
-            lnk: "https://bearodactyl.dev",
+            title: $_("subdomains.title", {
+                values: {
+                    subdomain: "www",
+                },
+            }),
+            desc: $_("subdomains.bearodev"),
+            lnk: "https://www.bearodactyl.dev",
         },
         {
-            title: "Petah",
-            desc: "Peter, meet Peta",
+            title: $_("subdomains.title", {
+                values: {
+                    subdomain: "petah",
+                },
+            }),
+            desc: $_("subdomains.petah"),
             lnk: "https://petah.bearodactyl.dev",
         },
     ];
