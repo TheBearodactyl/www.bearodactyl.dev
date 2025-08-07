@@ -117,6 +117,7 @@
         onLoaded={async () => {
             const discouragement_songs = [
                 "/audio/hell.mp3",
+                "/audio/eek.mp3"
                 // "/audio/turnitoff.mp3",
                 // "/audio/aids.mp3"
             ];
