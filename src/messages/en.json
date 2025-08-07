@@ -68,12 +68,6 @@
             }
         }
     },
-    "titles": {
-        "read-watch": "Read/Watch List",
-        "games": "Games List",
-        "op-reviews": "My One Piece Chapter Reviews",
-        "projects": "My Projects"
-    },
     "indicators": {
         "loading": "Loading... {progress}%",
         "list-load-error": "[ERROR] - Couldn't load list: {err}",

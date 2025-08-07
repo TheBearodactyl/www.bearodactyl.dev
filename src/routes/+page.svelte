@@ -7,6 +7,9 @@
     import { show_discouragement } from "$lib/stores/discouragement";
     import Discouragement from "../components/Discouragement.svelte";
     import { chooseRandom } from "$lib/utils/misc";
+    import { debugMessages } from "$lib/i18n";
+
+    debugMessages();
 
     let isMobile = false;
 
@@ -23,7 +26,7 @@
 
     const navigationItems: NavItem[] = [
         {
-            title: "routes-data.lists.read-watch.title",
+            title: "titles.read-watch",
             description: "routes-data.lists.read-watch.desc",
             coverImage: "/images/hobo.gif",
             route: "/lists/read-watch"

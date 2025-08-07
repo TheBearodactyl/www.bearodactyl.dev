@@ -1,34 +1,84 @@
 <script lang="ts">
-    import { locale, availableLocales } from "$lib/i18n";
+    import { locale, loadLocale, availableLocales } from "$lib/i18n";
     import { onMount } from "svelte";
 
-    let selectedLocale = $state(locale);
+    let selectedLocale = $state($locale);
+    let isLoading = $state(false);
 
     onMount(() => {
         const storedLocale = localStorage.getItem("selected-locale");
-        if (storedLocale) {
-            $selectedLocale = storedLocale;
-            $locale = storedLocale;
+        if (storedLocale && availableLocales.includes(storedLocale)) {
+            handleLocaleChange(storedLocale);
         }
     });
 
+    const handleLocaleChange = async (newLocale: string) => {
+        if (newLocale === $locale || isLoading) return;
+
+        isLoading = true;
+
+        try {
+            await loadLocale(newLocale);
+            selectedLocale = newLocale;
+            localStorage.setItem("selected-locale", newLocale);
+        } catch (error) {
+            console.error("Failed to load locale:", error);
+            selectedLocale = $locale;
+        } finally {
+            isLoading = false;
+        }
+    };
+
     $effect(() => {
-        if (selectedLocale) {
-            localStorage.setItem("selected-locale", $selectedLocale || "en");
-            $locale = $selectedLocale;
+        if (selectedLocale && selectedLocale !== $locale) {
+            handleLocaleChange(selectedLocale);
         }
     });
 </script>
 
 <div class="locale-switcher">
-    <select bind:value={$selectedLocale}>
-        {#each $availableLocales as loc}
-            <option value={loc || "en"}>{loc || "en"}</option>
+    <select bind:value={selectedLocale} disabled={isLoading} aria-label="Select language">
+        {#each availableLocales as loc}
+            <option value={loc}>
+                {#if loc === "en"}
+                    English
+                {:else if loc === "jp"}
+                    日本語
+                {:else}
+                    {loc.toUpperCase()}
+                {/if}
+            </option>
         {/each}
     </select>
+
+    {#if isLoading}
+        <span class="loading-indicator" aria-hidden="true">⟳</span>
+    {/if}
 </div>
 
-<!-- svelte-ignore css_unused_selector -->
 <style>
-    @import url("/src/assets/css/main.css");
+    .locale-switcher {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    select:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .loading-indicator {
+        animation: spin 1s linear infinite;
+        font-size: 1rem;
+    }
+
+    @keyframes spin {
+        from {
+            transform: rotate(0deg);
+        }
+        to {
+            transform: rotate(360deg);
+        }
+    }
 </style>
