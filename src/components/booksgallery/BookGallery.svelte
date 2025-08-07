@@ -103,7 +103,7 @@
 </script>
 
 <div class="book-gallery" class:idle-background={display.isIdle}>
-    <h1 class="gallery-title">{$_("titles.read-watch")}</h1>
+    <h1 class="gallery-title">{$_("titles.routes.read-watch")}</h1>
 
     <Filters
         searchFilters={filters.searchFilters}

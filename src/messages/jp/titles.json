@@ -1,21 +1,18 @@
 {
-  "domains": "",
-  "games": "Games List",
-  "index": "",
-  "lists": "",
-  "one-piece": "OP Chapter Reviews",
-  "projects": "Projects List",
-  "read-watch": "Read/Watch List",
+  "index": "The Motherfucking Bearodactyl",
+  "lists": "Lists",
+  "jokes": "Joke Pages",
   "routes": {
-    "bearodactyl": "",
-    "domains": "",
-    "games": "",
-    "home": "",
-    "license": "",
-    "one-piece": "",
-    "projects": "",
-    "read-watch": "",
-    "website-src": "",
-    "woah": ""
+    "bearodactyl": "Bearodactyl",
+    "domains": "Domains",
+    "games": "Games List",
+    "home": "家",
+    "license": "My License",
+    "one-piece": "OP Reviews",
+    "one-piece-long": "OP Chapter Reviews",
+    "projects": "Projects",
+    "read-watch": "Read/Watch List",
+    "website-src": "Website Source",
+    "woah": "Woah"
   }
 }

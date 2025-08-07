@@ -21,13 +21,13 @@
                 <img
                     use:lazyLoad
                     data-src={book.coverImage}
-                    alt={$_("gallery.book.cover-alt", { values: { title: book.title } })}
+                    alt={$_("gallery.generic.cover-alt", { values: { title: book.title } })}
                     class="expanded-cover-image"
                 />
                 {#if book.explicit}
                     <div class="explicit-icon">
                         <span class="icon-warning">⚠️</span>
-                        <span class="explicit-label">{$_("gallery.explicit")}</span>
+                        <span class="explicit-label">{$_("indicators.explicit")}</span>
                     </div>
                 {/if}
             </div>
@@ -61,26 +61,26 @@
                         {/each}
                     </span>
                     <span class="rating-text">
-                        {$_("gallery.book.rating-out-of-five", { values: { rating: book.rating } })}
+                        {$_("gallery.generic.rating-of-five", { values: { rating: book.rating } })}
                     </span>
                 </div>
             </div>
         </div>
 
         <div class="expanded-content">
-            <h4>{$_("gallery.expanded.description")}</h4>
+            <h4>{$_("gallery.generic.headers.description")}</h4>
             <div class="description-section">
                 <p>{book.description}</p>
             </div>
 
-            <h4>{$_("gallery.expanded.my-thoughts")}</h4>
+            <h4>{$_("gallery.generic.headers.my-thoughts")}</h4>
             <div class="thoughts-section">
                 <p>{book.myThoughts}</p>
             </div>
 
             {#if book.links && book.links.length > 0}
                 <div class="links-section">
-                    <h4>{$_("gallery.expanded.links")}</h4>
+                    <h4>{$_("gallery.generic.headers.links")}</h4>
                     <div class="links-grid">
                         {#each book.links as link (link.title)}
                             <a

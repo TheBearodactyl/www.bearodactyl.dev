@@ -3,7 +3,6 @@
     import { useData } from "$lib/reviews/data.svelte";
     import Seo from "../../../components/SEO.svelte";
     import { _ } from "svelte-i18n";
-    import { debugMessages } from "$lib/i18n";
 
     const data = useData();
     let filters = useFilters(data.reviews);
@@ -16,68 +15,85 @@
     url="https://bearodactyl.dev/lists/one-piece"
 />
 
-<div class="gallery-wrapper">
-    <h1 class="title">{$_("titles.routes.one-piece")}</h1>
+<div class="book-gallery">
+    <h1 class="gallery-title">{$_("titles.routes.one-piece-long")}</h1>
 
     {#if data.isLoading()}
-        <div class="loading">
-            {$_("indicators.loading", {
-                values: {
-                    progress: data.downloadProgress()
-                }
-            })}
+        <div class="progress-wrapper">
+            <p>
+                {$_("indicators.loading", {
+                    values: {
+                        progress: data.downloadProgress(),
+                    },
+                })}
+            </p>
         </div>
     {/if}
 
     {#if data.fetchError()}
-        <div class="error">
+        <div class="error-message">
             {$_("indicators.list-load-error", {
                 values: {
-                    err: data.fetchError()!
-                }
+                    err: data.fetchError()!,
+                },
             })}
         </div>
     {/if}
 
-    <div class="filters">
+    <div class="filter-pill">
         <input
             type="text"
             bind:value={filters.searchFilters.search}
             placeholder={$_("gallery.filters.search")}
-            class="search-input"
+            class="pill-search-input"
         />
     </div>
 
     {#if !data.isLoading() && !data.fetchError()}
-        <div class="book-gallery">
-            {#each filters.filteredReviews() as review (review.chapter)}
-                <div class="book-card">
-                    <div class="book-info">
-                        <h1 class="book-title">
-                            {$_("gallery.review.chapter-number", {
-                                values: {
-                                    chapter: review.chapter
-                                }
-                            })}
-                        </h1>
-                        <p class="book-description">{review.description}</p>
-                        <p><strong>{$_("gallery.review.rating")}</strong> {review.rating}/5</p>
-                        {#if review.thoughts}
-                            <p>
-                                {$_("gallery.review.my-thoughts", {
+        <div class="book-grid-container fade-in">
+            <div class="book-grid">
+                {#each filters.filteredReviews() as review (review.chapter)}
+                    <div class="book-card">
+                        <div class="book-info">
+                            <h class="book-title">
+                                {$_("gallery.review.chapter-number", {
                                     values: {
-                                        thoughts: review.thoughts!
-                                    }
+                                        chapter: review.chapter,
+                                    },
                                 })}
-                            </p>
-                        {/if}
+                            </h>
+                            <p class="book-author">{review.description}</p>
+                            <div class="book-rating">
+                                <span class="stars">
+                                    {#each Array(5) as _, star}
+                                        <span class="star" class:filled={star + 1 <= review.rating}
+                                            >★</span
+                                        >
+                                    {/each}
+                                </span>
+                                <span class="rating-text">
+                                    {review.rating}/5
+                                </span>
+                            </div>
+                            {#if review.thoughts}
+                                <div class="book-meta">
+                                    <p>
+                                        {$_("gallery.review.my-thoughts", {
+                                            values: {
+                                                thoughts: review.thoughts!,
+                                            },
+                                        })}
+                                    </p>
+                                </div>
+                            {/if}
+                        </div>
                     </div>
-                </div>
-            {/each}
+                {/each}
 
-            {#if filters.filteredReviews().length === 0}
-                <div class="no-results">{$_("indicators.no-results")}</div>
-            {/if}
+                {#if filters.filteredReviews().length === 0}
+                    <p class="no-books-found">{$_("indicators.no-results")}</p>
+                {/if}
+            </div>
         </div>
     {/if}
 </div>
@@ -85,5 +101,9 @@
 <style>
     :global {
         @import url("/src/assets/css/main.css");
+    }
+
+    .book-grid-container {
+        min-height: calc(100vh - var(--spacing-2xl) * 2 - 120px);
     }
 </style>

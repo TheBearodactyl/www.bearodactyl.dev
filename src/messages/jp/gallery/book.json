@@ -1,6 +1,6 @@
 {
-  "status": {
-    "plan-to-read": "",
-    "reading": ""
-  }
+    "status": {
+        "reading": "Reading",
+        "plan-to-read": "Plan to Read"
+    }
 }

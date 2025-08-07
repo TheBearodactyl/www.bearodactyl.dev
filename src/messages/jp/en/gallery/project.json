@@ -1,8 +1,0 @@
-{
-    "view-source": "View Source",
-    "install-command": "{mode} Install Command",
-    "modes": {
-        "hide": "Hide",
-        "show": "Show"
-    }
-}

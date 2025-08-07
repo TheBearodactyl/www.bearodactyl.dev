@@ -7,7 +7,7 @@ import { get } from "svelte/store";
 const defaultLocale = "en";
 
 const getAvailableLocales = () => {
-    const modules = import.meta.glob("../../messages/**/*.json");
+    const modules = import.meta.glob("/src/messages/**/*.json");
     const locales = new SvelteSet<string>();
 
     Object.keys(modules).forEach((path) => {
@@ -128,13 +128,14 @@ const mergeDeep = (target: any, source: any): any => {
 };
 
 export const loadLocale = async (lang: string) => {
-    const modules = import.meta.glob<Record<string, any>>(`../../messages/**/*.json`);
+    const modules = import.meta.glob<Record<string, any>>("/src/messages/**/*.json");
     const localeMessages: any = {};
+
     const imports = Object.entries(modules).map(async ([path, resolver]) => {
         const localeMatch = path.match(/messages\/([^/]+)/);
         if (!localeMatch || localeMatch[1] !== lang) return;
 
-        const relativePath = path.replace(`../../messages/${lang}/`, "");
+        const relativePath = path.replace(`/src/messages/${lang}/`, "");
         const pathWithoutExtension = relativePath.replace(".json", "");
 
         try {
@@ -142,7 +143,6 @@ export const loadLocale = async (lang: string) => {
             const msgs = module.default || module;
             const nestedStructure = buildNestedObject(pathWithoutExtension, msgs);
 
-            // Merge into locale messages
             Object.keys(nestedStructure).forEach((key) => {
                 if (localeMessages[key]) {
                     localeMessages[key] = mergeDeep(localeMessages[key], nestedStructure[key]);

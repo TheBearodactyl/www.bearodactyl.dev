@@ -166,7 +166,7 @@
                         <img
                             use:lazyLoad
                             data-src={book.coverImage}
-                            alt={$_("gallery.book.cover-alt", { values: { title: book.title } })}
+                            alt={$_("gallery.generic.cover-alt", { values: { title: book.title } })}
                             class="cover-image"
                             loading="lazy"
                         />
@@ -175,7 +175,7 @@
                                 <span class="icon-warning">
                                     <WarningIcon />
                                 </span>
-                                <span class="explicit-label">{$_("gallery.explicit")}</span>
+                                <span class="explicit-label">{$_("indicators.explicit")}</span>
                             </div>
                         {/if}
                     </div>
@@ -211,7 +211,7 @@
                                 {/each}
                             </span>
                             <span class="rating-text">
-                                {$_("gallery.book.rating-out-of-five", {
+                                {$_("gallery.generic.rating-of-five", {
                                     values: { rating: book.rating },
                                 })}
                             </span>

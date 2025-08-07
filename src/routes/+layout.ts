@@ -5,7 +5,7 @@ import { waitLocale } from "svelte-i18n";
 import { browser } from "$app/environment";
 
 const getAvailableLocales = () => {
-    const modules = import.meta.glob("../messages/**/*.json");
+    const modules = import.meta.glob("/src/messages/**/*.json");
     const locales = new SvelteSet<string>();
 
     Object.keys(modules).forEach((path) => {

@@ -1,12 +1,12 @@
 {
-  "any-rating": "",
-  "any-status": "",
-  "clear": "",
-  "search": "",
-  "search-author": "",
-  "search-developer": "",
-  "search-title": "",
-  "select-genres": "",
-  "select-tags": "",
-  "title": ""
+    "search": "Search...",
+    "any-rating": "Any Rating",
+    "any-status": "Any Status",
+    "title": "Title",
+    "search-title": "Search title...",
+    "search-author": "Search author...",
+    "search-developer": "Search developer...",
+    "select-genres": "Select Genres",
+    "select-tags": "Select Tags",
+    "clear": "Clear Filters"
 }

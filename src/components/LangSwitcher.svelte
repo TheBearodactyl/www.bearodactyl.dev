@@ -3,8 +3,9 @@
     import { page } from "$app/stores";
     import { locale, loadLocale, availableLocales } from "$lib/i18n";
     import { onMount } from "svelte";
+    import { get } from "svelte/store";
 
-    let selectedLocale = $state($locale);
+    let selectedLocale = $state(get(locale));
     let isLoading = $state(false);
 
     onMount(() => {
@@ -21,8 +22,8 @@
             selectedLocale = newLocale;
             localStorage.setItem("selected-locale", newLocale);
 
-            const currentPath = $page.url.pathname + $page.url.search;
-            await goto(currentPath, { invalidateAll: true });
+            // const currentPath = get(page).url.pathname + get(page).url.search;
+            // await goto(currentPath, { invalidateAll: true });
         } catch (error) {
             console.error("Failed to load locale:", error);
             selectedLocale = $locale;
@@ -31,11 +32,8 @@
         }
     };
 
-    $effect(() => {
-        if ($locale && selectedLocale !== $locale) {
-            selectedLocale = $locale;
-        }
-    });
+    let sellocale = $derived(locale);
+    selectedLocale = $sellocale
 </script>
 
 <div class="locale-switcher">

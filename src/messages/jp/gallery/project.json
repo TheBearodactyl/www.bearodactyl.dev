@@ -1,8 +1,11 @@
 {
-  "install-command": "",
+  "install-command": "{mode} Install Command",
   "modes": {
-    "hide": "",
-    "show": ""
+    "hide": "Hide",
+    "show": "Show"
   },
-  "view-source": ""
+  "routes": {
+    "one-piece": ""
+  },
+  "view-source": "View Source"
 }

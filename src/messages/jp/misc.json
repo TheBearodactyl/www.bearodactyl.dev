@@ -1,8 +1,8 @@
 {
-  "quick-menu": {
-    "nav-to-page": "",
-    "routes": "",
-    "toggle-menu": ""
-  },
-  "subdomain": ""
+    "subdomain": "{subdomain}.bearodactyl.dev",
+    "quick-menu": {
+        "routes": "routes",
+        "nav-to-page": "navigate to page",
+        "toggle-menu": "toggle menu"
+    }
 }

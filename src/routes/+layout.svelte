@@ -41,28 +41,28 @@
             path: "/lists",
             name: $_("titles.lists"),
             children: [
-                { path: "/lists/games", name: $_("routes-data.lists.games.title") },
-                { path: "/lists/read-watch", name: $_("routes-data.lists.read-watch.title") },
-                { path: "/lists/projects", name: $_("routes-data.lists.projects.title") },
-                { path: "/lists/one-piece", name: $_("routes-data.lists.one-piece.title-short") },
-                { path: "/lists/domains", name: $_("routes-data.lists.domains.title") },
+                { path: "/lists/games", name: $_("titles.routes.games") },
+                { path: "/lists/read-watch", name: $_("titles.routes.read-watch") },
+                { path: "/lists/projects", name: $_("titles.routes.projects") },
+                { path: "/lists/one-piece", name: $_("titles.routes.one-piece") },
+                { path: "/lists/domains", name: $_("titles.routes.domains") },
             ],
         },
         {
             path: "/jokes",
-            name: $_("routes-data.joke-pages-title"),
+            name: $_("titles.jokes"),
             children: [
-                { path: "/jokes/bearo", name: $_("routes-data.misc.bearodactyl.title") },
-                { path: "/jokes/woah", name: $_("routes-data.misc.woah.title") },
+                { path: "/jokes/bearo", name: $_("titles.routes.bearodactyl") },
+                { path: "/jokes/woah", name: $_("titles.routes.woah") },
             ],
         },
         {
             path: "/license",
-            name: $_("routes-data.misc.license.title"),
+            name: $_("titles.routes.license"),
         },
         {
             path: "https://github.com/thebearodactyl/www.bearodactyl.dev",
-            name: $_("routes-data.misc.website-src.title-short"),
+            name: $_("titles.routes.website-src"),
         },
     ];
 
@@ -165,11 +165,11 @@
             <div class="routes-menu-container">
                 <button
                     class="routes-menu-button"
-                    aria-label={$_("quick-menu.nav-to-page")}
-                    title={$_("quick-menu.nav-to-page")}
+                    aria-label={$_("misc.quick-menu.nav-to-page")}
+                    title={$_("descriptions.routes-menu")}
                     onclick={toggleRoutesMenu}
                 >
-                    {$_("quick-menu.routes")}
+                    {$_("misc.quick-menu.routes")}
                 </button>
 
                 <div class="routes-dropdown" class:open={isRoutesMenuOpen}>
@@ -237,7 +237,8 @@
         <button
             class="menu-toggle"
             class:active={isMenuOpen}
-            aria-label={$_("quick-menu.toggle-menu")}
+            aria-label={$_("misc.quick-menu.toggle-menu")}
+            title={$_("misc.quick-menu.toggle-menu")}
             onclick={toggleMenu}
         >
             <MenuIcon />

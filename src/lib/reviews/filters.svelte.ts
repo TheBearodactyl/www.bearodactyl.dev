@@ -55,7 +55,7 @@ export function useFilters(allReviews: () => Review[]) {
 
 	const fuse = $derived(() => {
 		return new Fuse(allReviews(), {
-			keys: ['description', 'thoughts'],
+			keys: ['chapter', 'description', 'thoughts'],
 			threshold: 0.3
 		});
 	});
