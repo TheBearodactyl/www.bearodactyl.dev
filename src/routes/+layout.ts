@@ -1,43 +1,70 @@
-import { browser } from "$app/environment";
 import { SvelteSet } from "svelte/reactivity";
 import type { LayoutLoad } from "./$types";
 import { loadLocale } from "$lib/i18n";
 import { waitLocale } from "svelte-i18n";
+import { browser } from "$app/environment";
 
 const getAvailableLocales = () => {
-    const modules = import.meta.glob("../messages/*/*.json");
+    const modules = import.meta.glob("../messages/**/*.json");
     const locales = new SvelteSet<string>();
 
     Object.keys(modules).forEach((path) => {
-        const parts = path.split("/");
-        const locale = parts[parts.length - 2];
-        locales.add(locale);
+        const match = path.match(/messages\/([^/]+)/);
+        if (match) {
+            locales.add(match[1]);
+        }
     });
 
     return Array.from(locales);
 };
 
-const getUserPreferredLocale = (available_locales: string[]) => {
-    if (browser) {
-        const browserLang = window.navigator.language.split("-")[0]; // e.g., "en-US" -> "en"
-        if (available_locales.includes(browserLang)) {
-            return browserLang;
-        }
+const findBestLocale = (preferredLocale: string, availableLocales: string[]): string => {
+    if (availableLocales.includes(preferredLocale)) {
+        return preferredLocale;
     }
 
-    return available_locales.includes("en") ? "en" : available_locales[0];
+    const languageOnly = preferredLocale.split("-")[0];
+    if (availableLocales.includes(languageOnly)) {
+        return languageOnly;
+    }
+
+    const localeMap: Record<string, string> = {
+        ja: "jp",
+        "ja-JP": "jp",
+        japanese: "jp",
+    };
+
+    const mapped = localeMap[preferredLocale.toLowerCase()];
+    if (mapped && availableLocales.includes(mapped)) {
+        return mapped;
+    }
+
+    return availableLocales.includes("en") ? "en" : availableLocales[0];
 };
 
 export const load: LayoutLoad = async () => {
     const available_locales = getAvailableLocales();
-    const user_locale = getUserPreferredLocale(available_locales);
 
-    await loadLocale(user_locale);
+    let user_locale = "en";
+
+    if (browser) {
+        const storedLocale = localStorage.getItem("selected-locale");
+        if (storedLocale && available_locales.includes(storedLocale)) {
+            user_locale = storedLocale;
+        } else {
+            const browserLocale = window.navigator.language;
+            user_locale = findBestLocale(browserLocale, available_locales);
+        }
+    }
+
+    const locale_to_load = findBestLocale(user_locale, available_locales);
+
+    await loadLocale(locale_to_load);
     await waitLocale();
 
     return {
         available_locales,
-        currentLocale: user_locale,
+        currentLocale: locale_to_load,
     };
 };
 

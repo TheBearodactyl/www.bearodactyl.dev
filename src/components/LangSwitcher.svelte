@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { goto } from "$app/navigation";
+    import { page } from "$app/stores";
     import { locale, loadLocale, availableLocales } from "$lib/i18n";
     import { onMount } from "svelte";
 
@@ -6,10 +8,7 @@
     let isLoading = $state(false);
 
     onMount(() => {
-        const storedLocale = localStorage.getItem("selected-locale");
-        if (storedLocale && availableLocales.includes(storedLocale)) {
-            handleLocaleChange(storedLocale);
-        }
+        selectedLocale = $locale || "en";
     });
 
     const handleLocaleChange = async (newLocale: string) => {
@@ -21,6 +20,9 @@
             await loadLocale(newLocale);
             selectedLocale = newLocale;
             localStorage.setItem("selected-locale", newLocale);
+
+            const currentPath = $page.url.pathname + $page.url.search;
+            await goto(currentPath, { invalidateAll: true });
         } catch (error) {
             console.error("Failed to load locale:", error);
             selectedLocale = $locale;
@@ -30,14 +32,19 @@
     };
 
     $effect(() => {
-        if (selectedLocale && selectedLocale !== $locale) {
-            handleLocaleChange(selectedLocale);
+        if ($locale && selectedLocale !== $locale) {
+            selectedLocale = $locale;
         }
     });
 </script>
 
 <div class="locale-switcher">
-    <select bind:value={selectedLocale} disabled={isLoading} aria-label="Select language">
+    <select
+        bind:value={selectedLocale}
+        onchange={(e) => handleLocaleChange(e.currentTarget.value)}
+        disabled={isLoading}
+        aria-label="Select language"
+    >
         {#each availableLocales as loc}
             <option value={loc}>
                 {#if loc === "en"}

@@ -4,21 +4,21 @@
 
     const domains = [
         {
-            title: $_("subdomains.title", {
+            title: $_("misc.subdomain", {
                 values: {
                     subdomain: "www",
                 },
             }),
-            desc: $_("subdomains.bearodev"),
+            desc: $_("descriptions.subdomains.bearodev"),
             lnk: "https://www.bearodactyl.dev",
         },
         {
-            title: $_("subdomains.title", {
+            title: $_("misc.subdomain", {
                 values: {
                     subdomain: "petah",
                 },
             }),
-            desc: $_("subdomains.petah"),
+            desc: $_("descriptions.subdomains.petah"),
             lnk: "https://petah.bearodactyl.dev",
         },
     ];
