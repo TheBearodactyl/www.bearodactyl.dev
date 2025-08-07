@@ -79,7 +79,7 @@
         {
             title: "",
             description: "",
-            coverImage: "",
+            coverImage: "/images/mlg.gif",
             route: ""
         }
     ];

@@ -12,9 +12,7 @@
     let show_emergency = $state(false);
 
     async function play_emergency() {
-        const audio = new Audio(
-            "https://www.myinstants.com/media/sounds/emergency-frog-situation.mp3"
-        );
+        const audio = new Audio("https://www.myinstants.com/media/sounds/emergency-frog-situation.mp3");
         await audio.play();
         show_emergency = true;
         setTimeout(() => (show_emergency = false), 3500);
@@ -42,11 +40,7 @@
                     <div class="nav-card clickable" onclick={() => handle_card_click(item)}>
                         <div class="card-image-container">
                             {#if item.coverImage}
-                                <img
-                                    src={item.coverImage}
-                                    alt={`Cover for ${item.title}`}
-                                    class="card-image"
-                                />
+                                <img src={item.coverImage} alt={`Cover for ${item.title}`} class="card-image" />
                             {:else}
                                 <div class="placeholder-image">?</div>
                             {/if}
@@ -62,38 +56,25 @@
                     <div class="nav-card clickable" onclick={() => handle_card_click(item)}>
                         <div class="card-image-container">
                             {#if item.coverImage}
-                                <img
-                                    src={item.coverImage}
-                                    alt={`Cover for ${item.title}`}
-                                    class="card-image"
-                                />
+                                <img src={item.coverImage} alt={`Cover for ${item.title}`} class="card-image" />
                             {:else}
                                 <div></div>
                             {/if}
                         </div>
-                        <div class="card-content">
-                            <h2 class="card-title">{item.title}</h2>
-                            <p class="card-description">{item.description}</p>
-                        </div>
+                        {#if item.title !== "" && item.description !== ""}
+                            <div class="card-content">
+                                <h2 class="card-title">{item.title}</h2>
+                                <p class="card-description">{item.description}</p>
+                            </div>
+                        {/if}
                     </div>
                 {:else}
                     <a href={item.route} class="nav-card">
                         <div class="card-image-container">
                             {#if item.coverImage && !item.coverImage.endsWith("webm")}
-                                <img
-                                    src={item.coverImage}
-                                    alt={`Cover for ${item.title}`}
-                                    class="card-image"
-                                />
+                                <img src={item.coverImage} alt={`Cover for ${item.title}`} class="card-image" />
                             {:else if item.coverImage && item.coverImage.endsWith("webm")}
-                                <video
-                                    disablepictureinpicture
-                                    autoplay
-                                    loop
-                                    muted
-                                    playsinline
-                                    class="card-image"
-                                >
+                                <video disablepictureinpicture autoplay loop muted playsinline class="card-image">
                                     <source src={item.coverImage} type="video/webm" />
                                 </video>
                             {:else}
