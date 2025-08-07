@@ -31,7 +31,7 @@
         {
             title: "Projects",
             description: "stuff i've made/am making",
-            coverImage: "/images/mlg.gif",
+            coverImage: "/images/family-guy-css.gif",
             route: "/lists/projects"
         },
         {
