@@ -49,6 +49,8 @@
                     English
                 {:else if loc === "jp"}
                     日本語
+                {:else if loc === "ar"}
+                    عربي
                 {:else}
                     {loc.toUpperCase()}
                 {/if}
