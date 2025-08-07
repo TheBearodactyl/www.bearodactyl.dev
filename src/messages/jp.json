@@ -91,7 +91,7 @@
         "petah": "Peter, meet Peta",
         "bearodev": "the site you're on right now :O"
     },
-    "routes-data": {
+    "routes-data-aaa": {
         "home-title": "家",
         "joke-pages-title": "Joke Pages",
         "lists-title": "Lists",
@@ -137,11 +137,5 @@
                 "title": "Woah"
             }
         }
-    },
-    "titles": {
-        "games": "ゲームのリスト",
-        "op-reviews": "俺のワンピースの各章のレビュー",
-        "projects": "俺のプロジェクト",
-        "read-watch": "読書/視聴のリスト"
     }
 }

@@ -47,6 +47,7 @@ export interface Game {
 }
 
 export interface NavItem {
+    name?: string;
     title?: string;
     description?: string;
     coverImage?: string;

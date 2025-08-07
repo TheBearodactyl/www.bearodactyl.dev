@@ -12,13 +12,13 @@
 />
 
 <SigmaPre>
-    <pre>{$_("license-lines.line-one")}
-{$_("license-lines.line-two")}
-{$_("license-lines.line-three")}
-{$_("license-lines.line-four")}</pre>
+    <pre>{$_("paragraphs.license.line-one")}
+{$_("paragraphs.license.line-two")}
+{$_("paragraphs.license.line-three")}
+{$_("paragraphs.license.line-four")}</pre>
 </SigmaPre>
 
-<p class="footer">{$_("license-lines.footer")}</p>
+<p class="footer">{$_("paragraphs.license.footer")}</p>
 
 <style>
     .footer {

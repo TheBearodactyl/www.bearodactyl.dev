@@ -1,7 +1,21 @@
 {
-    "read-watch": "Read/Watch List",
+  "domains": "",
+  "games": "",
+  "index": "The Motherfucking Bearodactyl",
+  "lists": "Lists",
+  "one-piece": "",
+  "projects": "",
+  "read-watch": "",
+  "routes": {
+    "bearodactyl": "Bearodactyl",
+    "domains": "Domains",
     "games": "Games List",
-    "one-piece": "OP Chapter Reviews",
-    "projects": "Projects List",
-    "domains": ""
+    "home": "Home Page",
+    "license": "My License",
+    "one-piece": "OP Reviews",
+    "projects": "Projects",
+    "read-watch": "Read/Watch List",
+    "website-src": "Website Source",
+    "woah": "Woah"
+  }
 }

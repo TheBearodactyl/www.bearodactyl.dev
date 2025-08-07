@@ -36,10 +36,10 @@
     ];
 
     const routes: RouteItem[] = [
-        { path: "/", name: $_("routes-data.home-title") },
+        { path: "/", name: $_("titles.routes.home") },
         {
             path: "/lists",
-            name: $_("routes-data.lists-title"),
+            name: $_("titles.lists"),
             children: [
                 { path: "/lists/games", name: $_("routes-data.lists.games.title") },
                 { path: "/lists/read-watch", name: $_("routes-data.lists.read-watch.title") },

@@ -1,1 +1,18 @@
-{}
+{
+  "index": "",
+  "routes": {
+    "bearodactyl": "",
+    "domains": "",
+    "games": "",
+    "license": "",
+    "one-piece": "",
+    "projects": "",
+    "read-watch": "",
+    "website-src": "",
+    "woah": ""
+  },
+  "subdomains": {
+    "bearodev": "",
+    "petah": ""
+  }
+}

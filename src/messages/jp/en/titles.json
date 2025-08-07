@@ -1,0 +1,16 @@
+{
+    "lists": "Lists",
+    "index": "The Motherfucking Bearodactyl",
+    "routes": {
+        "home": "Home Page",
+        "read-watch": "Read/Watch List",
+        "games": "Games List",
+        "one-piece": "OP Reviews",
+        "projects": "Projects",
+        "domains": "Domains",
+        "bearodactyl": "Bearodactyl",
+        "license": "My License",
+        "website-src": "Website Source",
+        "woah": "Woah"
+    }
+}

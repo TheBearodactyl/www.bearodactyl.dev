@@ -26,34 +26,29 @@
 
     const navigationItems: NavItem[] = [
         {
-            title: "titles.read-watch",
-            description: "routes-data.lists.read-watch.desc",
+            name: "read-watch",
             coverImage: "/images/hobo.gif",
-            route: "/lists/read-watch"
+            route: "/lists/read-watch",
         },
         {
-            title: "routes-data.lists.projects.title",
-            description: "routes-data.lists.projects.desc",
+            name: "projects",
             coverImage: "/images/family-guy-css.gif",
-            route: "/lists/projects"
+            route: "/lists/projects",
         },
         {
-            title: "routes-data.misc.website-src.title",
-            description: "routes-data.misc.website-src.desc",
+            name: "website-src",
             coverImage: "/videos/hackermans.webm",
-            route: "https://github.com/thebearodactyl/www.bearodactyl.dev"
+            route: "https://github.com/thebearodactyl/www.bearodactyl.dev",
         },
         {
-            title: "routes-data.lists.games.title",
-            description: "routes-data.lists.games.desc",
+            name: "games",
             coverImage: "/videos/gamer.webm",
-            route: "/lists/games"
+            route: "/lists/games",
         },
         {
-            title: "routes-data.misc.bearodactyl.title",
-            description: "routes-data.misc.bearodactyl.desc",
+            name: "bearodactyl",
             coverImage: "/images/bearo.gif",
-            route: "/jokes/bearo"
+            route: "/jokes/bearo",
         },
         // {
         //   title: "Emergency frog!",
@@ -62,43 +57,44 @@
         //   route: "/jokes/aaaaa",
         // },
         {
-            title: "routes-data.misc.woah.title",
-            description: "routes-data.misc.woah.desc",
+            name: "woah",
             coverImage: "/images/wulzy.gif",
-            route: "/jokes/woah"
+            route: "/jokes/woah",
         },
         {
-            title: "routes-data.lists.one-piece.title",
-            description: "routes-data.lists.one-piece.desc",
+            name: "one-piece",
             coverImage: "/images/op.gif",
-            route: "/lists/one-piece"
+            route: "/lists/one-piece",
         },
         {
-            title: "routes-data.misc.license.title",
-            description: "routes-data.misc.license.desc",
+            name: "license",
             coverImage: "/images/morshu.gif",
-            route: "/license"
+            route: "/license",
         },
         {
-            title: "routes-data.lists.domains.title",
-            description: "routes-data.lists.domains.desc",
+            name: "domains",
             coverImage: "/images/domain-expansion.gif",
-            route: "/lists/domains"
+            route: "/lists/domains",
         },
         {
             coverImage: "/images/mlg.gif",
-            route: ""
+            route: "",
         },
     ];
 </script>
 
-<Seo title="The Motherfucking Home Page" desc="the main page of `bearodactyl.dev`" image="https://s3.amazonaws.com/theoatmeal-img/comics/ptero/bearodactyl.png" url="https://bearodactyl.dev" />
+<Seo
+    title="The Motherfucking Home Page"
+    desc="the main page of `bearodactyl.dev`"
+    image="https://s3.amazonaws.com/theoatmeal-img/comics/ptero/bearodactyl.png"
+    url="https://bearodactyl.dev"
+/>
 
 {#if !$show_discouragement}
     <div>
         <div class="index-header">
-            <h1>{$_("index.title")}</h1>
-            <p class="index-desc">{$_("index.desc")}</p>
+            <h1>{$_("titles.index")}</h1>
+            <p class="index-desc">{$_("descriptions.index")}</p>
             <img class="buggy" src="/images/buggy.webp" alt="get it? 'buggy'?" />
         </div>
     </div>
@@ -107,10 +103,12 @@
 
     <div class="index-footer">
         <pre>
-{$_("index.footer-lines.line-one")}
-{$_("index.footer-lines.line-two")}
-{$_("index.footer-lines.line-three")}<code><a href="/license" class="license-hyper">/license</a></code>
-{$_("index.footer-lines.line-four")}
+{$_("paragraphs.home-page-footer.line-one")}
+{$_("paragraphs.home-page-footer.line-two")}
+{$_("paragraphs.home-page-footer.line-three")}<code
+                ><a href="/license" class="license-hyper">/license</a></code
+            >
+{$_("paragraphs.home-page-footer.line-four")}
     </pre>
     </div>
 {:else}
@@ -118,10 +116,7 @@
         path="/images/deathtoamerica.gif"
         vhsPreset={true}
         onLoaded={async () => {
-            const discouragement_songs = [
-                "/audio/hell.mp3",
-                "/audio/eek.mp3"
-            ];
+            const discouragement_songs = ["/audio/hell.mp3", "/audio/eek.mp3"];
 
             let audio = new Audio(chooseRandom(discouragement_songs));
             show_discouragement.set(true);
