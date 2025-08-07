@@ -38,7 +38,7 @@
             title: "Website Source Code",
             description: "a lot of code. waow (6,740 lines to be exact)",
             coverImage: "/videos/hackermans.webm",
-            route: "https://github.com/thebearodactyl/bearodactyl.dev"
+            route: "https://github.com/thebearodactyl/www.bearodactyl.dev"
         },
         {
             title: "Game list",
