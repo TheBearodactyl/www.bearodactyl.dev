@@ -25,7 +25,7 @@
         {
             title: "Read/Watch List",
             description: "shit i've read/watched",
-            coverImage: "/images/hobo.webp",
+            coverImage: "/images/hobo.gif",
             route: "/lists/read-watch"
         },
         {
@@ -49,7 +49,7 @@
         {
             title: "Bearodactyl",
             description: "Bearodactyl",
-            coverImage: "/images/bearodactyl_painting.webp",
+            coverImage: "/images/bearo.gif",
             route: "/jokes/bearo"
         },
         // {
@@ -61,13 +61,13 @@
         {
             title: "Woah",
             description: "Woah, it's Wulzy",
-            coverImage: "/images/wulzy.webp",
+            coverImage: "/images/wulzy.gif",
             route: "/jokes/woah"
         },
         {
             title: "One Piece",
             description: "my reviews of OP chapters (HIGHLY WIP)",
-            coverImage: "/images/op.webp",
+            coverImage: "/images/op.gif",
             route: "/lists/one-piece"
         },
         {
