@@ -31,7 +31,7 @@
         {
             title: "Projects",
             description: "stuff i've made/am making",
-            coverImage: "https://art.pixilart.com/3e584658c53335d.png",
+            coverImage: "/images/mlg.gif",
             route: "/lists/projects"
         },
         {
@@ -51,12 +51,6 @@
             description: "Bearodactyl",
             coverImage: "/images/bearodactyl_painting.webp",
             route: "/jokes/bearo"
-        },
-        {
-            title: "",
-            description: "",
-            coverImage: "",
-            route: ""
         },
         // {
         //   title: "Emergency frog!",
@@ -79,8 +73,14 @@
         {
             title: "My License",
             description: "My custom license that I use for all my code",
-            coverImage: "/videos/deathtoamerica.webm",
+            coverImage: "/images/morshu.gif",
             route: "/license"
+        },
+        {
+            title: "",
+            description: "",
+            coverImage: "",
+            route: ""
         }
     ];
 </script>
@@ -108,11 +108,8 @@
     </div>
 {:else}
     <Discouragement
-        path="/images/morshu.gif"
+        path="/images/deathtoamerica.gif"
         vhsPreset={true}
-        chromaticGlitchAmount={0.2}
-        stretchToWindow={true}
-        playbackSpeed={0.75}
         onLoaded={async () => {
             const discouragement_songs = [
                 "/audio/hell.mp3",
