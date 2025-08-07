@@ -9,28 +9,78 @@
     import { useFilters } from "$lib/books/filters.svelte";
     import BookGrid from "./BookGrid.svelte";
     import { PersistedState } from "runed";
+    import { show_explicit } from "$lib/stores/show_explicit";
 
-    const data = useData();
+    let data = useData();
     const display = useDisplay();
     const filters = useFilters(() => data.books);
 
     let isFilterCollapsed = $state(true);
+    let draggedBookId: string | number | null = $state(null);
+    let draggedOverBookId: string | number | null = $state(null);
+
     function toggleSearchMode() {
         isFilterCollapsed = !isFilterCollapsed;
     }
 
     const persistedViewMode = new PersistedState<"masonry" | "list">("viewMode", "masonry");
+
     $effect(() => {
         display.setViewMode(persistedViewMode.current);
     });
+
     $effect(() => {
         persistedViewMode.current = display.viewMode;
     });
+
     const expandedBook = $derived(() => {
         if (display.expandedCard !== null) {
             return filters.filteredBooks.find((b) => b.id === display.expandedCard);
         }
     });
+
+    function handleDragStart(bookId: string | number) {
+        draggedBookId = bookId;
+    }
+
+    function handleDragEnter(bookId: string | number) {
+        if (draggedBookId !== bookId) {
+            draggedOverBookId = bookId;
+        }
+    }
+
+    function handleDragLeave() {
+        draggedOverBookId = null;
+    }
+
+    function handleDrop() {
+        if (
+            draggedBookId === null ||
+            draggedOverBookId === null ||
+            draggedBookId === draggedOverBookId
+        ) {
+            return;
+        }
+
+        const draggedBookIndex = filters.filteredBooks.findIndex((b) => b.id === draggedBookId);
+        const draggedOverBookIndex = filters.filteredBooks.findIndex(
+            (b) => b.id === draggedOverBookId,
+        );
+        const newBooks = [...filters.filteredBooks];
+        const [removed] = newBooks.splice(draggedBookIndex, 1);
+
+        newBooks.splice(draggedOverBookIndex, 0, removed);
+        data.books = newBooks;
+
+        draggedBookId = null;
+        draggedOverBookId = null;
+    }
+
+    function handleDragEnd() {
+        draggedBookId = null;
+        draggedOverBookId = null;
+    }
+
     function handleToggleCard(bookId: string | number) {
         display.toggleCard(bookId);
     }
@@ -94,6 +144,7 @@
 
     {#if !data.isLoading && !data.fetchError}
         <BookGrid
+            showExplicit={$show_explicit}
             books={filters.filteredBooks}
             isContentVisible={data.isContentVisible}
             viewMode={display.viewMode}
@@ -101,6 +152,13 @@
             onToggleCard={handleToggleCard}
             onAddGenreToFilters={handleAddGenreToFilters}
             onAddTagToFilters={handleAddTagToFilters}
+            onDragStart={handleDragStart}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onDragEnd={handleDragEnd}
+            {draggedBookId}
+            {draggedOverBookId}
         />
     {/if}
 

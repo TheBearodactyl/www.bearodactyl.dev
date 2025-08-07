@@ -22,7 +22,7 @@ export function createDataStore() {
 
             const fileContents = await getGithubRelease(
                 "thebearodactyl",
-                "bearodactyl.dev",
+                "www.bearodactyl.dev",
                 "games.json"
             );
             const data = JSON.parse(await fileContents.text());

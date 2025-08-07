@@ -77,7 +77,7 @@
 .pill-filter-btn:hover {
     background-color: var(--rp-highlight-med);
     color: var(--rp-foam);
-    transform: rotate(15deg) scale(1.1);
+    transform: scale(1.1);
     box-shadow: 0 5px 12px rgba(0, 0, 0, 0.4);
 }
 
@@ -398,7 +398,7 @@ input[type="checkbox"]:checked::before {
     align-self: center;
     vertical-align: middle;
     justify-content: center;
-    gap: 0;
+    gap: 0.1rem;
     background: var(--rp-surface);
     border-radius: 99px;
     padding: 6px;
@@ -415,16 +415,12 @@ input[type="checkbox"]:checked::before {
     top: 6px;
     left: 6px;
     bottom: 6px;
-    width: calc(50% - 6px);
+    width: calc(100% - 12px);
     background: linear-gradient(135deg, var(--rp-iris) 0%, var(--rp-foam) 100%);
     border-radius: 99px;
     transition: transform 0.4s var(--transition-ease);
     z-index: 1;
     box-shadow: 0 2px 8px rgba(196, 167, 231, 0.3);
-}
-
-.view-toggle[data-active="list"]::before {
-    transform: translateX(100%);
 }
 
 .view-btn {

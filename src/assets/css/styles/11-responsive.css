@@ -423,3 +423,46 @@
         column-count: 2;
     }
 }
+
+@media (max-width: 768px) {
+    .book-grid:not(.list-view) {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .book-grid:not(.list-view) {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+}
+
+@media (pointer: coarse) {
+    :root {
+        --drag-scale: 1.1;
+        --hover-lift: -12px;
+        --drag-lift-duration: 0.1s;
+    }
+
+    .book-card.is-dragging {
+        transform: scale(var(--drag-scale)) rotate(var(--drag-rotate)) translateY(var(--hover-lift))
+            translateZ(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :root {
+        --drag-lift-duration: 0.05s;
+        --drag-drop-duration: 0.1s;
+        --reorder-duration: 0.1s;
+        --hover-response-duration: 0.05s;
+        --drag-scale: 1.02;
+        --drag-rotate: 0deg;
+        --hover-lift: -2px;
+    }
+
+    .book-card.is-dragging {
+        filter: none;
+    }
+}

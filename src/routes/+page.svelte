@@ -77,10 +77,14 @@
             route: "/license"
         },
         {
-            title: "",
-            description: "",
             coverImage: "/images/mlg.gif",
             route: ""
+        },
+        {
+            title: "Domains",
+            description: "A list of subdomains i have for this domain",
+            coverImage: "/images/domain-expansion.gif",
+            route: "/lists/domains"
         }
     ];
 </script>

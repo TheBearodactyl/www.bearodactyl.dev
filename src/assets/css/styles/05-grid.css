@@ -9,11 +9,15 @@
     width: 100%;
     padding-bottom: var(--spacing-2xl);
     transition: all 0.6s var(--transition-ease);
+    position: relative;
 }
 
 .book-grid > * {
     break-inside: avoid-column;
     margin-bottom: var(--spacing-xl);
+    transition:
+        transform var(--reorder-duration) var(--spring-ease),
+        opacity var(--reorder-duration) var(--smooth-ease);
 }
 
 /* Grid Transitions */
@@ -28,6 +32,20 @@
 
 .book-grid.entering-grid {
     animation: morphToGrid 0.6s var(--transition-ease) forwards;
+}
+
+/* Enhanced Reordering State */
+.book-grid.is-reordering > * {
+    transition:
+        transform var(--reorder-duration) var(--elastic-ease),
+        opacity var(--reorder-duration) var(--smooth-ease);
+}
+
+/* Smooth repositioning for non-dragged cards */
+.book-grid:not(.is-reordering) > .book-card:not(.is-dragging):not(.is-dragged-over) {
+    transition:
+        transform var(--reorder-duration) var(--elastic-ease),
+        box-shadow var(--hover-response-duration) var(--smooth-ease);
 }
 
 /* List View */

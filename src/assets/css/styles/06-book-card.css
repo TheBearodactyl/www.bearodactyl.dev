@@ -15,27 +15,104 @@
     overflow: hidden;
     position: relative;
     transform: scale(0.9);
-    transition: all var(--transition-speed) var(--transition-ease);
     width: 100%;
-    will-change: transform, box-shadow;
+
+    /* Enhanced base properties for better animation performance */
+    transform-origin: center;
+    will-change: transform, box-shadow, filter;
+    backface-visibility: hidden;
+    z-index: 1;
+
+    /* Smooth base transition */
+    transition:
+        transform var(--hover-response-duration) var(--smooth-ease),
+        box-shadow var(--hover-response-duration) var(--smooth-ease),
+        border-color var(--hover-response-duration) var(--smooth-ease),
+        filter var(--hover-response-duration) var(--smooth-ease);
 }
 
-.book-card:hover:not(.expanded) {
-    transform: translateY(-12px) scale(var(--hover-scale));
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+/* ========================================================================
+   Drag-N-Drop
+   ======================================================================== */
+
+.book-card.is-dragging {
+    transform: scale(var(--drag-scale)) rotate(var(--drag-rotate)) translateY(var(--hover-lift))
+        translateZ(0);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 8px 25px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+
+    filter: brightness(1.1) saturate(1.2);
+    border-color: var(--rp-iris);
+    z-index: 1000;
+    opacity: 0.95;
+    cursor: grabbing;
+
+    transition:
+        transform var(--drag-lift-duration) var(--spring-ease),
+        box-shadow var(--drag-lift-duration) var(--spring-ease),
+        filter var(--drag-lift-duration) var(--spring-ease),
+        border-color var(--drag-lift-duration) var(--spring-ease);
+}
+
+.book-card.is-dragged-over {
+    transform: translateY(calc(var(--hover-lift) * 0.3)) scale(0.96) translateZ(0);
+
+    box-shadow:
+        0 0 30px rgba(196, 167, 231, 0.4),
+        0 4px 20px rgba(196, 167, 231, 0.2),
+        inset 0 0 0 2px var(--rp-iris);
+
+    border-color: var(--rp-iris);
+    background: linear-gradient(
+        135deg,
+        var(--rp-surface) 0%,
+        rgba(196, 167, 231, 0.08) 50%,
+        var(--rp-overlay) 100%
+    );
+
+    animation: dropZonePulse 1s var(--elastic-ease) infinite;
+
+    transition:
+        transform var(--hover-response-duration) var(--elastic-ease),
+        box-shadow var(--hover-response-duration) var(--elastic-ease),
+        background var(--hover-response-duration) var(--smooth-ease);
+}
+
+.book-card.is-dropping {
+    animation:
+        elasticDrop var(--drag-drop-duration) var(--bounce-ease) forwards,
+        successRipple 0.6s var(--smooth-ease) 0.1s forwards;
+}
+
+.book-card:hover:not(.expanded):not(.is-dragging):not(.is-dragged-over) {
+    transform: translateY(calc(var(--hover-lift) * 0.6)) scale(1.02) translateZ(0);
+
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 4px 15px rgba(0, 0, 0, 0.2);
+
     border-color: var(--hover-border-color, var(--rp-love));
     background: linear-gradient(135deg, var(--rp-surface) 0%, var(--rp-overlay) 100%);
+
+    transition:
+        transform var(--hover-response-duration) var(--elastic-ease),
+        box-shadow var(--hover-response-duration) var(--elastic-ease),
+        border-color var(--hover-response-duration) var(--smooth-ease),
+        background var(--hover-response-duration) var(--smooth-ease);
 }
 
-.book-card:hover:not(.expanded)::after {
+.book-card:hover:not(.expanded):not(.is-dragging):not(.is-dragged-over)::after {
     opacity: 1;
 }
 
-.book-card:hover:not(.expanded) .cover-image {
+.book-card:hover:not(.expanded):not(.is-dragging):not(.is-dragged-over) .cover-image {
     transform: scale(var(--hover-scale));
 }
 
-.book-card:hover:not(.expanded) .cover-image-small {
+.book-card:hover:not(.expanded):not(.is-dragging):not(.is-dragged-over) .cover-image-small {
     transform: scale(var(--hover-scale));
     will-change: transform;
 }
@@ -249,4 +326,45 @@
 
 .percocet {
     font-family: var(--font-family-code) !important;
+}
+
+.is-dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+    cursor: grabbing;
+    transition:
+        transform 0.2s ease-out,
+        opacity 0.2s ease-out;
+    transition:
+        transform 0.3s var(--transition-ease),
+        box-shadow 0.3s var(--transition-ease),
+        opacity 0.3s var(--transition-ease);
+}
+
+.is-dragged-over {
+    border-color: var(--rp-iris) !important;
+    box-shadow: 0 0 20px rgba(196, 167, 231, 0.5);
+    transform: scale(0.98);
+    border-radius: var(--border-radius-xl);
+    transition: transform 0.2s var(--transition-ease);
+}
+
+.book-card.is-dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+    cursor: grabbing;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.book-card.is-dragged-over {
+    border-color: var(--rp-iris) !important;
+    box-shadow: 0 0 20px rgba(196, 167, 231, 0.5);
+    transform: translateY(0) scale(1);
+}
+
+.book-card.is-dragging,
+.book-card.is-dragged-over,
+.book-card:hover {
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
 }

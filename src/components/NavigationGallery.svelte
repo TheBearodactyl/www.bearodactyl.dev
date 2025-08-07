@@ -24,7 +24,7 @@
 
     function handle_card_click(item: NavItem) {
         if (item.title === "Emergency frog!") play_emergency();
-        if (item.title === "") play_discouragement();
+        if (item.title === undefined) play_discouragement();
     }
 </script>
 
@@ -50,7 +50,7 @@
                             <p class="card-description">{item.description}</p>
                         </div>
                     </div>
-                {:else if item.title === ""}
+                {:else if !item.title}
                     <!-- svelte-ignore a11y_click_events_have_key_events -->
                     <!-- svelte-ignore a11y_no_static_element_interactions -->
                     <div class="nav-card clickable" onclick={() => handle_card_click(item)}>
@@ -61,9 +61,11 @@
                                 <div></div>
                             {/if}
                         </div>
-                        {#if item.title !== "" && item.description !== ""}
+                        {#if !item.title === undefined && !item.description === undefined}
                             <div class="card-content">
-                                <h2 class="card-title">{item.title}</h2>
+                                {#if !item.title === undefined}
+                                    <h2 class="card-title">{item.title}</h2>
+                                {/if}
                                 <p class="card-description">{item.description}</p>
                             </div>
                         {/if}

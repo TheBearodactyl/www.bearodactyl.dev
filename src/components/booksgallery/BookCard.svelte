@@ -5,14 +5,26 @@
     import BaseCard from "../gallery/BaseCard.svelte";
     import WarningIcon from "../icons/WarningIcon.svelte";
     import { _ } from "svelte-i18n";
+
     interface Props {
         book: Book;
         index: number;
         isExpanded: boolean;
         viewMode: string;
+        showExplicit: boolean;
         onToggleCard: () => void;
         onAddGenreToFilters: (genre: string) => void;
         onAddTagToFilters: (tag: string) => void;
+
+        draggable: boolean;
+        isDragging: boolean;
+        isDraggedOver: boolean;
+        isDropping: boolean;
+        onDragStart: () => void;
+        onDragEnter: () => void;
+        onDragLeave: () => void;
+        onDrop: () => void;
+        onDragEnd: () => void;
     }
 
     let {
@@ -20,20 +32,86 @@
         index,
         isExpanded,
         viewMode,
+        showExplicit,
         onToggleCard,
         onAddGenreToFilters,
-        onAddTagToFilters
+        onAddTagToFilters,
+        draggable,
+        isDragging,
+        isDropping,
+        isDraggedOver,
+        onDragStart,
+        onDragEnter,
+        onDragLeave,
+        onDrop,
+        onDragEnd,
     }: Props = $props();
+
+    let cardElement: HTMLElement;
+    let dragStartTimeout: number;
+
+    function handleDragStart(event: DragEvent) {
+        event.stopPropagation();
+        event.dataTransfer?.setData("text/plain", String(book.id));
+
+        dragStartTimeout = setTimeout(() => {
+            onDragStart();
+        }, 50);
+    }
+
+    function handleDragEnter(event: DragEvent) {
+        event.preventDefault();
+        onDragEnter();
+    }
+
+    function handleDragLeave(event: DragEvent) {
+        const rect = cardElement.getBoundingClientRect();
+        const { clientX, clientY } = event;
+
+        if (
+            clientX < rect.left ||
+            clientX > rect.right ||
+            clientY < rect.top ||
+            clientY > rect.bottom
+        ) {
+            onDragLeave();
+        }
+    }
+
+    function handleDragEnd() {
+        if (dragStartTimeout) {
+            clearTimeout(dragStartTimeout);
+        }
+
+        onDragEnd();
+    }
+
+    function handleDrop(event: DragEvent) {
+        event.stopPropagation();
+        onDrop();
+    }
 </script>
 
-<div style="--hover-border-color: {!isExpanded && book.color ? book.color : 'var(--rp-love)'};">
+<div
+    bind:this={cardElement}
+    style="--hover-border-color: {!isExpanded && book.color ? book.color : 'var(--rp-love)'};"
+    class:is-dragging={isDragging}
+    class:is-dragged-over={isDraggedOver}
+    class:is-dropping={isDropping}
+>
     <BaseCard
         {index}
         expanded={isExpanded}
         {viewMode}
-        explicit={book.explicit}
+        explicit={!showExplicit ? book.explicit : false}
         cardClasses={{ "explicit-content": book.explicit }}
         ontoggle={onToggleCard}
+        {draggable}
+        onDragStart={handleDragStart}
+        onDragEnter={handleDragEnter}
+        onDragLeave={handleDragLeave}
+        onDrop={handleDrop}
+        onDragEnd={handleDragEnd}
     >
         {#if !isExpanded}
             {#if viewMode === "list"}
@@ -46,7 +124,7 @@
                             class="cover-image-small"
                             loading="lazy"
                         />
-                        {#if book.explicit}
+                        {#if (!showExplicit ? book.explicit : false)}
                             <div class="explicit-icon-small">
                                 <span class="icon-warning-small">⚠️</span>
                                 <span class="explicit-label-small">18+</span>
@@ -92,7 +170,7 @@
                             class="cover-image"
                             loading="lazy"
                         />
-                        {#if book.explicit}
+                        {#if (!showExplicit ? book.explicit : false)}
                             <div class="explicit-icon">
                                 <span class="icon-warning">
                                     <WarningIcon />
@@ -134,7 +212,7 @@
                             </span>
                             <span class="rating-text">
                                 {$_("gallery.book.rating-out-of-five", {
-                                    values: { rating: book.rating }
+                                    values: { rating: book.rating },
                                 })}
                             </span>
                         </div>
