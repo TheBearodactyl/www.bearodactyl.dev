@@ -1,18 +1,18 @@
 {
   "index": "The Motherfucking Bearodactyl",
-  "lists": "Lists",
-  "jokes": "Joke Pages",
+  "lists": "リスト",
+  "jokes": "冗談ページ",
   "routes": {
     "bearodactyl": "Bearodactyl",
-    "domains": "Domains",
-    "games": "Games List",
-    "home": "家",
-    "license": "My License",
-    "one-piece": "OP Reviews",
-    "one-piece-long": "OP Chapter Reviews",
-    "projects": "Projects",
+    "domains": "ドメイン",
+    "games": "ゲームのリスト",
+    "home": "ホームページ",
+    "license": "俺のライセンス",
+    "one-piece": "ワンピースのレビュー",
+    "one-piece-long": "ワンピースの各章のレビュー",
+    "projects": "プロジェクト",
     "read-watch": "読書/視聴のリスト",
-    "website-src": "Website Source",
-    "woah": "Woah"
+    "website-src": "サイトのソース",
+    "woah": "ワオ"
   }
 }
