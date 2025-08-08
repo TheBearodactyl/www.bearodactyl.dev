@@ -21,6 +21,15 @@
             desc: $_("descriptions.subdomains.petah"),
             lnk: "https://petah.bearodactyl.dev",
         },
+        {
+            title: $_("misc.subdomain", {
+                values: {
+                    subdomain: "ass",
+                },
+            }),
+            desc: $_("descriptions.subdomains.ass"),
+            lnk: "https://ass.bearodactyl.dev",
+        },
     ];
 </script>
 
