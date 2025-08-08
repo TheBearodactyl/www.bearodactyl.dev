@@ -1,20 +1,20 @@
 {
     "index": "これが俺のウェブサイトだ。作ったことを見てみよう！（ちょっとバグがあるよ）",
     "routes": {
-        "read-watch": "shit i've read/watched",
-        "games": "games i play",
-        "one-piece": "my reviews of OP chapters (HIGHLY WIP)",
-        "projects": "stuff i've made/am making",
-        "domains": "a list of subdomains used by this domain",
-        "bearodactyl": "Bearodactyl",
-        "license": "my custom license that I use for all my code",
-        "website-src": "a lot of code. waow. ({charcount} characters to be exact)",
-        "woah": "WOAH, it's wulzy"
+        "read-watch": "読書か視聴をしたこと",
+        "games": "プレイするゲーム",
+        "one-piece": "ワンピースのキャラについてのレビュー（まだまだ作りかけている！）",
+        "projects": "作ったか作っているかのこと",
+        "domains": "このドメインに使われているサブドメインのリスト",
+        "bearodactyl": "Bearodactyl（ベアロダクティル）",
+        "license": "すべてのコードに俺の使うカスタムライセンス",
+        "website-src": "たくさんのコード。ワオ。(まさに{charcount}の文字だ)",
+        "woah": "ウワァ！ウルジーだよ！"
     },
-    "routes-menu": "all the routes on my site",
+    "routes-menu": "サイト上のルート",
     "subdomains": {
-        "petah": "Peter, meet Peta",
-        "bearodev": "the site you're on right now!",
-        "ass": "Ass - The Game"
+        "petah": "ピーターさん、こちらはPETAです",
+        "bearodev": "今閲覧中のサイトこそだよ！",
+        "ass": "尻：ザ・ゲーム"
     }
 }
