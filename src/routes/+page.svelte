@@ -130,6 +130,10 @@
                 "https://carnivorouslreviews.wordpress.com/wp-content/uploads/2018/05/images231.jpg",
             route: "",
         },
+        {
+            coverImage: "https://i.ebayimg.com/images/g/Q6cAAOSwrT1gxlFX/s-l1200.jpg",
+            route: ""
+        }
     ];
 </script>
 
@@ -151,8 +155,12 @@
                 class="buggy"
                 src="/images/buggy.webp"
                 onclick={() => {
-                    window.location.href =
-                        "https://github.com/TheBearodactyl/www.bearodactyl.dev/issues/new/choose";
+                    const buggy_audio = new Audio("/audio/buggy.mp3");
+                    buggy_audio.play();
+                    setTimeout(() => {
+                        window.location.href =
+                            "https://github.com/TheBearodactyl/www.bearodactyl.dev/issues/new/choose";
+                    }, 1000);
                 }}
                 alt="get it? 'buggy'?"
             />
