@@ -1,0 +1,76 @@
+/* ========================================================================
+   Main Stylesheet
+   ======================================================================== */
+/* 1. Variables and foundations */
+@import url("/src/assets/css/styles/01-variables.css");
+@import url("/src/assets/css/styles/02-base.css");
+
+/* 2. Animations and transitions */
+@import url("/src/assets/css/styles/03-animations.css");
+
+/* 3. Layout systems */
+@import url("/src/assets/css/styles/04-layout.css");
+@import url("/src/assets/css/styles/05-grid.css");
+
+/* 4. Component styles */
+@import url("/src/assets/css/styles/06-book-card.css");
+@import url("/src/assets/css/styles/07-list-view.css");
+@import url("/src/assets/css/styles/08-explicit-content.css");
+@import url("/src/assets/css/styles/09-filters.css");
+@import url("/src/assets/css/styles/10-expanded-card.css");
+
+/* 5. Responsive design */
+@import url("/src/assets/css/styles/11-responsive.css");
+
+/* 6. Theme definitions */
+@import url("/src/assets/css/styles/12-themes.css");
+
+/* 7. Quick menu buttons */
+@import url("/src/assets/css/styles/13-quick-menu.css");
+@import url("/src/assets/css/styles/14-lang-switcher.css");
+
+/* 8. Page specific styles */
+@import url("/src/assets/css/styles/15-home-page.css");
+
+.hidden {
+    display: none !important;
+}
+.invisible {
+    visibility: hidden !important;
+}
+.sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+}
+
+/* Focus utilities for accessibility */
+.focus-visible:focus-visible {
+    outline: 2px solid var(--rp-iris);
+    outline-offset: 2px;
+}
+
+/* Transition utilities */
+.transition-none {
+    transition: none !important;
+}
+.transition-all {
+    transition: all var(--transition-speed) var(--transition-ease);
+}
+
+/* Performance optimizations */
+.will-change-transform {
+    will-change: transform;
+}
+.will-change-opacity {
+    will-change: opacity;
+}
+.will-change-auto {
+    will-change: auto;
+}

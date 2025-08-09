@@ -1,0 +1,484 @@
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: var(--rp-base);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--rp-foam);
+    border-radius: 8px;
+    border: 2px solid var(--rp-gold);
+}
+
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-corner {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+* {
+    scrollbar-width: none;
+    scrollbar-color: var(--rp-foam) var(--rp-overlay);
+    box-sizing: border-box;
+}
+
+select {
+    background-color: var(--rp-surface);
+    color: var(--rp-text);
+    border: 1px solid var(--rp-highlight);
+    border-radius: 6px;
+    padding: 0.5em 1em;
+    font-family: "JetBrains Mono", monospace;
+    appearance: none;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 0 0 1px var(--rp-highlight);
+}
+
+option {
+    background-color: var(--rp-base);
+    color: var(--rp-text);
+}
+
+select:focus {
+    border-color: var(--rp-gold);
+    box-shadow: 0 0 0 2px var(--rp-gold);
+}
+
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background-color: var(--rp-base);
+    color: var(--rp-text);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Buttons and Inputs */
+.quick-buttons button,
+.theme-switcher select,
+.theme-switcher button,
+.lang-switcher-aligned select,
+.lang-switcher-aligned button,
+.routes-menu-button {
+    background-color: var(--rp-surface);
+    color: var(--rp-text);
+    border: 2px solid var(--rp-highlight-low);
+    border-radius: 99px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    outline: none;
+    transition:
+        all var(--transition-speed) var(--transition-ease),
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    appearance: none;
+    white-space: nowrap;
+}
+
+.theme-switcher select {
+    width: 13rem;
+    border-color: var(--rp-gold);
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.25em;
+}
+
+.theme-switcher select option {
+    background-color: var(--rp-surface);
+    color: var(--rp-text);
+    padding: 0.5rem 1rem;
+}
+
+.theme-switcher select::-ms-expand {
+    display: none;
+}
+
+.quick-buttons button:hover,
+.theme-switcher select:hover,
+.lang-switcher-aligned select:hover,
+.routes-menu-button:hover {
+    background-color: var(--rp-overlay);
+    border-color: var(--rp-iris);
+    color: var(--rp-iris);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* Home Button */
+.home_button {
+    width: auto;
+    padding: 0.75rem 1rem;
+    scale: 100%;
+}
+
+.home_button svg {
+    width: 1.25em;
+    height: 1.25em;
+    stroke: var(--rp-text);
+    transition: stroke 0.3s ease;
+}
+
+.home_button:hover svg {
+    stroke: var(--rp-gold);
+}
+
+.home_button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Language Switcher */
+.lang-switcher-aligned {
+    margin-left: auto;
+    z-index: 1;
+}
+
+/* Quick Buttons Wrapper */
+.quick-buttons {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    z-index: 1000;
+    animation: fadeInSlideIn 0.5s ease-out forwards;
+}
+
+/* Menu Toggle */
+.menu-toggle {
+    background-color: var(--rp-surface);
+    color: var(--rp-text);
+    border: 2px solid var(--rp-highlight-low);
+    border-radius: 99px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.8);
+    padding: 0.75rem;
+    cursor: pointer;
+    outline: none;
+    transition:
+        all var(--transition-speed) var(--transition-ease),
+        background-color 0.3s ease,
+        border-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-toggle .menu-icon {
+    width: 16px;
+    height: 16px;
+    stroke: var(--rp-text);
+    transition: stroke 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background-color: var(--rp-iris);
+    border-color: var(--rp-foam);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.7);
+    transform: translateY(-2px) scale(1.05);
+}
+
+.menu-toggle:hover .menu-icon {
+    stroke: var(--rp-base);
+}
+
+/* Menu Items */
+.menu-items {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.75rem;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.menu-items.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Routes Menu */
+.routes-menu-container {
+    position: relative;
+}
+
+.routes-dropdown {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 0;
+    background-color: var(--rp-surface);
+    border: 2px solid var(--rp-iris);
+    border-radius: 10px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+    min-width: 160px;
+    opacity: 0;
+    visibility: hidden;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-10px) scale(0.95);
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    pointer-events: none;
+    overflow: visible;
+}
+
+.routes-dropdown.open {
+    opacity: 1;
+    align-items: center;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.route-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+    background: none !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 0.75rem 0.1rem !important;
+    color: var(--rp-text) !important;
+    text-align: left !important;
+    cursor: pointer;
+    font-size: 0.875rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: slideInFade 0.3s ease forwards;
+}
+
+.route-item.has-children {
+    padding-right: 2rem;
+}
+
+.route-item:hover {
+    background-color: var(--rp-overlay);
+    color: var(--rp-foam);
+    transform: translateX(6px);
+}
+
+.route-item:hover {
+    overflow: visible;
+}
+
+.route-item:hover .arrow {
+    color: var(--rp-foam);
+    transform: translateX(4px) rotate(5deg);
+}
+
+.route-item.current {
+    background-color: var(--rp-highlight-med);
+    color: var(--rp-gold);
+    font-weight: 700;
+    border-left: 3px solid var(--rp-gold);
+    padding-left: 0.75rem;
+}
+
+.route-item.current:hover {
+    background-color: var(--rp-highlight-high);
+    color: var(--rp-gold);
+}
+
+.arrow {
+    color: var(--rp-muted);
+    font-size: 1rem;
+    transition: all 0.15s ease;
+    margin-left: 10px;
+}
+
+/* Nested Menus */
+.nested-menu {
+    position: absolute;
+    top: 0;
+    left: calc(100% + 0.5rem);
+    background-color: var(--rp-surface);
+    border: 2px solid var(--rp-foam);
+    border-radius: 9px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+    min-width: 180px;
+    z-index: 1002;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateX(-10px) scale(0.95);
+    animation: nestedMenuSlideIn 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.nested-route-item {
+    display: block;
+    width: 100% !important;
+    background: none !important;
+    border: none !important;
+    padding: 0.75rem 1rem;
+    color: var(--rp-text);
+    border-radius: 5px !important;
+    text-align: center !important;
+    cursor: pointer;
+    font-size: 0.875rem;
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: slideInFade 0.75s ease forwards;
+}
+
+.nested-route-item:hover {
+    background-color: var(--rp-overlay);
+    color: var(--rp-pine);
+    transform: translateX(6px);
+}
+
+.nested-route-item.current {
+    background-color: var(--rp-highlight-med);
+    color: var(--rp-gold);
+    font-weight: 600;
+    border-left: 3px solid var(--rp-gold);
+    padding-left: 0.75rem;
+}
+
+.nested-route-item.current:hover {
+    background-color: var(--rp-highlight-high);
+    color: var(--rp-gold);
+}
+
+/* Media Queries */
+@media (max-width: 920px) {
+    .quick-buttons button,
+    .theme-switcher select,
+    .theme-switcher button,
+    .lang-switcher-aligned select,
+    .lang-switcher-aligned button,
+    .routes-menu-button {
+        align-items: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .quick-buttons {
+        top: 0.5rem;
+        right: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .routes-menu-button {
+        font-size: 0.75rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .routes-dropdown {
+        min-width: 140px;
+        right: -0.5rem;
+    }
+
+    .route-item {
+        padding: 0.6rem 0.875rem;
+        font-size: 0.75rem;
+    }
+
+    .route-item.has-children {
+        padding-right: 1.75rem;
+    }
+
+    .nested-menu {
+        min-width: 160px;
+        left: calc(100% + 0.25rem);
+    }
+
+    .nested-route-item {
+        padding: 0.6rem 0.875rem;
+        font-size: 0.75rem;
+    }
+
+    .arrow {
+        font-size: 0.875rem;
+    }
+
+    .quick-buttons button,
+    .theme-switcher select {
+        font-size: 0.75rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .theme-switcher select {
+        padding-right: 2rem;
+        background-position: right 0.5rem center;
+    }
+
+    .home_button {
+        padding: 0.6rem 0.8rem;
+    }
+
+    .home_button svg {
+        width: 1em;
+        height: 1em;
+    }
+
+    .menu-toggle {
+        padding: 0.4rem;
+    }
+
+    .menu-toggle .menu-icon {
+        width: 14px;
+        height: 14px;
+    }
+
+    .menu-items {
+        gap: 0.5rem;
+    }
+}
+
+/* RTL fixes */
+html[dir="rtl"] .quick-buttons {
+    left: 1rem;
+    right: auto;
+    flex-direction: row-reverse; /* Keep toggle button on the outside */
+}
+
+html[dir="rtl"] .menu-toggle {
+    order: -1;
+}
+
+/* Reverse menu-items slide-in for RTL */
+html[dir="rtl"] .menu-items {
+    transform: translateX(10px); /* start from the left instead of the right */
+}
+
+html[dir="rtl"] .menu-items.open {
+    transform: translateX(0);
+}
+
+html[dir="rtl"] .route-item {
+    transform: translateX(10px);
+}
+
+html[dir="rtl"] .route-item:hover {
+    transform: translateX(-6px); /* slide inward from the other side */
+}
+
+html[dir="rtl"] .nested-menu {
+    left: auto;
+    right: calc(100% + 0.5rem); /* nested menu opens to the left */
+}

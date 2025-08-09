@@ -1,0 +1,121 @@
+/* ========================================================================
+   List View Components
+   ======================================================================== */
+
+/* List Item Container */
+.book-list-item {
+    align-items: center;
+    display: flex;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    opacity: 0;
+    animation: slideInFromRight 0.5s var(--transition-ease) forwards;
+}
+
+/* List View Card Modifications */
+.book-card.list-view {
+    transition: all 0.5s var(--transition-ease);
+}
+
+.book-card.transitioning-to-list {
+    animation: cardMorphToList 0.5s var(--transition-ease) forwards;
+}
+
+.book-card.transitioning-to-grid {
+    animation: cardMorphToGrid 0.5s var(--transition-ease) forwards;
+}
+
+/* Book Details Section */
+.book-details {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    min-width: max-content;
+    transition: all 0.4s var(--transition-ease);
+}
+
+.book-primary-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+/* List View Typography */
+.book-title-list {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin: 0;
+    color: var(--rp-text);
+    line-height: 1.3;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.book-author-list {
+    font-size: 0.95rem;
+    color: var(--rp-subtle);
+    margin: 0;
+    font-style: italic;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* List View Meta Information */
+.book-meta {
+    align-items: center;
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.book-rating-list {
+    display: flex;
+    align-items: center;
+}
+
+/* List View Stars */
+.stars-small {
+    display: flex;
+    gap: 0.1rem;
+}
+
+.star-small {
+    color: var(--rp-muted);
+    font-size: 0.9rem;
+    transition: color 0.2s;
+}
+
+.star-small.filled {
+    color: var(--rp-gold);
+}
+
+/* List View Tags & Status */
+.book-genres-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.book-genre-small,
+.read-status-list {
+    color: var(--rp-text);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    border-radius: var(--border-radius-md);
+    white-space: nowrap;
+}
+
+.read-status-list {
+    background-color: var(--rp-highlight-med);
+    font-weight: 600;
+}
+
+.book-genre-small {
+    background-color: var(--rp-highlight-low);
+    font-weight: 500;
+    opacity: 0.9;
+}

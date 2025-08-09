@@ -1,0 +1,11 @@
+{
+    "loading": "تحميل... {progress}%",
+    "list-load-error": "لم يتم تحميل القأمه: {err}",
+    "no-results": "لا نتأج",
+    "click-to-play": "اضغط للعب",
+    "explicit": "يحتوي على محتوى للبالغين",
+    "no-genres": "لا توجد أنواع متاحة",
+    "no-tags": "لا توجد علامات متاحة",
+    "no-install-command": "امر التحميل غير متوفر",
+    "bad": "محتوى سيء"
+}

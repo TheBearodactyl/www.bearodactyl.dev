@@ -1,0 +1,8 @@
+{
+  "install-command": "{mode} インストールの命令",
+  "modes": {
+    "hide": "非表示",
+    "show": "表示"
+  },
+  "view-source": "ソースコードを表示"
+}

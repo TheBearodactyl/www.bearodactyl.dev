@@ -1,0 +1,16 @@
+{
+  "cover-alt": "{title}の表紙絵画",
+  "headers": {
+    "description": "説明",
+    "genres": "ジャンル",
+    "links": "リンク",
+    "my-thoughts": "個人的意見",
+    "tags": "タグ"
+  },
+  "rating": "{rating}+",
+  "rating-of-five": "{rating}/5",
+  "status": {
+    "dropped": "読むのはやめた",
+    "finished": "読み終わった"
+  }
+}

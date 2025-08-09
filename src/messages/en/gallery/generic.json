@@ -1,0 +1,16 @@
+{
+  "cover-alt": "Cover art of {title}",
+  "headers": {
+    "description": "Description",
+    "genres": "Genres",
+    "links": "Links",
+    "my-thoughts": "My Thoughts",
+    "tags": "Tags"
+  },
+  "rating": "{rating}+",
+  "rating-of-five": "{rating}/5",
+  "status": {
+    "dropped": "Dropped",
+    "finished": "Finished"
+  }
+}

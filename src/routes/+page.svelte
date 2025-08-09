@@ -1,2 +1,7 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<h class="index-header">Woah</h>
+
+<style>
+    :global {
+        @import url("/src/assets/css/main.css");
+    }
+</style>

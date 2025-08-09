@@ -1,0 +1,370 @@
+/* ========================================================================
+   Book Card Components
+   ======================================================================== */
+
+.book-card {
+    animation: fadeInScale 0.6s var(--transition-ease) forwards;
+    background-color: var(--rp-surface);
+    border: 2px solid var(--rp-highlight-low);
+    border-radius: var(--border-radius-xl);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    transform: scale(0.9);
+    width: 100%;
+
+    /* Enhanced base properties for better animation performance */
+    transform-origin: center;
+    will-change: transform, box-shadow, filter;
+    backface-visibility: hidden;
+    z-index: 1;
+
+    /* Smooth base transition */
+    transition:
+        transform var(--hover-response-duration) var(--smooth-ease),
+        box-shadow var(--hover-response-duration) var(--smooth-ease),
+        border-color var(--hover-response-duration) var(--smooth-ease),
+        filter var(--hover-response-duration) var(--smooth-ease);
+}
+
+/* ========================================================================
+   Drag-N-Drop
+   ======================================================================== */
+
+.book-card.is-dragging {
+    transform: scale(var(--drag-scale)) rotate(var(--drag-rotate)) translateY(var(--hover-lift))
+        translateZ(0);
+
+    box-shadow:
+        0 20px 60px rgba(0, 0, 0, 0.3),
+        0 8px 25px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.1);
+
+    filter: brightness(1.1) saturate(1.2);
+    border-color: var(--rp-iris);
+    z-index: 1000;
+    opacity: 0.95;
+    cursor: grabbing;
+
+    transition:
+        transform var(--drag-lift-duration) var(--spring-ease),
+        box-shadow var(--drag-lift-duration) var(--spring-ease),
+        filter var(--drag-lift-duration) var(--spring-ease),
+        border-color var(--drag-lift-duration) var(--spring-ease);
+}
+
+.book-card.is-dragged-over {
+    transform: translateY(calc(var(--hover-lift) * 0.3)) scale(0.96) translateZ(0);
+
+    box-shadow:
+        0 0 30px rgba(196, 167, 231, 0.4),
+        0 4px 20px rgba(196, 167, 231, 0.2),
+        inset 0 0 0 2px var(--rp-iris);
+
+    border-color: var(--rp-iris);
+    background: linear-gradient(
+        135deg,
+        var(--rp-surface) 0%,
+        rgba(196, 167, 231, 0.08) 50%,
+        var(--rp-overlay) 100%
+    );
+
+    animation: dropZonePulse 1s var(--elastic-ease) infinite;
+
+    transition:
+        transform var(--hover-response-duration) var(--elastic-ease),
+        box-shadow var(--hover-response-duration) var(--elastic-ease),
+        background var(--hover-response-duration) var(--smooth-ease);
+}
+
+.book-card.is-dropping {
+    animation:
+        elasticDrop var(--drag-drop-duration) var(--bounce-ease) forwards,
+        successRipple 0.6s var(--smooth-ease) 0.1s forwards;
+}
+
+.book-card:hover:not(.expanded):not(.is-dragging):not(.is-dragged-over) {
+    transform: translateY(calc(var(--hover-lift) * 0.6)) scale(1.02) translateZ(0);
+
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 4px 15px rgba(0, 0, 0, 0.2);
+
+    border-color: var(--hover-border-color, var(--rp-love));
+    background: linear-gradient(135deg, var(--rp-surface) 0%, var(--rp-overlay) 100%);
+
+    transition:
+        transform var(--hover-response-duration) var(--elastic-ease),
+        box-shadow var(--hover-response-duration) var(--elastic-ease),
+        border-color var(--hover-response-duration) var(--smooth-ease),
+        background var(--hover-response-duration) var(--smooth-ease);
+}
+
+.book-card:hover:not(.expanded):not(.is-dragging):not(.is-dragged-over)::after {
+    opacity: 1;
+}
+
+.book-card:hover:not(.expanded):not(.is-dragging):not(.is-dragged-over) .cover-image {
+    transform: scale(var(--hover-scale));
+}
+
+.book-card:hover:not(.expanded):not(.is-dragging):not(.is-dragged-over) .cover-image-small {
+    transform: scale(var(--hover-scale));
+    will-change: transform;
+}
+
+.book-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: linear-gradient(
+        to top,
+        rgba(196, 167, 231, 0.08) 0%,
+        rgba(196, 167, 231, 0.04) 40%,
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity var(--transition-speed) var(--transition-ease);
+    z-index: 1;
+    will-change: opacity;
+    pointer-events: none;
+}
+
+/* ========================================================================
+   Cover Images
+   ======================================================================== */
+
+.book-cover {
+    border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+    line-height: 0;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.cover-image {
+    width: 100%;
+    height: fit-content;
+    object-fit: cover;
+    transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+.book-cover-small {
+    position: relative;
+    width: 80px;
+    height: 120px;
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.cover-image-small {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+/* ========================================================================
+   Book Information
+   ======================================================================== */
+
+.book-info {
+    padding: 1.8rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+}
+
+.book-title {
+    font-size: clamp(1.1rem, 1.5vw, 1.35rem);
+    font-weight: 800;
+    margin-bottom: 0.7rem;
+    color: var(--rp-text);
+    line-height: 1.3;
+    letter-spacing: -0.03em;
+}
+
+.book-author {
+    color: var(--rp-subtle);
+    font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+    font-style: italic;
+    margin: 0 0 var(--spacing-md);
+}
+
+/* ========================================================================
+   Tags & Genres
+   ======================================================================== */
+
+.book-genres,
+.book-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: 1.2rem;
+    min-width: 100%;
+}
+
+.book-genre,
+.book-tag {
+    background-color: var(--rp-highlight-low);
+    border-radius: 25px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    color: var(--rp-text);
+    font-weight: 600;
+    opacity: 0.95;
+    padding: 0.35rem 0.9rem;
+    transition:
+        background 0.2s,
+        transform 0.2s,
+        box-shadow 0.2s;
+}
+
+.book-genre:hover,
+.book-tag:hover {
+    background-color: var(--rp-foam);
+    transform: translateY(-2px);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.read-status {
+    background-color: var(--rp-highlight-high);
+    border-radius: 25px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    color: var(--rp-text);
+    display: inline-block;
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    opacity: 0.95;
+    padding: 0.35rem 0.9rem;
+    transition: transform var(--transition-speed) var(--transition-ease);
+}
+
+.read-status:hover {
+    transform: translateY(-2px);
+}
+
+/* ========================================================================
+   Rating System
+   ======================================================================== */
+
+.book-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: auto;
+    padding-top: 1.2rem;
+    padding-bottom: var(--spacing-sm);
+    border-top: 1px solid var(--rp-highlight-med);
+}
+
+.stars {
+    display: flex;
+    gap: 0.2rem;
+}
+
+.star {
+    color: var(--rp-muted);
+    font-size: var(--font-size-2xl);
+    transition: color 0.2s;
+}
+
+.star.filled {
+    color: var(--rp-gold);
+    text-shadow:
+        0 0 8px rgba(246, 193, 119, 0.5),
+        0 0 15px rgba(246, 193, 119, 0.2);
+    animation: bounceIn 0.5s var(--transition-ease);
+}
+
+.percent-progress-bar-container {
+    position: relative;
+    background-color: var(--rp-surface);
+    border: none;
+    box-shadow: var(--box-shadow-lg);
+    border-radius: 99px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 15px;
+    isolation: isolate;
+}
+
+.percent-progress-bar {
+    background-color: var(--rp-love);
+    height: 100%;
+    position: absolute;
+    border-radius: 50px;
+    top: 0;
+    left: 0;
+    transition: width var(--transition-speed) var(--transition-ease);
+}
+
+.progress-bar-text {
+    position: relative;
+    z-index: 2;
+    color: var(--rp-text);
+    mix-blend-mode: difference;
+    font-family: var(--font-family-base) !important;
+    font-weight: 400;
+    letter-spacing: 1px;
+    font-size: var(--font-size-sm);
+    white-space: nowrap;
+}
+
+.percocet {
+    font-family: var(--font-family-code) !important;
+}
+
+.is-dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+    cursor: grabbing;
+    transition:
+        transform 0.2s ease-out,
+        opacity 0.2s ease-out;
+    transition:
+        transform 0.3s var(--transition-ease),
+        box-shadow 0.3s var(--transition-ease),
+        opacity 0.3s var(--transition-ease);
+}
+
+.is-dragged-over {
+    border-color: var(--rp-iris) !important;
+    box-shadow: 0 0 20px rgba(196, 167, 231, 0.5);
+    transform: scale(0.98);
+    border-radius: var(--border-radius-xl);
+    transition: transform 0.2s var(--transition-ease);
+}
+
+.book-card.is-dragging {
+    opacity: 0.5;
+    transform: scale(0.95);
+    cursor: grabbing;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.book-card.is-dragged-over {
+    border-color: var(--rp-iris) !important;
+    box-shadow: 0 0 20px rgba(196, 167, 231, 0.5);
+    transform: translateY(0) scale(1);
+}
+
+.book-card.is-dragging,
+.book-card.is-dragged-over,
+.book-card:hover {
+    transform: translateZ(0);
+    will-change: transform, box-shadow;
+}

@@ -1,0 +1,18 @@
+{
+    "index": "ザ・マザーファッキング・ベアロダクティル",
+    "lists": "リスト",
+    "jokes": "冗談ページ",
+    "routes": {
+        "bearodactyl": "ベアロダクティル",
+        "domains": "ドメイン",
+        "games": "ゲームのリスト",
+        "home": "ホームページ",
+        "license": "俺のライセンス",
+        "one-piece": "ワンピースのレビュー",
+        "one-piece-long": "ワンピースの各章のレビュー",
+        "projects": "プロジェクト",
+        "read-watch": "読書/視聴のリスト",
+        "website-src": "サイトのソース",
+        "woah": "ワオ"
+    }
+}

@@ -1,11 +1,25 @@
 <!doctype html>
-<html lang="en">
+<html lang="jp">
 	<head>
 		<meta charset="utf-8" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.ico" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
+	<style>
+		@font-face {
+			font-family: 'Cascadia Code Nerd Font';
+			font-style: normal;
+			font-weight: 200;
+			font-display: swap;
+			src: url('/fonts/CaskaydiaCoveNerdFont-Light.woff2') format('woff2');
+		}
+
+		* {
+			font-family: 'Cascadia Code Nerd Font' !important;
+		}
+	</style>
 </html>

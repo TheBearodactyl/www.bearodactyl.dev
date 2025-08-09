@@ -1,0 +1,11 @@
+{
+    "loading": "ロード中... {progress}%",
+    "list-load-error": "[エラー] - リストのロードができませんでした: {err}",
+    "no-results": "検索結果なし",
+    "click-to-play": "クリックしてオーディオを再生する",
+    "explicit": "成人向け",
+    "no-genres": "利用可能のジャンルなし",
+    "no-tags": "利用可能のタグなし",
+    "no-install-command": "利用可能のインストールの命令なし",
+    "bad": "バカめの下種向け"
+}

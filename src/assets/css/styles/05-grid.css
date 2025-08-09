@@ -1,0 +1,135 @@
+/* ========================================================================
+   Grid System & Layout Modes
+   ======================================================================== */
+
+/* Book Grid Base */
+.book-grid {
+    column-count: 3;
+    column-gap: var(--spacing-xl);
+    width: 100%;
+    padding-bottom: var(--spacing-2xl);
+    transition: all 0.6s var(--transition-ease);
+    position: relative;
+}
+
+.book-grid > * {
+    break-inside: avoid-column;
+    margin-bottom: var(--spacing-xl);
+    transition:
+        transform var(--reorder-duration) var(--spring-ease),
+        opacity var(--reorder-duration) var(--smooth-ease);
+}
+
+/* Grid Transitions */
+.book-grid.transitioning {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.book-grid.entering-list {
+    animation: morphToList 0.6s var(--transition-ease) forwards;
+}
+
+.book-grid.entering-grid {
+    animation: morphToGrid 0.6s var(--transition-ease) forwards;
+}
+
+/* Enhanced Reordering State */
+.book-grid.is-reordering > * {
+    transition:
+        transform var(--reorder-duration) var(--elastic-ease),
+        opacity var(--reorder-duration) var(--smooth-ease);
+}
+
+/* Smooth repositioning for non-dragged cards */
+.book-grid:not(.is-reordering) > .book-card:not(.is-dragging):not(.is-dragged-over) {
+    transition:
+        transform var(--reorder-duration) var(--elastic-ease),
+        box-shadow var(--hover-response-duration) var(--smooth-ease);
+}
+
+/* List View */
+.book-grid.list-view {
+    column-count: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    animation: slideInFromLeft 0.4s var(--transition-ease) forwards;
+}
+
+.book-grid.list-view > * {
+    break-inside: initial;
+    margin-bottom: 0;
+    opacity: 0;
+    animation: slideInFromRight 0.5s var(--transition-ease) forwards;
+    will-change: transform, opacity;
+}
+
+/* Staggered Animation Delays */
+.book-grid.list-view > :nth-child(1) {
+    animation-delay: 0.1s;
+}
+.book-grid.list-view > :nth-child(2) {
+    animation-delay: 0.15s;
+}
+.book-grid.list-view > :nth-child(3) {
+    animation-delay: 0.2s;
+}
+.book-grid.list-view > :nth-child(4) {
+    animation-delay: 0.25s;
+}
+.book-grid.list-view > :nth-child(5) {
+    animation-delay: 0.3s;
+}
+.book-grid.list-view > :nth-child(6) {
+    animation-delay: 0.35s;
+}
+.book-grid.list-view > :nth-child(7) {
+    animation-delay: 0.4s;
+}
+.book-grid.list-view > :nth-child(8) {
+    animation-delay: 0.45s;
+}
+.book-grid.list-view > :nth-child(9) {
+    animation-delay: 0.5s;
+}
+.book-grid.list-view > :nth-child(n + 10) {
+    animation-delay: 0.55s;
+}
+
+/* Grid View Animation Delays */
+.book-grid:not(.list-view) > * {
+    animation: fadeInScale 0.5s var(--transition-ease) forwards;
+    opacity: 0;
+}
+
+.book-grid:not(.list-view) > :nth-child(1) {
+    animation-delay: 0.1s;
+}
+.book-grid:not(.list-view) > :nth-child(2) {
+    animation-delay: 0.15s;
+}
+.book-grid:not(.list-view) > :nth-child(3) {
+    animation-delay: 0.2s;
+}
+.book-grid:not(.list-view) > :nth-child(4) {
+    animation-delay: 0.25s;
+}
+.book-grid:not(.list-view) > :nth-child(5) {
+    animation-delay: 0.3s;
+}
+.book-grid:not(.list-view) > :nth-child(6) {
+    animation-delay: 0.35s;
+}
+.book-grid:not(.list-view) > :nth-child(7) {
+    animation-delay: 0.4s;
+}
+.book-grid:not(.list-view) > :nth-child(8) {
+    animation-delay: 0.45s;
+}
+.book-grid:not(.list-view) > :nth-child(9) {
+    animation-delay: 0.5s;
+}
+.book-grid:not(.list-view) > :nth-child(n + 10) {
+    animation-delay: 0.55s;
+}
