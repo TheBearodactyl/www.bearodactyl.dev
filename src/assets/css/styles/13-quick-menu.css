@@ -443,3 +443,36 @@ body {
         gap: 0.5rem;
     }
 }
+
+/* RTL fixes */
+html[dir="rtl"] .quick-buttons {
+    left: 1rem;
+    right: auto;
+    flex-direction: row-reverse; /* Keep toggle button on the outside */
+}
+
+html[dir="rtl"] .menu-toggle {
+    order: -1;
+}
+
+/* Reverse menu-items slide-in for RTL */
+html[dir="rtl"] .menu-items {
+    transform: translateX(10px); /* start from the left instead of the right */
+}
+
+html[dir="rtl"] .menu-items.open {
+    transform: translateX(0);
+}
+
+html[dir="rtl"] .route-item {
+    transform: translateX(10px);
+}
+
+html[dir="rtl"] .route-item:hover {
+    transform: translateX(-6px); /* slide inward from the other side */
+}
+
+html[dir="rtl"] .nested-menu {
+    left: auto;
+    right: calc(100% + 0.5rem); /* nested menu opens to the left */
+}
