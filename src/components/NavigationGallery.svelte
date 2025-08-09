@@ -323,7 +323,6 @@
             border-radius: var(--border-radius-xl);
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
             display: flex;
-            margin-bottom: 1.5rem;
             flex-direction: column;
             overflow: hidden;
             text-decoration: none;
