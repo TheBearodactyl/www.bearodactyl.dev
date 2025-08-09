@@ -51,6 +51,8 @@
                     日本語
                 {:else if loc === "ar"}
                     عربي
+                {:else if loc === "ptbr"}
+                    Português - Brasil
                 {:else}
                     {loc.toUpperCase()}
                 {/if}

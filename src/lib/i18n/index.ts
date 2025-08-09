@@ -36,6 +36,7 @@ const findBestLocale = (preferredLocale: string, availableLocales: string[]): st
         ja: "jp",
         "ja-JP": "jp",
         japanese: "jp",
+        ptbr: "Português - Brasil"
     };
 
     const mapped = localeMap[preferredLocale.toLowerCase()];
