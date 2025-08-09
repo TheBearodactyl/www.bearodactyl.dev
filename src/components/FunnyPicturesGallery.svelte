@@ -1,9 +1,9 @@
 <script lang="ts">
-    import type { FunnyImg } from "$lib/types";
     import { browser } from "$app/environment";
     import { getGithubRelease } from "$lib/utils/getGitHubRelease";
-    import { shuffleArray } from "$lib/utils/misc";
+    import { shuffleArray, splitIntoParts } from "$lib/utils/misc";
     import { _ } from "svelte-i18n";
+    import type { FunnyImg } from "$lib/types";
 
     export function useData() {
         let imgs = $state<FunnyImg[]>([]);
@@ -36,7 +36,7 @@
             }
         }
 
-        $effect.pre(() => {
+        $effect(() => {
             if (browser) {
                 loadWithProgress();
             }
@@ -71,13 +71,17 @@
     </p>
 {:else}
     <div class="masonry" aria-label="Masonry image gallery">
-        {#each images() as image}
-            <figure class="masonry-item">
-                <img src={image.src} alt={image.alt ?? ""} loading="lazy" />
-                {#if image.alt}
-                    <figcaption class="caption">{image.alt}</figcaption>
-                {/if}
-            </figure>
+        {#each splitIntoParts(images(), 3) as column}
+            <div class="masonry-column">
+                {#each column as image}
+                    <figure class="masonry-item">
+                        <img src={image.src} alt={image.alt ?? ""} loading="lazy" />
+                        {#if image.alt}
+                            <figcaption class="caption">{image.alt}</figcaption>
+                        {/if}
+                    </figure>
+                {/each}
+            </div>
         {/each}
     </div>
 {/if}
@@ -88,18 +92,23 @@
     }
 
     .masonry {
-        column-count: 2;
-        column-gap: 0.2rem;
+        display: flex;
+        gap: 0.1rem;
         padding: 0.5rem;
     }
 
+    .masonry-column {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
     .masonry-item {
-        break-inside: avoid;
-        -webkit-column-break-inside: avoid;
-        margin-bottom: 0.5rem;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
         border-radius: 10px;
         overflow: hidden;
+        width: 90%;
         background: #fff;
         position: relative;
     }
@@ -131,15 +140,26 @@
         pointer-events: auto;
     }
 
+    /* Responsive: 2 columns */
     @media (max-width: 900px) {
         .masonry {
-            column-count: 2;
+            gap: 0.5rem;
         }
+        .masonry-column {
+            flex: 1 1 50%;
+        }
+        /* Only render 2 columns for smaller */
+        /* Optional: you can slice columns here if you want */
     }
 
+    /* Responsive: 1 column */
     @media (max-width: 520px) {
         .masonry {
-            column-count: 1;
+            flex-direction: column;
+        }
+        .masonry-column {
+            width: 100%;
+            flex: none;
         }
     }
 </style>
