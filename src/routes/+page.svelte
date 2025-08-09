@@ -124,6 +124,7 @@
         {
             coverImage: "https://comiczombie.net/wp-content/uploads/2021/05/getittogether.jpg",
             route: "",
+            audioSrc: "/audio/scottpilgrim.mp3"
         },
         {
             coverImage:
@@ -132,6 +133,10 @@
         },
         {
             coverImage: "https://i.ebayimg.com/images/g/Q6cAAOSwrT1gxlFX/s-l1200.jpg",
+            route: ""
+        },
+        {
+            coverImage: "https://lastfm.freetls.fastly.net/i/u/ar0/9392d450bc1b42b3847fd84f03c92c11.jpg",
             route: ""
         }
     ];

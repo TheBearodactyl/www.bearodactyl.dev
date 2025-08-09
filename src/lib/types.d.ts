@@ -53,6 +53,7 @@ export interface NavItem {
     description?: string;
     discouraged?: boolean;
     coverImage?: string;
+    audioSrc?: string;
     route: string;
 }
 

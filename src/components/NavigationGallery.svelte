@@ -31,6 +31,14 @@
         const title = getItemTitle(item);
         if (title === "Emergency frog!") play_emergency();
         if (item.discouraged) play_discouragement();
+        if (item.audioSrc) {
+            try {
+                const audio = new Audio(item.audioSrc);
+                audio.play();
+            } catch (error) {
+                console.error(error);
+            }
+        }
     }
 
     function getItemTitle(item: NavItem): string | undefined {
@@ -161,7 +169,6 @@
                                 title={itemTitle === undefined ? "an image :O" : $_(itemTitle)}
                                 class="nav-card"
                                 onclick={() => {
-                                    window.open(item.coverImage, "_blank")
                                     handle_card_click(item);
                                 }}
                             >
