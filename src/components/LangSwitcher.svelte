@@ -23,8 +23,11 @@
             selectedLocale = newLocale;
             localStorage.setItem("selected-locale", newLocale);
 
-            // const currentPath = get(page).url.pathname + get(page).url.search;
-            // await goto(currentPath, { invalidateAll: true });
+            if (newLocale === "ar") {
+                if (browser) {
+                    window.location.reload()
+                }
+            }
         } catch (error) {
             console.error("Failed to load locale:", error);
             selectedLocale = $locale;
