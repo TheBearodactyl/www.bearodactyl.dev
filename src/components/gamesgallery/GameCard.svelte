@@ -2,6 +2,7 @@
     import type { Game } from "$lib/types";
     import { isPeakFiction } from "$lib/utils/misc";
     import BaseCard from "../gallery/BaseCard.svelte";
+    import DickNBalls from "../icons/DickNBalls.svelte";
     import WarningIcon from "../icons/WarningIcon.svelte";
     import { _ } from "svelte-i18n";
 
@@ -88,7 +89,7 @@
                     {#if game.bad}
                         <div class="explicit-icon">
                             <span class="icon-warning">
-                                <WarningIcon />
+                                <DickNBalls />
                             </span>
                             <span class="explicit-label">{$_("indicators.bad")}</span>
                         </div>
