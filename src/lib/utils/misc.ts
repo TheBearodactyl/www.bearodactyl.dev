@@ -1,5 +1,6 @@
 import { browser } from "$app/environment";
-import type { Book, Game } from "$lib/types";
+import type { Book, FunnyImg, Game } from "$lib/types";
+import type { HTMLImgAttributes } from "svelte/elements";
 import { writable, type Writable } from "svelte/store";
 
 function isBook(item: Book | Game): item is Book {
@@ -97,4 +98,39 @@ export async function getCharCountOfRepo(url: string): Promise<number> {
         console.error("Error estimating character count of repository:", error);
         throw error;
     }
+}
+
+export function splitIntoParts<T, N extends number>(
+    arr: T[],
+    parts: N,
+): N extends 0 ? [] : T[][] & { length: N } {
+    if (parts <= 0) throw new Error("Parts must be greater than 0");
+
+    const result: T[][] = [];
+    const baseSize = Math.floor(arr.length / parts);
+    const remainder = arr.length % parts;
+
+    let start = 0;
+    for (let i = 0; i < parts; i++) {
+        const size = baseSize + (i < remainder ? 1 : 0);
+        result.push(arr.slice(start, start + size));
+        start += size;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    return result as any;
+}
+
+export function imgToHtmlImg(img: FunnyImg): HTMLImgAttributes {
+    return {
+        alt: img.alt,
+        src: img.src
+    }
+}
+
+export function imgsToHtmlImgs(imgs: FunnyImg[]): HTMLImgAttributes[] {
+    return imgs.map((img) => ({
+        src: img.src,
+        alt: img.alt
+    }))
 }

@@ -60,3 +60,8 @@ export interface RouteItem {
     nameKey: string;
     children?: RouteItem[];
 }
+
+export interface FunnyImg {
+    alt: string,
+    src: string
+}

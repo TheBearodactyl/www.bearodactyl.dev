@@ -75,6 +75,11 @@
             route: "/lists/domains",
         },
         {
+            name: "funny-images",
+            coverImage: "https://archive.org/download/Chinese_Assassin_-_Dont_Mess_With_My_Dawgs_Mix_CD_-_PHZ/00cover.jpg",
+            route: "/lists/funny-pictures"
+        },
+        {
             coverImage: "/images/mlg.gif",
             route: "",
         },
