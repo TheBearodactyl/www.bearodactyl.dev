@@ -46,7 +46,6 @@
 	"dependencies": {
 		"@sveltejs/adapter-static": "^3.0.8",
 		"@types/masonry-layout": "^4.2.8",
-		"flowbite-svelte": "^1.11.4",
 		"fuse.js": "^7.1.0",
 		"gsap": "^3.13.0",
 		"masonry-layout": "^4.2.2",
