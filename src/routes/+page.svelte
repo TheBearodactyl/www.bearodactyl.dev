@@ -138,6 +138,10 @@
         {
             coverImage: "https://lastfm.freetls.fastly.net/i/u/ar0/9392d450bc1b42b3847fd84f03c92c11.jpg",
             route: ""
+        },
+        {
+            coverImage: "https://st.cdjapan.co.jp/pictures/l/00/29/AVCA-29411.jpg",
+            route: ""
         }
     ];
 </script>
