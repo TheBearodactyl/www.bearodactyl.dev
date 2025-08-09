@@ -160,7 +160,42 @@
                             <div
                                 title={itemTitle === undefined ? "an image :O" : $_(itemTitle)}
                                 class="nav-card"
-                                onclick={() => handle_card_click(item)}
+                                onclick={() => {
+                                    window.open(item.coverImage, "_blank")
+                                    handle_card_click(item);
+                                }}
+                            >
+                                <div class="card-image-container">
+                                    {#if item.coverImage}
+                                        <img
+                                            src={item.coverImage}
+                                            alt={`Cover for ${itemTitle}`}
+                                            class="card-image"
+                                        />
+                                    {:else}
+                                        <div></div>
+                                    {/if}
+                                </div>
+                                {#if itemTitle !== undefined || itemDescription !== undefined}
+                                    <div class="card-content">
+                                        {#if itemTitle !== undefined}
+                                            <h2 class="card-title">{$_(itemTitle)}</h2>
+                                        {/if}
+                                        {#if itemDescription !== undefined}
+                                            <p class="card-description">{$_(itemDescription)}</p>
+                                        {/if}
+                                    </div>
+                                {/if}
+                            </div>
+                        {:else if item.route === ""}
+                            <!-- svelte-ignore a11y_click_events_have_key_events -->
+                            <!-- svelte-ignore a11y_no_static_element_interactions -->
+                            <div
+                                title={itemTitle === undefined ? "an image :O" : $_(itemTitle)}
+                                class="nav-card"
+                                onclick={() => {
+                                    window.open(item.coverImage, "_blank");
+                                }}
                             >
                                 <div class="card-image-container">
                                     {#if item.coverImage}
