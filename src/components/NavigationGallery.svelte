@@ -2,7 +2,7 @@
     import { _ } from "svelte-i18n";
     import type { NavItem } from "$lib/types";
     import { show_discouragement } from "$lib/stores/discouragement";
-    import { getCharCountOfRepo } from "$lib/utils/misc";
+    import { getCharCountOfRepo, shuffleArray } from "$lib/utils/misc";
     import { onMount } from "svelte";
 
     const {
@@ -71,7 +71,7 @@
     {:else}
         <div class="navigation-gallery-wrapper">
             <div class="navigation-gallery">
-                {#each navItems as item}
+                {#each shuffleArray(navItems) as item}
                     {@const itemTitle = getItemTitle(item)}
                     {@const itemDescription = getItemDescription(item)}
 
