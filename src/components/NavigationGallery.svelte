@@ -5,17 +5,14 @@
     import { getCharCountOfRepo, shuffleArray } from "$lib/utils/misc";
     import { onMount } from "svelte";
 
-    const {
-        navItems,
-    }: {
-        navItems: NavItem[];
-    } = $props();
+    const { navItems }: { navItems: NavItem[] } = $props();
 
     let char_count: number | null = $state(null);
     let loading = $state(true);
     let error: string | null = $state(null);
-
     let show_emergency = $state(false);
+
+    let columns: NavItem[][] = $state([]);
 
     async function play_emergency() {
         const audio = new Audio(
@@ -48,6 +45,25 @@
         return undefined;
     }
 
+    function createBalancedColumns(items: NavItem[], numCols: number): NavItem[][] {
+        const cols: NavItem[][] = Array.from({ length: numCols }, () => []);
+        items.forEach((item, i) => {
+            cols[i % numCols].push(item);
+        });
+        return cols;
+    }
+
+    function updateColumns() {
+        let numCols = 5;
+        const w = window.innerWidth;
+        if (w <= 600) numCols = 1;
+        else if (w <= 900) numCols = 2;
+        else if (w <= 1000) numCols = 3;
+
+        const shuffled = shuffleArray(navItems);
+        columns = createBalancedColumns(shuffled, numCols);
+    }
+
     onMount(async () => {
         try {
             char_count = await getCharCountOfRepo(
@@ -57,6 +73,8 @@
             error = err instanceof Error ? err.message : "Failed to get character count";
         } finally {
             loading = false;
+            updateColumns();
+            window.addEventListener("resize", updateColumns);
         }
     });
 </script>
@@ -68,155 +86,154 @@
 {:else if char_count !== null}
     {#if $show_discouragement}
         <div></div>
-    {:else}
-        <div class="navigation-gallery-wrapper">
-            <div class="navigation-gallery">
-                {#each shuffleArray(navItems) as item}
-                    {@const itemTitle = getItemTitle(item)}
-                    {@const itemDescription = getItemDescription(item)}
+    {/if}
 
-                    {#if itemTitle === "Emergency frog!"}
-                        <!-- svelte-ignore a11y_click_events_have_key_events -->
-                        <!-- svelte-ignore a11y_no_static_element_interactions -->
-                        <div
-                            title={itemTitle === undefined ? "don't" : $_(itemTitle)}
-                            class="nav-card clickable"
-                            onclick={() => handle_card_click(item)}
-                        >
-                            <div class="card-image-container">
-                                {#if item.coverImage}
-                                    <img
-                                        src={item.coverImage}
-                                        alt={`Cover for ${itemTitle}`}
-                                        class="card-image"
-                                    />
-                                {:else}
-                                    <div class="placeholder-image">?</div>
-                                {/if}
-                            </div>
-                            <div class="card-content">
-                                {#if itemTitle !== undefined}
-                                    <h2 class="card-title">{$_(itemTitle)}</h2>
-                                {/if}
-                                {#if itemDescription !== undefined}
-                                    <p class="card-description">{$_(itemDescription)}</p>
-                                {/if}
-                            </div>
-                        </div>
-                    {:else if item.discouraged}
-                        <!-- svelte-ignore a11y_click_events_have_key_events -->
-                        <!-- svelte-ignore a11y_no_static_element_interactions -->
-                        <div
-                            title={itemTitle === undefined ? "don't" : $_(itemTitle)}
-                            class="nav-card clickable"
-                            onclick={() => handle_card_click(item)}
-                        >
-                            <div class="card-image-container">
-                                {#if item.coverImage}
-                                    <img
-                                        src={item.coverImage}
-                                        alt={`Cover for ${itemTitle}`}
-                                        class="card-image"
-                                    />
-                                {:else}
-                                    <div></div>
-                                {/if}
-                            </div>
-                            {#if itemTitle !== undefined || itemDescription !== undefined}
-                                <div class="card-content">
-                                    {#if itemTitle !== undefined}
-                                        <h2 class="card-title">{$_(itemTitle)}</h2>
-                                    {/if}
-                                    {#if itemDescription !== undefined}
-                                        <p class="card-description">{$_(itemDescription)}</p>
-                                    {/if}
-                                </div>
-                            {/if}
-                        </div>
-                    {:else if !itemTitle}
-                        <!-- svelte-ignore a11y_click_events_have_key_events -->
-                        <!-- svelte-ignore a11y_no_static_element_interactions -->
-                        <div
-                            title={itemTitle === undefined ? "an image :O" : $_(itemTitle)}
-                            class="nav-card"
-                            onclick={() => handle_card_click(item)}
-                        >
-                            <div class="card-image-container">
-                                {#if item.coverImage}
-                                    <img
-                                        src={item.coverImage}
-                                        alt={`Cover for ${itemTitle}`}
-                                        class="card-image"
-                                    />
-                                {:else}
-                                    <div></div>
-                                {/if}
-                            </div>
-                            {#if itemTitle !== undefined || itemDescription !== undefined}
-                                <div class="card-content">
-                                    {#if itemTitle !== undefined}
-                                        <h2 class="card-title">{$_(itemTitle)}</h2>
-                                    {/if}
-                                    {#if itemDescription !== undefined}
-                                        <p class="card-description">{$_(itemDescription)}</p>
-                                    {/if}
-                                </div>
-                            {/if}
-                        </div>
-                    {:else}
-                        <a href={item.route} class="nav-card">
+    <div class="navigation-gallery-wrapper">
+        <div class="navigation-gallery">
+            {#each columns as col}
+                <div class="nav-column">
+                    {#each col as item}
+                        {@const itemTitle = getItemTitle(item)}
+                        {@const itemDescription = getItemDescription(item)}
+
+                        {#if itemTitle === "Emergency frog!"}
+                            <!-- svelte-ignore a11y_click_events_have_key_events -->
+                            <!-- svelte-ignore a11y_no_static_element_interactions -->
                             <div
                                 title={itemTitle === undefined ? "don't" : $_(itemTitle)}
-                                class="card-image-container"
+                                class="nav-card clickable"
+                                onclick={() => handle_card_click(item)}
                             >
-                                {#if item.coverImage && !item.coverImage.endsWith("webm")}
-                                    <img
-                                        src={item.coverImage}
-                                        alt={`Cover for ${itemTitle}`}
-                                        class="card-image"
-                                    />
-                                {:else if item.coverImage && item.coverImage.endsWith("webm")}
-                                    <video
-                                        disablepictureinpicture
-                                        autoplay
-                                        loop
-                                        muted
-                                        playsinline
-                                        class="card-image"
-                                    >
-                                        <source src={item.coverImage} type="video/webm" />
-                                    </video>
-                                {:else}
-                                    <div class="placeholder-image">?</div>
+                                <div class="card-image-container">
+                                    {#if item.coverImage}
+                                        <img
+                                            src={item.coverImage}
+                                            alt={`Cover for ${itemTitle}`}
+                                            class="card-image"
+                                        />
+                                    {:else}
+                                        <div class="placeholder-image">?</div>
+                                    {/if}
+                                </div>
+                                <div class="card-content">
+                                    {#if itemTitle !== undefined}
+                                        <h2 class="card-title">{$_(itemTitle)}</h2>
+                                    {/if}
+                                    {#if itemDescription !== undefined}
+                                        <p class="card-description">{$_(itemDescription)}</p>
+                                    {/if}
+                                </div>
+                            </div>
+                        {:else if item.discouraged}
+                            <!-- svelte-ignore a11y_click_events_have_key_events -->
+                            <!-- svelte-ignore a11y_no_static_element_interactions -->
+                            <div
+                                title={itemTitle === undefined ? "don't" : $_(itemTitle)}
+                                class="nav-card clickable"
+                                onclick={() => handle_card_click(item)}
+                            >
+                                <div class="card-image-container">
+                                    {#if item.coverImage}
+                                        <img
+                                            src={item.coverImage}
+                                            alt={`Cover for ${itemTitle}`}
+                                            class="card-image"
+                                        />
+                                    {:else}
+                                        <div></div>
+                                    {/if}
+                                </div>
+                                {#if itemTitle !== undefined || itemDescription !== undefined}
+                                    <div class="card-content">
+                                        {#if itemTitle !== undefined}
+                                            <h2 class="card-title">{$_(itemTitle)}</h2>
+                                        {/if}
+                                        {#if itemDescription !== undefined}
+                                            <p class="card-description">{$_(itemDescription)}</p>
+                                        {/if}
+                                    </div>
                                 {/if}
                             </div>
-                            <div class="card-content">
-                                {#if itemTitle !== undefined}
-                                    <h2 class="card-title">{$_(itemTitle)}</h2>
-                                {/if}
-                                {#if itemDescription !== undefined && itemDescription !== "descriptions.routes.website-src"}
-                                    <p class="card-description">{$_(itemDescription)}</p>
-                                {:else if itemDescription === "descriptions.routes.website-src"}
-                                    <p class="card-description">
-                                        {$_(itemDescription, {
-                                            values: {
-                                                charcount: char_count.toLocaleString(),
-                                            },
-                                        })}
-                                    </p>
+                        {:else if !itemTitle}
+                            <!-- svelte-ignore a11y_click_events_have_key_events -->
+                            <!-- svelte-ignore a11y_no_static_element_interactions -->
+                            <div
+                                title={itemTitle === undefined ? "an image :O" : $_(itemTitle)}
+                                class="nav-card"
+                                onclick={() => handle_card_click(item)}
+                            >
+                                <div class="card-image-container">
+                                    {#if item.coverImage}
+                                        <img
+                                            src={item.coverImage}
+                                            alt={`Cover for ${itemTitle}`}
+                                            class="card-image"
+                                        />
+                                    {:else}
+                                        <div></div>
+                                    {/if}
+                                </div>
+                                {#if itemTitle !== undefined || itemDescription !== undefined}
+                                    <div class="card-content">
+                                        {#if itemTitle !== undefined}
+                                            <h2 class="card-title">{$_(itemTitle)}</h2>
+                                        {/if}
+                                        {#if itemDescription !== undefined}
+                                            <p class="card-description">{$_(itemDescription)}</p>
+                                        {/if}
+                                    </div>
                                 {/if}
                             </div>
-                        </a>
-                    {/if}
-                {/each}
-            </div>
+                        {:else}
+                            <a href={item.route} class="nav-card">
+                                <div
+                                    title={itemTitle === undefined ? "don't" : $_(itemTitle)}
+                                    class="card-image-container"
+                                >
+                                    {#if item.coverImage && !item.coverImage.endsWith("webm")}
+                                        <img
+                                            src={item.coverImage}
+                                            alt={`Cover for ${itemTitle}`}
+                                            class="card-image"
+                                        />
+                                    {:else if item.coverImage && item.coverImage.endsWith("webm")}
+                                        <video
+                                            disablepictureinpicture
+                                            autoplay
+                                            loop
+                                            muted
+                                            playsinline
+                                            class="card-image"
+                                        >
+                                            <source src={item.coverImage} type="video/webm" />
+                                        </video>
+                                    {:else}
+                                        <div class="placeholder-image">?</div>
+                                    {/if}
+                                </div>
+                                <div class="card-content">
+                                    {#if itemTitle !== undefined}
+                                        <h2 class="card-title">{$_(itemTitle)}</h2>
+                                    {/if}
+                                    {#if itemDescription !== undefined && itemDescription !== "descriptions.routes.website-src"}
+                                        <p class="card-description">{$_(itemDescription)}</p>
+                                    {:else if itemDescription === "descriptions.routes.website-src"}
+                                        <p class="card-description">
+                                            {$_(itemDescription, {
+                                                values: {
+                                                    charcount: char_count.toLocaleString(),
+                                                },
+                                            })}
+                                        </p>
+                                    {/if}
+                                </div>
+                            </a>
+                        {/if}
+                    {/each}
+                </div>
+            {/each}
         </div>
-
-        {#if show_emergency}
-            <div class="emergency-backdrop"></div>
-            <div class="emergency-overlay">EMERGENCY FROG!</div>
-        {/if}
-    {/if}
+    </div>
 {/if}
 
 <style lang="scss">
@@ -233,10 +250,17 @@
         }
 
         .navigation-gallery {
-            column-count: 5;
-            column-gap: 1.5rem;
-            max-width: calc(100% - 20px);
+            display: flex;
+            gap: 1.5rem;
             width: 100%;
+            max-width: calc(100% - 20px);
+        }
+
+        .nav-column {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         @media (max-width: 1000px) {
