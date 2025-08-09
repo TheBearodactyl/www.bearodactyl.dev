@@ -173,6 +173,10 @@
         {
             coverImage: "https://pbs.twimg.com/media/GNPOIK3acAELa9p?format=jpg&name=360x360",
             route: ""
+        },
+        {
+            coverImage: "https://api.geode-sdk.org/v1/mods/the_bearodactyl.gay-wave-trail/logo?version=4.2.2",
+            route: "https://geode-sdk.org/mods/the_bearodactyl.gay-wave-trail"
         }
     ];
 </script>

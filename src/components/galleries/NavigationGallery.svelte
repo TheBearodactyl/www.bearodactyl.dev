@@ -5,6 +5,7 @@
     import { onMount } from "svelte";
     import { shuffle } from "$lib/utils/rand";
     import { get_char_count_of_repo } from "$lib/utils/net";
+    import { browser } from "$app/environment";
 
     interface Props {
         navItems: NavItem[];
@@ -44,6 +45,12 @@
                 audio.play();
             } catch (error) {
                 console.error(error);
+            }
+        }
+
+        if (item.route) {
+            if (browser) {
+                window.location.href = item.route
             }
         }
     }

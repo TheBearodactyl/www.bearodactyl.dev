@@ -75,7 +75,7 @@ body {
     color: var(--rp-text);
     border: 2px solid var(--rp-highlight-low);
     border-radius: 99px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.8);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.8);
     padding: 0.75rem 1.25rem;
     font-size: 0.875rem;
     cursor: pointer;
@@ -120,7 +120,7 @@ body {
     background-color: var(--rp-overlay);
     border-color: var(--rp-iris);
     color: var(--rp-iris);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6); 
     transform: translateY(-3px) scale(1.02);
 }
 
@@ -235,7 +235,7 @@ body {
     background-color: var(--rp-surface);
     border: 2px solid var(--rp-iris);
     border-radius: 10px;
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6) inset;
     min-width: 160px;
     opacity: 0;
     visibility: hidden;
@@ -267,6 +267,7 @@ body {
     color: var(--rp-text) !important;
     text-align: left !important;
     cursor: pointer;
+    box-shadow: inset 0 4px 16px rgba(0, 0, 0, 0.8) !important;
     font-size: 0.875rem;
     opacity: 0;
     transform: translateX(-10px);
@@ -280,8 +281,12 @@ body {
 
 .route-item:hover {
     background-color: var(--rp-overlay);
-    color: var(--rp-foam);
+    color: var(--rp-gold);
     transform: translateX(6px);
+}
+
+.route-wrapper {
+    position: relative;
 }
 
 .route-item:hover {
@@ -328,6 +333,12 @@ body {
     opacity: 0;
     transform: translateX(-10px) scale(0.95);
     animation: nestedMenuSlideIn 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.route-item:hover > .nested-menu {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+    pointer-events: auto;
 }
 
 .nested-route-item {
