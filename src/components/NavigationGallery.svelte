@@ -233,9 +233,9 @@
         }
 
         .navigation-gallery {
-            column-count: 3;
+            column-count: 5;
             column-gap: 1.5rem;
-            max-width: 1200px;
+            max-width: calc(100% - 20px);
             width: 100%;
         }
 

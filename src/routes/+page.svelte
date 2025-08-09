@@ -101,6 +101,10 @@
         {
             coverImage: "https://i.ytimg.com/vi/yK1JRtoBY3Y/maxresdefault.jpg",
             route: ""
+        },
+        {
+            coverImage: "https://preview.redd.it/x3p9iu96h4t61.jpg?auto=webp&s=614dc3f1684512c99037bbda2099d058a4ad84f6",
+            route: ""
         }
     ];
 </script>
