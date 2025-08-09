@@ -6,5 +6,6 @@
     "explicit": "Contains Explicit Content",
     "no-genres": "No Genres Available",
     "no-tags": "No Tags Available",
-    "no-install-command": "No Install Command Available"
+    "no-install-command": "No Install Command Available",
+    "bad": "Contains Dogshit"
 }

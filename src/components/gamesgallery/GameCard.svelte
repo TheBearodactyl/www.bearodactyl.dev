@@ -20,8 +20,8 @@
     {index}
     expanded={isExpanded}
     {viewMode}
-    explicit={game.explicit}
-    cardClasses={{ "explicit-content": game.explicit }}
+    explicit={game.explicit || game.bad}
+    cardClasses={{ "explicit-content": (game.explicit || game.bad) }}
     ontoggle={onToggleCard}
 >
     {#if !isExpanded}
@@ -83,6 +83,14 @@
                                 <WarningIcon />
                             </span>
                             <span class="explicit-label">{$_("indicators.explicit")}</span>
+                        </div>
+                    {/if}
+                    {#if game.bad}
+                        <div class="explicit-icon">
+                            <span class="icon-warning">
+                                <WarningIcon />
+                            </span>
+                            <span class="explicit-label">{$_("indicators.bad")}</span>
                         </div>
                     {/if}
                 </div>

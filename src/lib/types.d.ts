@@ -44,6 +44,7 @@ export interface Game {
     coverImage?: string;
     explicit: boolean;
     percent: number;
+    bad: boolean;
 }
 
 export interface NavItem {

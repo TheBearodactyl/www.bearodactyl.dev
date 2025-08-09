@@ -6,5 +6,6 @@
     "explicit": "成人向け",
     "no-genres": "利用可能のジャンルなし",
     "no-tags": "利用可能のタグなし",
-    "no-install-command": "利用可能のインストールの命令なし"
+    "no-install-command": "利用可能のインストールの命令なし",
+    "bad": "Contains Dogshit Content"
 }
