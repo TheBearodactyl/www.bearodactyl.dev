@@ -3,6 +3,7 @@
     import { browser } from "$app/environment";
     import { getGithubRelease } from "$lib/utils/getGitHubRelease";
     import { shuffleArray } from "$lib/utils/misc";
+    import { _ } from "svelte-i18n";
 
     export function useData() {
         let imgs = $state<FunnyImg[]>([]);
@@ -49,13 +50,25 @@
         };
     }
 
-    const { images, isLoading, fetchError } = useData();
+    const { images, isLoading, fetchError, downloadProgress } = useData();
 </script>
 
 {#if isLoading()}
-    <p>Loading images...</p>
+    <p>
+        {$_("indicators.loading", {
+            values: {
+                progress: downloadProgress(),
+            },
+        })}
+    </p>
 {:else if fetchError()}
-    <p>Error loading images: {fetchError()}</p>
+    <p>
+        {$_("indicators.list-load-error", {
+            values: {
+                err: fetchError(),
+            },
+        })}
+    </p>
 {:else}
     <div class="masonry" aria-label="Masonry image gallery">
         {#each images() as image}
@@ -75,15 +88,15 @@
     }
 
     .masonry {
-        column-count: 3;
-        column-gap: 1rem;
-        padding: 1rem;
+        column-count: 2;
+        column-gap: 0.2rem;
+        padding: 0.5rem;
     }
 
     .masonry-item {
         break-inside: avoid;
         -webkit-column-break-inside: avoid;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
         border-radius: 10px;
         overflow: hidden;
