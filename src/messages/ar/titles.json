@@ -1,18 +1,18 @@
 {
   "index": "The Motherfucking Bearodactyl",
-  "lists": "Lists",
-  "jokes": "Joke Pages",
+  "lists": "القوائم",
+  "jokes": "صفحات النكات",
   "routes": {
     "bearodactyl": "Bearodactyl",
-    "domains": "Domains",
-    "games": "Games List",
-    "home": "Home Page",
-    "license": "My License",
-    "one-piece": "OP Reviews",
-    "one-piece-long": "OP Chapter Reviews",
-    "projects": "Projects",
-    "read-watch": "Read/Watch List",
-    "website-src": "Website Source",
-    "woah": "Woah"
+    "domains": "نطاق موقع الويب",
+    "games": "قائمة الألعاب",
+    "home": "الصفحة الرئيسية",
+    "license": "رخصتي",
+    "one-piece": "مراجعات ون بيس",
+    "one-piece-long": "مراجعات فصول ون بيس",
+    "projects": "مشاريع",
+    "read-watch": "قائمة القراءة/المشاهدة",
+    "website-src": "كود الموقع",
+    "woah": "واو"
   }
 }
