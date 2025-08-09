@@ -1,140 +1,185 @@
 <script lang="ts">
-    import type { Book } from "$lib/types";
-    import { SvelteSet } from "svelte/reactivity";
-    import BookCard from "./BookCard.svelte";
     import { _ } from "svelte-i18n";
 
-    interface Props {
-        books: Book[];
-        is_content_visible: boolean;
-        viewMode: "masonry" | "list";
-        expandedCard: string | number | null;
-        showExplicit: boolean;
-        onToggleCard: (bookId: string | number) => void;
-        onAddGenreToFilters: (genre: string) => void;
-        onAddTagToFilters: (tag: string) => void;
+    import Filters from "./BookFilters.svelte";
+    import ExpandedCard from "./BookExpandedCard.svelte";
+    import BookGrid from "./BookGrid.svelte";
+    import { PersistedState } from "runed";
+    import { use_books_data } from "$lib/gallery/data/books.svelte";
+    import { use_books_display } from "$lib/gallery/display/books.svelte";
+    import { filters } from "$lib/gallery/filters/books.svelte";
+    import { show_explicit } from "$lib/stores/show_explicit.svelte";
+    import GalleryBackdrop from "../base/GalleryBackdrop.svelte";
 
-        onDragStart: (bookId: string | number) => void;
-        onDragEnter: (bookId: string | number) => void;
-        onDragLeave: () => void;
-        onDrop: () => void;
-        onDragEnd: () => void;
-        draggedBookId: string | number | null;
-        draggedOverBookId: string | number | null;
+    let data = use_books_data();
+    const display = use_books_display();
+    const book_filters = filters(() => data.books);
+
+    let isFilterCollapsed = $state(true);
+    let draggedBookId: string | number | null = $state(null);
+    let draggedOverBookId: string | number | null = $state(null);
+
+    function toggleSearchMode() {
+        isFilterCollapsed = !isFilterCollapsed;
     }
 
-    let {
-        books,
-        is_content_visible: is_content_visible,
-        viewMode,
-        expandedCard,
-        showExplicit,
-        onToggleCard,
-        onAddGenreToFilters,
-        onAddTagToFilters,
-        onDragStart,
-        onDragEnter,
-        onDragLeave,
-        onDrop,
-        onDragEnd,
-        draggedBookId,
-        draggedOverBookId,
-    }: Props = $props();
+    const persistedViewMode = new PersistedState<"masonry" | "list">("viewMode", "masonry");
 
-    let isReordering = $state(false);
-    let droppingBookIds = $state(
-        new SvelteSet<string | number>(),
-    );
+    $effect(() => {
+        display.set_view_mode(persistedViewMode.current);
+    });
 
-    function handleDrop(event: DragEvent) {
-        event.preventDefault();
+    const expandedBook = $derived(() => {
+        if (display.expanded_card !== null) {
+            return book_filters.filtered_books.find((b) => b.id === display.expanded_card);
+        }
+    });
 
-        if (draggedBookId) {
-            droppingBookIds.add(draggedBookId);
+    function handleDragStart(bookId: string | number) {
+        draggedBookId = bookId;
+    }
 
-            setTimeout(() => {
-                droppingBookIds.delete(draggedBookId);
-                droppingBookIds = new SvelteSet(
-                    droppingBookIds,
-                );
-            }, 300);
+    function handleDragEnter(bookId: string | number) {
+        if (draggedBookId !== bookId) {
+            draggedOverBookId = bookId;
+        }
+    }
+
+    function handleDragLeave() {
+        draggedOverBookId = null;
+    }
+
+    function handleDrop() {
+        if (
+            draggedBookId === null ||
+            draggedOverBookId === null ||
+            draggedBookId === draggedOverBookId
+        ) {
+            return;
         }
 
-        isReordering = true;
-        onDrop();
+        const draggedBookIndex = book_filters.filtered_books.findIndex((b) => b.id === draggedBookId);
+        const draggedOverBookIndex = book_filters.filtered_books.findIndex(
+            (b) => b.id === draggedOverBookId,
+        );
+        const newBooks = [...book_filters.filtered_books];
+        const [removed] = newBooks.splice(draggedBookIndex, 1);
 
-        setTimeout(() => {
-            isReordering = false;
-        }, 250);
+        newBooks.splice(draggedOverBookIndex, 0, removed);
+        data.books = newBooks;
+
+        draggedBookId = null;
+        draggedOverBookId = null;
     }
 
-    function handleDragOver(event: DragEvent) {
-        event.preventDefault();
+    function handleDragEnd() {
+        draggedBookId = null;
+        draggedOverBookId = null;
+    }
 
-        event.dataTransfer!.dropEffect = "move";
+    function handleToggleCard(bookId: string | number) {
+    }
+
+    function handleCloseCard() {
+        display.close_card();
+    }
+
+    function handleUpdateFilters(newFilters: typeof book_filters.search_filters) {
+        book_filters.search_filters = newFilters;
+    }
+
+    function handleAddGenreToFilters(genre: string) {
+        book_filters.add_genre(genre);
+    }
+
+    function handleAddTagToFilters(tag: string) {
+        book_filters.add_tag(tag);
     }
 </script>
 
 <div
-    class="book-grid-container"
-    class:fade-in={is_content_visible}
+    class="book-gallery"
+    class:idle-background={display.is_idle}
 >
-    {#if books.length > 0}
-        <div
-            class="book-grid"
-            class:list-view={viewMode === "list"}
-            class:is-reordering={isReordering}
-            on:drop={handleDrop}
-            on:dragover={handleDragOver}
-        >
-            {#each books as book, index (book.id)}
-                <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <h1 class="gallery-title">{$_("titles.routes.read-watch")}</h1>
+
+    <Filters
+        searchFilters={book_filters.search_filters}
+        allGenres={book_filters.all_genres}
+        allTags={book_filters.all_tags}
+        dropdowns={book_filters.dropdowns}
+        filteredTagCounts={book_filters.filtered_tag_counts}
+        filteredGenreCounts={book_filters.filtered_genre_counts}
+        bind:expandedInputRef={display.expanded_input_ref}
+        {isFilterCollapsed}
+        onToggleDropdown={book_filters.toggle_dropdown}
+        onCloseDropdown={book_filters.close_dropdown}
+        onToggleFilterItem={book_filters.toggle_filter_item}
+        onClearAllFilters={book_filters.clear_all_filters}
+        onToggleSearchMode={toggleSearchMode}
+        onUpdateFilters={handleUpdateFilters}
+        setViewMode={display.set_view_mode}
+        toggleViewMode={display.toggle_view_mode}
+        getViewMode={() => {
+            return display.view_mode;
+        }}
+    />
+
+    {#if data.is_loading}
+        <div class="progress-wrapper">
+            <div class="progress-bar">
                 <div
-                    on:click={() => {
-                        onToggleCard(book.id);
-                    }}
-                >
-                    <BookCard
-                        show_explicit={showExplicit}
-                        {book}
-                        {index}
-                        view_mode={viewMode}
-                        expanded={expandedCard ===
-                            book.id}
-                        on_toggle_card={() =>
-                            onToggleCard(book.id)}
-                        on_add_genre_to_filters={onAddGenreToFilters}
-                        on_add_tag_to_filters={onAddTagToFilters}
-                        draggable={true}
-                        is_dragging={draggedBookId ===
-                            book.id}
-                        is_dragged_over={draggedOverBookId ===
-                            book.id}
-                        is_dropping={droppingBookIds.has(
-                            book.id,
-                        )}
-                        on_drag_start={() =>
-                            onDragStart(book.id)}
-                        on_drag_enter={() =>
-                            onDragEnter(book.id)}
-                        on_drag_leave={() => onDragLeave()}
-                        on_drop={() => onDrop()}
-                        on_drag_end={() => onDragEnd()}
-                    />
-                </div>
-            {/each}
+                    class="progress-fill"
+                    style="width: {data.dl_progress}%"
+                ></div>
+            </div>
+            <p>{$_("indicators.loading", { values: { progress: data.dl_progress } })}</p>
         </div>
-    {:else}
-        <p class="no-books-found">
-            {$_("indicators.no-results")}
-        </p>
     {/if}
+
+    {#if data.fetch_err}
+        <div class="error-message">
+            {$_("indicators.list-load-error", { values: { err: data.fetch_err } })}
+        </div>
+    {/if}
+
+    {#if !data.is_loading && !data.fetch_err}
+        <BookGrid
+            showExplicit={$show_explicit}
+            books={book_filters.filtered_books}
+            isContentVisible={data.is_content_visible}
+            viewMode={display.view_mode}
+            expandedCard={display.expanded_card}
+            onToggleCard={handleToggleCard}
+            onAddGenreToFilters={handleAddGenreToFilters}
+            onAddTagToFilters={handleAddTagToFilters}
+            onDragStart={handleDragStart}
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onDragEnd={handleDragEnd}
+            {draggedBookId}
+            {draggedOverBookId}
+        />
+    {/if}
+
+    {#if display.expanded_card !== null && !data.is_loading && !data.fetch_err && expandedBook}
+        <ExpandedCard
+            book={expandedBook()!}
+            on_close_card={handleCloseCard}
+            on_add_genre_to_filters={handleAddGenreToFilters}
+            on_add_tag_to_filters={handleAddTagToFilters}
+        />
+    {/if}
+
+    <GalleryBackdrop
+        show={display.expanded_card !== null}
+        on_click={handleCloseCard}
+    />
 </div>
 
 <style>
-    .book-grid-container {
-        min-height: calc(
-            100vh - var(--spacing-2xl) * 2 - 120px
-        );
+    :global {
+        @import url("/src/assets/css/main.css");
     }
 </style>

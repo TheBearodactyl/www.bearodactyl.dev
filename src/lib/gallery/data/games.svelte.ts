@@ -1,12 +1,12 @@
-import { LogLvl, type Book } from "$lib/types";
-import { cache_cover } from "$lib/utils/loading";
+import { LogLvl, type Game } from "$lib/types";
 import { Bearror } from "$lib/utils/errs";
+import { cache_cover } from "$lib/utils/loading";
 import { get_gh_release } from "$lib/utils/net";
 import { shuffle } from "$lib/utils/rand";
 import { onMount } from "svelte";
 
 export function data() {
-    let books = $state<Book[]>([]);
+    let games = $state<Game[]>([]);
     let is_loading = $state(true);
     let fetch_err = $state<string | null>(null);
     let dl_progress = $state(0);
@@ -20,23 +20,23 @@ export function data() {
             const file_contents = await get_gh_release(
                 "thebearodactyl",
                 "www.bearodactyl.dev",
-                "books.json"
+                "games.json",
             );
-            const data: Book[] = JSON.parse(await file_contents.text());
+            const data: Game[] = JSON.parse(await file_contents.text());
             dl_progress = 20;
-            const books_with_covers = data.filter((book: Book) => book.coverImage);
-            const promises = books_with_covers.map(async (book: Book, index: number) => {
-                book.coverImage = await cache_cover("book-cover-cache", book.coverImage);
-                const progress = 20 + Math.round(((index + 1) / books_with_covers.length) * 80);
+            const games_with_covers = data.filter((game: Game) => game.coverImage);
+            const promises = games_with_covers.map(async (game: Game, index: number) => {
+                game.coverImage = await cache_cover("game-cover-cache", game.coverImage || "");
+                const progress = 20 + Math.round(((index + 1) / games_with_covers.length) * 80);
                 dl_progress = progress;
             });
 
             await Promise.all(promises);
 
-            books = shuffle<Book>(data);
+            games = shuffle(data);
             dl_progress = 100;
         } catch (err) {
-            const error_msg = new Bearror(LogLvl.ERR, "Failed to load books list")
+            const error_msg = new Bearror(LogLvl.ERR, "Failed to load games list")
                 .set_full_msg(err)
                 .to_string();
 
@@ -48,11 +48,11 @@ export function data() {
     }
 
     return {
-        get books(): Book[] {
-            return books;
+        get games(): Game[] {
+            return games;
         },
-        set books(value: Book[]) {
-            books = value;
+        set games(value: Game[]) {
+            games = value;
         },
         get is_loading(): boolean {
             return is_loading;
@@ -73,12 +73,12 @@ export function data() {
     };
 }
 
-export const books_data = data();
+export const games_data = data();
 
-export function use_books_data() {
+export function use_games_data() {
     onMount(async () => {
-        await books_data.load();
+        await games_data.load();
     });
 
-    return books_data;
+    return games_data;
 }

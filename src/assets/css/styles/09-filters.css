@@ -429,7 +429,7 @@ input[type="checkbox"]:checked::before {
     padding: 0.3rem 0.6rem;
     border: none;
     background: none;
-    color: var(--rp-text);
+    color: var(--rp-base);
     border-radius: var(--border-radius-sm);
     font-weight: 600;
     font-size: 0.9rem;
@@ -444,12 +444,11 @@ input[type="checkbox"]:checked::before {
 }
 
 .view-btn:hover {
-    color: var(--rp-text);
+    color: var(--rp-surface);
     transform: translateY(-1px);
 }
 
 .view-btn.active {
-    color: var(--rp-base);
     text-shadow: none;
 }
 

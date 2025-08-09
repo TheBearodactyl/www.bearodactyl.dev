@@ -271,6 +271,7 @@ body {
     opacity: 0;
     transform: translateX(-10px);
     animation: slideInFade 0.3s ease forwards;
+    position: relative;
 }
 
 .route-item.has-children {

@@ -6,7 +6,7 @@
 
     export interface Filters {
         title: string;
-        author: string;
+        developer: string;
         status: string;
         rating: number | null;
         genres: string[];
@@ -64,7 +64,7 @@
     }
 
     function updateAuthor(value: string) {
-        onUpdateFilters({ ...searchFilters, author: value });
+        onUpdateFilters({ ...searchFilters, developer: value });
     }
 
     function updateStatus(value: string) {
@@ -77,10 +77,8 @@
 </script>
 
 {#if isFilterCollapsed}
-    <div
-        in:fade={{ duration: 200 }}
-        out:fade={{ duration: 200 }}
-    >
+    <div in:fade={{ duration: 200 }} out:fade={{ duration: 200 }}>
+        <!-- svelte-ignore attribute_illegal_colon -->
         <FilterPill
             modelvalue={searchFilters.title}
             onupdate_modelvalue={updateTitle}
@@ -90,17 +88,10 @@
         />
     </div>
 {:else}
-    <div
-        class="filter-bar"
-        in:slide={{ duration: 300 }}
-        out:slide={{ duration: 300 }}
-    >
+    <div class="filter-bar" in:slide={{ duration: 300 }} out:slide={{ duration: 300 }}>
         <div class="filter-bar-header">
-            <h2 class="filter-heading">{$_("gallery.filters.title")}</h2>
-            <button
-                class="collapse-btn"
-                onclick={onToggleSearchMode}>⨯</button
-            >
+            <h2 class="filter-heading">{$_("gallery.filters.search")}</h2>
+            <button class="collapse-btn" onclick={onToggleSearchMode}>⨯</button>
         </div>
 
         <input
@@ -112,8 +103,8 @@
         />
 
         <input
-            bind:value={searchFilters.author}
-            placeholder={$_("gallery.filters.search-author")}
+            bind:value={searchFilters.developer}
+            placeholder={$_("gallery.filters.search-developer")}
             oninput={(e) => updateAuthor(e.currentTarget.value)}
         />
 
@@ -121,10 +112,10 @@
             bind:value={searchFilters.status}
             onchange={(e) => updateStatus(e.currentTarget.value)}
         >
-            <option value="">{$_("gallery.filters.any-status")}</option>
-            <option value="Reading">{$_("gallery.book.status.reading")}</option>
+            <option value="Any Status">{$_("gallery.filters.any-status")}</option>
+            <option value="Playing">{$_("gallery.game.status.playing")}</option>
             <option value="Finished">{$_("gallery.generic.status.finished")}</option>
-            <option value="Plan to Read">{$_("gallery.book.status.plan-to-read")}</option>
+            <option value="Plan to Play">{$_("gallery.game.status.plan-to-play")}</option>
             <option value="Dropped">{$_("gallery.generic.status.dropped")}</option>
         </select>
 
@@ -148,8 +139,7 @@
             no_items_message={$_("indicators.no-genres")}
             on_toggle={() => onToggleDropdown("genres")}
             on_close={() => onCloseDropdown("genres")}
-            on_toggle_item={(genre: string) => onToggleFilterItem("genres", genre)}
-            on_deselect_item={(genre: string) => onToggleFilterItem("genres", genre)}
+            on_toggle_item={(genre) => onToggleFilterItem("genres", genre)}
         />
 
         <MultiSelect
@@ -162,13 +152,9 @@
             on_toggle={() => onToggleDropdown("tags")}
             on_close={() => onCloseDropdown("tags")}
             on_toggle_item={(tag) => onToggleFilterItem("tags", tag)}
-            on_deselect_item={(tag) => onToggleFilterItem("tags", tag)}
         />
 
-        <button
-            class="clear-filters-btn"
-            onclick={onClearAllFilters}
-        >
+        <button class="clear-filters-btn" onclick={onClearAllFilters}>
             {$_("gallery.filters.clear")}
         </button>
     </div>

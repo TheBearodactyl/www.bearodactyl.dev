@@ -7,7 +7,7 @@ const config = {
     // for more information about preprocessors
     preprocess: vitePreprocess(),
     onwarn: (warning, handler) => {
-        if (warning.code.startsWith("css_unused")) {
+        if (warning.code.includes("css")) {
             return;
         }
 
@@ -16,7 +16,12 @@ const config = {
     compilerOptions: {
         runes: true,
     },
-    kit: { adapter: adapter() },
+    kit: {
+        adapter: adapter(),
+        prerender: {
+            entries: ["*"]
+        }
+     },
 };
 
 export default config;

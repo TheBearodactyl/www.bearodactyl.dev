@@ -38,6 +38,11 @@ export interface Review {
     thoughts?: string;
 }
 
+export interface ProjectFilters {
+    name: string;
+    tags: string[];
+}
+
 export interface Project {
     name: string;
     description: string;
@@ -45,6 +50,15 @@ export interface Project {
     source: string;
     coverImage?: string;
     installCommand?: string;
+}
+
+export interface GameFilters {
+    title: string;
+    developer: string;
+    genres: string[];
+    tags: string[];
+    rating: number | null;
+    status: string;
 }
 
 export interface Game {
@@ -81,8 +95,8 @@ export interface RouteItem {
 }
 
 export interface FunnyImg {
-    alt: string,
-    src: string
+    alt: string;
+    src: string;
 }
 
 export interface DropdownItem {

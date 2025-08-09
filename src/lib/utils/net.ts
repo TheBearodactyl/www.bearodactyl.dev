@@ -35,7 +35,7 @@ export async function get_data_release(
     return await get_gh_release("TheBearodactyl", "www.bearodactyl.dev", `${data_type}.json`);
 }
 
-export async function getCharCountOfRepo(url: string): Promise<number> {
+export async function get_char_count_of_repo(url: string): Promise<number> {
     try {
         const response = await fetch(url);
 

@@ -186,11 +186,7 @@
                                 class:has-children={route.children}
                                 style="animation-delay: {index * 0.05}s"
                                 onclick={() => {
-                                    if (route.children?.length === 0 || route.path === "/") {
-                                        navigateToRoute(route.path);
-                                    } else if (route.path.includes("github")) {
-                                        window.open(route.path, "_blank");
-                                    }
+									window.location.href = route.path
                                 }}
                                 onmouseenter={() => route.children && handleRouteHover(route.path)}
                                 onmouseleave={() => route.children && handleRouteLeave(route.path)}
@@ -258,6 +254,6 @@
 {@render children?.()}
 
 <style>
-	/* :global { @import url("/src/assets/css/main.css"); } */
+	:global { @import url("/src/assets/css/main.css"); }
 	@import url("/src/assets/css/main.css");
 </style>
