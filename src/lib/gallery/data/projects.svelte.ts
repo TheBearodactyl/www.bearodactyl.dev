@@ -1,11 +1,11 @@
 import { browser } from "$app/environment";
-import { LogLvl, type Review } from "$lib/types";
-import { sort_reviews } from "$lib/utils/arr";
+import { LogLvl, type Project } from "$lib/types";
 import { Bearror } from "$lib/utils/errs";
-import { get_data_release } from "$lib/utils/net";
+import { get_gh_release } from "$lib/utils/net";
+import { shuffle } from "$lib/utils/rand";
 
 export function data() {
-    let reviews: Review[] = $state([]);
+    let projects: Project[] = $state([]);
     let is_loading = $state(false);
     let fetch_err: string | null = $state(null);
     let dl_progress = $state(0);
@@ -15,11 +15,15 @@ export function data() {
             is_loading = true;
             dl_progress = 10;
 
-            const file_contents = await get_data_release("reviews");
+            const file_contents = await get_gh_release(
+                "thebearodactyl",
+                "www.bearodactyl.dev",
+                "projects.json"
+            )
             dl_progress = 60;
-            let data: Review[] = JSON.parse(await file_contents.text());
-            data = sort_reviews(data);
-            reviews = data;
+            let data: Project[] = JSON.parse(await file_contents.text());
+            data = shuffle(data);
+            projects = data;
             dl_progress = 100;
         } catch (err) {
             const error_msg = new Bearror(LogLvl.ERR, "Failed to load games list")
@@ -40,7 +44,7 @@ export function data() {
     });
 
     return {
-        reviews: () => reviews,
+        projects: () => projects,
         is_loading: () => is_loading,
         fetch_err: () => fetch_err,
         dl_progress: () => dl_progress,
