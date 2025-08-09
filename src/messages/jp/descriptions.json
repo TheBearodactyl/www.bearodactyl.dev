@@ -9,8 +9,7 @@
         "bearodactyl": "ベアロダクティル",
         "license": "すべてのコードに俺の使うカスタムライセンス",
         "website-src": "たくさんのコード。ワオ。(まさに{charcount}の文字だ)",
-        "woah": "ウワァ！ウルジーだよ！",
-        "funny-images": "just some fuckass images i've found"
+        "woah": "ウワァ！ウルジーだよ！"
     },
     "routes-menu": "サイト上のルート",
     "subdomains": {

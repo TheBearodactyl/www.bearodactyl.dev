@@ -46,7 +46,6 @@
                 { path: "/lists/projects", nameKey: "titles.routes.projects" },
                 { path: "/lists/one-piece", nameKey: "titles.routes.one-piece" },
                 { path: "/lists/domains", nameKey: "titles.routes.domains" },
-                { path: "/lists/funny-pictures", nameKey: "titles.routes.funny-images" }
             ],
         },
         {

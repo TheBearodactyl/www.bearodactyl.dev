@@ -7,7 +7,6 @@
     import { show_discouragement } from "$lib/stores/discouragement";
     import Discouragement from "../components/Discouragement.svelte";
     import { chooseRandom } from "$lib/utils/misc";
-    import { debugMessages } from "$lib/i18n";
 
     let isMobile = false;
 
@@ -75,14 +74,34 @@
             route: "/lists/domains",
         },
         {
-            name: "funny-images",
-            coverImage: "https://archive.org/download/Chinese_Assassin_-_Dont_Mess_With_My_Dawgs_Mix_CD_-_PHZ/00cover.jpg",
-            route: "/lists/funny-pictures"
-        },
-        {
             coverImage: "/images/mlg.gif",
             route: "",
+            discouraged: true
         },
+        {
+            coverImage: "https://media.istockphoto.com/id/1298255522/photo/funny-african-man-posing-pointing-fingers-at-camera-yellow-background.jpg?s=612x612&w=0&k=20&c=1dcyemROSTy_V05a8ELTZA5HLCNSSwO4qwkdP2Dj4sU=",
+            route: "",
+        },
+        {
+            coverImage: "https://archive.org/download/Chinese_Assassin_-_Dont_Mess_With_My_Dawgs_Mix_CD_-_PHZ/00cover.jpg",
+            route: ""
+        },
+        {
+            coverImage: "https://media.tenor.com/yWEFfnbrffIAAAAM/america-cancel-america.gif",
+            route: ""
+        },
+        {
+            coverImage: "https://media.tenor.com/1q2EtzejgWUAAAAM/sakugastudio-jxrdn-absolute-cinema-luffy.gif",
+            route: "",
+        },
+        {
+            coverImage: "https://i.ytimg.com/vi/mgM1-V2Yw5Q/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDJ0iNd3eKgCWMZuHCKysyhsIajlQ",
+            route: "",
+        },
+        {
+            coverImage: "https://i.ytimg.com/vi/yK1JRtoBY3Y/maxresdefault.jpg",
+            route: ""
+        }
     ];
 </script>
 

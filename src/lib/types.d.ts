@@ -51,6 +51,7 @@ export interface NavItem {
     name?: string;
     title?: string;
     description?: string;
+    discouraged?: boolean;
     coverImage?: string;
     route: string;
 }
