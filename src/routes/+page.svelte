@@ -76,36 +76,60 @@
         {
             coverImage: "/images/mlg.gif",
             route: "",
-            discouraged: true
+            discouraged: true,
         },
         {
-            coverImage: "https://media.istockphoto.com/id/1298255522/photo/funny-african-man-posing-pointing-fingers-at-camera-yellow-background.jpg?s=612x612&w=0&k=20&c=1dcyemROSTy_V05a8ELTZA5HLCNSSwO4qwkdP2Dj4sU=",
+            coverImage:
+                "https://media.istockphoto.com/id/1298255522/photo/funny-african-man-posing-pointing-fingers-at-camera-yellow-background.jpg?s=612x612&w=0&k=20&c=1dcyemROSTy_V05a8ELTZA5HLCNSSwO4qwkdP2Dj4sU=",
             route: "",
         },
         {
-            coverImage: "https://archive.org/download/Chinese_Assassin_-_Dont_Mess_With_My_Dawgs_Mix_CD_-_PHZ/00cover.jpg",
-            route: ""
+            coverImage:
+                "https://archive.org/download/Chinese_Assassin_-_Dont_Mess_With_My_Dawgs_Mix_CD_-_PHZ/00cover.jpg",
+            route: "",
         },
         {
             coverImage: "https://media.tenor.com/yWEFfnbrffIAAAAM/america-cancel-america.gif",
-            route: ""
-        },
-        {
-            coverImage: "https://media.tenor.com/1q2EtzejgWUAAAAM/sakugastudio-jxrdn-absolute-cinema-luffy.gif",
             route: "",
         },
         {
-            coverImage: "https://i.ytimg.com/vi/mgM1-V2Yw5Q/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDJ0iNd3eKgCWMZuHCKysyhsIajlQ",
+            coverImage:
+                "https://media.tenor.com/1q2EtzejgWUAAAAM/sakugastudio-jxrdn-absolute-cinema-luffy.gif",
+            route: "",
+        },
+        {
+            coverImage:
+                "https://i.ytimg.com/vi/mgM1-V2Yw5Q/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLDJ0iNd3eKgCWMZuHCKysyhsIajlQ",
             route: "",
         },
         {
             coverImage: "https://i.ytimg.com/vi/yK1JRtoBY3Y/maxresdefault.jpg",
-            route: ""
+            route: "",
         },
         {
-            coverImage: "https://preview.redd.it/x3p9iu96h4t61.jpg?auto=webp&s=614dc3f1684512c99037bbda2099d058a4ad84f6",
-            route: ""
-        }
+            coverImage:
+                "https://preview.redd.it/x3p9iu96h4t61.jpg?auto=webp&s=614dc3f1684512c99037bbda2099d058a4ad84f6",
+            route: "",
+        },
+        {
+            coverImage:
+                "https://external-preview.redd.it/Q3ugnULDJtEfCySEG0treuKldm_Vb__snkvf5-TyhD4.jpg?width=1080&crop=smart&auto=webp&s=7579fe1c67e632d719a4b5ddbbf748e8c7c9e7af",
+            route: "",
+        },
+        {
+            coverImage:
+                "https://preview.redd.it/k3lrzdqenioe1.png?width=640&crop=smart&auto=webp&s=176371447cd4401c15cd0d0eb70fbd571e054f63",
+            route: "",
+        },
+        {
+            coverImage: "https://comiczombie.net/wp-content/uploads/2021/05/getittogether.jpg",
+            route: "",
+        },
+        {
+            coverImage:
+                "https://carnivorouslreviews.wordpress.com/wp-content/uploads/2018/05/images231.jpg",
+            route: "",
+        },
     ];
 </script>
 
@@ -121,7 +145,17 @@
         <div class="index-header">
             <h1>{$_("titles.index")}</h1>
             <p class="index-desc">{$_("descriptions.index")}</p>
-            <img class="buggy" src="/images/buggy.webp" alt="get it? 'buggy'?" />
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
+            <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+            <img
+                class="buggy"
+                src="/images/buggy.webp"
+                onclick={() => {
+                    window.location.href =
+                        "https://github.com/TheBearodactyl/www.bearodactyl.dev/issues/new/choose";
+                }}
+                alt="get it? 'buggy'?"
+            />
         </div>
     </div>
 

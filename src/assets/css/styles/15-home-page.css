@@ -35,6 +35,7 @@
     height: 168px;
     margin-bottom: -3.9rem;
     filter: contrast(95);
+    cursor: pointer;
 }
 
 .license-hyper {
