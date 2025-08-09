@@ -24,30 +24,50 @@ export function isPeakFiction(item: Book | Game): boolean {
 export function shuffleArray<T>(input: readonly T[]): T[] {
     const array = input.slice();
 
-    const getRandomIndex = (max: number): number => {
-        let randVal;
-
-        if (typeof window !== "undefined") {
-            randVal = window.crypto.getRandomValues(new Uint32Array(1))[0];
+    const secureRand = (max: number): number => {
+        if (typeof window !== "undefined" && window.crypto?.getRandomValues) {
+            const buf = new Uint32Array(1);
+            window.crypto.getRandomValues(buf);
+            return Math.floor((buf[0] / (0xffffffff + 1)) * max);
         } else {
-            randVal = Math.random();
+            return Math.floor(Math.random() * max);
         }
-
-        return Math.floor((randVal * max + Math.random() * max) % (max + 1));
     };
 
-    const passes = 20;
+    const blendRand = (max: number): number => {
+        const timeNoise = (Date.now() * Math.random()) % 1;
+        const mixed = (Math.random() + timeNoise + secureRand(1_000_000) / 1_000_000) % 1;
+        return Math.floor(mixed * max);
+    };
 
-    for (let k = 0; k < passes; k++) {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = getRandomIndex(i);
+    const passes = secureRand(10) + 10; // 10–20 passes
+    for (let p = 0; p < passes; p++) {
+        const mode = secureRand(4);
 
-            if (j >= 0 && j < array.length) {
-                const temp = array[i];
-                array[i] = array[j];
-                array[j] = temp;
+        if (mode === 0) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = blendRand(i + 1);
+                [array[i], array[j]] = [array[j], array[i]];
             }
+        } else if (mode === 1) {
+            for (let i = 0; i < array.length; i++) {
+                const j = blendRand(array.length);
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        } else if (mode === 2) {
+            const start = blendRand(array.length);
+            const end = blendRand(array.length);
+            const [s, e] = [Math.min(start, end), Math.max(start, end)];
+            const segment = array.slice(s, e + 1).reverse();
+            array.splice(s, segment.length, ...segment);
+        } else {
+            const offset = blendRand(array.length);
+            array.push(...array.splice(0, offset));
         }
+    }
+
+    if (secureRand(2) === 1) {
+        array.reverse();
     }
 
     return array;
@@ -124,13 +144,13 @@ export function splitIntoParts<T, N extends number>(
 export function imgToHtmlImg(img: FunnyImg): HTMLImgAttributes {
     return {
         alt: img.alt,
-        src: img.src
-    }
+        src: img.src,
+    };
 }
 
 export function imgsToHtmlImgs(imgs: FunnyImg[]): HTMLImgAttributes[] {
     return imgs.map((img) => ({
         src: img.src,
-        alt: img.alt
-    }))
+        alt: img.alt,
+    }));
 }
