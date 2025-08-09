@@ -239,6 +239,12 @@
             width: 100%;
         }
 
+        @media (max-width: 1000px) {
+            .navigation-gallery {
+                column-count: 3;
+            }
+        }
+
         @media (max-width: 900px) {
             .navigation-gallery {
                 column-count: 2;
@@ -252,27 +258,55 @@
         }
 
         .nav-card {
-            width: 100%;
-            background-color: var(--rp-overlay);
-            border: 1px solid var(--rp-highlight-low);
-            border-radius: 12px;
-            overflow: hidden;
+            animation: fadeInScale 0.6s var(--transition-ease) forwards;
+            background-color: var(--rp-surface);
+            border: 2px solid var(--rp-highlight-low);
+            border-radius: var(--border-radius-xl);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
             display: flex;
+            margin-bottom: 1.5rem;
             flex-direction: column;
+            overflow: hidden;
             text-decoration: none;
             color: var(--text);
+            opacity: 0;
+            transform: scale(0.96);
+            transform-origin: center;
+            will-change: transform, box-shadow, filter;
+            backface-visibility: hidden;
             transition:
-                transform 0.2s ease,
-                border-color 0.2s ease;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            margin-bottom: 1.5rem;
-            break-inside: avoid-column;
+                transform var(--hover-response-duration) var(--smooth-ease),
+                box-shadow var(--hover-response-duration) var(--smooth-ease),
+                border-color var(--hover-response-duration) var(--smooth-ease),
+                background var(--hover-response-duration) var(--smooth-ease);
         }
 
         .nav-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--rp-iris);
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+            transform: translateY(calc(var(--hover-lift, 8px) * -0.5)) scale(1.02) translateZ(0);
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                0 4px 15px rgba(0, 0, 0, 0.2);
+            border-color: var(--hover-border-color, var(--rp-love));
+            background: linear-gradient(135deg, var(--rp-surface) 0%, var(--rp-overlay) 100%);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            position: relative;
+            z-index: 2;
+            background: transparent;
+            transition: background var(--transition-speed) var(--transition-ease);
+        }
+
+        .nav-card:hover .card-content {
+            background: linear-gradient(
+                180deg,
+                rgba(196, 167, 231, 0.06) 0%,
+                rgba(196, 167, 231, 0.12) 100%
+            );
         }
 
         .nav-card.clickable {
