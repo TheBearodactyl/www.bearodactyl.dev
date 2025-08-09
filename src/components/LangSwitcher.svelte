@@ -1,4 +1,5 @@
 <script lang="ts">
+    import { browser } from "$app/environment";
     import { goto } from "$app/navigation";
     import { page } from "$app/stores";
     import { locale, loadLocale, availableLocales } from "$lib/i18n";
@@ -34,6 +35,14 @@
 
     let sellocale = $derived(locale);
     selectedLocale = $sellocale;
+
+    if ($sellocale?.startsWith("ar")) {
+        if (browser) {
+            document.documentElement.dir = "rtl";
+        } else {
+            document.documentElement.dir = "ltr";
+        }
+    }
 </script>
 
 <div class="locale-switcher">
