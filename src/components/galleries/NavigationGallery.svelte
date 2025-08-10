@@ -19,6 +19,8 @@
     let loading = $state(true);
     let error: string | null = $state(null);
     let show_emergency = $state(false);
+    let loading_progress = $state(0);
+    let loading_stage = $state("Initializing...");
 
     let columns: NavItem[][] = $state([]);
 
@@ -50,7 +52,7 @@
 
         if (item.route) {
             if (browser) {
-                window.location.href = item.route
+                window.location.href = item.route;
             }
         }
     }
@@ -92,11 +94,28 @@
         columns = createBalancedColumns(shuffled, numCols);
     }
 
+    function updateLoadingProgress(progress: number, stage: string) {
+        loading_progress = Math.min(progress, 100);
+        loading_stage = stage;
+    }
+
     onMount(async () => {
         try {
+            updateLoadingProgress(10, "Setting up navigation");
+            await new Promise((resolve) => setTimeout(resolve, 200));
+            updateLoadingProgress(30, "Fetching repository info...");
             char_count = await get_char_count_of_repo(
                 "https://api.github.com/repos/thebearodactyl/www.bearodactyl.dev/languages",
             );
+
+            updateLoadingProgress(70, "Processing navigation items...");
+            await new Promise((resolve) => setTimeout(resolve, 100));
+
+            updateLoadingProgress(90, "Organizing layout...");
+            updateColumns();
+
+            updateLoadingProgress(100, "Ready!");
+            await new Promise((resolve) => setTimeout(resolve, 300));
         } catch (err) {
             error = err instanceof Error ? err.message : "Failed to get character count";
         } finally {
@@ -108,9 +127,41 @@
 </script>
 
 {#if loading}
-    <div>Loading...</div>
+    <div class="loading-container">
+        <div class="loading-content">
+            <div class="loading-spinner">
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+                <div class="spinner-ring"></div>
+            </div>
+            <div class="loading-text">
+                <h2>{loading_stage}</h2>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div
+                            class="progress-fill"
+                            style="width: {loading_progress}%"
+                        ></div>
+                    </div>
+                    <span class="progress-text">{loading_progress}%</span>
+                </div>
+            </div>
+        </div>
+    </div>
 {:else if error}
-    <div>Error: {error}</div>
+    <div class="error-container">
+        <div class="error-content">
+            <div class="error-icon">⚠️</div>
+            <h2>Something went wrong</h2>
+            <p>{error}</p>
+            <button
+                onclick={() => window.location.reload()}
+                class="retry-button"
+            >
+                Try Again
+            </button>
+        </div>
+    </div>
 {:else if char_count !== null}
     {#if $show_discouragement}
         <div></div>
@@ -139,6 +190,13 @@
                                             alt={`Cover for ${itemTitle}`}
                                             class="card-image"
                                         />
+                                    {:else if item.videoSrc}
+                                        <!-- svelte-ignore a11y_media_has_caption -->
+                                        <video
+                                            src={item.videoSrc}
+                                            disablepictureinpicture
+                                            loop
+                                        ></video>
                                     {:else}
                                         <div class="placeholder-image">?</div>
                                     {/if}
@@ -489,5 +547,140 @@
         @keyframes pulse {
             /* same frames as Vue */
         }
+    }
+
+    /* Loading Styles */
+    .loading-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: var(--rp-base);
+        padding: 2rem;
+    }
+
+    .loading-content {
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+    }
+
+    .loading-spinner {
+        position: relative;
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 2rem auto;
+    }
+
+    .spinner-ring {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 3px solid transparent;
+        border-top-color: var(--rp-rose);
+        border-radius: 50%;
+        animation: spin 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+    }
+
+    .spinner-ring:nth-child(2) {
+        border-top-color: var(--rp-gold);
+        animation-delay: -0.4s;
+        animation-duration: 1.2s;
+    }
+
+    .spinner-ring:nth-child(3) {
+        border-top-color: var(--rp-love);
+        animation-delay: -0.8s;
+        animation-duration: 1.8s;
+    }
+
+    @keyframes spin {
+        0% {
+            transform: rotate(0deg);
+            opacity: 1;
+            scale: 1;
+        }
+        50% {
+            opacity: 0.8;
+            scale: 0.95;
+        }
+        100% {
+            transform: rotate(360deg);
+            opacity: 1;
+            scale: 1;
+        }
+    }
+
+    .loading-text h2 {
+        color: var(--rp-text);
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        background: linear-gradient(135deg, var(--rp-rose), var(--rp-gold));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .progress-container {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .progress-bar {
+        width: 100%;
+        height: 8px;
+        background-color: var(--rp-surface);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--rp-rose), var(--rp-gold), var(--rp-love));
+        background-size: 200% 100%;
+        border-radius: 10px;
+        transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: -200% 0;
+        }
+        100% {
+            background-position: 200% 0;
+        }
+    }
+
+    .progress-text {
+        display: inline-block;
+        margin-top: 0.5rem;
+        color: var(--rp-subtle);
+        font-size: 0.9rem;
+        font-weight: 500;
+    }
+
+    .error-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: var(--rp-base);
+        padding: 2rem;
+    }
+
+    .error-content {
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+        background-color: var(--rp-surface);
+        padding: 2rem;
+        border-radius: var(--border-radius-xl);
+        border: 2px solid var(--rp-love);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
     }
 </style>

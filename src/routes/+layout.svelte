@@ -59,6 +59,10 @@
             path: "/license",
             nameKey: "titles.routes.license",
         },
+		{
+			path: "/priscilla",
+			nameKey: "titles.routes.priscilla"
+		},
         {
             path: "https://github.com/thebearodactyl/www.bearodactyl.dev",
             nameKey: "titles.routes.website-src",
@@ -254,6 +258,5 @@
 {@render children?.()}
 
 <style>
-	:global { @import url("/src/assets/css/main.css"); }
 	@import url("/src/assets/css/main.css");
 </style>

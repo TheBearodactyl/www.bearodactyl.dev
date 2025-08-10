@@ -85,6 +85,7 @@ export interface NavItem {
     discouraged?: boolean;
     coverImage?: string;
     audioSrc?: string;
+    videoSrc?: string;
     route: string;
 }
 
