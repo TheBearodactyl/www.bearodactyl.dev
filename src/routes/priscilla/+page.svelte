@@ -11,12 +11,10 @@
         "/images/priscilla/PXL_20250810_012524573.PORTRAIT.ORIGINAL.jpg",
         "/images/priscilla/PXL_20250810_012611064.jpg",
     ];
-
-    const prissy_kitty_image = choose_rand(priscilla_images);
 </script>
 
 <LinkedImage
-    imageSrc={prissy_kitty_image}
+    imageSrc={choose_rand(priscilla_images)}
     audioSrc=""
 ></LinkedImage>
 
