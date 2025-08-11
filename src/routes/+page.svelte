@@ -181,8 +181,7 @@
             route: "https://geode-sdk.org/mods/the_bearodactyl.gay-wave-trail",
         },
         {
-            coverImage:
-                "https://cdn.discordapp.com/attachments/1269967560804270130/1403740406885384362/PXL_20250809_135841557.jpg?ex=6898a6a1&is=68975521&hm=cbef87172e41ab1e051668f5caeab5c137e0875780b79c5b71fd71054d0ac99d&",
+            coverImage: "/images/priscilla/PXL_20250809_135841557.jpg",
             route: "/priscilla",
         },
     ];
