@@ -114,6 +114,7 @@
             coverImage:
                 "https://preview.redd.it/x3p9iu96h4t61.jpg?auto=webp&s=614dc3f1684512c99037bbda2099d058a4ad84f6",
             route: "",
+            audioSrc: "/audio/gregnant.mp3"
         },
         {
             coverImage:
