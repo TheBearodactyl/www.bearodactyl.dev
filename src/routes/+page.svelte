@@ -82,16 +82,18 @@
             coverImage:
                 "https://media.istockphoto.com/id/1298255522/photo/funny-african-man-posing-pointing-fingers-at-camera-yellow-background.jpg?s=612x612&w=0&k=20&c=1dcyemROSTy_V05a8ELTZA5HLCNSSwO4qwkdP2Dj4sU=",
             route: "",
+            audioSrc: "https://www.myinstants.com/media/sounds/celebrate-good-times-mp3cut.mp3",
         },
         {
             coverImage:
                 "https://archive.org/download/Chinese_Assassin_-_Dont_Mess_With_My_Dawgs_Mix_CD_-_PHZ/00cover.jpg",
             route: "",
+            audioSrc: "https://www.myinstants.com/media/sounds/bad-to-the-bone.mp3"
         },
         {
             coverImage: "https://media.tenor.com/yWEFfnbrffIAAAAM/america-cancel-america.gif",
             route: "",
-            audioSrc: "/audio/deathtoamerica.mp3"
+            audioSrc: "/audio/deathtoamerica.mp3",
         },
         {
             coverImage:
@@ -101,12 +103,12 @@
         {
             coverImage: "/images/idle.gif",
             route: "",
-            audioSrc: choose_rand(["/audio/reactbot/ooowaaa.mp3", "/audio/reactbot/911.mp3"])
+            audioSrc: choose_rand(["/audio/reactbot/ooowaaa.mp3", "/audio/reactbot/911.mp3"]),
         },
         {
             coverImage: "https://i.ytimg.com/vi/yK1JRtoBY3Y/maxresdefault.jpg",
             route: "",
-            audioSrc: "/audio/scottpilgrim.mp3",
+            audioSrc: "https://www.myinstants.com/media/sounds/export_ofoct_umPo7al.mp3",
         },
         {
             coverImage:
@@ -136,7 +138,7 @@
         {
             coverImage: "https://i.ebayimg.com/images/g/Q6cAAOSwrT1gxlFX/s-l1200.jpg",
             route: "",
-            audioSrc: "/audio/buggy.mp3"
+            audioSrc: "/audio/buggy.mp3",
         },
         {
             coverImage:
@@ -153,32 +155,35 @@
         },
         {
             coverImage: "https://bokuben-anime.com/assets/img/story/02/01.jpg",
-            route: ""
+            route: "",
         },
         {
             coverImage: "https://m.media-amazon.com/images/I/61ofSsK4fHL._UF894,1000_QL80_.jpg",
-            route: ""
+            route: "",
         },
         {
-            coverImage: "https://w0.peakpx.com/wallpaper/924/111/HD-wallpaper-anime-we-never-learn-asumi-kominami-fumino-furuhashi-mafuyu-kirisu-nariyuki-yuiga-rizu-ogata-uruka-takemoto.jpg",
-            route: ""
+            coverImage:
+                "https://w0.peakpx.com/wallpaper/924/111/HD-wallpaper-anime-we-never-learn-asumi-kominami-fumino-furuhashi-mafuyu-kirisu-nariyuki-yuiga-rizu-ogata-uruka-takemoto.jpg",
+            route: "",
         },
         {
             coverImage: "https://pbs.twimg.com/media/Gh2LcZnbsAAd1PF?format=jpg&name=small",
-            route: ""
+            route: "",
         },
         {
             coverImage: "https://pbs.twimg.com/media/GNPOIK3acAELa9p?format=jpg&name=360x360",
-            route: ""
+            route: "",
         },
         {
-            coverImage: "https://api.geode-sdk.org/v1/mods/the_bearodactyl.gay-wave-trail/logo?version=4.2.2",
-            route: "https://geode-sdk.org/mods/the_bearodactyl.gay-wave-trail"
+            coverImage:
+                "https://api.geode-sdk.org/v1/mods/the_bearodactyl.gay-wave-trail/logo?version=4.2.2",
+            route: "https://geode-sdk.org/mods/the_bearodactyl.gay-wave-trail",
         },
         {
-            coverImage: "https://cdn.discordapp.com/attachments/1269967560804270130/1403740406885384362/PXL_20250809_135841557.jpg?ex=6898a6a1&is=68975521&hm=cbef87172e41ab1e051668f5caeab5c137e0875780b79c5b71fd71054d0ac99d&",
-            route: "/priscilla"
-        }
+            coverImage:
+                "https://cdn.discordapp.com/attachments/1269967560804270130/1403740406885384362/PXL_20250809_135841557.jpg?ex=6898a6a1&is=68975521&hm=cbef87172e41ab1e051668f5caeab5c137e0875780b79c5b71fd71054d0ac99d&",
+            route: "/priscilla",
+        },
     ];
 </script>
 
@@ -219,7 +224,10 @@
 {$_("paragraphs.home-page-footer.line-one")}
 {$_("paragraphs.home-page-footer.line-two")}
 {$_("paragraphs.home-page-footer.line-three")}<code
-                ><a href="/license" class="license-hyper">/license</a></code
+                ><a
+                    href="/license"
+                    class="license-hyper">/license</a
+                ></code
             >
 {$_("paragraphs.home-page-footer.line-four")}
     </pre>
