@@ -13,13 +13,13 @@
     ];
 
     let selectedImage = $state(choose_rand(images));
-
-    $effect(() => {
-        selectedImage = choose_rand(images);
-    });
 </script>
 
-<LinkedImage
-    imageSrc={selectedImage}
-    audioSrc=""
-/>
+<button onclick={() => {
+    selectedImage = choose_rand(images);
+}}>
+    <LinkedImage
+        imageSrc={selectedImage}
+        audioSrc=""
+    />
+</button>
