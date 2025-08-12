@@ -253,8 +253,6 @@ export function getRoutesByProperty(property: keyof RouteItemNext, value: any): 
     return allRoutes.filter((route) => route[property] === value);
 }
 
-// $lib/config/routes.ts (add these to the existing file)
-
 /**
  * Get direct children of a parent route by path
  * @param parentPath - The path of the parent route
