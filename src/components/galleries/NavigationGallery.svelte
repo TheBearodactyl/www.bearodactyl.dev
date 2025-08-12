@@ -85,7 +85,6 @@
         if (item.discouraged) show_discouragement.set(true);
         if (item.audioSrc) playAudio(item.audioSrc);
         if (item.path && browser) window.location.href = item.path;
-        if (item.path === "" && item.coverImage) window.open(item.coverImage, "_blank");
     };
 
     onMount(async () => {
