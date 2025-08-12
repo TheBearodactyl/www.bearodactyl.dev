@@ -220,9 +220,19 @@ export const routes: RouteItemNext[] = [
             "https://api.geode-sdk.org/v1/mods/the_bearodactyl.gay-wave-trail/logo?version=4.2.2",
         path: "https://geode-sdk.org/mods/the_bearodactyl.gay-wave-trail",
     },
+    {
+        nameKey: "",
+        coverImage:
+            "https://wallpapers.com/images/hd/vaporwave-art-doki-doki-literature-club-o00qnyt4zwlcpkhu.jpg",
+        path: "",
+    },
+    {
+        nameKey: "",
+        coverImage: "https://preview.redd.it/b4iabc1b7xp11.png?auto=webp&s=ce04893199857d1d610a8c66eade52f64fc0439d",
+        path: ""
+    }
 ];
 
-// Helper functions to filter routes for different purposes
 export function getMenuRoutes(): RouteItemNext[] {
     return routes.filter((route) => route.path && route.nameKey);
 }
