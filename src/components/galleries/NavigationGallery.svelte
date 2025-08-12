@@ -179,9 +179,7 @@
                             {@const itemDescription = getItemDescription(item)}
 
                             {#if itemTitle === "Emergency frog!"}
-                                <!-- svelte-ignore a11y_click_events_have_key_events -->
-                                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                                <div
+                                <button
                                     title={itemTitle === undefined ? "don't" : $_(itemTitle)}
                                     class="nav-card clickable"
                                     onclick={() => handle_card_click(item)}
@@ -212,7 +210,7 @@
                                             <p class="card-description">{$_(itemDescription)}</p>
                                         {/if}
                                     </div>
-                                </div>
+                                </button>
                             {:else if item.discouraged}
                                 <!-- svelte-ignore a11y_click_events_have_key_events -->
                                 <!-- svelte-ignore a11y_no_static_element_interactions -->
