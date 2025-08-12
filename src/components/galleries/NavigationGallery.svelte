@@ -212,9 +212,7 @@
                                     </div>
                                 </button>
                             {:else if item.discouraged}
-                                <!-- svelte-ignore a11y_click_events_have_key_events -->
-                                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                                <div
+                                <button
                                     title={itemTitle === undefined ? "don't" : $_(itemTitle)}
                                     class="nav-card clickable"
                                     onclick={() => handle_card_click(item)}
@@ -242,11 +240,11 @@
                                             {/if}
                                         </div>
                                     {/if}
-                                </div>
+                                </button>
                             {:else if !itemTitle}
                                 <!-- svelte-ignore a11y_click_events_have_key_events -->
                                 <!-- svelte-ignore a11y_no_static_element_interactions -->
-                                <div
+                                <button
                                     title={itemTitle === undefined ? "an image :O" : $_(itemTitle)}
                                     class="nav-card"
                                     onclick={() => {
@@ -276,11 +274,11 @@
                                             {/if}
                                         </div>
                                     {/if}
-                                </div>
+                                </button>
                             {:else if item.path === ""}
                                 <!-- svelte-ignore a11y_click_events_have_key_events -->
                                 <!-- svelte-ignore a11y_no_static_element_interactions -->
-                                <div
+                                <button
                                     title={itemTitle === undefined ? "an image :O" : $_(itemTitle)}
                                     class="nav-card"
                                     onclick={() => {
@@ -310,7 +308,7 @@
                                             {/if}
                                         </div>
                                     {/if}
-                                </div>
+                                </button>
                             {:else}
                                 <a
                                     href={item.path}
