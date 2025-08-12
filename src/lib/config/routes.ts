@@ -47,7 +47,7 @@ export const routes: RouteItemNext[] = [
             {
                 path: "/lists/wplace-findings",
                 nameKey: "titles.routes.wplace",
-                coverImage: "https://files.catbox.moe/87q1sc.png",
+                coverImage: "https://i.ytimg.com/vi/LCQImL24Ato/maxresdefault.jpg",
                 homePage: true,
             },
         ],
