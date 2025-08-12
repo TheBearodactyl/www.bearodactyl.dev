@@ -120,7 +120,7 @@ body {
     background-color: var(--rp-overlay);
     border-color: var(--rp-iris);
     color: var(--rp-iris);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6); 
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
     transform: translateY(-3px) scale(1.02);
 }
 
@@ -493,4 +493,85 @@ html[dir="rtl"] .route-item:hover {
 html[dir="rtl"] .nested-menu {
     left: auto;
     right: calc(100% + 0.5rem); /* nested menu opens to the left */
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 14px; /* Slightly smaller base font for small screens */
+        line-height: 1.5;
+        padding: 0 0.5rem;
+    }
+
+    /* Stack quick buttons vertically for better tapping */
+    .quick-buttons {
+        flex-direction: column-reverse;
+        align-items: flex-end;
+        gap: 0.4rem;
+        top: 0.5rem;
+        right: 0.5rem;
+    }
+
+    .quick-buttons button,
+    .theme-switcher select,
+    .lang-switcher-aligned select,
+    .routes-menu-button {
+        font-size: 0.7rem;
+        padding: 0.5rem 0.75rem;
+        min-width: 100%;
+    }
+
+    /* Routes dropdown fills width for easy tap targets */
+    .routes-dropdown {
+        width: 100%;
+        left: 10px;
+        /* min-width: unset; */
+        border-radius: 0;
+    }
+
+    .route-item,
+    .nested-route-item {
+        font-size: 0.7rem;
+        padding: 0.5rem;
+        text-align: center;
+    }
+
+    .nested-menu {
+        position: static;
+        transform: none;
+        opacity: 1;
+        animation: none;
+        min-width: 100%;
+        width: 100%;
+        border-radius: 0;
+        border: none;
+        box-shadow: none;
+    }
+}
+
+@media (max-width: 360px) {
+    body {
+        font-size: 13px;
+    }
+
+    .quick-buttons {
+        gap: 0.3rem;
+        flex-direction: column;
+    }
+
+    .quick-buttons button,
+    .theme-switcher select,
+    .lang-switcher-aligned select,
+    .routes-menu-button {
+        font-size: 0.65rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    .home_button {
+        padding: 0.4rem 0.6rem;
+    }
+
+    .home_button svg {
+        width: 0.9em;
+        height: 0.9em;
+    }
 }

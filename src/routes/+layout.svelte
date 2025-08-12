@@ -3,6 +3,7 @@
     import { page } from "$app/state";
     import { goto } from "$app/navigation";
     import MenuIcon from "../components/icons/MenuIcon.svelte";
+    import type { RouteItem } from "$lib/types";
     import { _ } from "svelte-i18n";
     import { show_discouragement } from "$lib/stores/discouragement";
     import LangSwitcher from "../components/misc/LangSwitcher.svelte";
@@ -157,7 +158,7 @@
                                 class:has-children={route.children}
                                 style="animation-delay: {index * 0.05}s"
                                 onclick={() => {
-									window.location.href = route.path
+                                    window.location.href = route.path;
                                 }}
                                 onmouseenter={() => route.children && handleRouteHover(route.path)}
                                 onmouseleave={() => route.children && handleRouteLeave(route.path)}
@@ -226,5 +227,5 @@
 
 <!-- svelte-ignore css_unused_selector -->
 <style>
-	@import url("/src/assets/css/main.css");
+    @import url("/src/assets/css/main.css");
 </style>
