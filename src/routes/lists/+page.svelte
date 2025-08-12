@@ -1,40 +1,9 @@
 <script lang="ts">
     import { _ } from "svelte-i18n";
     import NavigationGallery from "../../components/galleries/NavigationGallery.svelte";
-    import type { NavItem } from "$lib/types";
+    import { getRouteChildren } from "$lib/config/routes";
 
-    const navigationItems: NavItem[] = [
-        {
-            route: "/lists/one-piece",
-            name: "one-piece",
-            coverImage: "/images/op.gif",
-        },
-        {
-            route: "/lists/read-watch",
-            name: "read-watch",
-            coverImage: "/images/hobo.gif",
-        },
-        {
-            route: "/lists/domains",
-            name: "domains",
-            coverImage: "/images/domain-expansion.gif",
-        },
-        {
-            route: "/lists/games",
-            name: "games",
-            coverImage: "/images/gamer.gif",
-        },
-        {
-            route: "/lists/projects",
-            name: "projects",
-            coverImage: "/images/family-guy-css.gif",
-        },
-        {
-            route: "/lists/wplace-findings",
-            name: "wplace",
-            coverImage: "https://files.catbox.moe/87q1sc.png"
-        }
-    ];
+    const navigationItems = getRouteChildren("/lists");
 </script>
 
 <div>

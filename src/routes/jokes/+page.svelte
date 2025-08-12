@@ -1,20 +1,9 @@
 <script lang="ts">
     import { _ } from "svelte-i18n";
     import NavigationGallery from "../../components/galleries/NavigationGallery.svelte";
-    import type { NavItem } from "$lib/types";
+    import { getRouteChildren } from "$lib/config/routes";
 
-    const navigationItems: NavItem[] = [
-        {
-            route: "/jokes/woah",
-            name: "woah",
-            coverImage: "/images/wulzy.gif",
-        },
-        {
-            route: "/jokes/bearo",
-            name: "bearodactyl",
-            coverImage: "/images/bearo.gif",
-        },
-    ];
+    const navigationItems = getRouteChildren("/jokes");
 </script>
 
 <div>
@@ -25,7 +14,7 @@
 
 <NavigationGallery
     navItems={navigationItems}
-    num_cols={2}
+    num_cols={3}
     shuffleItems={false}
 />
 

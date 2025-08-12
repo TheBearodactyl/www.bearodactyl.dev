@@ -246,3 +246,154 @@ export function flattenRoutes(routeList: RouteItemNext[]): RouteItemNext[] {
     flatten(routeList);
     return flattened;
 }
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function getRoutesByProperty(property: keyof RouteItemNext, value: any): RouteItemNext[] {
+    const allRoutes = flattenRoutes(routes);
+    return allRoutes.filter((route) => route[property] === value);
+}
+
+// $lib/config/routes.ts (add these to the existing file)
+
+/**
+ * Get direct children of a parent route by path
+ * @param parentPath - The path of the parent route
+ * @returns Array of direct child routes, or empty array if no children found
+ */
+export function getRouteChildren(parentPath: string): RouteItemNext[] {
+    const parentRoute = findRouteByPath(parentPath);
+    return parentRoute?.children || [];
+}
+
+/**
+ * Get children of a parent route by nameKey
+ * @param parentNameKey - The nameKey of the parent route
+ * @returns Array of direct child routes, or empty array if no children found
+ */
+export function getRouteChildrenByNameKey(parentNameKey: string): RouteItemNext[] {
+    const parentRoute = findRouteByNameKey(parentNameKey);
+    return parentRoute?.children || [];
+}
+
+/**
+ * Get all descendants (children, grandchildren, etc.) of a parent route
+ * @param parentPath - The path of the parent route
+ * @returns Array of all descendant routes (flattened)
+ */
+export function getAllRouteDescendants(parentPath: string): RouteItemNext[] {
+    const parentRoute = findRouteByPath(parentPath);
+    if (!parentRoute?.children) return [];
+
+    return flattenRoutes(parentRoute.children);
+}
+
+/**
+ * Get children of a parent route with optional filtering
+ * @param parentPath - The path of the parent route
+ * @param filterFn - Optional filter function to apply to children
+ * @returns Array of filtered child routes
+ */
+export function getFilteredRouteChildren(
+    parentPath: string,
+    filterFn?: (route: RouteItemNext) => boolean,
+): RouteItemNext[] {
+    const children = getRouteChildren(parentPath);
+    return filterFn ? children.filter(filterFn) : children;
+}
+
+/**
+ * Get children that should be displayed on home page
+ * @param parentPath - The path of the parent route
+ * @returns Array of child routes where homePage !== false
+ */
+export function getHomePageRouteChildren(parentPath: string): RouteItemNext[] {
+    return getFilteredRouteChildren(parentPath, (route) => route.homePage !== false);
+}
+
+/**
+ * Get children with cover images (suitable for gallery display)
+ * @param parentPath - The path of the parent route
+ * @returns Array of child routes that have cover images
+ */
+export function getGalleryRouteChildren(parentPath: string): RouteItemNext[] {
+    return getFilteredRouteChildren(parentPath, (route) => !!route.coverImage);
+}
+
+/**
+ * Find a route by its path (searches all routes recursively)
+ * @param path - The path to search for
+ * @returns The found route or undefined
+ */
+export function findRouteByPath(path: string): RouteItemNext | undefined {
+    function searchInRoutes(routeList: RouteItemNext[]): RouteItemNext | undefined {
+        for (const route of routeList) {
+            if (route.path === path) {
+                return route;
+            }
+            if (route.children) {
+                const found = searchInRoutes(route.children);
+                if (found) return found;
+            }
+        }
+        return undefined;
+    }
+
+    return searchInRoutes(routes);
+}
+
+/**
+ * Find a route by its nameKey (searches all routes recursively)
+ * @param nameKey - The nameKey to search for
+ * @returns The found route or undefined
+ */
+export function findRouteByNameKey(nameKey: string): RouteItemNext | undefined {
+    function searchInRoutes(routeList: RouteItemNext[]): RouteItemNext | undefined {
+        for (const route of routeList) {
+            if (route.nameKey === nameKey) {
+                return route;
+            }
+            if (route.children) {
+                const found = searchInRoutes(route.children);
+                if (found) return found;
+            }
+        }
+        return undefined;
+    }
+
+    return searchInRoutes(routes);
+}
+
+/**
+ * Check if a route has children
+ * @param path - The path of the route to check
+ * @returns Boolean indicating if the route has children
+ */
+export function routeHasChildren(path: string): boolean {
+    const route = findRouteByPath(path);
+    return !!(route?.children && route.children.length > 0);
+}
+
+/**
+ * Get the parent route of a given route
+ * @param childPath - The path of the child route
+ * @returns The parent route or undefined if no parent found
+ */
+export function getRouteParent(childPath: string): RouteItemNext | undefined {
+    function searchForParent(
+        routeList: RouteItemNext[],
+        targetPath: string,
+    ): RouteItemNext | undefined {
+        for (const route of routeList) {
+            if (route.children) {
+                if (route.children.some((child) => child.path === targetPath)) {
+                    return route;
+                }
+                const found = searchForParent(route.children, targetPath);
+                if (found) return found;
+            }
+        }
+        return undefined;
+    }
+
+    return searchForParent(routes, childPath);
+}
