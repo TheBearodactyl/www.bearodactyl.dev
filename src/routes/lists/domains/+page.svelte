@@ -1,6 +1,7 @@
 <script lang="ts">
     import { _ } from "svelte-i18n";
     import LinkButton from "../../../components/misc/LinkButton.svelte";
+    import Seo from "../../../components/misc/Seo.svelte";
 
     const domains = [
         {
@@ -32,6 +33,13 @@
         },
     ];
 </script>
+
+<Seo
+    title="The Motherfucking Subdomains"
+    desc="Subdomains I have registered under this domain"
+    image=""
+    url="https://www.bearodactyl.dev/lists/domains"
+/>
 
 <div class="domains">
     {#each domains as domain (domain.lnk)}

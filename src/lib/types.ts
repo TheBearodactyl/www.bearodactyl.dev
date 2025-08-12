@@ -95,9 +95,9 @@ export interface RouteItem {
     children?: RouteItem[];
 }
 
-export interface FunnyImg {
+export interface WplaceScreenshot {
     alt: string;
-    src: string;
+    coverImage: string;
 }
 
 export interface DropdownItem {
@@ -105,10 +105,18 @@ export interface DropdownItem {
     count?: number;
 }
 
-export interface RouteItem {
+export interface RouteItemNext {
     path: string;
     nameKey: string;
-    children?: RouteItem[];
+    children?: RouteItemNext[];
+    homePage?: boolean;
+    coverImage?: string;
+    videoSrc?: string;
+    audioSrc?: string;
+    discouraged?: boolean;
+    title?: string;
+    description?: string;
+    name?: string;
 }
 
 export enum LogLvl {

@@ -29,6 +29,11 @@
             name: "projects",
             coverImage: "/images/family-guy-css.gif",
         },
+        {
+            route: "/lists/wplace-findings",
+            name: "wplace",
+            coverImage: "https://files.catbox.moe/87q1sc.png"
+        }
     ];
 </script>
 

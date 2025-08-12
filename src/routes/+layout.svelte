@@ -3,10 +3,10 @@
     import { page } from "$app/state";
     import { goto } from "$app/navigation";
     import MenuIcon from "../components/icons/MenuIcon.svelte";
-    import type { RouteItem } from "$lib/types";
     import { _ } from "svelte-i18n";
     import { show_discouragement } from "$lib/stores/discouragement";
     import LangSwitcher from "../components/misc/LangSwitcher.svelte";
+    import { getMenuRoutes } from "$lib/config/routes";
 
     const themes = [
         "kanagawa",
@@ -34,40 +34,7 @@
         "tokyo-night",
     ];
 
-    const routes: RouteItem[] = [
-        { path: "/", nameKey: "titles.routes.home" },
-        {
-            path: "/lists",
-            nameKey: "titles.lists",
-            children: [
-                { path: "/lists/games", nameKey: "titles.routes.games" },
-                { path: "/lists/read-watch", nameKey: "titles.routes.read-watch" },
-                { path: "/lists/projects", nameKey: "titles.routes.projects" },
-                { path: "/lists/one-piece", nameKey: "titles.routes.one-piece" },
-                { path: "/lists/domains", nameKey: "titles.routes.domains" },
-            ],
-        },
-        {
-            path: "/jokes",
-            nameKey: "titles.jokes",
-            children: [
-                { path: "/jokes/bearo", nameKey: "titles.routes.bearodactyl" },
-                { path: "/jokes/woah", nameKey: "titles.routes.woah" },
-            ],
-        },
-        {
-            path: "/license",
-            nameKey: "titles.routes.license",
-        },
-		{
-			path: "/priscilla",
-			nameKey: "titles.routes.priscilla"
-		},
-        {
-            path: "https://github.com/thebearodactyl/www.bearodactyl.dev",
-            nameKey: "titles.routes.website-src",
-        },
-    ];
+    const routes = getMenuRoutes();
 
     const { children } = $props();
 
@@ -257,6 +224,7 @@
 
 {@render children?.()}
 
+<!-- svelte-ignore css_unused_selector -->
 <style>
 	@import url("/src/assets/css/main.css");
 </style>
