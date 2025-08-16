@@ -50,9 +50,9 @@
         if (!browser) return 1;
 
         const w = window.innerWidth;
-        if (w <= 480) return 1; // phones
-        if (w <= 768) return 2; // small tablets
-        if (w <= 1024) return 3; // large tablets
+        if (w <= 480) return 1;
+        if (w <= 768) return 2;
+        if (w <= 1024) return 3;
         return 4; // desktop+
     };
 
@@ -262,5 +262,42 @@
         z-index: 9999;
         text-align: center;
         padding: 1rem;
+    }
+
+    .nav-column {
+        display: flex;
+        flex-direction: column;
+        gap: 1.12rem;
+        min-width: 0;
+    }
+
+    .nav-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        text-align: center;
+    }
+
+    .card-content {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .card-title {
+        font-size: 1.75rem;
+        font-weight: 600;
+        text-wrap-mode: nowrap;
+        margin: 0 0 0.5rem 0;
+    }
+
+    .card-description {
+        font-size: 1rem;
+        overflow-wrap: break-word;
     }
 </style>

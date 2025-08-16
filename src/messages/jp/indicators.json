@@ -7,5 +7,6 @@
     "no-genres": "利用可能のジャンルなし",
     "no-tags": "利用可能のタグなし",
     "no-install-command": "利用可能のインストールの命令なし",
-    "bad": "バカめの下種向け"
+    "bad": "バカめの下種向け",
+    "latest-commit-msg": "Latest commit: {latest_commit}"
 }

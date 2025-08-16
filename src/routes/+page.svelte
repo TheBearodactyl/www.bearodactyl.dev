@@ -7,21 +7,32 @@
     import Discouragement from "../components/misc/Discouragement.svelte";
     import { choose_rand } from "$lib/utils/rand";
     import { getGalleryRoutes } from "$lib/config/routes";
+    import { get_latest_commit } from "$lib/utils/net";
 
-    let isMobile = false;
+    let is_mobile = $state(false);
+    let latest_commit: string | null = $state(null);
+    let loading_commit_msg = $state(true);
 
-    onMount(() => {
+    onMount(async () => {
         if (typeof window !== "undefined") {
-            const mediaQuery = window.matchMedia("(max-width: 768px)"); // Example breakpoint
-            isMobile = mediaQuery.matches;
+            const media_query = window.matchMedia("(max-width: 768px)");
+            is_mobile = media_query.matches;
 
-            mediaQuery.addEventListener("change", (e) => {
-                isMobile = e.matches;
+            media_query.addEventListener("change", (e) => {
+                is_mobile = e.matches;
             });
+        }
+
+        try {
+            latest_commit = await get_latest_commit();
+        } catch (err) {
+            latest_commit = "error fetching commit";
+        } finally {
+            loading_commit_msg = false;
         }
     });
 
-    const navigationItems = getGalleryRoutes();
+    const nav_items = getGalleryRoutes();
 </script>
 
 <Seo
@@ -36,6 +47,17 @@
         <div class="index-header">
             <h1>{$_("titles.index")}</h1>
             <p class="index-desc">{$_("descriptions.index")}</p>
+            {#if loading_commit_msg}
+                <p class="index-desc">{$_("indicators.loading")}</p>
+            {:else}
+                <p class="index-desc latest-commit-msg">
+                    {$_("indicators.latest-commit-msg", {
+                        values: {
+                            latest_commit: latest_commit,
+                        },
+                    })}
+                </p>
+            {/if}
             <!-- svelte-ignore a11y_click_events_have_key_events -->
             <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
             <img
@@ -54,7 +76,7 @@
         </div>
     </div>
 
-    <NavigationGallery navItems={navigationItems} />
+    <NavigationGallery navItems={nav_items} />
 
     <div class="index-footer">
         <pre>
@@ -87,4 +109,8 @@
 <!-- svelte-ignore css_unused_selector -->
 <style>
     @import url("/src/assets/css/main.css");
+
+    .index-desc.latest-commit-msg {
+        font-size: medium !important;
+    }
 </style>

@@ -7,5 +7,6 @@
     "no-genres": "No Genres Available",
     "no-tags": "No Tags Available",
     "no-install-command": "No Install Command Available",
-    "bad": "Contains Dogshit"
+    "bad": "Contains Dogshit",
+    "latest-commit-msg": "Latest commit: {latest_commit}"
 }

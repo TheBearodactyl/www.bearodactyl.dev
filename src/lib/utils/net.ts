@@ -1,3 +1,5 @@
+import { Octokit } from "octokit";
+
 export async function get_gh_release(
     owner: string,
     repo: string,
@@ -55,5 +57,25 @@ export async function get_char_count_of_repo(url: string): Promise<number> {
     } catch (error) {
         console.error("Error estimating character count of repository:", error);
         throw error;
+    }
+}
+
+export async function get_latest_commit(): Promise<string> {
+    const github = new Octokit({});
+    try {
+        const response = await github.rest.repos.listCommits({
+            owner: "thebearodactyl",
+            repo: "www.bearodactyl.dev",
+            per_page: 1,
+        });
+
+        if (response.data.length === 0) {
+            throw new Error("No commits found in this repository");
+        }
+
+        return response.data[0].commit.message;
+    } catch (err) {
+        console.error(`error fetching latest commit: ${err}`);
+        throw err
     }
 }

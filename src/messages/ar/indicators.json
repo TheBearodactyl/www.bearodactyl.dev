@@ -7,5 +7,6 @@
     "no-genres": "لا توجد أنواع متاحة",
     "no-tags": "لا توجد علامات متاحة",
     "no-install-command": "امر التحميل غير متوفر",
-    "bad": "محتوى سيء"
+    "bad": "محتوى سيء",
+    "latest-commit-msg": "Latest commit: {latest_commit}"
 }
