@@ -75,21 +75,19 @@
     class="book-grid-container"
     class:fade-in={isContentVisible}
 >
-    <!-- svelte-ignore a11y_no_static_element_interactions -->
     {#if books.length > 0}
-        <!-- svelte-ignore a11y_no_static_element_interactions -->
-        <!-- svelte-ignore event_directive_deprecated -->
         <div
+            role="button"
+            tabindex="0"
             class="book-grid"
             class:list-view={viewMode === "list"}
             class:is-reordering={isReordering}
-            on:drop={handleDrop}
-            on:dragover={handleDragOver}
+            ondrop={handleDrop}
+            ondragover={handleDragOver}
         >
             {#each books as book, index (book.id)}
-                <!-- svelte-ignore a11y_click_events_have_key_events -->
-                <div
-                    on:click={() => {
+                <button
+                    onclick={() => {
                         onToggleCard(book.id);
                     }}
                 >
@@ -112,7 +110,7 @@
                         on_drop={() => onDrop()}
                         on_drag_end={() => onDragEnd()}
                     />
-                </div>
+                </button>
             {/each}
         </div>
     {:else}

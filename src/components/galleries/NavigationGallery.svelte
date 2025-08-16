@@ -2,7 +2,7 @@
     import { _ } from "svelte-i18n";
     import type { RouteItemNext } from "$lib/types";
     import { show_discouragement } from "$lib/stores/discouragement";
-    import { onMount } from "svelte";
+    import { onMount, onDestroy } from "svelte";
     import { shuffle } from "$lib/utils/rand";
     import { get_char_count_of_repo } from "$lib/utils/net";
     import { browser } from "$app/environment";
@@ -22,6 +22,7 @@
     let loading_progress = $state(0);
     let loading_stage = $state("Initializing...");
     let columns = $state<RouteItemNext[][]>([]);
+    let shuffledItems: RouteItemNext[] = [];
 
     const getItemTitle = (item: RouteItemNext): string | undefined => {
         return item.title ?? (item.name ? `titles.routes.${item.name}` : item.nameKey);
@@ -46,17 +47,17 @@
 
     const getColumnCount = (): number => {
         if (typeof num_cols === "number" && num_cols > 0) return num_cols;
+        if (!browser) return 1;
 
-        const w = globalThis.innerWidth ?? 1200;
-        if (w <= 600) return 1;
-        if (w <= 900) return 2;
-        if (w <= 1000) return 3;
-        return 5;
+        const w = window.innerWidth;
+        if (w <= 480) return 1; // phones
+        if (w <= 768) return 2; // small tablets
+        if (w <= 1024) return 3; // large tablets
+        return 4; // desktop+
     };
 
     const updateColumns = () => {
-        const shuffled = shuffleItems ? shuffle(navItems) : navItems;
-        columns = createColumns(shuffled, getColumnCount());
+        columns = createColumns(shuffledItems, getColumnCount());
     };
 
     const updateLoadingProgress = (progress: number, stage: string) => {
@@ -100,6 +101,9 @@
             updateLoadingProgress(70, "Processing navigation items...");
             await new Promise((resolve) => setTimeout(resolve, 100));
 
+            // shuffle only once on mount
+            shuffledItems = shuffleItems ? shuffle(navItems) : navItems;
+
             updateLoadingProgress(90, "Organizing layout...");
             updateColumns();
 
@@ -113,6 +117,12 @@
             if (browser) {
                 window.addEventListener("resize", updateColumns, { passive: true });
             }
+        }
+    });
+
+    onDestroy(() => {
+        if (browser) {
+            window.removeEventListener("resize", updateColumns);
         }
     });
 </script>
@@ -238,5 +248,19 @@
 <style>
     :global {
         @import url("/src/assets/css/main.css");
+    }
+
+    .emergency-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(255, 0, 0, 0.8);
+        color: white;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        text-align: center;
+        padding: 1rem;
     }
 </style>
