@@ -200,7 +200,7 @@
 }
 
 /* Tablets - Landscape and small desktops (768px to 991px) */
-@media (max-width: 991px){
+@media (min-width: 768px) and (max-width: 991px) {
     .book-gallery {
         padding: var(--spacing-xl) var(--spacing-lg);
     }

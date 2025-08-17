@@ -2,13 +2,13 @@
     import { onMount } from "svelte";
     import { page } from "$app/state";
     import { goto } from "$app/navigation";
-    import MenuIcon from "../components/icons/MenuIcon.svelte";
-    import type { RouteItem } from "$lib/types";
     import { _ } from "svelte-i18n";
     import { show_discouragement } from "$lib/stores/discouragement";
-    import LangSwitcher from "../components/misc/LangSwitcher.svelte";
     import { getMenuRoutes } from "$lib/config/routes";
+    import LangSwitcher from "../../components/misc/LangSwitcher.svelte";
+    import MenuIcon from "../../components/icons/MenuIcon.svelte";
     import { show_quick_menu } from "$lib/stores/show_quick_menu";
+    import { SvelteMap } from "svelte/reactivity";
 
     const themes = [
         "kanagawa",
@@ -38,15 +38,11 @@
 
     const routes = getMenuRoutes();
 
-    const { children } = $props();
-
     let selectedTheme = $state("kanagawa");
     let isMenuOpen = $state(false);
     let isRoutesMenuOpen = $state(false);
     let hoveredRoute = $state<string | null>(null);
-    let nestedMenuTimeouts = new Map<string, number>();
-
-    const currentRoutePath = $derived(page.url.pathname);
+    let nestedMenuTimeouts = new SvelteMap<string, number>();
 
     function changeTheme() {
         document.documentElement.setAttribute("data-theme", selectedTheme);
@@ -124,6 +120,7 @@
 
         document.addEventListener("click", handleClickOutside);
 
+        show_quick_menu.set(false);
         return () => {
             document.removeEventListener("click", handleClickOutside);
             nestedMenuTimeouts.forEach((timeout) => clearTimeout(timeout));
@@ -131,7 +128,7 @@
     });
 </script>
 
-{#if !$show_discouragement && $show_quick_menu}
+{#if !$show_discouragement}
     <div class="quick-buttons">
         <div
             class="menu-items"
@@ -224,9 +221,7 @@
     </div>
 {/if}
 
-{@render children?.()}
-
-<!-- svelte-ignore css_unused_selector -->
-<style>
-    @import url("/src/assets/css/main.css");
+<style lang="scss">
+    @import url("/src/assets/css/styles/01-variables.css");
+    @import url("/src/assets/css/styles/12-themes.css");
 </style>
