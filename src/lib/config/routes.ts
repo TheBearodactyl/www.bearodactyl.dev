@@ -120,7 +120,7 @@ export const routes: RouteItemNext[] = [
     {
         path: "",
         nameKey: "",
-        audioSrc: "https://www.myinstants.com/media/sounds/one-piece-ost-cornered-raid-host.mp3",
+        audioSrc: "/audio/cornered.mp3",
         coverImage:
             "https://media.tenor.com/1q2EtzejgWUAAAAM/sakugastudio-jxrdn-absolute-cinema-luffy.gif",
     },
