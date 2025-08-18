@@ -1,10 +1,8 @@
 <script lang="ts">
-    import type { Book } from "$lib/types";
-    import { lazy_load } from "$lib/utils/loading";
-    import { is_peak } from "$lib/utils/misc";
     import BaseCard from "../base/BaseCard.svelte";
     import WarningIcon from "../../icons/WarningIcon.svelte";
     import { _ } from "svelte-i18n";
+    import { is_peak, lazy_load, type Book } from "libbearo";
 
     interface Props {
         book: Book;
@@ -52,10 +50,7 @@
 
     function handle_drag_start(event: DragEvent) {
         event.stopPropagation();
-        event.dataTransfer?.setData(
-            "text/plain",
-            String(book.id),
-        );
+        event.dataTransfer?.setData("text/plain", String(book.id));
 
         drag_start_timeout = setTimeout(() => {
             on_drag_start();
@@ -97,9 +92,7 @@
 
 <div
     bind:this={card_element}
-    style="--hover-border-color: {!expanded && book.color
-        ? book.color
-        : 'var(--rp-love)'};"
+    style="--hover-border-color: {!expanded && book.color ? book.color : 'var(--rp-love)'};"
     class:is-dragging={is_dragging}
     class:is-dragged-over={is_dragged_over}
     class:is-dropping={is_dropping}
@@ -133,25 +126,15 @@
                             loading="lazy"
                         />
                         {#if !show_explicit ? book.explicit : false}
-                            <div
-                                class="explicit-icon-small"
-                            >
-                                <span
-                                    class="icon-warning-small"
-                                    >⚠️</span
-                                >
-                                <span
-                                    class="explicit-label-small"
-                                    >18+</span
-                                >
+                            <div class="explicit-icon-small">
+                                <span class="icon-warning-small">⚠️</span>
+                                <span class="explicit-label-small">18+</span>
                             </div>
                         {/if}
                     </div>
                     <div class="book-details">
                         <div class="book-primary-info">
-                            <h class="book-title-list"
-                                >{book.title}</h
-                            >
+                            <h class="book-title-list">{book.title}</h>
                             <p class="book-author-list">
                                 {book.author}
                             </p>
@@ -162,10 +145,7 @@
                                     {#each Array(is_peak(book) ? 50 : 5) as _, star}
                                         <span
                                             class="star-small"
-                                            class:filled={star +
-                                                1 <=
-                                                book.rating}
-                                            >★</span
+                                            class:filled={star + 1 <= book.rating}>★</span
                                         >
                                     {/each}
                                 </span>
@@ -176,14 +156,8 @@
                         </div>
                         <div class="book-genres-list">
                             {#each book.genres.slice(0, 3) as genre (genre)}
-                                <span
-                                    class="book-genre-small"
-                                >
-                                    <button
-                                        onclick={() =>
-                                            on_add_genre_to_filters(
-                                                genre,
-                                            )}
+                                <span class="book-genre-small">
+                                    <button onclick={() => on_add_genre_to_filters(genre)}
                                         >{genre}</button
                                     >
                                 </span>
@@ -197,14 +171,11 @@
                         <img
                             use:lazy_load
                             data-src={book.coverImage}
-                            alt={$_(
-                                "gallery.generic.cover-alt",
-                                {
-                                    values: {
-                                        title: book.title,
-                                    },
+                            alt={$_("gallery.generic.cover-alt", {
+                                values: {
+                                    title: book.title,
                                 },
-                            )}
+                            })}
                             class="cover-image"
                             loading="lazy"
                         />
@@ -213,18 +184,12 @@
                                 <span class="icon-warning">
                                     <WarningIcon />
                                 </span>
-                                <span class="explicit-label"
-                                    >{$_(
-                                        "indicators.explicit",
-                                    )}</span
-                                >
+                                <span class="explicit-label">{$_("indicators.explicit")}</span>
                             </div>
                         {/if}
                     </div>
                     <div class="book-info">
-                        <h class="book-title"
-                            >{book.title}</h
-                        >
+                        <h class="book-title">{book.title}</h>
                         <p class="book-author">
                             {book.author}
                         </p>
@@ -234,11 +199,7 @@
                         <div class="book-genres">
                             {#each book.genres.slice(0, 5) as genre (genre)}
                                 <span class="book-genre">
-                                    <button
-                                        onclick={() =>
-                                            on_add_genre_to_filters(
-                                                genre,
-                                            )}
+                                    <button onclick={() => on_add_genre_to_filters(genre)}
                                         >{genre}</button
                                     >
                                 </span>
@@ -248,11 +209,7 @@
                             <div class="book-tags">
                                 {#each book.tags.slice(0, 5) as tag (tag)}
                                     <span class="book-tag">
-                                        <button
-                                            onclick={() =>
-                                                on_add_tag_to_filters(
-                                                    tag,
-                                                )}
+                                        <button onclick={() => on_add_tag_to_filters(tag)}
                                             >{tag}</button
                                         >
                                     </span>
@@ -264,22 +221,16 @@
                                 {#each Array(is_peak(book) ? 50 : 5) as _, star}
                                     <span
                                         class="star"
-                                        class:filled={star +
-                                            1 <=
-                                            book.rating}
-                                        >★</span
+                                        class:filled={star + 1 <= book.rating}>★</span
                                     >
                                 {/each}
                             </span>
                             <span class="rating-text">
-                                {$_(
-                                    "gallery.generic.rating-of-five",
-                                    {
-                                        values: {
-                                            rating: book.rating,
-                                        },
+                                {$_("gallery.generic.rating-of-five", {
+                                    values: {
+                                        rating: book.rating,
                                     },
-                                )}
+                                })}
                             </span>
                         </div>
                     </div>

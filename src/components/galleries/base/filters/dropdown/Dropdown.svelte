@@ -1,7 +1,7 @@
 <script lang="ts">
     import SelectedPills from "./SelectedPills.svelte";
     import DropdownList from "./DropdownList.svelte";
-    import type { DropdownItem } from "$lib/types";
+    import type { DropdownItem } from "libbearo";
 
     interface Props {
         items: DropdownItem[];

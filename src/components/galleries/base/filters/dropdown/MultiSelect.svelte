@@ -1,10 +1,6 @@
 <script lang="ts">
+    import type { DropdownItem } from "libbearo";
     import Dropdown from "./Dropdown.svelte";
-
-    interface DropdownItem {
-        value: string;
-        count?: number;
-    }
 
     interface Props {
         label: string;

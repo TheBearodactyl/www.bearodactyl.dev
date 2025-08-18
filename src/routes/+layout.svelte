@@ -3,12 +3,12 @@
     import { page } from "$app/state";
     import { goto } from "$app/navigation";
     import MenuIcon from "../components/icons/MenuIcon.svelte";
-    import type { RouteItem } from "$lib/types";
     import { _ } from "svelte-i18n";
     import { show_discouragement } from "$lib/stores/discouragement";
     import LangSwitcher from "../components/misc/LangSwitcher.svelte";
     import { getMenuRoutes } from "$lib/config/routes";
     import { show_quick_menu } from "$lib/stores/show_quick_menu";
+    import "../assets/css/main.css";
 
     const themes = [
         "kanagawa",

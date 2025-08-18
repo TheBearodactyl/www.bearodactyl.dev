@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { DropdownItem } from "$lib/types";
+    import type { DropdownItem } from "libbearo";
 
     interface Props {
         item: DropdownItem;

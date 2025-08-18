@@ -1,6 +1,5 @@
 <script lang="ts">
-    import type { Book } from "$lib/types";
-    import { lazy_load } from "$lib/utils/loading";
+    import { lazy_load, type Book } from "libbearo";
     import { _ } from "svelte-i18n";
 
     interface Props {

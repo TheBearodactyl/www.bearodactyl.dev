@@ -120,6 +120,7 @@ export const routes: RouteItemNext[] = [
     {
         path: "",
         nameKey: "",
+        audioSrc: "https://www.myinstants.com/media/sounds/one-piece-ost-cornered-raid-host.mp3",
         coverImage:
             "https://media.tenor.com/1q2EtzejgWUAAAAM/sakugastudio-jxrdn-absolute-cinema-luffy.gif",
     },
@@ -151,6 +152,7 @@ export const routes: RouteItemNext[] = [
     {
         path: "",
         nameKey: "",
+        audioSrc: "https://www.myinstants.com/media/sounds/lemon-demon-two-trucks-audiotrimmer.mp3",
         coverImage:
             "https://preview.redd.it/k3lrzdqenioe1.png?width=640&crop=smart&auto=webp&s=176371447cd4401c15cd0d0eb70fbd571e054f63",
     },
@@ -228,9 +230,10 @@ export const routes: RouteItemNext[] = [
     },
     {
         nameKey: "",
-        coverImage: "https://preview.redd.it/b4iabc1b7xp11.png?auto=webp&s=ce04893199857d1d610a8c66eade52f64fc0439d",
-        path: ""
-    }
+        coverImage:
+            "https://preview.redd.it/b4iabc1b7xp11.png?auto=webp&s=ce04893199857d1d610a8c66eade52f64fc0439d",
+        path: "",
+    },
 ];
 
 export function getMenuRoutes(): RouteItemNext[] {

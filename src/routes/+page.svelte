@@ -58,21 +58,22 @@
                     })}
                 </p>
             {/if}
-            <!-- svelte-ignore a11y_click_events_have_key_events -->
-            <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
-            <img
+            <a
                 class="buggy"
-                src="/images/buggy.webp"
+                href="/images/buggy.webp"
+                aria-label="buggy"
                 onclick={() => {
                     const buggy_audio = new Audio("/audio/buggy.mp3");
                     buggy_audio.play();
                     setTimeout(() => {
                         window.location.href =
                             "https://github.com/TheBearodactyl/www.bearodactyl.dev/issues/new/choose";
-                    }, 1000);
+                    }, 4500);
                 }}
-                alt="get it? 'buggy'?"
-            />
+                onmouseenter={() => {
+                    
+                }}
+            ></a>
         </div>
     </div>
 
@@ -108,8 +109,6 @@
 
 <!-- svelte-ignore css_unused_selector -->
 <style>
-    @import url("/src/assets/css/main.css");
-
     .index-desc.latest-commit-msg {
         font-size: medium !important;
     }
