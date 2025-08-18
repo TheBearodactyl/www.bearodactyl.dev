@@ -58,7 +58,9 @@
             return;
         }
 
-        const draggedBookIndex = book_filters.filtered_books.findIndex((b) => b.id === draggedBookId);
+        const draggedBookIndex = book_filters.filtered_books.findIndex(
+            (b) => b.id === draggedBookId,
+        );
         const draggedOverBookIndex = book_filters.filtered_books.findIndex(
             (b) => b.id === draggedOverBookId,
         );
@@ -78,6 +80,7 @@
     }
 
     function handleToggleCard(bookId: string | number) {
+        display.toggle_card(bookId);
     }
 
     function handleCloseCard() {

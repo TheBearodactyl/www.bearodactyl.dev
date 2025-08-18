@@ -44,7 +44,7 @@
 
 {#if !$show_discouragement}
     <div>
-        <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
+        <!-- svelte-ignore a11y_missing_attribute -->
         <div class="index-header">
             <h1>{$_("titles.index")}</h1>
             <p class="index-desc">{$_("descriptions.index")}</p>
@@ -60,6 +60,7 @@
                 </p>
             {/if}
             <!-- svelte-ignore a11y_click_events_have_key_events -->
+            <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
             <img
                 class="buggy"
                 src="/images/buggy.webp"
@@ -70,7 +71,7 @@
                     setTimeout(() => {
                         window.location.href =
                             "https://github.com/TheBearodactyl/www.bearodactyl.dev/issues/new/choose";
-                    }, 4500);
+                    }, 4750);
                 }}
                 alt="buggy"
             />
