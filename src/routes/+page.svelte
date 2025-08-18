@@ -44,6 +44,7 @@
 
 {#if !$show_discouragement}
     <div>
+        <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
         <div class="index-header">
             <h1>{$_("titles.index")}</h1>
             <p class="index-desc">{$_("descriptions.index")}</p>
@@ -58,9 +59,10 @@
                     })}
                 </p>
             {/if}
-            <a
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
+            <img
                 class="buggy"
-                href="/images/buggy.webp"
+                src="/images/buggy.webp"
                 aria-label="buggy"
                 onclick={() => {
                     const buggy_audio = new Audio("/audio/buggy.mp3");
@@ -70,10 +72,8 @@
                             "https://github.com/TheBearodactyl/www.bearodactyl.dev/issues/new/choose";
                     }, 4500);
                 }}
-                onmouseenter={() => {
-                    
-                }}
-            ></a>
+                alt="buggy"
+            />
         </div>
     </div>
 
