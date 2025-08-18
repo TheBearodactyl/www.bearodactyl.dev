@@ -8,5 +8,6 @@
     "no-tags": "No Tags Available",
     "no-install-command": "No Install Command Available",
     "bad": "Contains Dogshit",
-    "latest-commit-msg": "Latest commit: {latest_commit}"
+    "latest-commit-msg": "Latest commit: {latest_commit}",
+    "current-build-status": "Current website build progress: {progress}"
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
     import { _ } from "svelte-i18n";
-    import { onMount } from "svelte";
+    import { onDestroy, onMount } from "svelte";
     import { show_discouragement } from "$lib/stores/discouragement";
     import Seo from "../components/misc/Seo.svelte";
     import NavigationGallery from "../components/galleries/NavigationGallery.svelte";
@@ -8,6 +8,7 @@
     import { choose_rand } from "$lib/utils/rand";
     import { getGalleryRoutes } from "$lib/config/routes";
     import { get_latest_commit } from "$lib/utils/net";
+    import { Bearror, get_build_progress, LogLvl } from "libbearo";
 
     let is_mobile = $state(false);
     let latest_commit: string | null = $state(null);
@@ -33,6 +34,34 @@
     });
 
     const nav_items = getGalleryRoutes();
+    let build_progress = $state("");
+    let interval_id: number;
+
+    const mk_progress_str = async () => {
+        try {
+            const curr_progress = (await get_build_progress()).progress;
+            if (curr_progress < 100) {
+                build_progress = `Building (${curr_progress}%)`;
+            } else {
+                build_progress = `Built (${curr_progress}%)`;
+            }
+        } catch (err) {
+            const err_msg = new Bearror(
+                LogLvl.ERR,
+                `Failed to fetch build progress: ${err}`,
+            ).to_string();
+            throw new Error(err_msg);
+        }
+    };
+
+    onMount(async () => {
+        await mk_progress_str();
+        interval_id = setInterval(await mk_progress_str, 5000);
+    });
+
+    onDestroy(() => {
+        clearInterval(interval_id);
+    });
 </script>
 
 <Seo
@@ -59,6 +88,13 @@
                     })}
                 </p>
             {/if}
+            <p class="index-desc latest-commit-msg">
+                {$_("indicators.current-build-status", {
+                    values: {
+                        progress: build_progress,
+                    },
+                })}
+            </p>
             <!-- svelte-ignore a11y_click_events_have_key_events -->
             <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
             <img

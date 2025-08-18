@@ -8,5 +8,6 @@
     "no-tags": "利用可能のタグなし",
     "no-install-command": "利用可能のインストールの命令なし",
     "bad": "バカめの下種向け",
-    "latest-commit-msg": "Latest commit: {latest_commit}"
+    "latest-commit-msg": "Latest commit: {latest_commit}",
+    "current-build-status": "Current website build progress: {progress}"
 }

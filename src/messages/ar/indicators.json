@@ -8,5 +8,6 @@
     "no-tags": "لا توجد علامات متاحة",
     "no-install-command": "امر التحميل غير متوفر",
     "bad": "محتوى سيء",
-    "latest-commit-msg": "Latest commit: {latest_commit}"
+    "latest-commit-msg": "Latest commit: {latest_commit}",
+    "current-build-status": "Current website build progress: {progress}"
 }
