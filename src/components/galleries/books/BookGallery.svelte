@@ -15,54 +15,54 @@
     const display = use_books_display();
     const book_filters = filters(() => data.books);
 
-    let isFilterCollapsed = $state(true);
-    let draggedBookId: string | number | null = $state(null);
-    let draggedOverBookId: string | number | null = $state(null);
+    let is_filter_collapsed = $state(true);
+    let dragged_book_id: string | number | null = $state(null);
+    let dragged_over_book_id: string | number | null = $state(null);
 
-    function toggleSearchMode() {
-        isFilterCollapsed = !isFilterCollapsed;
+    function toggle_search_mode() {
+        is_filter_collapsed = !is_filter_collapsed;
     }
 
-    const persistedViewMode = new PersistedState<"masonry" | "list">("viewMode", "masonry");
+    const persisted_view_mode = new PersistedState<"masonry" | "list">("viewMode", "masonry");
 
     $effect(() => {
-        display.set_view_mode(persistedViewMode.current);
+        display.set_view_mode(persisted_view_mode.current);
     });
 
-    const expandedBook = $derived(() => {
+    const expanded_book = $derived(() => {
         if (display.expanded_card !== null) {
             return book_filters.filtered_books.find((b) => b.id === display.expanded_card);
         }
     });
 
     function handleDragStart(bookId: string | number) {
-        draggedBookId = bookId;
+        dragged_book_id = bookId;
     }
 
     function handleDragEnter(bookId: string | number) {
-        if (draggedBookId !== bookId) {
-            draggedOverBookId = bookId;
+        if (dragged_book_id !== bookId) {
+            dragged_over_book_id = bookId;
         }
     }
 
     function handleDragLeave() {
-        draggedOverBookId = null;
+        dragged_over_book_id = null;
     }
 
     function handleDrop() {
         if (
-            draggedBookId === null ||
-            draggedOverBookId === null ||
-            draggedBookId === draggedOverBookId
+            dragged_book_id === null ||
+            dragged_over_book_id === null ||
+            dragged_book_id === dragged_over_book_id
         ) {
             return;
         }
 
         const draggedBookIndex = book_filters.filtered_books.findIndex(
-            (b) => b.id === draggedBookId,
+            (b) => b.id === dragged_book_id,
         );
         const draggedOverBookIndex = book_filters.filtered_books.findIndex(
-            (b) => b.id === draggedOverBookId,
+            (b) => b.id === dragged_over_book_id,
         );
         const newBooks = [...book_filters.filtered_books];
         const [removed] = newBooks.splice(draggedBookIndex, 1);
@@ -70,13 +70,13 @@
         newBooks.splice(draggedOverBookIndex, 0, removed);
         data.books = newBooks;
 
-        draggedBookId = null;
-        draggedOverBookId = null;
+        dragged_book_id = null;
+        dragged_over_book_id = null;
     }
 
     function handleDragEnd() {
-        draggedBookId = null;
-        draggedOverBookId = null;
+        dragged_book_id = null;
+        dragged_over_book_id = null;
     }
 
     function handleToggleCard(bookId: string | number) {
@@ -114,12 +114,12 @@
         filteredTagCounts={book_filters.filtered_tag_counts}
         filteredGenreCounts={book_filters.filtered_genre_counts}
         bind:expandedInputRef={display.expanded_input_ref}
-        {isFilterCollapsed}
+        isFilterCollapsed={is_filter_collapsed}
         onToggleDropdown={book_filters.toggle_dropdown}
         onCloseDropdown={book_filters.close_dropdown}
         onToggleFilterItem={book_filters.toggle_filter_item}
         onClearAllFilters={book_filters.clear_all_filters}
-        onToggleSearchMode={toggleSearchMode}
+        onToggleSearchMode={toggle_search_mode}
         onUpdateFilters={handleUpdateFilters}
         setViewMode={display.set_view_mode}
         toggleViewMode={display.toggle_view_mode}
@@ -161,14 +161,14 @@
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
             onDragEnd={handleDragEnd}
-            {draggedBookId}
-            {draggedOverBookId}
+            draggedBookId={dragged_book_id}
+            draggedOverBookId={dragged_over_book_id}
         />
     {/if}
 
-    {#if display.expanded_card !== null && !data.is_loading && !data.fetch_err && expandedBook}
+    {#if display.expanded_card !== null && !data.is_loading && !data.fetch_err && expanded_book}
         <ExpandedCard
-            book={expandedBook()!}
+            book={expanded_book()!}
             on_close_card={handleCloseCard}
             on_add_genre_to_filters={handleAddGenreToFilters}
             on_add_tag_to_filters={handleAddTagToFilters}

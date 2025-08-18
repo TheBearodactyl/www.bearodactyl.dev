@@ -1,8 +1,8 @@
 <script lang="ts">
-    import type { Book } from "$lib/types";
     import { SvelteSet } from "svelte/reactivity";
     import BookCard from "./BookCard.svelte";
     import { _ } from "svelte-i18n";
+    import type { Book } from "libbearo";
 
     interface Props {
         books: Book[];

@@ -8,7 +8,7 @@
     import { use_games_display } from "$lib/gallery/display/games.svelte";
     import { filters } from "$lib/gallery/filters/games.svelte";
     import GalleryBackdrop from "../base/GalleryBackdrop.svelte";
-    import { scroll_to_top } from "$lib/utils/misc";
+    import { scroll_to_top } from "libbearo";
 
     const data = use_games_data();
     const display = use_games_display();
@@ -29,8 +29,10 @@
         }
     });
 
-    function handle_toggle_card(gameId: string | number) {
-        if (games_data.games.find((game) => game.bad === true)?.id === gameId) {
+    function handle_toggle_card(game_id: string | number) {
+        const clicked_game = games_data.games.find((game) => game.id === game_id);
+
+        if (clicked_game?.bad) {
             if (show_fuckass_video) {
                 show_fuckass_video = false;
             } else {
@@ -45,7 +47,7 @@
                 }, 100);
             }
         } else {
-            display.toggle_card(gameId);
+            display.toggle_card(game_id);
         }
     }
 
@@ -145,11 +147,10 @@
             onToggleCard={async (id) => {
                 handle_toggle_card(id);
 
-                if (data.games.find((game) => game.bad === true)?.id === id) {
+                const clicked_game = games_data.games.find((game) => game.id === id);
+                if (clicked_game?.bad) {
                     try {
-                        hell_naw = new Audio(
-                            "/audio/hellnah.mp3",
-                        );
+                        hell_naw = new Audio("/audio/hellnah.mp3");
                         await hell_naw.play();
                     } catch {
                         console.warn("failed to play");
@@ -189,28 +190,5 @@
         height: 100%;
         z-index: 10000;
         object-fit: fill;
-    }
-
-    .fuckass-text {
-        position: fixed;
-        font-size: xx-large;
-        z-index: 100001;
-        text-shadow:
-            2px 2px 0 var(--rp-surface),
-            2px -2px 0 var(--rp-surface),
-            -2px 2px 0 var(--rp-surface),
-            -2px -2px 0 var(--rp-surface),
-            2px 0px 0 var(--rp-surface),
-            0px 2px 0 var(--rp-surface),
-            -2px 0px 0 var(--rp-surface),
-            0px -2px 0 var(--rp-surface),
-            2px 2px 2px rgba(0, 0, 0, 0);
-    }
-
-    .fuckass-text .rose {
-        position: fixed;
-        opacity: 1;
-        text-shadow: none !important;
-        left: calc(50% - 10rem) !important;
     }
 </style>

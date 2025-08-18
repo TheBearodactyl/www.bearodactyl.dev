@@ -1,10 +1,9 @@
 <script lang="ts">
-    import type { Game } from "$lib/types";
     import { _ } from "svelte-i18n";
     import BaseCard from "../base/BaseCard.svelte";
     import WarningIcon from "../../icons/WarningIcon.svelte";
-    import { is_peak } from "$lib/utils/misc";
     import DickNBalls from "../../icons/DickNBalls.svelte";
+    import { is_peak, type Game } from "libbearo";
 
     interface Props {
         game: Game;
