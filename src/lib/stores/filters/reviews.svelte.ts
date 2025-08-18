@@ -1,5 +1,5 @@
 import { browser } from "$app/environment";
-import type { ReviewFilters } from "$lib/types";
+import type { ReviewFilters } from "libbearo";
 
 export function create_review_filters_store() {
     const defaults: ReviewFilters = {

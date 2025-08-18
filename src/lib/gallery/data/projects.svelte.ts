@@ -1,8 +1,5 @@
 import { browser } from "$app/environment";
-import { LogLvl, type Project } from "$lib/types";
-import { Bearror } from "$lib/utils/errs";
-import { get_gh_release } from "$lib/utils/net";
-import { shuffle } from "$lib/utils/rand";
+import { Bearror, get_gh_release, LogLvl, shuffle, type Project } from "libbearo";
 
 export function data() {
     let projects: Project[] = $state([]);
@@ -18,8 +15,8 @@ export function data() {
             const file_contents = await get_gh_release(
                 "thebearodactyl",
                 "www.bearodactyl.dev",
-                "projects.json"
-            )
+                "projects.json",
+            );
             dl_progress = 60;
             let data: Project[] = JSON.parse(await file_contents.text());
             data = shuffle(data);

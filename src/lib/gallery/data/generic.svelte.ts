@@ -1,8 +1,4 @@
-import { LogLvl } from "$lib/types";
-import { Bearror } from "$lib/utils/errs";
-import { cache_cover } from "$lib/utils/loading";
-import { get_gh_release } from "$lib/utils/net";
-import { shuffle } from "$lib/utils/rand";
+import { Bearror, cache_cover, get_gh_release, LogLvl, shuffle } from "libbearo";
 import { onMount } from "svelte";
 
 export function data<T extends { coverImage: string }>(filename: string) {

@@ -5,10 +5,8 @@
     import Seo from "../components/misc/Seo.svelte";
     import NavigationGallery from "../components/galleries/NavigationGallery.svelte";
     import Discouragement from "../components/misc/Discouragement.svelte";
-    import { choose_rand } from "$lib/utils/rand";
     import { getGalleryRoutes } from "$lib/config/routes";
-    import { get_latest_commit } from "$lib/utils/net";
-    import { Bearror, get_build_progress, LogLvl } from "libbearo";
+    import { Bearror, choose_rand, get_build_progress, get_latest_commit, LogLvl } from "libbearo";
 
     let is_mobile = $state(false);
     let latest_commit: string | null = $state(null);

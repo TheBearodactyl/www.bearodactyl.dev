@@ -1,5 +1,5 @@
 import { browser } from "$app/environment";
-import type { ProjectFilters } from "$lib/types";
+import type { ProjectFilters } from "libbearo";
 
 export function create_project_filters_store() {
     const defaults: ProjectFilters = {

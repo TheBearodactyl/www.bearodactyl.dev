@@ -1,8 +1,4 @@
-import { LogLvl, type Book } from "$lib/types";
-import { cache_cover } from "$lib/utils/loading";
-import { Bearror } from "$lib/utils/errs";
-import { get_gh_release } from "$lib/utils/net";
-import { shuffle } from "$lib/utils/rand";
+import { Bearror, cache_cover, get_gh_release, LogLvl, shuffle, type Book } from "libbearo";
 import { onMount } from "svelte";
 
 export function data() {

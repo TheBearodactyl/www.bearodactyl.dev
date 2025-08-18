@@ -1,6 +1,6 @@
 import { create_book_filters_store } from "$lib/stores/filters/books.svelte";
-import type { Book, BookFilters } from "$lib/types";
 import Fuse from "fuse.js";
+import type { Book, BookFilters } from "libbearo";
 import { SvelteMap, SvelteSet } from "svelte/reactivity";
 
 export function filters(all_books: () => Book[]) {

@@ -1,5 +1,4 @@
-import type { RouteItemNext } from "$lib/types";
-import { choose_rand } from "$lib/utils/rand";
+import { choose_rand, type RouteItemNext } from "libbearo";
 
 export const routes: RouteItemNext[] = [
     {

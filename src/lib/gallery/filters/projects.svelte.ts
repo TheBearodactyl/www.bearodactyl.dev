@@ -1,6 +1,6 @@
 import { create_project_filters_store } from "$lib/stores/filters/projects.svelte";
-import type { Project, ProjectFilters } from "$lib/types";
 import Fuse from "fuse.js";
+import type { Project, ProjectFilters } from "libbearo";
 import { SvelteMap, SvelteSet } from "svelte/reactivity";
 
 export function filters(allProjects: () => Project[]) {

@@ -1,6 +1,6 @@
 import { create_review_filters_store } from "$lib/stores/filters/reviews.svelte";
-import type { Review, ReviewFilters } from "$lib/types";
 import Fuse from "fuse.js";
+import type { Review, ReviewFilters } from "libbearo";
 import { SvelteMap } from "svelte/reactivity";
 
 export function filters(all_reviews: () => Review[]) {

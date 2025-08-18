@@ -1,11 +1,9 @@
 <script lang="ts">
     import { _ } from "svelte-i18n";
-    import type { RouteItemNext } from "$lib/types";
     import { show_discouragement } from "$lib/stores/discouragement";
     import { onMount, onDestroy } from "svelte";
-    import { shuffle } from "$lib/utils/rand";
-    import { get_char_count_of_repo } from "$lib/utils/net";
     import { browser } from "$app/environment";
+    import { get_char_count_of_repo, shuffle, type RouteItemNext } from "libbearo";
 
     interface Props {
         navItems: RouteItemNext[];
@@ -101,7 +99,6 @@
             updateLoadingProgress(70, "Processing navigation items...");
             await new Promise((resolve) => setTimeout(resolve, 100));
 
-            // shuffle only once on mount
             shuffledItems = shuffleItems ? shuffle(navItems) : navItems;
 
             updateLoadingProgress(90, "Organizing layout...");

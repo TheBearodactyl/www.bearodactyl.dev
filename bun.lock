@@ -599,7 +599,7 @@
 
     "levn": ["levn@0.4.1", "", { "dependencies": { "prelude-ls": "^1.2.1", "type-check": "~0.4.0" } }, "sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ=="],
 
-    "libbearo": ["libbearo@0.1.3", "", { "dependencies": { "octokit": "^5.0.3" }, "peerDependencies": { "typescript": "^5" } }, "sha512-OGwp/y/56GDkJgLXyTcaxOFByRI48Be2gFlCnQqG2xARU8CV9m/bvbQusKNo7iimx2T1xaRwtT2afesUXR/0kA=="],
+    "libbearo": ["libbearo@0.1.4", "", { "dependencies": { "octokit": "^5.0.3" }, "peerDependencies": { "typescript": "^5" } }, "sha512-M4+d9BsMWL1CCUWLn7Zu+XFfhuKweS1ve//HXtnI35tr2L7y68CIY0zqf7YoIwg7VBxDNB6dBet50e+fT4CkZw=="],
 
     "lilconfig": ["lilconfig@2.1.0", "", {}, "sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ=="],
 

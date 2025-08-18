@@ -1,8 +1,6 @@
 import { browser } from "$app/environment";
-import { LogLvl, type Review } from "$lib/types";
-import { sort_reviews } from "$lib/utils/arr";
-import { Bearror } from "$lib/utils/errs";
-import { get_data_release } from "$lib/utils/net";
+import { Bearror, get_data_release, LogLvl, type Review } from "libbearo";
+import { sort_reviews } from "libbearo/src/utils/arr";
 
 export function data() {
     let reviews: Review[] = $state([]);

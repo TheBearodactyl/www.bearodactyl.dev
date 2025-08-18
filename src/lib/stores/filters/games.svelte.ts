@@ -1,5 +1,5 @@
 import { browser } from "$app/environment";
-import type { GameFilters } from "$lib/types";
+import type { GameFilters } from "libbearo";
 
 export function create_game_filters_store() {
     const defaults: GameFilters = {

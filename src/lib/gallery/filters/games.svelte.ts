@@ -1,6 +1,6 @@
 import { create_game_filters_store } from "$lib/stores/filters/games.svelte";
-import type { Game, GameFilters } from "$lib/types";
 import Fuse from "fuse.js";
+import type { Game, GameFilters } from "libbearo";
 import { SvelteMap, SvelteSet } from "svelte/reactivity";
 
 export function filters(all_games: () => Game[]) {

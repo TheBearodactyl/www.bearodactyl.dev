@@ -1,8 +1,8 @@
 import { SvelteSet } from "svelte/reactivity";
-import type { LayoutLoad } from "./$types";
 import { loadLocale } from "$lib/i18n";
 import { waitLocale } from "svelte-i18n";
 import { browser } from "$app/environment";
+import type { LayoutLoad } from "./$types";
 
 const getAvailableLocales = () => {
     const modules = import.meta.glob(

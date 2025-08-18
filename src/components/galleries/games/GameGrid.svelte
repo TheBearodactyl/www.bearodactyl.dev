@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Game } from "$lib/types";
+    import type { Game } from "libbearo";
     import GameCard from "./GameCard.svelte";
     import { _ } from "svelte-i18n";
 

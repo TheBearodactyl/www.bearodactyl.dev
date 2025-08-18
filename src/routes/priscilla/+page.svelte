@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { choose_rand } from "$lib/utils/rand";
+    import { choose_rand } from "libbearo";
     import LinkedImage from "../../components/misc/LinkedImage.svelte";
 
     const images = [

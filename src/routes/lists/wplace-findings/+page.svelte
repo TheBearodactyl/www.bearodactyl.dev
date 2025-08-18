@@ -1,6 +1,6 @@
 <script lang="ts">
     import { use_generic_data } from "$lib/gallery/data/generic.svelte";
-    import type { WplaceScreenshot } from "$lib/types";
+    import type { WplaceScreenshot } from "libbearo";
     import { _ } from "svelte-i18n";
 
     let data = use_generic_data<WplaceScreenshot>("wplace.json");

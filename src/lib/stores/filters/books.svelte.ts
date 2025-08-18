@@ -1,5 +1,5 @@
 import { browser } from "$app/environment";
-import type { BookFilters } from "$lib/types";
+import type { BookFilters } from "libbearo";
 
 export function create_book_filters_store() {
     const defaults: BookFilters = {
