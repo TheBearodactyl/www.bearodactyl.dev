@@ -6,9 +6,9 @@
     import { _ } from "svelte-i18n";
     import { show_discouragement } from "$lib/stores/discouragement";
     import LangSwitcher from "../components/misc/LangSwitcher.svelte";
-    import { getMenuRoutes } from "$lib/config/routes";
     import { show_quick_menu } from "$lib/stores/show_quick_menu";
     import "../assets/css/main.css";
+    import { get_menu_routes } from "libbearo";
 
     const themes = [
         "kanagawa",
@@ -36,7 +36,7 @@
         "tokyo-night",
     ];
 
-    const routes = getMenuRoutes();
+    const routes = get_menu_routes();
 
     const { children } = $props();
 
@@ -45,8 +45,6 @@
     let isRoutesMenuOpen = $state(false);
     let hoveredRoute = $state<string | null>(null);
     let nestedMenuTimeouts = new Map<string, number>();
-
-    const currentRoutePath = $derived(page.url.pathname);
 
     function changeTheme() {
         document.documentElement.setAttribute("data-theme", selectedTheme);

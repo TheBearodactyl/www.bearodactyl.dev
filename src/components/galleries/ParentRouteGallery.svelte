@@ -1,7 +1,7 @@
 <script lang="ts">
     import { _ } from "svelte-i18n";
     import NavigationGallery from "../../components/galleries/NavigationGallery.svelte";
-    import { getRouteChildren } from "$lib/config/routes";
+    import { get_route_children } from "libbearo";
 
     interface Props {
         parentRoute: string;
@@ -10,7 +10,7 @@
 
     let { parentRoute, titleLocKey }: Props = $props();
 
-    const navigationItems = getRouteChildren(parentRoute);
+    const navigationItems = get_route_children(parentRoute);
 </script>
 
 <div>

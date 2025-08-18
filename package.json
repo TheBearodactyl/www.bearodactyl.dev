@@ -38,7 +38,7 @@
     "flowbite-svelte": "^1.12.5",
     "fuse.js": "^7.1.0",
     "gsap": "^3.13.0",
-    "libbearo": "^0.1.4",
+    "libbearo": "^0.1.5",
     "octokit": "^5.0.3",
     "omggif": "^1.0.10",
     "runed": "^0.31.1",

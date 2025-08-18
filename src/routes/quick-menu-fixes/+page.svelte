@@ -4,11 +4,11 @@
     import { goto } from "$app/navigation";
     import { _ } from "svelte-i18n";
     import { show_discouragement } from "$lib/stores/discouragement";
-    import { getMenuRoutes } from "$lib/config/routes";
     import LangSwitcher from "../../components/misc/LangSwitcher.svelte";
     import MenuIcon from "../../components/icons/MenuIcon.svelte";
     import { show_quick_menu } from "$lib/stores/show_quick_menu";
     import { SvelteMap } from "svelte/reactivity";
+    import { get_menu_routes } from "libbearo";
 
     const themes = [
         "kanagawa",
@@ -36,7 +36,7 @@
         "tokyo-night",
     ];
 
-    const routes = getMenuRoutes();
+    const routes = get_menu_routes();
 
     let selectedTheme = $state("kanagawa");
     let isMenuOpen = $state(false);

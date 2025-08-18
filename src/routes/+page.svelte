@@ -5,8 +5,7 @@
     import Seo from "../components/misc/Seo.svelte";
     import NavigationGallery from "../components/galleries/NavigationGallery.svelte";
     import Discouragement from "../components/misc/Discouragement.svelte";
-    import { getGalleryRoutes } from "$lib/config/routes";
-    import { Bearror, choose_rand, get_build_progress, get_latest_commit, LogLvl } from "libbearo";
+    import { Bearror, choose_rand, get_build_progress, get_gallery_routes, get_latest_commit, LogLvl } from "libbearo";
 
     let is_mobile = $state(false);
     let latest_commit: string | null = $state(null);
@@ -31,7 +30,7 @@
         }
     });
 
-    const nav_items = getGalleryRoutes();
+    const nav_items = get_gallery_routes();
     let build_progress = $state("");
     let interval_id: number;
 
